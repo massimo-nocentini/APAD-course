@@ -32,7 +32,7 @@ introduction:
 	jupyter-nbconvert introduction.ipynb --to rst
 	echo "Introduction\n############\n\n" | cat - introduction.rst > temp && mv temp introduction.rst
 move:
-	mv *.slides.html ../slides
+	#mv *.slides.html ../slides
 	mv *.rst ../booklet/source
 	rm -rf ../booklet/source/*_files
 	mv -f *_files ../booklet/source
