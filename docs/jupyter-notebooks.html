@@ -1,0 +1,1691 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPython: Beyond Normal Python &#8212; APAD course  documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">IPython: Beyond Normal Python</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><div class="docutils container">
+<p>Massimo Nocentini, PhD. February 7, 2020: init</p>
+</div>
+</p><div class="docutils container">
+<p>Abstract A (very concise) introduction to the Python ecosystem.</p>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__AUTHORS__</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;am&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Andrea Marino&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;andrea.marino@unifi.it&quot;</span><span class="p">,),</span>
+               <span class="s1">&#39;mn&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Massimo Nocentini&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;massimo.nocentini@unifi.it&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;https://github.com/massimo-nocentini/&quot;</span><span class="p">,)}</span>
+
+<span class="n">__KEYWORDS__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;Jupyter&#39;</span><span class="p">,</span> <span class="s1">&#39;notebooks&#39;</span><span class="p">,</span> <span class="s1">&#39;keynote&#39;</span><span class="p">,]</span>
+</pre></div>
+</div>
+<center></center><div class="section" id="ipython-beyond-normal-python">
+<h1>IPython: Beyond Normal Python<a class="headerlink" href="#ipython-beyond-normal-python" title="Permalink to this headline">¶</a></h1>
+<p>There are many options for development environments for Python, and I’m
+often asked which one I use in my own work. My answer sometimes
+surprises people: my preferred environment is
+<a class="reference external" href="http://ipython.org/">IPython</a> plus a text editor (in my case, Emacs
+or Atom depending on my mood). IPython (short for <em>Interactive Python</em>)
+was started in 2001 by Fernando Perez as an enhanced Python interpreter,
+and has since grown into a project aiming to provide, in Perez’s words,
+“Tools for the entire life cycle of research computing.” If Python is
+the engine of our data science task, you might think of IPython as the
+interactive control panel.</p>
+<p>As well as being a useful interactive interface to Python, IPython also
+provides a number of useful syntactic additions to the language; we’ll
+cover the most useful of these additions here. In addition, IPython is
+closely tied with the <a class="reference external" href="http://jupyter.org">Jupyter project</a>, which
+provides a browser-based notebook that is useful for development,
+collaboration, sharing, and even publication of data science results.
+The IPython notebook is actually a special case of the broader Jupyter
+notebook structure, which encompasses notebooks for Julia, R, and other
+programming languages. As an example of the usefulness of the notebook
+format, look no further than the page you are reading: the entire
+manuscript for this book was composed as a set of IPython notebooks.</p>
+<p>IPython is about using Python effectively for interactive scientific and
+data-intensive computing. This chapter will start by stepping through
+some of the IPython features that are useful to the practice of data
+science, focusing especially on the syntax it offers beyond the standard
+features of Python. Next, we will go into a bit more depth on some of
+the more useful “magic commands” that can speed-up common tasks in
+creating and using data science code. Finally, we will touch on some of
+the features of the notebook that make it useful in understanding data
+and sharing results.</p>
+<div class="section" id="shell-or-notebook">
+<h2>Shell or Notebook?<a class="headerlink" href="#shell-or-notebook" title="Permalink to this headline">¶</a></h2>
+<p>There are two primary means of using IPython that we’ll discuss in this
+chapter: the IPython shell and the IPython notebook. The bulk of the
+material in this chapter is relevant to both, and the examples will
+switch between them depending on what is most convenient. In the few
+sections that are relevant to just one or the other, we will explicitly
+state that fact. Before we start, some words on how to launch the
+IPython shell and IPython notebook.</p>
+<div class="section" id="launching-the-ipython-shell">
+<h3>Launching the IPython Shell<a class="headerlink" href="#launching-the-ipython-shell" title="Permalink to this headline">¶</a></h3>
+<p>This chapter, like most of this book, is not designed to be absorbed
+passively. I recommend that as you read through it, you follow along and
+experiment with the tools and syntax we cover: the muscle-memory you
+build through doing this will be far more useful than the simple act of
+reading about it. Start by launching the IPython interpreter by typing
+<strong>``ipython``</strong> on the command-line; alternatively, if you’ve installed
+a distribution like Anaconda or EPD, there may be a launcher specific to
+your system (we’ll discuss this more fully in <a class="reference external" href="01.01-Help-And-Documentation.ipynb">Help and Documentation in
+IPython</a>).</p>
+<p>Once you do this, you should see a prompt like the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>IPython 4.0.1 -- An enhanced Interactive Python.
+?         -&gt; Introduction and overview of IPython&#39;s features.
+%quickref -&gt; Quick reference.
+help      -&gt; Python&#39;s own help system.
+object?   -&gt; Details about &#39;object&#39;, use &#39;object??&#39; for extra details.
+In [1]:
+</pre></div>
+</div>
+<p>With that, you’re ready to follow along.</p>
+</div>
+<div class="section" id="launching-the-jupyter-notebook">
+<h3>Launching the Jupyter Notebook<a class="headerlink" href="#launching-the-jupyter-notebook" title="Permalink to this headline">¶</a></h3>
+<p>The Jupyter notebook is a browser-based graphical interface to the
+IPython shell, and builds on it a rich set of dynamic display
+capabilities. As well as executing Python/IPython statements, the
+notebook allows the user to include formatted text, static and dynamic
+visualizations, mathematical equations, JavaScript widgets, and much
+more. Furthermore, these documents can be saved in a way that lets other
+people open them and execute the code on their own systems.</p>
+<p>Though the IPython notebook is viewed and edited through your web
+browser window, it must connect to a running Python process in order to
+execute code. This process (known as a “kernel”) can be started by
+running the following command in your system shell:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ jupyter notebook
+</pre></div>
+</div>
+<p>This command will launch a local web server that will be visible to your
+browser. It immediately spits out a log showing what it is doing; that
+log will look something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ jupyter notebook
+[NotebookApp] Serving notebooks from local directory: /Users/jakevdp/PythonDataScienceHandbook
+[NotebookApp] 0 active kernels
+[NotebookApp] The IPython Notebook is running at: http://localhost:8888/
+[NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+</pre></div>
+</div>
+<p>Upon issuing the command, your default browser should automatically open
+and navigate to the listed local URL; the exact address will depend on
+your system. If the browser does not open automatically, you can open a
+window and manually open this address (<em>http://localhost:8888/</em> in this
+example).</p>
+</div>
+</div>
+</div>
+<div class="section" id="help-and-documentation-in-ipython">
+<h1>Help and Documentation in IPython<a class="headerlink" href="#help-and-documentation-in-ipython" title="Permalink to this headline">¶</a></h1>
+<p>If you read no other section in this chapter, read this one: I find the
+tools discussed here to be the most transformative contributions of
+IPython to my daily workflow.</p>
+<p>When a technologically-minded person is asked to help a friend, family
+member, or colleague with a computer problem, most of the time it’s less
+a matter of knowing the answer as much as knowing how to quickly find an
+unknown answer.</p>
+<p>In data science it’s the same: searchable web resources such as online
+documentation, mailing-list threads, and StackOverflow answers contain a
+wealth of information, even (especially?) if it is a topic you’ve found
+yourself searching before.</p>
+<p><em>Being an effective practitioner of data science is less about
+memorizing the tool or command you should use for every possible
+situation, and more about learning to effectively find the information
+you don’t know, whether through a web search engine or another means.</em></p>
+<p>One of the most useful functions of IPython/Jupyter is to shorten the
+gap between the user and the type of documentation and search that will
+help them do their work effectively.</p>
+<p>While web searches still play a role in answering complicated questions,
+an amazing amount of information can be found through IPython alone.
+Some examples of the questions IPython can help answer in a few
+keystrokes:</p>
+<ul class="simple">
+<li><p>How do I call this function? What arguments and options does it have?</p></li>
+<li><p>What does the source code of this Python object look like?</p></li>
+<li><p>What is in this package I imported? What attributes or methods does
+this object have?</p></li>
+</ul>
+<p>Here we’ll discuss IPython’s tools to quickly access this information,
+namely the <code class="docutils literal notranslate"><span class="pre">?</span></code> character to explore documentation, the <code class="docutils literal notranslate"><span class="pre">??</span></code>
+characters to explore source code, and the Tab key for auto-completion.</p>
+<div class="section" id="accessing-documentation-with">
+<h2>Accessing Documentation with <code class="docutils literal notranslate"><span class="pre">?</span></code><a class="headerlink" href="#accessing-documentation-with" title="Permalink to this headline">¶</a></h2>
+<p>The Python language and its data science ecosystem is built with the
+user in mind, and one big part of that is access to documentation. Every
+Python object contains the reference to a string, known as a <em>doc
+string</em>, which in most cases will contain a concise summary of the
+object and how to use it. Python has a built-in <code class="docutils literal notranslate"><span class="pre">help()</span></code> function that
+can access this information and prints the results. For example, to see
+the documentation of the built-in <code class="docutils literal notranslate"><span class="pre">len</span></code> function, you can do the
+following:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="nb">len</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">builtins</span><span class="p">:</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+    <span class="n">Return</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">container</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>This notation works for just about anything, including object methods:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">help</span><span class="p">(</span><span class="n">L</span><span class="o">.</span><span class="n">insert</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="n">insert</span><span class="p">:</span>
+
+<span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">object</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="n">method</span> <span class="n">of</span> <span class="n">builtins</span><span class="o">.</span><span class="n">list</span> <span class="n">instance</span>
+    <span class="n">Insert</span> <span class="nb">object</span> <span class="n">before</span> <span class="n">index</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>or even objects themselves, with the documentation from their type:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">Help on list object:
+
+class list(object)
+ |  list(iterable=(), /)
+ |
+ |  Built-in mutable sequence.
+ |
+ |  If no argument is given, the constructor creates a new empty list.
+ |  The argument must be an iterable if specified.
+ |
+ |  Methods defined here:
+ |
+ |  __add__(self, value, /)
+ |      Return self+value.
+ |
+ |  __contains__(self, key, /)
+ |      Return key in self.
+ |
+ |  __delitem__(self, key, /)
+ |      Delete self[key].
+ |
+ |  __eq__(self, value, /)
+ |      Return self==value.
+ |
+ |  __ge__(self, value, /)
+ |      Return self&gt;=value.
+ |
+ |  __getattribute__(self, name, /)
+ |      Return getattr(self, name).
+ |
+ |  __getitem__(...)
+ |      x.__getitem__(y) &lt;==&gt; x[y]
+ |
+ |  __gt__(self, value, /)
+ |      Return self&gt;value.
+ |
+ |  __iadd__(self, value, /)
+ |      Implement self+=value.
+ |
+ |  __imul__(self, value, /)
+ |      Implement self*=value.
+ |
+ |  __init__(self, /, <em>args, **kwargs)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |
+ |  __iter__(self, /)
+ |      Implement iter(self).
+ |
+ |  __le__(self, value, /)
+ |      Return self&lt;=value.
+ |
+ |  __len__(self, /)
+ |      Return len(self).
+ |
+ |  __lt__(self, value, /)
+ |      Return self&lt;value.
+ |
+ |  __mul__(self, value, /)
+ |      Return self*value.
+ |
+ |  __ne__(self, value, /)
+ |      Return self!=value.
+ |
+ |  __repr__(self, /)
+ |      Return repr(self).
+ |
+ |  __reversed__(self, /)
+ |      Return a reverse iterator over the list.
+ |
+ |  __rmul__(self, value, /)
+ |      Return value*self.
+ |
+ |  __setitem__(self, key, value, /)
+ |      Set self[key] to value.
+ |
+ |  __sizeof__(self, /)
+ |      Return the size of the list in memory, in bytes.
+ |
+ |  append(self, object, /)
+ |      Append object to the end of the list.
+ |
+ |  clear(self, /)
+ |      Remove all items from list.
+ |
+ |  copy(self, /)
+ |      Return a shallow copy of the list.
+ |
+ |  count(self, value, /)
+ |      Return number of occurrences of value.
+ |
+ |  extend(self, iterable, /)
+ |      Extend list by appending elements from the iterable.
+ |
+ |  index(self, value, start=0, stop=9223372036854775807, /)
+ |      Return first index of value.
+ |
+ |      Raises ValueError if the value is not present.
+ |
+ |  insert(self, index, object, /)
+ |      Insert object before index.
+ |
+ |  pop(self, index=-1, /)
+ |      Remove and return item at index (default last).
+ |
+ |      Raises IndexError if list is empty or index is out of range.
+ |
+ |  remove(self, value, /)
+ |      Remove first occurrence of value.
+ |
+ |      Raises ValueError if the value is not present.
+ |
+ |  reverse(self, /)
+ |      Reverse *IN PLACE</em>.
+ |
+ |  sort(self, /, <em>, key=None, reverse=False)
+ |      Stable sort *IN PLACE</em>.
+ |
+ |  ----------------------------------------------------------------------
+ |  Static methods defined here:
+ |
+ |  __new__(<a href="#id1"><span class="problematic" id="id2">*</span></a>args, <a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs) from builtins.type
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |
+ |  __hash__ = None</pre>
+<p>Importantly, this will even work for functions or other objects you
+create yourself! Here we’ll define a small function with a docstring:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the square of a.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Note that to create a docstring for our function, we simply placed a
+string literal in the first line. Because doc strings are usually
+multiple lines, by convention we used Python’s triple-quote notation for
+multi-line strings.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">function</span> <span class="n">square</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">__main__</span><span class="p">:</span>
+
+<span class="n">square</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">Return</span> <span class="n">the</span> <span class="n">square</span> <span class="n">of</span> <span class="n">a</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>This quick access to documentation via docstrings is one reason you
+should get in the habit of always adding such inline documentation to
+the code you write!</p>
+</div>
+<div class="section" id="accessing-source-code-with">
+<h2>Accessing Source Code with <code class="docutils literal notranslate"><span class="pre">??</span></code><a class="headerlink" href="#accessing-source-code-with" title="Permalink to this headline">¶</a></h2>
+<p>Because the Python language is so easily readable, another level of
+insight can usually be gained by reading the source code of the object
+you’re curious about. IPython provides a shortcut to the source code
+with the double question mark (<code class="docutils literal notranslate"><span class="pre">??</span></code>):</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> square<span class="o">??</span>
+<span class="n">Type</span><span class="p">:</span>        <span class="n">function</span>
+<span class="n">String</span> <span class="n">form</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">function</span> <span class="n">square</span> <span class="n">at</span> <span class="mh">0x103713cb0</span><span class="o">&gt;</span>
+<span class="n">Definition</span><span class="p">:</span>  <span class="n">square</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">Source</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="s2">&quot;Return the square of a&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>For simple functions like this, the double question-mark can give quick
+insight into the under-the-hood details.</p>
+<p>If you play with this much, you’ll notice that sometimes the <code class="docutils literal notranslate"><span class="pre">??</span></code>
+suffix doesn’t display any source code: this is generally because the
+object in question is not implemented in Python, but in C or some other
+compiled extension language. If this is the case, the <code class="docutils literal notranslate"><span class="pre">??</span></code> suffix
+gives the same output as the <code class="docutils literal notranslate"><span class="pre">?</span></code> suffix. You’ll find this particularly
+with many of Python’s built-in objects and types, for example <code class="docutils literal notranslate"><span class="pre">len</span></code>
+from above:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> len<span class="o">??</span>
+<span class="n">Type</span><span class="p">:</span>        <span class="n">builtin_function_or_method</span>
+<span class="n">String</span> <span class="n">form</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="nb">len</span><span class="o">&gt;</span>
+<span class="n">Namespace</span><span class="p">:</span>   <span class="n">Python</span> <span class="n">builtin</span>
+<span class="n">Docstring</span><span class="p">:</span>
+<span class="nb">len</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">integer</span>
+
+<span class="n">Return</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">items</span> <span class="n">of</span> <span class="n">a</span> <span class="n">sequence</span> <span class="ow">or</span> <span class="n">mapping</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">?</span></code> and/or <code class="docutils literal notranslate"><span class="pre">??</span></code> gives a powerful and quick interface for
+finding information about what any Python function or module does.</p>
+</div>
+<div class="section" id="exploring-modules-with-tab-completion">
+<h2>Exploring Modules with Tab-Completion<a class="headerlink" href="#exploring-modules-with-tab-completion" title="Permalink to this headline">¶</a></h2>
+<p>IPython’s other useful interface is the use of the tab key for
+auto-completion and exploration of the contents of objects, modules, and
+name-spaces. In the examples that follow, we’ll use <code class="docutils literal notranslate"><span class="pre">&lt;TAB&gt;</span></code> to
+indicate when the Tab key should be pressed.</p>
+<div class="section" id="tab-completion-of-object-contents">
+<h3>Tab-completion of object contents<a class="headerlink" href="#tab-completion-of-object-contents" title="Permalink to this headline">¶</a></h3>
+<p>Every Python object has various attributes and methods associated with
+it. Like with the <code class="docutils literal notranslate"><span class="pre">help</span></code> function discussed before, Python has a
+built-in <code class="docutils literal notranslate"><span class="pre">dir</span></code> function that returns a list of these, but the
+tab-completion interface is much easier to use in practice. To see a
+list of all available attributes of an object, you can type the name of
+the object followed by a period (“<code class="docutils literal notranslate"><span class="pre">.</span></code>”) character and the Tab key:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">L</span><span class="o">.&lt;</span><span class="n">TAB</span><span class="o">&gt;</span>
+<span class="n">L</span><span class="o">.</span><span class="n">append</span>   <span class="n">L</span><span class="o">.</span><span class="n">copy</span>     <span class="n">L</span><span class="o">.</span><span class="n">extend</span>   <span class="n">L</span><span class="o">.</span><span class="n">insert</span>   <span class="n">L</span><span class="o">.</span><span class="n">remove</span>   <span class="n">L</span><span class="o">.</span><span class="n">sort</span>
+<span class="n">L</span><span class="o">.</span><span class="n">clear</span>    <span class="n">L</span><span class="o">.</span><span class="n">count</span>    <span class="n">L</span><span class="o">.</span><span class="n">index</span>    <span class="n">L</span><span class="o">.</span><span class="n">pop</span>      <span class="n">L</span><span class="o">.</span><span class="n">reverse</span>
+</pre></div>
+</div>
+<p>To narrow-down the list, you can type the first character or several
+characters of the name, and the Tab key will find the matching
+attributes and methods:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">L</span><span class="o">.</span><span class="n">c</span><span class="o">&lt;</span><span class="n">TAB</span><span class="o">&gt;</span>
+<span class="n">L</span><span class="o">.</span><span class="n">clear</span>  <span class="n">L</span><span class="o">.</span><span class="n">copy</span>   <span class="n">L</span><span class="o">.</span><span class="n">count</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">L</span><span class="o">.</span><span class="n">co</span><span class="o">&lt;</span><span class="n">TAB</span><span class="o">&gt;</span>
+<span class="n">L</span><span class="o">.</span><span class="n">copy</span>   <span class="n">L</span><span class="o">.</span><span class="n">count</span>
+</pre></div>
+</div>
+<p>If there is only a single option, pressing the Tab key will complete the
+line for you. For example, the following will instantly be replaced with
+<code class="docutils literal notranslate"><span class="pre">L.count</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">L</span><span class="o">.</span><span class="n">cou</span><span class="o">&lt;</span><span class="n">TAB</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Though Python has no strictly-enforced distinction between
+public/external attributes and private/internal attributes, by
+convention a preceding underscore is used to denote such methods. For
+clarity, these private methods and special methods are omitted from the
+list by default, but it’s possible to list them by explicitly typing the
+underscore:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">L</span><span class="o">.</span><span class="n">_</span><span class="o">&lt;</span><span class="n">TAB</span><span class="o">&gt;</span>
+<span class="n">L</span><span class="o">.</span><span class="fm">__add__</span>           <span class="n">L</span><span class="o">.</span><span class="fm">__gt__</span>            <span class="n">L</span><span class="o">.</span><span class="n">__reduce__</span>
+<span class="n">L</span><span class="o">.</span><span class="vm">__class__</span>         <span class="n">L</span><span class="o">.</span><span class="fm">__hash__</span>          <span class="n">L</span><span class="o">.</span><span class="n">__reduce_ex__</span>
+</pre></div>
+</div>
+<p>For brevity, we’ve only shown the first couple lines of the output. Most
+of these are Python’s special double-underscore methods (often nicknamed
+“dunder” methods).</p>
+</div>
+<div class="section" id="tab-completion-when-importing">
+<h3>Tab completion when importing<a class="headerlink" href="#tab-completion-when-importing" title="Permalink to this headline">¶</a></h3>
+<p>Tab completion is also useful when importing objects from packages. Here
+we’ll use it to find all possible imports in the <code class="docutils literal notranslate"><span class="pre">itertools</span></code> package
+that start with <code class="docutils literal notranslate"><span class="pre">co</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">co</span><span class="o">&lt;</span><span class="n">TAB</span><span class="o">&gt;</span>
+<span class="n">combinations</span>                   <span class="n">compress</span>
+<span class="n">combinations_with_replacement</span>  <span class="n">count</span>
+</pre></div>
+</div>
+<p>Similarly, you can use tab-completion to see which imports are available
+on your system (this will change depending on which third-party scripts
+and modules are visible to your Python session):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>In [10]: import &lt;TAB&gt;
+Display all 399 possibilities? (y or n)
+Crypto              dis                 py_compile
+Cython              distutils           pyclbr
+...                 ...                 ...
+difflib             pwd                 zmq
+
+In [10]: import h&lt;TAB&gt;
+hashlib             hmac                http
+heapq               html                husl
+</pre></div>
+</div>
+<p>(Note that for brevity, I did not print here all 399 importable packages
+and modules on my system.)</p>
+</div>
+<div class="section" id="beyond-tab-completion-wildcard-matching">
+<h3>Beyond tab completion: wildcard matching<a class="headerlink" href="#beyond-tab-completion-wildcard-matching" title="Permalink to this headline">¶</a></h3>
+<p>Tab completion is useful if you know the first few characters of the
+object or attribute you’re looking for, but is little help if you’d like
+to match characters at the middle or end of the word. For this use-case,
+IPython provides a means of wildcard matching for names using the <code class="docutils literal notranslate"><span class="pre">*</span></code>
+character.</p>
+<p>For example, we can use this to list every object in the namespace that
+ends with <code class="docutils literal notranslate"><span class="pre">Warning</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> *Warning<span class="o">?</span>
+<span class="ne">BytesWarning</span>                  <span class="ne">RuntimeWarning</span>
+<span class="ne">DeprecationWarning</span>            <span class="ne">SyntaxWarning</span>
+<span class="ne">FutureWarning</span>                 <span class="ne">UnicodeWarning</span>
+<span class="ne">ImportWarning</span>                 <span class="ne">UserWarning</span>
+<span class="ne">PendingDeprecationWarning</span>     <span class="ne">Warning</span>
+<span class="ne">ResourceWarning</span>
+</pre></div>
+</div>
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">*</span></code> character matches any string, including the empty
+string.</p>
+<p>Similarly, suppose we are looking for a string method that contains the
+word <code class="docutils literal notranslate"><span class="pre">find</span></code> somewhere in its name. We can search for it this way:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> str.*find*<span class="o">?</span>
+<span class="nb">str</span><span class="o">.</span><span class="n">find</span>
+<span class="nb">str</span><span class="o">.</span><span class="n">rfind</span>
+</pre></div>
+</div>
+<p>I find this type of flexible wildcard search can be very useful for
+finding a particular command when getting to know a new package or
+reacquainting myself with a familiar one.</p>
+</div>
+</div>
+</div>
+<div class="section" id="ipython-magic-commands">
+<h1>IPython Magic Commands<a class="headerlink" href="#ipython-magic-commands" title="Permalink to this headline">¶</a></h1>
+<p>The previous two sections showed how IPython lets you use and explore
+Python efficiently and interactively. Here we’ll begin discussing some
+of the enhancements that IPython adds on top of the normal Python
+syntax. These are known in IPython as <em>magic commands</em>, and are prefixed
+by the <code class="docutils literal notranslate"><span class="pre">%</span></code> character. These magic commands are designed to succinctly
+solve various common problems in standard data analysis. Magic commands
+come in two flavors: <em>line magics</em>, which are denoted by a single <code class="docutils literal notranslate"><span class="pre">%</span></code>
+prefix and operate on a single line of input, and <em>cell magics</em>, which
+are denoted by a double <code class="docutils literal notranslate"><span class="pre">%%</span></code> prefix and operate on multiple lines of
+input. We’ll demonstrate and discuss a few brief examples here, and come
+back to more focused discussion of several useful magic commands later
+in the chapter.</p>
+<div class="section" id="running-external-code-run">
+<h2>Running External Code: <code class="docutils literal notranslate"><span class="pre">%run</span></code><a class="headerlink" href="#running-external-code-run" title="Permalink to this headline">¶</a></h2>
+<p>As you begin developing more extensive code, you will likely find
+yourself working in both IPython for interactive exploration, as well as
+a text editor to store code that you want to reuse. Rather than running
+this code in a new window, it can be convenient to run it within your
+IPython session. This can be done with the <code class="docutils literal notranslate"><span class="pre">%run</span></code> magic.</p>
+<p>For example, imagine you’ve created a <code class="docutils literal notranslate"><span class="pre">myscript.py</span></code> file with the
+following contents:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%%bash
+
+cat my-script.py
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;square a number&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span>
+
+<span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="s2">&quot;squared is&quot;</span><span class="p">,</span> <span class="n">square</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>You can execute this from your IPython session as follows:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">run</span> my-script.py
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="n">squared</span> <span class="ow">is</span> <span class="mi">1</span>
+<span class="mi">2</span> <span class="n">squared</span> <span class="ow">is</span> <span class="mi">4</span>
+<span class="mi">3</span> <span class="n">squared</span> <span class="ow">is</span> <span class="mi">9</span>
+</pre></div>
+</div>
+<p>Note also that after you’ve run this script, any functions defined
+within it are available for use in your IPython session:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">square</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">25</span>
+</pre></div>
+</div>
+<p>There are several options to fine-tune how your code is run; you can see
+the documentation in the normal way, by typing <strong>``%run?``</strong> in the
+IPython interpreter.</p>
+</div>
+<div class="section" id="timing-code-execution-timeit">
+<h2>Timing Code Execution: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code><a class="headerlink" href="#timing-code-execution-timeit" title="Permalink to this headline">¶</a></h2>
+<p>Another example of a useful magic function is <code class="docutils literal notranslate"><span class="pre">%timeit</span></code>, which will
+automatically determine the execution time of the single-line Python
+statement that follows it. For example, we may want to check the
+performance of a list comprehension:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> L = [n ** 2 for n in range(1000)]
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>307 µs ± 262 ns per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre></div>
+</div>
+<p>The benefit of <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> is that for short commands it will
+automatically perform multiple runs in order to attain more robust
+results.</p>
+<p>For multi line statements, adding a second <code class="docutils literal notranslate"><span class="pre">%</span></code> sign will turn this
+into a cell magic that can handle multiple lines of input. For example,
+here’s the equivalent construction with a <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>346 µs ± 351 ns per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre></div>
+</div>
+<p>We can immediately see that list comprehensions are about 10% faster
+than the equivalent <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop construction in this case.</p>
+</div>
+<div class="section" id="help-on-magic-functions-magic-and-lsmagic">
+<h2>Help on Magic Functions: <code class="docutils literal notranslate"><span class="pre">?</span></code>, <code class="docutils literal notranslate"><span class="pre">%magic</span></code>, and <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code><a class="headerlink" href="#help-on-magic-functions-magic-and-lsmagic" title="Permalink to this headline">¶</a></h2>
+<p>Like normal Python functions, IPython magic functions have docstrings,
+and this useful documentation can be accessed in the standard manner.
+So, for example, to read the documentation of the <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> magic
+simply type this:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> %timeit<span class="o">?</span>
+</pre></div>
+</div>
+<p>Documentation for other functions can be accessed similarly. To access a
+general description of available magic functions, including some
+examples, you can type this:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="o">%</span><span class="k">magic</span>
+</pre></div>
+</div>
+<p>For a quick and simple list of all available magic functions, type this:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">12</span><span class="p">]:</span> <span class="o">%</span><span class="k">lsmagic</span>
+</pre></div>
+</div>
+<p>Finally, I’ll mention that it is quite straightforward to define your
+own magic functions if you wish.</p>
+</div>
+</div>
+<div class="section" id="input-and-output-history">
+<h1>Input and Output History<a class="headerlink" href="#input-and-output-history" title="Permalink to this headline">¶</a></h1>
+<p>Previously we saw that the IPython shell allows you to access previous
+commands with the up and down arrow keys, or equivalently the
+Ctrl-p/Ctrl-n shortcuts. Additionally, in both the shell and the
+notebook, IPython exposes several ways to obtain the output of previous
+commands, as well as string versions of the commands themselves. We’ll
+explore those here.</p>
+<div class="section" id="ipythons-in-and-out-objects">
+<h2>IPython’s <code class="docutils literal notranslate"><span class="pre">In</span></code> and <code class="docutils literal notranslate"><span class="pre">Out</span></code> Objects<a class="headerlink" href="#ipythons-in-and-out-objects" title="Permalink to this headline">¶</a></h2>
+<p>By now I imagine you’re quite familiar with the <code class="docutils literal notranslate"><span class="pre">In</span> <span class="pre">[1]:</span></code>/<code class="docutils literal notranslate"><span class="pre">Out[1]:</span></code>
+style prompts used by IPython. But it turns out that these are not just
+pretty decoration: they give a clue as to how you can access previous
+inputs and outputs in your current session. Imagine you start a session
+that looks like this:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.9092974268256817</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mf">0.4161468365471424</span>
+</pre></div>
+</div>
+<p>We’ve imported the built-in <code class="docutils literal notranslate"><span class="pre">math</span></code> package, then computed the sine and
+the cosine of the number 2. These inputs and outputs are displayed in
+the shell with <code class="docutils literal notranslate"><span class="pre">In</span></code>/<code class="docutils literal notranslate"><span class="pre">Out</span></code> labels, but there’s more–IPython actually
+creates some Python variables called <code class="docutils literal notranslate"><span class="pre">In</span></code> and <code class="docutils literal notranslate"><span class="pre">Out</span></code> that are
+automatically updated to reflect this history:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">In</span><span class="p">)[:</span><span class="mi">1000</span><span class="p">])</span>
+</pre></div>
+</div>
+<pre class="literal-block">['', '__AUTHORS__ = {'am': (&quot;Andrea Marino&quot;, n                      &quot;<a class="reference external" href="mailto:andrea&#46;marino&#37;&#52;&#48;unifi&#46;it">andrea<span>&#46;</span>marino<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;,),n               'mn': (&quot;Massimo Nocentini&quot;, n                      &quot;<a class="reference external" href="mailto:massimo&#46;nocentini&#37;&#52;&#48;unifi&#46;it">massimo<span>&#46;</span>nocentini<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;, n                      &quot;<a class="reference external" href="https://github.com/massimo-nocentini/">https://github.com/massimo-nocentini/</a>&quot;,)}nn__KEYWORDS__ = ['Python', 'Jupyter', 'notebooks', 'keynote',]', &quot;outline = []noutline.append('Hello!')noutline.append('Python')noutline.append('Whys and refs')noutline.append('On the shoulders of giants')noutline.append('Set the env up')noutline.append('Notebooks')noutline.append('Course agenda')&quot;, 'help(len)', '__AUTHORS__ = {'am': (&quot;Andrea Marino&quot;, n                      &quot;<a class="reference external" href="mailto:andrea&#46;marino&#37;&#52;&#48;unifi&#46;it">andrea<span>&#46;</span>marino<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;,),n               'mn': (&quot;Massimo Nocentini&quot;, n                      &quot;<a class="reference external" href="mailto:massimo&#46;nocentini&#37;&#52;&#48;unifi&#46;it">massimo<span>&#46;</span>nocentini<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;, n                      &quot;<a class="reference external" href="https://github.com/massimo-nocentini/">https://github.com/massimo-nocentini/</a>&quot;,)}nn__KEYWORDS__ = ['Python', 'Jupyter', 'notebooks', 'keynote',]', 'help(len)', 'L = [1, 2, 3]nhelp(L.insert)', 'help(L)', 'This nota</pre>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Out</span><span class="p">)[:</span><span class="mi">1000</span><span class="p">])</span>
+</pre></div>
+</div>
+<pre class="literal-block">{29: 25, 30: 0.9092974268256817, 31: -0.4161468365471424, 32: -0.4161468365471424, 33: 0.9092974268256817, 49: False, 51: False, 61: ['images', 'introduction.ipynb', 'introduction.slides.html', 'jupyter-notebooks.ipynb', 'jupyter-notebooks.slides.html', 'Makefile', 'my-script.py', 'notebooks.ipynb'], 62: ['/home/mn/Developer/working-copies/pythons/on-python/UniFiCourseSpring2020'], 63: &lt;class 'IPython.utils.text.SList'&gt;, 71: '['', '__AUTHORS__ = {\'am\': (&quot;Andrea Marino&quot;, \n                      &quot;<a class="reference external" href="mailto:andrea&#46;marino&#37;&#52;&#48;unifi&#46;it">andrea<span>&#46;</span>marino<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;,),\n', 72: '['', '__AUTHORS__ = {\'am\': (&quot;Andrea Marino&quot;, \n                      &quot;<a class="reference external" href="mailto:andrea&#46;marino&#37;&#52;&#48;unifi&#46;it">andrea<span>&#46;</span>marino<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;,),\n               \'mn\': (&quot;Massimo Nocentini&quot;, \n                      &quot;<a class="reference external" href="mailto:massimo&#46;nocentini&#37;&#52;&#48;unifi&#46;it">massimo<span>&#46;</span>nocentini<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;, \n                      &quot;<a class="reference external" href="https://github.com/massimo-nocentini/">https://github.com/massimo-nocentini/</a>&quot;,)}\n\n__KEYWORDS__ = [\'Python\', \'Jupyter\', \'notebooks\', \'keynote\',]', &quot;outline = []\noutline.append('Hello!')\noutline.append('Python')\noutl</pre>
+<p>The <code class="docutils literal notranslate"><span class="pre">In</span></code> object is a list, which keeps track of the commands in order
+(the first item in the list is a place-holder so that <code class="docutils literal notranslate"><span class="pre">In[1]</span></code> can
+refer to the first command):</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="kn">import</span> <span class="nn">math</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">__AUTHORS__</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;am&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Andrea Marino&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;andrea.marino@unifi.it&quot;</span><span class="p">,),</span>
+               <span class="s1">&#39;mn&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Massimo Nocentini&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;massimo.nocentini@unifi.it&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;https://github.com/massimo-nocentini/&quot;</span><span class="p">,)}</span>
+
+<span class="n">__KEYWORDS__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;Jupyter&#39;</span><span class="p">,</span> <span class="s1">&#39;notebooks&#39;</span><span class="p">,</span> <span class="s1">&#39;keynote&#39;</span><span class="p">,]</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Out</span></code> object is not a list but a dictionary mapping input numbers
+to their outputs (if any):</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Out</span><span class="p">[</span><span class="mi">29</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">25</span>
+</pre></div>
+</div>
+<p>Note that not all operations have outputs: for example, <code class="docutils literal notranslate"><span class="pre">import</span></code>
+statements and <code class="docutils literal notranslate"><span class="pre">print</span></code> statements don’t affect the output. The latter
+may be surprising, but makes sense if you consider that <code class="docutils literal notranslate"><span class="pre">print</span></code> is a
+function that returns <code class="docutils literal notranslate"><span class="pre">None</span></code>; for brevity, any command that returns
+<code class="docutils literal notranslate"><span class="pre">None</span></code> is not added to <code class="docutils literal notranslate"><span class="pre">Out</span></code>.</p>
+<p>Where this can be useful is if you want to interact with past results.
+For example, let’s check the sum of <code class="docutils literal notranslate"><span class="pre">sin(2)</span> <span class="pre">**</span> <span class="pre">2</span></code> and <code class="docutils literal notranslate"><span class="pre">cos(2)</span> <span class="pre">**</span> <span class="pre">2</span></code>
+using the previously-computed results:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+
+
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-131-26f5e7e673c2&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+
+
+<span class="ne">KeyError</span><span class="p">:</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-131-26f5e7e673c2&gt;[0m(1)[0;36m&lt;module&gt;[0;34m()[0m
+[0;32m----&gt; 1 [0;31m[0mOut[0m[0;34m[[0m[0;36m2[0m[0;34m][0m [0;34m**[0m [0;36m2[0m [0;34m+[0m [0mOut[0m[0;34m[[0m[0;36m3[0m[0;34m][0m [0;34m**[0m [0;36m2[0m[0;34m[0m[0;34m[0m[0m
+[0m
+ipdb&gt; quit
+</pre></div>
+</div>
+<p>The result is <code class="docutils literal notranslate"><span class="pre">1.0</span></code> as we’d expect from the well-known trigonometric
+identity. In this case, using these previous results probably is not
+necessary, but it can become very handy if you execute a very expensive
+computation and want to reuse the result!</p>
+</div>
+<div class="section" id="underscore-shortcuts-and-previous-outputs">
+<h2>Underscore Shortcuts and Previous Outputs<a class="headerlink" href="#underscore-shortcuts-and-previous-outputs" title="Permalink to this headline">¶</a></h2>
+<p>The standard Python shell contains just one simple shortcut for
+accessing previous output; the variable <code class="docutils literal notranslate"><span class="pre">_</span></code> (i.e., a single
+underscore) is kept updated with the previous output; this works in
+IPython as well:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<pre class="literal-block">{29: 25, 30: 0.9092974268256817, 31: -0.4161468365471424, 32: -0.4161468365471424, 33: 0.9092974268256817, 49: False, 51: False, 61: ['images', 'introduction.ipynb', 'introduction.slides.html', 'jupyter-notebooks.ipynb', 'jupyter-notebooks.slides.html', 'Makefile', 'my-script.py', 'notebooks.ipynb'], 62: ['/home/mn/Developer/working-copies/pythons/on-python/UniFiCourseSpring2020'], 63: &lt;class 'IPython.utils.text.SList'&gt;, 71: '['', '__AUTHORS__ = {\'am\': (&quot;Andrea Marino&quot;, \n                      &quot;<a class="reference external" href="mailto:andrea&#46;marino&#37;&#52;&#48;unifi&#46;it">andrea<span>&#46;</span>marino<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;,),\n', 72: '['', '__AUTHORS__ = {\'am\': (&quot;Andrea Marino&quot;, \n                      &quot;<a class="reference external" href="mailto:andrea&#46;marino&#37;&#52;&#48;unifi&#46;it">andrea<span>&#46;</span>marino<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;,),\n               \'mn\': (&quot;Massimo Nocentini&quot;, \n                      &quot;<a class="reference external" href="mailto:massimo&#46;nocentini&#37;&#52;&#48;unifi&#46;it">massimo<span>&#46;</span>nocentini<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;, \n                      &quot;<a class="reference external" href="https://github.com/massimo-nocentini/">https://github.com/massimo-nocentini/</a>&quot;,)}\n\n__KEYWORDS__ = [\'Python\', \'Jupyter\', \'notebooks\', \'keynote\',]', &quot;outline = []\noutline.append('Hello!')\noutline.append('Python')\noutl</pre>
+<p>But IPython takes this a bit further—you can use a double underscore to
+access the second-to-last output, and a triple underscore to access the
+third-to-last output (skipping any commands with no output):</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">__</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">___</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="mf">0.4161468365471424</span>
+<span class="mf">0.9092974268256817</span>
+</pre></div>
+</div>
+<p>IPython stops there: more than three underscores starts to get a bit
+hard to count, and at that point it’s easier to refer to the output by
+line number.</p>
+<p>There is one more shortcut we should mention, however–a shorthand for
+<code class="docutils literal notranslate"><span class="pre">Out[X]</span></code> is <code class="docutils literal notranslate"><span class="pre">_X</span></code> (i.e., a single underscore followed by the line
+number):</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">_2</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+
+
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-134-32d637638f50&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">_2</span>
+
+
+<span class="ne">KeyError</span><span class="p">:</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-134-32d637638f50&gt;[0m(1)[0;36m&lt;module&gt;[0;34m()[0m
+[0;32m----&gt; 1 [0;31m[0mOut[0m[0;34m[[0m[0;36m2[0m[0;34m][0m[0;34m,[0m [0m_2[0m[0;34m[0m[0;34m[0m[0m
+[0m
+ipdb&gt; quit
+</pre></div>
+</div>
+</div>
+<div class="section" id="suppressing-output">
+<h2>Suppressing Output<a class="headerlink" href="#suppressing-output" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes you might wish to suppress the output of a statement (this is
+perhaps most common with the plotting commands that we’ll explore in
+<a class="reference external" href="04.00-Introduction-To-Matplotlib.ipynb">Introduction to
+Matplotlib</a>). Or maybe the
+command you’re executing produces a result that you’d prefer not like to
+store in your output history, perhaps so that it can be deallocated when
+other references are removed. The easiest way to suppress the output of
+a command is to add a semicolon to the end omf the line:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Note that the result is computed silently, and the output is neither
+displayed on the screen or stored in the <code class="docutils literal notranslate"><span class="pre">Out</span></code> dictionary:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">14</span> <span class="ow">in</span> <span class="n">Out</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="related-magic-commands">
+<h2>Related Magic Commands<a class="headerlink" href="#related-magic-commands" title="Permalink to this headline">¶</a></h2>
+<p>For accessing a batch of previous inputs at once, the <code class="docutils literal notranslate"><span class="pre">%history</span></code> magic
+command is very helpful. Here is how you can print the first four
+inputs:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">history</span> -n 1-3
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="mi">1</span><span class="p">:</span>
+<span class="n">__AUTHORS__</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;am&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Andrea Marino&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;andrea.marino@unifi.it&quot;</span><span class="p">,),</span>
+               <span class="s1">&#39;mn&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Massimo Nocentini&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;massimo.nocentini@unifi.it&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;https://github.com/massimo-nocentini/&quot;</span><span class="p">,)}</span>
+
+<span class="n">__KEYWORDS__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;Jupyter&#39;</span><span class="p">,</span> <span class="s1">&#39;notebooks&#39;</span><span class="p">,</span> <span class="s1">&#39;keynote&#39;</span><span class="p">,]</span>
+   <span class="mi">2</span><span class="p">:</span>
+<span class="n">outline</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Hello!&#39;</span><span class="p">)</span>
+<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Python&#39;</span><span class="p">)</span>
+<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Whys and refs&#39;</span><span class="p">)</span>
+<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;On the shoulders of giants&#39;</span><span class="p">)</span>
+<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Set the env up&#39;</span><span class="p">)</span>
+<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Notebooks&#39;</span><span class="p">)</span>
+<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Course agenda&#39;</span><span class="p">)</span>
+   <span class="mi">3</span><span class="p">:</span> <span class="n">help</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As usual, you can type <code class="docutils literal notranslate"><span class="pre">%history?</span></code> for more information and a
+description of options available. Other similar magic commands are
+<code class="docutils literal notranslate"><span class="pre">%rerun</span></code> (which will re-execute some portion of the command history)
+and <code class="docutils literal notranslate"><span class="pre">%save</span></code> (which saves some set of the command history to a file).
+For more information, I suggest exploring these using the <code class="docutils literal notranslate"><span class="pre">?</span></code> help
+functionality discussed in <a class="reference external" href="01.01-Help-And-Documentation.ipynb">Help and Documentation in
+IPython</a>.</p>
+</div>
+</div>
+<div class="section" id="ipython-and-shell-commands">
+<h1>IPython and Shell Commands<a class="headerlink" href="#ipython-and-shell-commands" title="Permalink to this headline">¶</a></h1>
+<p>When working interactively with the standard Python interpreter, one of
+the frustrations is the need to switch between multiple windows to
+access Python tools and system command-line tools. IPython bridges this
+gap, and gives you a syntax for executing shell commands directly from
+within the IPython terminal. The magic happens with the exclamation
+point: anything appearing after <code class="docutils literal notranslate"><span class="pre">!</span></code> on a line will be executed not by
+the Python kernel, but by the system command-line.</p>
+<p>The following assumes you’re on a Unix-like system, such as Linux or Mac
+OSX. Some of the examples that follow will fail on Windows, which uses a
+different type of shell by default (though with the 2016 announcement of
+native Bash shells on Windows, soon this may no longer be an issue!). If
+you’re unfamiliar with shell commands, I’d suggest reviewing the <a class="reference external" href="http://swcarpentry.github.io/shell-novice/">Shell
+Tutorial</a> put together by
+the always excellent Software Carpentry Foundation.</p>
+<div class="section" id="quick-introduction-to-the-shell">
+<h2>Quick Introduction to the Shell<a class="headerlink" href="#quick-introduction-to-the-shell" title="Permalink to this headline">¶</a></h2>
+<p>A full intro to using the shell/terminal/command-line is well beyond the
+scope of this chapter, but for the uninitiated we will offer a quick
+introduction here. The shell is a way to interact textually with your
+computer. Ever since the mid 1980s, when Microsoft and Apple introduced
+the first versions of their now ubiquitous graphical operating systems,
+most computer users have interacted with their operating system through
+familiar clicking of menus and drag-and-drop movements. But operating
+systems existed long before these graphical user interfaces, and were
+primarily controlled through sequences of text input: at the prompt, the
+user would type a command, and the computer would do what the user told
+it to. Those early prompt systems are the precursors of the shells and
+terminals that most active data scientists still use today.</p>
+<p>Someone unfamiliar with the shell might ask why you would bother with
+this, when many results can be accomplished by simply clicking on icons
+and menus. A shell user might reply with another question: why hunt
+icons and click menus when you can accomplish things much more easily by
+typing? While it might sound like a typical tech preference impasse,
+when moving beyond basic tasks it quickly becomes clear that the shell
+offers much more control of advanced tasks, though admittedly the
+learning curve can intimidate the average computer user.</p>
+<p>As an example, here is a sample of a Linux/OSX shell session where a
+user explores, creates, and modifies directories and files on their
+system (<code class="docutils literal notranslate"><span class="pre">osx:~</span> <span class="pre">$</span></code> is the prompt, and everything after the <code class="docutils literal notranslate"><span class="pre">$</span></code> sign
+is the typed command; text that is preceded by a <code class="docutils literal notranslate"><span class="pre">#</span></code> is meant just as
+description, rather than something you would actually type in):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>osx:~ $ <span class="nb">echo</span> <span class="s2">&quot;hello world&quot;</span>             <span class="c1"># echo is like Python&#39;s print function</span>
+hello world
+
+osx:~ $ <span class="nb">pwd</span>                            <span class="c1"># pwd = print working directory</span>
+/home/jake                             <span class="c1"># this is the &quot;path&quot; that we&#39;re sitting in</span>
+
+osx:~ $ ls                             <span class="c1"># ls = list working directory contents</span>
+notebooks  projects
+
+osx:~ $ <span class="nb">cd</span> projects/                   <span class="c1"># cd = change directory</span>
+
+osx:projects $ <span class="nb">pwd</span>
+/home/jake/projects
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>osx:projects $ ls
+datasci_book   mpld3   myproject.txt
+
+osx:projects $ mkdir myproject          <span class="c1"># mkdir = make new directory</span>
+
+osx:projects $ <span class="nb">cd</span> myproject/
+
+osx:myproject $ mv ../myproject.txt ./  <span class="c1"># mv = move file. Here we&#39;re moving the</span>
+                                        <span class="c1"># file myproject.txt from one directory</span>
+                                        <span class="c1"># up (../) to the current directory (./)</span>
+osx:myproject $ ls
+myproject.txt
+</pre></div>
+</div>
+<p>Notice that all of this is just a compact way to do familiar operations
+(navigating a directory structure, creating a directory, moving a file,
+etc.) by typing commands rather than clicking icons and menus. Note that
+with just a few commands (<code class="docutils literal notranslate"><span class="pre">pwd</span></code>, <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">cd</span></code>, <code class="docutils literal notranslate"><span class="pre">mkdir</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">cp</span></code>) you can do many of the most common file operations. It’s when
+you go beyond these basics that the shell approach becomes really
+powerful.</p>
+</div>
+<div class="section" id="shell-commands-in-ipython">
+<h2>Shell Commands in IPython<a class="headerlink" href="#shell-commands-in-ipython" title="Permalink to this headline">¶</a></h2>
+<p>Any command that works at the command-line can be used in IPython by
+prefixing it with the <code class="docutils literal notranslate"><span class="pre">!</span></code> character. For example, the <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">pwd</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">echo</span></code> commands can be run as follows:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">images</span>                        <span class="n">jupyter</span><span class="o">-</span><span class="n">notebooks</span><span class="o">.</span><span class="n">slides</span><span class="o">.</span><span class="n">html</span>  <span class="n">notebooks</span><span class="o">.</span><span class="n">ipynb</span>
+<span class="n">introduction</span><span class="o">.</span><span class="n">ipynb</span>    <span class="n">Makefile</span>                       <span class="n">__pycache__</span>
+<span class="n">introduction</span><span class="o">.</span><span class="n">slides</span><span class="o">.</span><span class="n">html</span>  <span class="n">mprun_demo</span><span class="o">.</span><span class="n">py</span>                      <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">jupyter</span><span class="o">-</span><span class="n">notebooks</span><span class="o">.</span><span class="n">ipynb</span>   <span class="n">my</span><span class="o">-</span><span class="n">script</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pwd
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mn</span><span class="o">/</span><span class="n">Developer</span><span class="o">/</span><span class="n">working</span><span class="o">-</span><span class="n">copies</span><span class="o">/</span><span class="n">pythons</span><span class="o">/</span><span class="n">on</span><span class="o">-</span><span class="n">python</span><span class="o">/</span><span class="n">UniFiCourseSpring2020</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="nb">echo</span> <span class="s2">&quot;printing from the shell&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">printing</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">shell</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="passing-values-to-and-from-the-shell">
+<h2>Passing Values to and from the Shell<a class="headerlink" href="#passing-values-to-and-from-the-shell" title="Permalink to this headline">¶</a></h2>
+<p>Shell commands can not only be called from IPython, but can also be made
+to interact with the IPython namespace. For example, you can save the
+output of any shell command to a Python list using the assignment
+operator:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">contents</span> <span class="o">=</span> <span class="o">!</span>ls
+<span class="n">contents</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;images&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;introduction.ipynb&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;introduction.slides.html&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;jupyter-notebooks.ipynb&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;jupyter-notebooks.slides.html&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;Makefile&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;mprun_demo.py&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;my-script.py&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;notebooks.ipynb&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;__pycache__&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;requirements.txt&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">directory</span> <span class="o">=</span> <span class="o">!</span>pwd
+<span class="n">directory</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;/home/mn/Developer/working-copies/pythons/on-python/UniFiCourseSpring2020&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Note that these results are not returned as lists, but as a special
+shell return type defined in IPython:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IPython</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">SList</span>
+</pre></div>
+</div>
+<p>This looks and acts a lot like a Python list, but has additional
+functionality, such as the <code class="docutils literal notranslate"><span class="pre">grep</span></code> and <code class="docutils literal notranslate"><span class="pre">fields</span></code> methods and the
+<code class="docutils literal notranslate"><span class="pre">s</span></code>, <code class="docutils literal notranslate"><span class="pre">n</span></code>, and <code class="docutils literal notranslate"><span class="pre">p</span></code> properties that allow you to search, filter, and
+display the results in convenient ways. For more information on these,
+you can use IPython’s built-in help features.</p>
+<p>Communication in the other direction–passing Python variables into the
+shell–is possible using the <code class="docutils literal notranslate"><span class="pre">{varname}</span></code> syntax:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;hello from Python&quot;</span>
+<span class="o">!</span><span class="nb">echo</span> <span class="o">{</span>message<span class="o">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hello</span> <span class="kn">from</span> <span class="nn">Python</span>
+</pre></div>
+</div>
+<p>The curly braces contain the variable name, which is replaced by the
+variable’s contents in the shell command.</p>
+</div>
+</div>
+<div class="section" id="errors-and-debugging">
+<h1>Errors and Debugging<a class="headerlink" href="#errors-and-debugging" title="Permalink to this headline">¶</a></h1>
+<p>Code development and data analysis always require a bit of trial and
+error, and IPython contains tools to streamline this process. This
+section will briefly cover some options for controlling Python’s
+exception reporting, followed by exploring tools for debugging errors in
+code.</p>
+<div class="section" id="controlling-exceptions-xmode">
+<h2>Controlling Exceptions: <code class="docutils literal notranslate"><span class="pre">%xmode</span></code><a class="headerlink" href="#controlling-exceptions-xmode" title="Permalink to this headline">¶</a></h2>
+<p>Most of the time when a Python script fails, it will raise an Exception.
+When the interpreter hits one of these exceptions, information about the
+cause of the error can be found in the <em>traceback</em>, which can be
+accessed from within Python. With the <code class="docutils literal notranslate"><span class="pre">%xmode</span></code> magic function, IPython
+allows you to control the amount of information printed when the
+exception is raised. Consider the following code:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+
+<span class="k">def</span> <span class="nf">func2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+
+
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-147-7cb498ea7ed1&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-146-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">7</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func2</span>
+    <span class="k">return</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-146-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func1</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+
+
+<span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-146-586ccabd0db3&gt;[0m(2)[0;36mfunc1[0;34m()[0m
+[0;32m      1 [0;31m[0;32mdef[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m----&gt; 2 [0;31m    [0;32mreturn[0m [0ma[0m [0;34m/[0m [0mb[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      3 [0;31m[0;34m[0m[0m
+[0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
+[0m
+ipdb&gt; quit
+</pre></div>
+</div>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">func2</span></code> results in an error, and reading the printed trace
+lets us see exactly what happened. By default, this trace includes
+several lines showing the context of each step that led to the error.
+Using the <code class="docutils literal notranslate"><span class="pre">%xmode</span></code> magic function (short for <em>Exception mode</em>), we can
+change what information is printed.</p>
+<p><code class="docutils literal notranslate"><span class="pre">%xmode</span></code> takes a single argument, the mode, and there are three
+possibilities: <code class="docutils literal notranslate"><span class="pre">Plain</span></code>, <code class="docutils literal notranslate"><span class="pre">Context</span></code>, and <code class="docutils literal notranslate"><span class="pre">Verbose</span></code>. The default is
+<code class="docutils literal notranslate"><span class="pre">Context</span></code>, and gives output like that just shown before. <code class="docutils literal notranslate"><span class="pre">Plain</span></code> is
+more compact and gives less information:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">xmode</span> Plain
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Exception</span> <span class="n">reporting</span> <span class="n">mode</span><span class="p">:</span> <span class="n">Plain</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+
+
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-80-7cb498ea7ed1&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-77-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">7</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func2</span>
+    <span class="k">return</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-77-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func1</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+
+
+<span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Verbose</span></code> mode adds some extra information, including the
+arguments to any functions that are called:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">xmode</span> Verbose
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Exception</span> <span class="n">reporting</span> <span class="n">mode</span><span class="p">:</span> <span class="n">Verbose</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">ZeroDivisionError</span>                         <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">82</span><span class="o">-</span><span class="mi">7</span><span class="n">cb498ea7ed1</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">global</span> <span class="n">func2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">function</span> <span class="n">func2</span> <span class="n">at</span> <span class="mh">0x7fd96a3ce048</span><span class="o">&gt;</span>
+
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">77</span><span class="o">-</span><span class="mi">586</span><span class="n">ccabd0db3</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">func2</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+      <span class="mi">5</span>     <span class="n">a</span> <span class="o">=</span> <span class="n">x</span>
+      <span class="mi">6</span>     <span class="n">b</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="o">----&gt;</span> <span class="mi">7</span>     <span class="k">return</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="k">global</span> <span class="n">func1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">function</span> <span class="n">func1</span> <span class="n">at</span> <span class="mh">0x7fd96a3ce2f0</span><span class="o">&gt;</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">77</span><span class="o">-</span><span class="mi">586</span><span class="n">ccabd0db3</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+      <span class="mi">1</span> <span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="o">----&gt;</span> <span class="mi">2</span>     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="mi">3</span>
+      <span class="mi">4</span> <span class="k">def</span> <span class="nf">func2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+      <span class="mi">5</span>     <span class="n">a</span> <span class="o">=</span> <span class="n">x</span>
+
+
+<span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
+</pre></div>
+</div>
+<p>This extra information can help narrow-in on why the exception is being
+raised. So why not use the <code class="docutils literal notranslate"><span class="pre">Verbose</span></code> mode all the time? As code gets
+complicated, this kind of traceback can get extremely long. Depending on
+the context, sometimes the brevity of <code class="docutils literal notranslate"><span class="pre">Default</span></code> mode is easier to work
+with.</p>
+</div>
+<div class="section" id="debugging-when-reading-tracebacks-is-not-enough">
+<h2>Debugging: When Reading Tracebacks Is Not Enough<a class="headerlink" href="#debugging-when-reading-tracebacks-is-not-enough" title="Permalink to this headline">¶</a></h2>
+<p>The standard Python tool for interactive debugging is <code class="docutils literal notranslate"><span class="pre">pdb</span></code>, the
+Python debugger. This debugger lets the user step through the code line
+by line in order to see what might be causing a more difficult error.
+The IPython-enhanced version of this is <code class="docutils literal notranslate"><span class="pre">ipdb</span></code>, the IPython debugger.</p>
+<p>There are many ways to launch and use both these debuggers; we won’t
+cover them fully here. Refer to the online documentation of these two
+utilities to learn more.</p>
+<p>In IPython, perhaps the most convenient interface to debugging is the
+<code class="docutils literal notranslate"><span class="pre">%debug</span></code> magic command. If you call it after hitting an exception, it
+will automatically open an interactive debugging prompt at the point of
+the exception. The <code class="docutils literal notranslate"><span class="pre">ipdb</span></code> prompt lets you explore the current state of
+the stack, explore the available variables, and even run Python
+commands!</p>
+<p>Let’s look at the most recent exception, then do some basic tasks–print
+the values of <code class="docutils literal notranslate"><span class="pre">a</span></code> and <code class="docutils literal notranslate"><span class="pre">b</span></code>, and type <code class="docutils literal notranslate"><span class="pre">quit</span></code> to quit the debugging
+session:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">debug</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-77-586ccabd0db3&gt;[0m(2)[0;36mfunc1[0;34m()[0m
+[0;32m      1 [0;31m[0;32mdef[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m----&gt; 2 [0;31m    [0;32mreturn[0m [0ma[0m [0;34m/[0m [0mb[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      3 [0;31m[0;34m[0m[0m
+[0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
+[0m
+ipdb&gt; print(a)
+1
+ipdb&gt; print(b)
+0
+ipdb&gt; quit
+</pre></div>
+</div>
+<p>The interactive debugger allows much more than this, though–we can even
+step up and down through the stack and explore the values of variables
+there:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">debug</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-77-586ccabd0db3&gt;[0m(2)[0;36mfunc1[0;34m()[0m
+[0;32m      1 [0;31m[0;32mdef[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m----&gt; 2 [0;31m    [0;32mreturn[0m [0ma[0m [0;34m/[0m [0mb[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      3 [0;31m[0;34m[0m[0m
+[0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
+[0m
+ipdb&gt; up
+&gt; [0;32m&lt;ipython-input-77-586ccabd0db3&gt;[0m(7)[0;36mfunc2[0;34m()[0m
+[0;32m      3 [0;31m[0;34m[0m[0m
+[0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      6 [0;31m    [0mb[0m [0;34m=[0m [0mx[0m [0;34m-[0m [0;36m1[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m----&gt; 7 [0;31m    [0;32mreturn[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+ipdb&gt; print(x)
+1
+ipdb&gt; up
+&gt; [0;32m&lt;ipython-input-82-7cb498ea7ed1&gt;[0m(1)[0;36m&lt;module&gt;[0;34m()[0m
+[0;32m----&gt; 1 [0;31m[0mfunc2[0m[0;34m([0m[0;36m1[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+ipdb&gt; down
+&gt; [0;32m&lt;ipython-input-77-586ccabd0db3&gt;[0m(7)[0;36mfunc2[0;34m()[0m
+[0;32m      3 [0;31m[0;34m[0m[0m
+[0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      6 [0;31m    [0mb[0m [0;34m=[0m [0mx[0m [0;34m-[0m [0;36m1[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m----&gt; 7 [0;31m    [0;32mreturn[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+ipdb&gt; quit
+</pre></div>
+</div>
+<p>This allows you to quickly find out not only what caused the error, but
+what function calls led up to the error.</p>
+<p>If you’d like the debugger to launch automatically whenever an exception
+is raised, you can use the <code class="docutils literal notranslate"><span class="pre">%pdb</span></code> magic function to turn on this
+automatic behavior:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">xmode</span> Plain
+<span class="o">%</span><span class="k">pdb</span> on
+<span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">Exception</span> <span class="n">reporting</span> <span class="n">mode</span><span class="p">:</span> <span class="n">Plain</span>
+<span class="n">Automatic</span> <span class="n">pdb</span> <span class="n">calling</span> <span class="n">has</span> <span class="n">been</span> <span class="n">turned</span> <span class="n">ON</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+
+
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-85-f80f6b5cecf3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">3</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-77-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">7</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func2</span>
+    <span class="k">return</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-77-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func1</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+
+
+<span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-77-586ccabd0db3&gt;[0m(2)[0;36mfunc1[0;34m()[0m
+[0;32m      1 [0;31m[0;32mdef[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m----&gt; 2 [0;31m    [0;32mreturn[0m [0ma[0m [0;34m/[0m [0mb[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      3 [0;31m[0;34m[0m[0m
+[0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
+[0m
+ipdb&gt; print(b)
+0
+ipdb&gt; quit
+</pre></div>
+</div>
+<p>Finally, if you have a script that you’d like to run from the beginning
+in interactive mode, you can run it with the command <code class="docutils literal notranslate"><span class="pre">%run</span> <span class="pre">-d</span></code>, and
+use the <code class="docutils literal notranslate"><span class="pre">next</span></code> command to step through the lines of code
+interactively.</p>
+<div class="section" id="partial-list-of-debugging-commands">
+<h3>Partial list of debugging commands<a class="headerlink" href="#partial-list-of-debugging-commands" title="Permalink to this headline">¶</a></h3>
+<p>There are many more available commands for interactive debugging than
+we’ve listed here; the following table contains a description of some of
+the more common and useful ones:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+<td><p>Show the current location in the file</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">h(elp)</span></code></p></td>
+<td><p>Show a list of commands, or find help on a
+specific command</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">q(uit)</span></code></p></td>
+<td><p>Quit the debugger and the program</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c(ontinue)</span></code></p></td>
+<td><p>Quit the debugger, continue in the program</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">n(ext)</span></code></p></td>
+<td><p>Go to the next step of the program</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;enter&gt;</span></code></p></td>
+<td><p>Repeat the previous command</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">p(rint)</span></code></p></td>
+<td><p>Print variables</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">s(tep)</span></code></p></td>
+<td><p>Step into a subroutine</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">r(eturn)</span></code></p></td>
+<td><p>Return out of a subroutine</p></td>
+</tr>
+</tbody>
+</table>
+<p>For more information, use the <code class="docutils literal notranslate"><span class="pre">help</span></code> command in the debugger, or take
+a look at <code class="docutils literal notranslate"><span class="pre">ipdb</span></code>’s <a class="reference external" href="https://github.com/gotcha/ipdb">online
+documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="profiling-and-timing-code">
+<h1>Profiling and Timing Code<a class="headerlink" href="#profiling-and-timing-code" title="Permalink to this headline">¶</a></h1>
+<p>In the process of developing code and creating data processing
+pipelines, there are often trade-offs you can make between various
+implementations. Early in developing your algorithm, it can be
+counterproductive to worry about such things. As Donald Knuth famously
+quipped, “We should forget about small efficiencies, say about 97% of
+the time: premature optimization is the root of all evil.”</p>
+<p>But once you have your code working, it can be useful to dig into its
+efficiency a bit. Sometimes it’s useful to check the execution time of a
+given command or set of commands; other times it’s useful to dig into a
+multiline process and determine where the bottleneck lies in some
+complicated series of operations. IPython provides access to a wide
+array of functionality for this kind of timing and profiling of code.
+Here we’ll discuss the following IPython magic commands:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">%time</span></code>: Time the execution of a single statement</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%timeit</span></code>: Time repeated execution of a single statement for more
+accuracy</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%prun</span></code>: Run code with the profiler</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%lprun</span></code>: Run code with the line-by-line profiler</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%memit</span></code>: Measure the memory use of a single statement</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%mprun</span></code>: Run code with the line-by-line memory profiler</p></li>
+</ul>
+<p>The last four commands are not bundled with IPython–you’ll need to get
+the <code class="docutils literal notranslate"><span class="pre">line_profiler</span></code> and <code class="docutils literal notranslate"><span class="pre">memory_profiler</span></code> extensions, which we will
+discuss in the following sections.</p>
+<div class="section" id="timing-code-snippets-timeit-and-time">
+<h2>Timing Code Snippets: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> and <code class="docutils literal notranslate"><span class="pre">%time</span></code><a class="headerlink" href="#timing-code-snippets-timeit-and-time" title="Permalink to this headline">¶</a></h2>
+<p>We saw the <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> line-magic and <code class="docutils literal notranslate"><span class="pre">%%timeit</span></code> cell-magic in the
+introduction to magic functions in <a class="reference external" href="01.03-Magic-Commands.ipynb">IPython Magic
+Commands</a>; it can be used to time the
+repeated execution of snippets of code:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> sum(range(100))
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.3 µs ± 7.05 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+</pre></div>
+</div>
+<p>Note that because this operation is so fast, <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> automatically
+does a large number of repetitions.</p>
+<p>For slower commands, <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> will automatically adjust and perform
+fewer repetitions:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">j</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>368 ms ± 3.52 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div>
+</div>
+<p>Sometimes repeating an operation is not the best option. For example, if
+we have a list that we’d like to sort, we might be misled by a repeated
+operation. Sorting a pre-sorted list is much faster than sorting an
+unsorted list, so the repetition will skew the result:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span class="p">)]</span>
+<span class="o">%</span><span class="k">timeit</span> L.sort()
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>693 µs ± 39.3 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre></div>
+</div>
+<p>For this, the <code class="docutils literal notranslate"><span class="pre">%time</span></code> magic function may be a better choice. It also
+is a good choice for longer-running commands, when short, system-related
+delays are unlikely to affect the result. Let’s time the sorting of an
+unsorted and a presorted list:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sorting an unsorted list:&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> L.sort()
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sorting</span> <span class="n">an</span> <span class="n">unsorted</span> <span class="nb">list</span><span class="p">:</span>
+<span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mi">24</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mi">0</span> <span class="n">ns</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mi">24</span> <span class="n">ms</span>
+<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mf">23.7</span> <span class="n">ms</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sorting an already sorted list:&quot;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> L.sort()
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sorting</span> <span class="n">an</span> <span class="n">already</span> <span class="nb">sorted</span> <span class="nb">list</span><span class="p">:</span>
+<span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mf">1.19</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mi">19</span> <span class="n">µs</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mf">1.21</span> <span class="n">ms</span>
+<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mf">1.22</span> <span class="n">ms</span>
+</pre></div>
+</div>
+<p>Notice how much faster the presorted list is to sort, but notice also
+how much longer the timing takes with <code class="docutils literal notranslate"><span class="pre">%time</span></code> versus <code class="docutils literal notranslate"><span class="pre">%timeit</span></code>, even
+for the presorted list! This is a result of the fact that <code class="docutils literal notranslate"><span class="pre">%timeit</span></code>
+does some clever things under the hood to prevent system calls from
+interfering with the timing. For example, it prevents cleanup of unused
+Python objects (known as <em>garbage collection</em>) which might otherwise
+affect the timing. For this reason, <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> results are usually
+noticeably faster than <code class="docutils literal notranslate"><span class="pre">%time</span></code> results.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">%time</span></code> as with <code class="docutils literal notranslate"><span class="pre">%timeit</span></code>, using the double-percent-sign cell
+magic syntax allows timing of multiline scripts:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">j</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mi">465</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mi">0</span> <span class="n">ns</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mi">465</span> <span class="n">ms</span>
+<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mi">464</span> <span class="n">ms</span>
+</pre></div>
+</div>
+<p>For more information on <code class="docutils literal notranslate"><span class="pre">%time</span></code> and <code class="docutils literal notranslate"><span class="pre">%timeit</span></code>, as well as their
+available options, use the IPython help functionality (i.e., type
+<code class="docutils literal notranslate"><span class="pre">%time?</span></code> at the IPython prompt).</p>
+</div>
+<div class="section" id="profiling-full-scripts-prun">
+<h2>Profiling Full Scripts: <code class="docutils literal notranslate"><span class="pre">%prun</span></code><a class="headerlink" href="#profiling-full-scripts-prun" title="Permalink to this headline">¶</a></h2>
+<p>A program is made of many single statements, and sometimes timing these
+statements in context is more important than timing them on their own.
+Python contains a built-in code profiler (which you can read about in
+the Python documentation), but IPython offers a much more convenient way
+to use this profiler, in the form of the magic function <code class="docutils literal notranslate"><span class="pre">%prun</span></code>.</p>
+<p>By way of example, we’ll define a simple function that does some
+calculations:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_of_lists</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span> <span class="o">^</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+<p>Now we can call <code class="docutils literal notranslate"><span class="pre">%prun</span></code> with a function call to see the profiled
+results:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">prun</span> sum_of_lists(1000000)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">14</span> <span class="n">function</span> <span class="n">calls</span> <span class="ow">in</span> <span class="mf">0.705</span> <span class="n">seconds</span>
+
+   <span class="n">Ordered</span> <span class="n">by</span><span class="p">:</span> <span class="n">internal</span> <span class="n">time</span>
+
+   <span class="n">ncalls</span>  <span class="n">tottime</span>  <span class="n">percall</span>  <span class="n">cumtime</span>  <span class="n">percall</span> <span class="n">filename</span><span class="p">:</span><span class="n">lineno</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+        <span class="mi">5</span>    <span class="mf">0.614</span>    <span class="mf">0.123</span>    <span class="mf">0.614</span>    <span class="mf">0.123</span> <span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">95</span><span class="o">-</span><span class="n">f105717832a2</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">4</span><span class="p">(</span><span class="o">&lt;</span><span class="n">listcomp</span><span class="o">&gt;</span><span class="p">)</span>
+        <span class="mi">5</span>    <span class="mf">0.043</span>    <span class="mf">0.009</span>    <span class="mf">0.043</span>    <span class="mf">0.009</span> <span class="p">{</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">method</span> <span class="n">builtins</span><span class="o">.</span><span class="n">sum</span><span class="p">}</span>
+        <span class="mi">1</span>    <span class="mf">0.036</span>    <span class="mf">0.036</span>    <span class="mf">0.693</span>    <span class="mf">0.693</span> <span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">95</span><span class="o">-</span><span class="n">f105717832a2</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">1</span><span class="p">(</span><span class="n">sum_of_lists</span><span class="p">)</span>
+        <span class="mi">1</span>    <span class="mf">0.012</span>    <span class="mf">0.012</span>    <span class="mf">0.705</span>    <span class="mf">0.705</span> <span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">:</span><span class="mi">1</span><span class="p">(</span><span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span><span class="p">)</span>
+        <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.705</span>    <span class="mf">0.705</span> <span class="p">{</span><span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">method</span> <span class="n">builtins</span><span class="o">.</span><span class="n">exec</span><span class="p">}</span>
+        <span class="mi">1</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span>    <span class="mf">0.000</span> <span class="p">{</span><span class="n">method</span> <span class="s1">&#39;disable&#39;</span> <span class="n">of</span> <span class="s1">&#39;_lsprof.Profiler&#39;</span> <span class="n">objects</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The result is a table that indicates, in order of total time on each
+function call, where the execution is spending the most time. In this
+case, the bulk of execution time is in the list comprehension inside
+<code class="docutils literal notranslate"><span class="pre">sum_of_lists</span></code>. From here, we could start thinking about what changes
+we might make to improve the performance in the algorithm.</p>
+<p>For more information on <code class="docutils literal notranslate"><span class="pre">%prun</span></code>, as well as its available options, use
+the IPython help functionality (i.e., type <code class="docutils literal notranslate"><span class="pre">%prun?</span></code> at the IPython
+prompt).</p>
+</div>
+<div class="section" id="line-by-line-profiling-with-lprun">
+<h2>Line-By-Line Profiling with <code class="docutils literal notranslate"><span class="pre">%lprun</span></code><a class="headerlink" href="#line-by-line-profiling-with-lprun" title="Permalink to this headline">¶</a></h2>
+<p>The function-by-function profiling of <code class="docutils literal notranslate"><span class="pre">%prun</span></code> is useful, but sometimes
+it’s more convenient to have a line-by-line profile report. This is not
+built into Python or IPython, but there is a <code class="docutils literal notranslate"><span class="pre">line_profiler</span></code> package
+available for installation that can do this. Start by using Python’s
+packaging tool, <code class="docutils literal notranslate"><span class="pre">pip</span></code>, to install the <code class="docutils literal notranslate"><span class="pre">line_profiler</span></code> package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install line_profiler
+</pre></div>
+</div>
+<p>Next, you can use IPython to load the <code class="docutils literal notranslate"><span class="pre">line_profiler</span></code> IPython
+extension, offered as part of this package:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> line_profiler
+</pre></div>
+</div>
+<p>Now the <code class="docutils literal notranslate"><span class="pre">%lprun</span></code> command will do a line-by-line profiling of any
+function–in this case, we need to tell it explicitly which functions
+we’re interested in profiling:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">lprun</span> -f sum_of_lists sum_of_lists(5000)
+</pre></div>
+</div>
+<p>``` Timer unit: 1e-06 s</p>
+<p>Total time: 0.006239 s File:
+/home/mn/Developer/working-copies/pythons/on-python/UniFiCourseSpring2020/mprun_demo.py
+Function: sum_of_lists at line 1</p>
+</div>
+</div>
+<div class="section" id="line-hits-time-per-hit-time-line-contents">
+<h1>Line # Hits Time Per Hit % Time Line Contents<a class="headerlink" href="#line-hits-time-per-hit-time-line-contents" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1                                           def sum_of_lists(N):
+2         1          2.0      2.0      0.0      total = 0
+3         6          6.0      1.0      0.1      for i in range(5):
+4         5       5869.0   1173.8     94.1          L = [j ^ (j &gt;&gt; i) for j in range(N)]
+5         5        218.0     43.6      3.5          total += sum(L)
+6         5        144.0     28.8      2.3          del L # remove reference to L
+7         1          0.0      0.0      0.0      return total```
+</pre></div>
+</div>
+<p>The result is a table that indicates, in order of total time on each
+function call, where the execution is spending the most time. In this
+case, the bulk of execution time is in the list comprehension inside
+<code class="docutils literal notranslate"><span class="pre">sum_of_lists</span></code>. From here, we could start thinking about what changes
+we might make to improve the performance in the algorithm.</p>
+<p>For more information on <code class="docutils literal notranslate"><span class="pre">%prun</span></code>, as well as its available options, use
+the IPython help functionality (i.e., type <code class="docutils literal notranslate"><span class="pre">%prun?</span></code> at the IPython
+prompt).</p>
+<div class="section" id="profiling-memory-use-memit-and-mprun">
+<h2>Profiling Memory Use: <code class="docutils literal notranslate"><span class="pre">%memit</span></code> and <code class="docutils literal notranslate"><span class="pre">%mprun</span></code><a class="headerlink" href="#profiling-memory-use-memit-and-mprun" title="Permalink to this headline">¶</a></h2>
+<p>Another aspect of profiling is the amount of memory an operation uses.
+This can be evaluated with another IPython extension, the
+<code class="docutils literal notranslate"><span class="pre">memory_profiler</span></code>. As with the <code class="docutils literal notranslate"><span class="pre">line_profiler</span></code>, we start by
+<code class="docutils literal notranslate"><span class="pre">pip</span></code>-installing the extension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install memory_profiler
+</pre></div>
+</div>
+<p>Then we can use IPython to load the extension:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> memory_profiler
+</pre></div>
+</div>
+<p>The memory profiler extension contains two useful magic functions: the
+<code class="docutils literal notranslate"><span class="pre">%memit</span></code> magic (which offers a memory-measuring equivalent of
+<code class="docutils literal notranslate"><span class="pre">%timeit</span></code>) and the <code class="docutils literal notranslate"><span class="pre">%mprun</span></code> function (which offers a
+memory-measuring equivalent of <code class="docutils literal notranslate"><span class="pre">%lprun</span></code>). The <code class="docutils literal notranslate"><span class="pre">%memit</span></code> function can
+be used rather simply:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">memit</span> sum_of_lists(1000000)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">peak</span> <span class="n">memory</span><span class="p">:</span> <span class="mf">106.86</span> <span class="n">MiB</span><span class="p">,</span> <span class="n">increment</span><span class="p">:</span> <span class="mf">28.78</span> <span class="n">MiB</span>
+</pre></div>
+</div>
+<p>We see that this function uses about 100 MB of memory.</p>
+<p>For a line-by-line description of memory use, we can use the <code class="docutils literal notranslate"><span class="pre">%mprun</span></code>
+magic. Unfortunately, this magic works only for functions defined in
+separate modules rather than the notebook itself, so we’ll start by
+using the <code class="docutils literal notranslate"><span class="pre">%%file</span></code> magic to create a simple module called
+<code class="docutils literal notranslate"><span class="pre">mprun_demo.py</span></code>, which contains our <code class="docutils literal notranslate"><span class="pre">sum_of_lists</span></code> function, with
+one addition that will make our memory profiling results more clear:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%file</span> mprun_demo.py
+<span class="k">def</span> <span class="nf">sum_of_lists</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="n">j</span> <span class="o">^</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;&gt;</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+        <span class="k">del</span> <span class="n">L</span> <span class="c1"># remove reference to L</span>
+    <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Overwriting</span> <span class="n">mprun_demo</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>We can now import the new version of this function and run the memory
+line profiler:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mprun_demo</span> <span class="kn">import</span> <span class="n">sum_of_lists</span>
+<span class="o">%</span><span class="k">mprun</span> -f sum_of_lists sum_of_lists(1000000)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">***</span> <span class="ne">KeyboardInterrupt</span> <span class="n">exception</span> <span class="n">caught</span> <span class="ow">in</span> <span class="n">code</span> <span class="n">being</span> <span class="n">profiled</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>``` Filename:
+/home/mn/Developer/working-copies/pythons/on-python/UniFiCourseSpring2020/mprun_demo.py</p>
+</div>
+</div>
+<div class="section" id="line-mem-usage-increment-line-contents">
+<h1>Line # Mem usage Increment Line Contents<a class="headerlink" href="#line-mem-usage-increment-line-contents" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1     85.2 MiB     85.2 MiB   def sum_of_lists(N):
+2     85.2 MiB      0.0 MiB       total = 0
+3     85.2 MiB      0.0 MiB       for i in range(5):
+4    112.2 MiB      0.2 MiB           L = [j ^ (j &gt;&gt; i) for j in range(N)]
+5    112.2 MiB      0.0 MiB           total += sum(L)
+6     85.2 MiB      0.0 MiB           del L # remove reference to L
+7                                 return total```
+</pre></div>
+</div>
+<p>Here the <code class="docutils literal notranslate"><span class="pre">Increment</span></code> column tells us how much each line affects the
+total memory budget: observe that when we create and delete the list
+<code class="docutils literal notranslate"><span class="pre">L</span></code>, we are adding about 25 MB of memory usage. This is on top of the
+background memory usage from the Python interpreter itself.</p>
+<p>For more information on <code class="docutils literal notranslate"><span class="pre">%memit</span></code> and <code class="docutils literal notranslate"><span class="pre">%mprun</span></code>, as well as their
+available options, use the IPython help functionality (i.e., type
+<code class="docutils literal notranslate"><span class="pre">%memit?</span></code> at the IPython prompt).</p>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">IPython: Beyond Normal Python</a><ul>
+<li><a class="reference internal" href="#shell-or-notebook">Shell or Notebook?</a><ul>
+<li><a class="reference internal" href="#launching-the-ipython-shell">Launching the IPython Shell</a></li>
+<li><a class="reference internal" href="#launching-the-jupyter-notebook">Launching the Jupyter Notebook</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#help-and-documentation-in-ipython">Help and Documentation in IPython</a><ul>
+<li><a class="reference internal" href="#accessing-documentation-with">Accessing Documentation with <code class="docutils literal notranslate"><span class="pre">?</span></code></a></li>
+<li><a class="reference internal" href="#accessing-source-code-with">Accessing Source Code with <code class="docutils literal notranslate"><span class="pre">??</span></code></a></li>
+<li><a class="reference internal" href="#exploring-modules-with-tab-completion">Exploring Modules with Tab-Completion</a><ul>
+<li><a class="reference internal" href="#tab-completion-of-object-contents">Tab-completion of object contents</a></li>
+<li><a class="reference internal" href="#tab-completion-when-importing">Tab completion when importing</a></li>
+<li><a class="reference internal" href="#beyond-tab-completion-wildcard-matching">Beyond tab completion: wildcard matching</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ipython-magic-commands">IPython Magic Commands</a><ul>
+<li><a class="reference internal" href="#running-external-code-run">Running External Code: <code class="docutils literal notranslate"><span class="pre">%run</span></code></a></li>
+<li><a class="reference internal" href="#timing-code-execution-timeit">Timing Code Execution: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code></a></li>
+<li><a class="reference internal" href="#help-on-magic-functions-magic-and-lsmagic">Help on Magic Functions: <code class="docutils literal notranslate"><span class="pre">?</span></code>, <code class="docutils literal notranslate"><span class="pre">%magic</span></code>, and <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#input-and-output-history">Input and Output History</a><ul>
+<li><a class="reference internal" href="#ipythons-in-and-out-objects">IPython’s <code class="docutils literal notranslate"><span class="pre">In</span></code> and <code class="docutils literal notranslate"><span class="pre">Out</span></code> Objects</a></li>
+<li><a class="reference internal" href="#underscore-shortcuts-and-previous-outputs">Underscore Shortcuts and Previous Outputs</a></li>
+<li><a class="reference internal" href="#suppressing-output">Suppressing Output</a></li>
+<li><a class="reference internal" href="#related-magic-commands">Related Magic Commands</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ipython-and-shell-commands">IPython and Shell Commands</a><ul>
+<li><a class="reference internal" href="#quick-introduction-to-the-shell">Quick Introduction to the Shell</a></li>
+<li><a class="reference internal" href="#shell-commands-in-ipython">Shell Commands in IPython</a></li>
+<li><a class="reference internal" href="#passing-values-to-and-from-the-shell">Passing Values to and from the Shell</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#errors-and-debugging">Errors and Debugging</a><ul>
+<li><a class="reference internal" href="#controlling-exceptions-xmode">Controlling Exceptions: <code class="docutils literal notranslate"><span class="pre">%xmode</span></code></a></li>
+<li><a class="reference internal" href="#debugging-when-reading-tracebacks-is-not-enough">Debugging: When Reading Tracebacks Is Not Enough</a><ul>
+<li><a class="reference internal" href="#partial-list-of-debugging-commands">Partial list of debugging commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#profiling-and-timing-code">Profiling and Timing Code</a><ul>
+<li><a class="reference internal" href="#timing-code-snippets-timeit-and-time">Timing Code Snippets: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> and <code class="docutils literal notranslate"><span class="pre">%time</span></code></a></li>
+<li><a class="reference internal" href="#profiling-full-scripts-prun">Profiling Full Scripts: <code class="docutils literal notranslate"><span class="pre">%prun</span></code></a></li>
+<li><a class="reference internal" href="#line-by-line-profiling-with-lprun">Line-By-Line Profiling with <code class="docutils literal notranslate"><span class="pre">%lprun</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#line-hits-time-per-hit-time-line-contents">Line # Hits Time Per Hit % Time Line Contents</a><ul>
+<li><a class="reference internal" href="#profiling-memory-use-memit-and-mprun">Profiling Memory Use: <code class="docutils literal notranslate"><span class="pre">%memit</span></code> and <code class="docutils literal notranslate"><span class="pre">%mprun</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#line-mem-usage-increment-line-contents">Line # Mem usage Increment Line Contents</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/jupyter-notebooks.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">IPython: Beyond Normal Python</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Massimo Nocentini.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

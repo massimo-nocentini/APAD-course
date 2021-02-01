@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>past and present &#8212; APAD course  documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">past and present</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><div class="docutils container">
+<p>Massimo Nocentini, PhD. February 7, 2020: init</p>
+</div>
+</p><div class="docutils container">
+<p>Abstract A (very concise) introduction to the Python ecosystem.</p>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__AUTHORS__</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;am&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Andrea Marino&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;andrea.marino@unifi.it&quot;</span><span class="p">,),</span>
+               <span class="s1">&#39;mn&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Massimo Nocentini&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;massimo.nocentini@unifi.it&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;https://github.com/massimo-nocentini/&quot;</span><span class="p">,)}</span>
+
+<span class="n">__KEYWORDS__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;Jupyter&#39;</span><span class="p">,</span> <span class="s1">&#39;notebooks&#39;</span><span class="p">,</span> <span class="s1">&#39;keynote&#39;</span><span class="p">,]</span>
+</pre></div>
+</div>
+<center></center><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">outline</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Hello!&#39;</span><span class="p">)</span>
+<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Python&#39;</span><span class="p">)</span>
+<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Whys and refs&#39;</span><span class="p">)</span>
+<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;On the shoulders of giants&#39;</span><span class="p">)</span>
+<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Course agenda&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">this</span>
+</pre></div>
+</div>
+<pre class="literal-block">The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than <em>right</em> now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!</pre>
+<div class="section" id="past-and-present">
+<h1>past and present<a class="headerlink" href="#past-and-present" title="Permalink to this headline">¶</a></h1>
+<p>From <a class="reference external" href="https://en.wikipedia.org/wiki/Python_(programming_language">https://en.wikipedia.org/wiki/Python_(programming_language</a>) -
+Python is an interpreted, high-level, general-purpose programming
+language. Created by Guido van Rossum and first released in 1991,
+Python’s design philosophy emphasizes code readability with its notable
+use of significant whitespace. Its language constructs and
+object-oriented approach aim to help programmers write clear, logical
+code for small and large-scale projects. - Python is dynamically typed
+and garbage-collected. It supports multiple programming paradigms,
+including procedural, object-oriented, and functional programming.
+Python is often described as a “batteries included” language due to its
+comprehensive standard library. - Python was conceived in the late 1980s
+as a successor to the ABC language. Python 2.0, released in 2000,
+introduced features like list comprehensions and a garbage collection
+system capable of collecting reference cycles. Python 3.0, released in
+2008, was a major revision of the language that is not completely
+backward-compatible, and much Python 2 code does not run unmodified on
+Python 3. - <a class="reference external" href="https://brochure.getpython.info/media/releases/prerelases/psf-python-brochure-vol-1-final-content-preview">PSF Python Brochure
+Project</a></p>
+<p>From <a class="reference external" href="https://www.python.org/">https://www.python.org/</a></p>
+<ul class="simple">
+<li><p><strong>Functions Defined</strong>. The core of extensible programming is defining
+functions. Python allows mandatory and optional arguments, keyword
+arguments, and even arbitrary argument lists.</p></li>
+<li><p><strong>Compound Data Types</strong>. Lists (known as arrays in other languages)
+are one of the compound data types that Python understands. Lists can
+be indexed, sliced and manipulated with other built-in functions.</p></li>
+<li><p><strong>Intuitive Interpretation</strong>. Calculations are simple with Python,
+and expression syntax is straightforward: the operators +, -, * and
+/ work as expected; parentheses () can be used for grouping.</p></li>
+<li><p><strong>Quick &amp; Easy to Learn</strong>. Experienced programmers in any other
+language can pick up Python very quickly, and beginners find the
+clean syntax and indentation structure easy to learn.</p></li>
+<li><p><strong>All the Flow You’d Expect</strong>. Python knows the usual control flow
+statements that other languages speak — <code class="docutils literal notranslate"><span class="pre">if,</span> <span class="pre">for,</span> <span class="pre">while</span></code> and
+<code class="docutils literal notranslate"><span class="pre">range</span></code> — with some of its own twists, of course.</p></li>
+</ul>
+<p>Some supporting quotes <a class="reference external" href="https://www.python.org/about/quotes/">here</a>.</p>
+<p>From <a class="reference external" href="https://docs.python.org/3/">https://docs.python.org/3/</a></p>
+<img alt="_images/Python-doc-page.png" src="_images/Python-doc-page.png" />
+</div>
+<div class="section" id="beware-of-shadows">
+<h1>beware of shadows<a class="headerlink" href="#beware-of-shadows" title="Permalink to this headline">¶</a></h1>
+<p>Python can be installed in many different ways with respect to different
+needs. - <a class="reference external" href="https://www.anaconda.com/">https://www.anaconda.com/</a> - <a class="reference external" href="https://www.spyder-ide.org/">https://www.spyder-ide.org/</a> -
+<a class="reference external" href="https://www.sagemath.org/">https://www.sagemath.org/</a></p>
+<p>We advice to stick to the official one for the sake of being self
+contained and use an unified environment.</p>
+<p>All such distributions customize the base package for domain-specific
+domains, in the future you will be able to take into account the one
+that best suites your needs; for the present, trust the default one.</p>
+<p>Therefore, go head and install the Python interpreter.</p>
+<p><a class="reference external" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a></p>
+<img alt="_images/Python-download.png" src="_images/Python-download.png" />
+</div>
+<div class="section" id="welcome-to-the-carousel">
+<h1>welcome to the carousel<a class="headerlink" href="#welcome-to-the-carousel" title="Permalink to this headline">¶</a></h1>
+<p>We have just scraped a little bit the surface of a big iceberg.</p>
+<p>Help yourself with the good documentation, otherwise go ahead on the
+shoulders of: - <a class="reference external" href="https://g.co/kgs/q5aSbf">Guido van Rossum</a> - <a class="reference external" href="https://g.co/kgs/SAHeD1">Peter
+Norvig</a> - <a class="reference external" href="https://g.co/kgs/9qkvkY">David M.
+Beazley</a> - <a class="reference external" href="https://g.co/kgs/RqGztj">Alex
+Martelli</a> - <a class="reference external" href="https://g.co/kgs/A54z1o">Tim
+Peters</a> - <a class="reference external" href="https://g.co/kgs/UsKs8e">Fredrik
+Lundh</a></p>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">past and present</a></li>
+<li><a class="reference internal" href="#beware-of-shadows">beware of shadows</a></li>
+<li><a class="reference internal" href="#welcome-to-the-carousel">welcome to the carousel</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/introduction.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">past and present</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Massimo Nocentini.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,746 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tips, tricks and gotchas &#8212; APAD course  documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Tips, tricks and gotchas</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <p><div class="docutils container">
+<p>Massimo Nocentini, PhD. May 27, 2020: init</p>
+</div>
+</p><div class="docutils container">
+<p>Abstract Some tips, tricks and gotchas, in particular.</p>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__AUTHORS__</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;am&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Andrea Marino&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;andrea.marino@unifi.it&quot;</span><span class="p">,),</span>
+               <span class="s1">&#39;mn&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Massimo Nocentini&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;massimo.nocentini@unifi.it&quot;</span><span class="p">,</span>
+                      <span class="s2">&quot;https://github.com/massimo-nocentini/&quot;</span><span class="p">,)}</span>
+
+<span class="n">__KEYWORDS__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;Jupyter&#39;</span><span class="p">,</span> <span class="s1">&#39;gotchas&#39;</span><span class="p">,</span> <span class="s1">&#39;keynote&#39;</span><span class="p">,]</span>
+</pre></div>
+</div>
+<center></center><div class="section" id="tips-tricks-and-gotchas">
+<h1>Tips, tricks and gotchas<a class="headerlink" href="#tips-tricks-and-gotchas" title="Permalink to this headline">¶</a></h1>
+<p>This lecture addresses some gotchas that could arise in daily
+programming; moreover, at the beginning we will introduce some helpful
+objects that could make coding easier.</p>
+<p>First of all, some imports as usual:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="a-grouping-pattern-avoiding-quadratic-time">
+<h2>A grouping pattern, avoiding <em>quadratic</em> time<a class="headerlink" href="#a-grouping-pattern-avoiding-quadratic-time" title="Permalink to this headline">¶</a></h2>
+<p>Assume to have two lists that have to be related in some way, namely
+using a predicate <span class="math notranslate nohighlight">\(P\)</span>. In the following example we want to build a
+list of all pairs (boy,girl) such that their names starts with the same
+letter. Here the input:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">girls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;alice&#39;</span><span class="p">,</span> <span class="s1">&#39;allie&#39;</span><span class="p">,</span> <span class="s1">&#39;bernice&#39;</span><span class="p">,</span> <span class="s1">&#39;brenda&#39;</span><span class="p">,</span> <span class="s1">&#39;clarice&#39;</span><span class="p">,</span> <span class="s1">&#39;cilly&#39;</span><span class="p">]</span>
+<span class="n">boys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chris&#39;</span><span class="p">,</span> <span class="s1">&#39;christopher&#39;</span><span class="p">,</span> <span class="s1">&#39;arald&#39;</span><span class="p">,</span> <span class="s1">&#39;arnold&#39;</span><span class="p">,</span> <span class="s1">&#39;bob&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>the bad way, quadratic time:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="n">b</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">boys</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">girls</span> <span class="k">if</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">g</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;chris&#39;</span><span class="p">,</span> <span class="s1">&#39;clarice&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;chris&#39;</span><span class="p">,</span> <span class="s1">&#39;cilly&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;christopher&#39;</span><span class="p">,</span> <span class="s1">&#39;clarice&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;christopher&#39;</span><span class="p">,</span> <span class="s1">&#39;cilly&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;arald&#39;</span><span class="p">,</span> <span class="s1">&#39;alice&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;arald&#39;</span><span class="p">,</span> <span class="s1">&#39;allie&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;arnold&#39;</span><span class="p">,</span> <span class="s1">&#39;alice&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;arnold&#39;</span><span class="p">,</span> <span class="s1">&#39;allie&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;bob&#39;</span><span class="p">,</span> <span class="s1">&#39;bernice&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;bob&#39;</span><span class="p">,</span> <span class="s1">&#39;brenda&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>there is a better approach avoiding quadratic time, toward
+<code class="docutils literal notranslate"><span class="pre">`defaultdict</span></code> &lt;<a class="reference external" href="https://docs.python.org/3/library/collections.html#defaultdict-objects">https://docs.python.org/3/library/collections.html#defaultdict-objects</a>&gt;`__:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">letterGirls</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">girl</span> <span class="ow">in</span> <span class="n">girls</span><span class="p">:</span>
+    <span class="n">letterGirls</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">girl</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">girl</span><span class="p">)</span>
+
+<span class="p">[(</span><span class="n">b</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">boys</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">letterGirls</span><span class="p">[</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;chris&#39;</span><span class="p">,</span> <span class="s1">&#39;clarice&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;chris&#39;</span><span class="p">,</span> <span class="s1">&#39;cilly&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;christopher&#39;</span><span class="p">,</span> <span class="s1">&#39;clarice&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;christopher&#39;</span><span class="p">,</span> <span class="s1">&#39;cilly&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;arald&#39;</span><span class="p">,</span> <span class="s1">&#39;alice&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;arald&#39;</span><span class="p">,</span> <span class="s1">&#39;allie&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;arnold&#39;</span><span class="p">,</span> <span class="s1">&#39;alice&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;arnold&#39;</span><span class="p">,</span> <span class="s1">&#39;allie&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;bob&#39;</span><span class="p">,</span> <span class="s1">&#39;bernice&#39;</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;bob&#39;</span><span class="p">,</span> <span class="s1">&#39;brenda&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>However there is an even better solution, as pointed out in the
+<a class="reference external" href="https://docs.python.org/3/library/collections.html#defaultdict-examples">example</a>
+subsection of the previous link: use <code class="docutils literal notranslate"><span class="pre">defaultdict</span></code> instead of
+repeating call <code class="docutils literal notranslate"><span class="pre">setdefault</span></code> method for each new key. From the official
+documentation:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">d</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+<span class="o">...</span>     <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+<span class="p">[(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">])]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-bunch-pattern">
+<h2>The <em>Bunch</em> pattern<a class="headerlink" href="#the-bunch-pattern" title="Permalink to this headline">¶</a></h2>
+<p>A very good book on algorithms implemented in Python is the one by
+Magnus Hetland, <a class="reference external" href="https://www.apress.com/gp/book/9781484200568">https://www.apress.com/gp/book/9781484200568</a>, with the
+companion Github repository
+<a class="reference external" href="https://github.com/apress/python-algorithms-14">https://github.com/apress/python-algorithms-14</a>.</p>
+<p>Hetland, pag. 34, propose the following pattern to build a container of
+properties in order to avoid vanilla dict (adjusting from item 4.18 of
+Alex Martelli’s <a class="reference external" href="http://shop.oreilly.com/product/9780596007973.do">Python
+Cookbook</a>):</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Bunch</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Bunch</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span> <span class="o">=</span> <span class="bp">self</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">T</span> <span class="o">=</span> <span class="n">Bunch</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">T</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">T</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">),</span> <span class="n">right</span><span class="o">=</span><span class="n">T</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">left</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;left&#39;</span><span class="p">:</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">right</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;b&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">t</span><span class="p">[</span><span class="s1">&#39;left&#39;</span><span class="p">][</span><span class="s1">&#39;right&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;b&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="s2">&quot;left&quot;</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">right</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;right&quot;</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">right</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+<p>However, inheriting from <code class="docutils literal notranslate"><span class="pre">dict</span></code> is discouraged by Alex:</p>
+<blockquote>
+<div><p>A further tempting but not fully sound alternative is to have the
+Bunch class inherit from <code class="docutils literal notranslate"><span class="pre">dict</span></code>, and set attribute access special
+methods equal to the item access special methods, as follows:</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DictBunch</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="fm">__getattr__</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="fm">__getitem__</span>
+    <span class="fm">__setattr__</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="fm">__setitem__</span>
+    <span class="fm">__delattr__</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="fm">__delitem__</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>One problem with this approach is that, with this definition, an
+instance x of <code class="docutils literal notranslate"><span class="pre">DictBunch</span></code> has many attributes it doesn’t really
+have, because it inherits all the attributes (methods, actually, but
+there’s no significant difference in this context) of <code class="docutils literal notranslate"><span class="pre">dict</span></code>. So,
+you can’t meaningfully check <code class="docutils literal notranslate"><span class="pre">hasattr(x,</span> <span class="pre">someattr)</span></code> , as you could
+with the classes <code class="docutils literal notranslate"><span class="pre">Bunch</span></code> and <code class="docutils literal notranslate"><span class="pre">EvenSimplerBunch</span></code> (which sets the
+dictionary directly, without using <code class="docutils literal notranslate"><span class="pre">update</span></code>) previously shown,
+unless you can somehow rule out the value of someattr being any of
+several common words such as <code class="docutils literal notranslate"><span class="pre">keys</span></code> , <code class="docutils literal notranslate"><span class="pre">pop</span></code> , and <code class="docutils literal notranslate"><span class="pre">get</span></code>.
+Python’s distinction between attributes and items is really a
+wellspring of clarity and simplicity. Unfortunately, many newcomers
+to Python wrongly believe that it would be better to confuse items
+with attributes, generally because of previous experience with
+JavaScript and other such languages, in which attributes and items
+are regularly confused. But educating newcomers is a much better idea
+than promoting item/ attribute confusion.</p>
+</div></blockquote>
+<p>Alex original definition reads as follows:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Bunch</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It is interesting to observe that this idiom has been merged within the
+<em>standard library</em>, starting from Python <strong>3.3</strong>, as with the name of
+<code class="docutils literal notranslate"><span class="pre">`SimpleNamespace</span></code> &lt;<a class="reference external" href="https://docs.python.org/3/library/types.html#types.SimpleNamespace">https://docs.python.org/3/library/types.html#types.SimpleNamespace</a>&gt;`__:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">types</span> <span class="kn">import</span> <span class="n">SimpleNamespace</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">SimpleNamespace</span><span class="p">(</span><span class="n">datum</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">,</span> <span class="n">coord</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="n">point</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">namespace</span><span class="p">(</span><span class="n">datum</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="mi">4096</span><span class="p">,</span> <span class="n">coord</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">point</span><span class="o">.</span><span class="n">datum</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">squared</span><span class="p">,</span> <span class="n">point</span><span class="o">.</span><span class="n">coord</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">4096</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">point</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">18</span><span class="o">-</span><span class="mi">70</span><span class="n">c474fd2112</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">point</span><span class="p">]</span>
+
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;types.SimpleNamespace&#39;</span> <span class="nb">object</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">iterable</span>
+</pre></div>
+</div>
+<p>If you need <code class="docutils literal notranslate"><span class="pre">point</span></code> to be iterable use the structured object
+<code class="docutils literal notranslate"><span class="pre">`namedtuple</span></code> &lt;<a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.namedtuple">https://docs.python.org/3/library/collections.html#collections.namedtuple</a>&gt;`__
+instead.</p>
+</div>
+<div class="section" id="pythons-list-append-isnt-lisps-cons">
+<h2>Python’s <code class="docutils literal notranslate"><span class="pre">list.append</span></code> isn’t Lisp’s <code class="docutils literal notranslate"><span class="pre">cons</span></code><a class="headerlink" href="#pythons-list-append-isnt-lisps-cons" title="Permalink to this headline">¶</a></h2>
+<p>Python <code class="docutils literal notranslate"><span class="pre">list</span></code> objects behave like <code class="docutils literal notranslate"><span class="pre">stack</span></code> objects, such that it is
+<em>cheap</em> to <code class="docutils literal notranslate"><span class="pre">append</span></code> and <code class="docutils literal notranslate"><span class="pre">pop</span></code> at the <em>top</em>, which is the <em>right</em>
+end. On the other hand, Lisp <code class="docutils literal notranslate"><span class="pre">pair</span></code> objects allows us to <em>easily</em>
+<code class="docutils literal notranslate"><span class="pre">cons</span></code> on the <em>beginning</em>, the very <em>opposite</em> direction.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fast_countdown</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+    <span class="n">nums</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+        <span class="n">nums</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">nums</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">nums</span>
+
+<span class="k">def</span> <span class="nf">slow_countdown</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+    <span class="n">nums</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+        <span class="n">nums</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">nums</span>
+
+<span class="k">def</span> <span class="nf">printer</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">chunk</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">...</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">lst</span><span class="p">[:</span><span class="n">chunk</span><span class="p">])),</span>
+                           <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">lst</span><span class="p">[</span><span class="o">-</span><span class="n">chunk</span><span class="p">:]))))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> nums = fast_countdown(10**5)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>5.13 ms ± 118 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> nums = slow_countdown(10**5)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.61 s ± 13.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div>
+</div>
+<p>Citing Hetland, pag 11:</p>
+<blockquote>
+<div><p>Python lists aren’t really lists in the traditional computer science
+sense of the word, and that explains the puzzle of why append is so
+much more efficient than insert . A classical list - a so-called
+linked list - is implemented as a series of nodes, each (except for
+the last) keeping a reference to the next. The underlying
+implementation of Python’s list type is a bit different. Instead of
+several separate nodes referencing each other, a list is basically a
+single, contiguous slab of memory - what is usually known as an
+array. This leads to some important differences from linked lists.
+For example, while iterating over the contents of the list is equally
+efficient for both kinds (except for some overhead in the linked
+list), directly accessing an element at a given index is much more
+efficient in an array. This is because the position of the element
+can be calculated, and the right memory location can be accessed
+directly. In a linked list, however, one would have to traverse the
+list from the beginning. The difference we’ve been bumping up
+against, though, has to do with insertion. In a linked list, once you
+know where you want to insert something, insertion is cheap; it takes
+roughly the same amount of time, no matter how many elements the list
+contains. That’s not the case with arrays: An insertion would have to
+move all elements that are to the right of the insertion point,
+possibly even moving all the elements to a larger array, if needed. A
+specific solution for appending is to use what’s often called a
+dynamic array, or vector. 4 The idea is to allocate an array that is
+too big and then to reallocate it in linear time whenever it
+overflows. It might seem that this makes the append just as bad as
+the insert. In both cases, we risk having to move a large number of
+elements. The main difference is that it happens less often with the
+append. In fact, if we can ensure that we always move to an array
+that is bigger than the last by a fixed percentage (say 20 percent or
+even 100 percent), the average cost, amortized over many appends, is
+constant.</p>
+</div></blockquote>
+<div class="section" id="enhance-with-deque-objects">
+<h3>enhance with <code class="docutils literal notranslate"><span class="pre">deque</span></code> objects<a class="headerlink" href="#enhance-with-deque-objects" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">deque</span></code> implements <em>FIFO</em> queues: they are as cheap to append to the
+right as a normal <code class="docutils literal notranslate"><span class="pre">list</span></code>, but enhance it to <em>cheaply</em> insert on the
+<em>front</em> too.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+
+<span class="k">def</span> <span class="nf">enhanced_slow_countdown</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+    <span class="n">nums</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+        <span class="n">nums</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">nums</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> nums = enhanced_slow_countdown(10**5)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>5.19 ms ± 159 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="hidden-squares-concerning-lists-and-sets">
+<h2>Hidden squares: concerning <code class="docutils literal notranslate"><span class="pre">list</span></code>s and <code class="docutils literal notranslate"><span class="pre">set</span></code>s<a class="headerlink" href="#hidden-squares-concerning-lists-and-sets" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randrange</span>
+
+<span class="n">max_value</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">checks</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="n">randrange</span><span class="p">(</span><span class="n">max_value</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">checks</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> [randrange(max_value) in L for _ in range(checks)]
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>12.7 ms ± 644 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="c1"># convert the list to a set object.</span>
+
+<span class="o">%</span><span class="k">timeit</span> [randrange(max_value) in S for _ in range(checks)]
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>439 µs ± 31.6 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre></div>
+</div>
+<p>Hetland’s words, pag. 35:</p>
+<blockquote>
+<div><p>They’re both pretty fast, and it might seem pointless to create a set
+from the list—unnecessary work, right? Well, it depends. If you’re
+going to do many membership checks, it might pay off, because
+membership checks are linear for lists and constant for sets. What
+if, for example, you were to gradually add values to a collection and
+for each step check whether the value was already added? […] Using a
+list would give you quadratic running time, whereas using a set would
+be linear. That’s a huge difference. <strong>The lesson is that it’s
+important to pick the right built-in data structure for the job.</strong></p>
+</div></blockquote>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lists</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">]]</span>
+<span class="nb">sum</span><span class="p">(</span><span class="n">lists</span><span class="p">,</span> <span class="p">[])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Hetland, pag.36:</p>
+<blockquote>
+<div><p>This works, and it even looks rather elegant, but it really isn’t.
+You see, under the covers, the sum function doesn’t know all too much
+about what you’re summing, and it has to do one addition after
+another. That way, you’re right back at the quadratic running time of
+the += example for strings. Here’s a better way: Just try timing both
+versions. As long as lists is pretty short, there won’t be much
+difference, but it shouldn’t take long before the sum version is
+thoroughly beaten.</p>
+</div></blockquote>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">lst</span> <span class="ow">in</span> <span class="n">lists</span><span class="p">:</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="n">res</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>try to do that with more populated lists…</p>
+<div class="section" id="concerning-strings">
+<h3>concerning <code class="docutils literal notranslate"><span class="pre">string</span></code>s<a class="headerlink" href="#concerning-strings" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">string_producer</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">chr</span><span class="p">(</span><span class="n">randrange</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">)])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+
+<span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">string_producer</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="n">chunk</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>74.4 ms ± 5.29 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre></div>
+</div>
+<p>maybe some optimization is performed because <code class="docutils literal notranslate"><span class="pre">s</span></code> is a <code class="docutils literal notranslate"><span class="pre">string</span></code>
+object.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>it
+
+<span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">string_producer</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>61.5 ms ± 1.27 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre></div>
+</div>
+<p>a better approach using constant <code class="docutils literal notranslate"><span class="pre">append</span></code> to the top</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> s = &#39;&#39;.join(string_producer(10**5))
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>60.1 ms ± 2.26 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre></div>
+</div>
+<p>maybe a little better since it doesn’t loop with <code class="docutils literal notranslate"><span class="pre">for</span></code> explicitly.</p>
+</div>
+</div>
+</div>
+<div class="section" id="counting">
+<h1>Counting<a class="headerlink" href="#counting" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="max-permutation">
+<h2>Max permutation<a class="headerlink" href="#max-permutation" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Eight persons with very particular tastes have bought tickets to the
+movies. Some of them are happy with their seats, but most of them are
+not. Let’s say each of them has a favorite seat, and you want to find
+a way to let them switch seats to make as many people as possible
+happy with the result. However, all of them refuse to move to another
+seat if they can’t get their favorite.</p>
+</div></blockquote>
+<p>The following function <code class="docutils literal notranslate"><span class="pre">max_perm</span></code> computes the maximum permutation
+that can be applied given a desired one; namely, it produces a new
+permutation that moves as many elements as it can, in order to ensure
+the <code class="docutils literal notranslate"><span class="pre">one-to-one</span></code> property – no one in the set points outside it, and
+each seat (in the set) is pointed to exactly once. It can be seen as a
+function that <em>fixes</em> a given permutation according to the required
+behavior.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">perm_isomorphism</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">domain</span><span class="p">):</span>
+    <span class="n">iso</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">enumerate</span><span class="p">(</span><span class="n">domain</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">iso</span><span class="p">[</span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="p">))]</span>
+
+<span class="k">def</span> <span class="nf">fix_perm</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">fix</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">fix</span> <span class="k">else</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="p">))]</span>
+</pre></div>
+</div>
+<p>The following is a naive implementation, recursive but in
+<span class="math notranslate nohighlight">\(\mathcal{O}(n^{2})\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> is the permutation length.</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">naive_max_perm</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Fix a permutation such that it is one-to-one and maximal, recursively.</span>
+
+<span class="sd">    consumes:</span>
+<span class="sd">    M - a permutation as a list of integers</span>
+<span class="sd">    A - a set of positions allowed to move</span>
+
+<span class="sd">    produces:</span>
+<span class="sd">    a set `fix` such that makes M maximal, ensuring to be one-to-one</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">A</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">A</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="p">)))</span> <span class="c1"># init to handle first invocation, all elems can move</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="n">A</span> <span class="c1"># recursion base, unary perm can move, trivial</span>
+
+    <span class="n">B</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A</span><span class="p">)</span> <span class="c1"># b in B iff b is desired by someone</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">A</span> <span class="o">-</span> <span class="n">B</span> <span class="c1"># c in C iff c isn&#39;t desired, so discard it</span>
+    <span class="k">return</span> <span class="n">naive_max_perm</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">A</span> <span class="o">-</span> <span class="n">C</span><span class="p">)</span> <span class="k">if</span> <span class="n">C</span> <span class="k">else</span> <span class="n">A</span> <span class="c1"># recur with desired position only</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">I</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="c1"># the identity permutation</span>
+<span class="n">letters</span> <span class="o">=</span> <span class="s2">&quot;abcdefgh&quot;</span>
+<span class="n">perm_isomorphism</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">letters</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">perm_isomorphism</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">letters</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fix</span> <span class="o">=</span> <span class="n">naive_max_perm</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+<span class="n">max_M</span> <span class="o">=</span> <span class="n">fix_perm</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">fix</span><span class="p">)</span>
+<span class="n">perm_isomorphism</span><span class="p">(</span><span class="n">max_M</span><span class="p">,</span> <span class="n">letters</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Hetland, pag. 78:</p>
+<blockquote>
+<div><p>The function <code class="docutils literal notranslate"><span class="pre">naive_max_perm</span></code> receives a set <code class="docutils literal notranslate"><span class="pre">A</span></code> of remaining
+people and creates a set <code class="docutils literal notranslate"><span class="pre">B</span></code> of seats that are pointed to. If it
+finds an element in <code class="docutils literal notranslate"><span class="pre">A</span></code> that is not in <code class="docutils literal notranslate"><span class="pre">B</span></code>, it removes the
+element and solves the remaining problem recursively. Let’s use the
+implementation on our example, M = <code class="docutils literal notranslate"><span class="pre">[2,</span> <span class="pre">2,</span> <span class="pre">0,</span> <span class="pre">5,</span> <span class="pre">3,</span> <span class="pre">5,</span> <span class="pre">7,</span> <span class="pre">4]</span></code>:</p>
+</div></blockquote>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">naive_max_perm</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> {0, 2, 5}
+
+
+
+So, a, c, and f can take part in the permutation. The others will
+have to sit in nonfavorite seats. The implementation isn’t too bad.
+The handy set type lets us manipulate sets with ready-made high-level
+operations, rather than having to implement them ourselves. There are
+some problems, though. For one thing, we might want an iterative
+solution. […] A worse problem, though, is that the algorithm is
+quadratic! (Exercise 4-10 asks you to show this.) The most wasteful
+operation is the repeated creation of the set B. If we could just
+keep track of which chairs are no longer pointed to, we could
+eliminate this operation entirely. One way of doing this would be to
+keep a count for each element. We could decrement the count for chair
+x when a person pointing to x is eliminated, and if x ever got a
+count of zero, both person and chair x would be out of the game.
+&gt;This idea of reference counting can be useful in general. It is, for
+example, a basic component in many systems for garbage collection (a
+form of memory management that automatically deallocates objects that
+are no longer useful). You’ll see this technique again in the
+discussion of topological sorting.
+
+There may be more than one element to be eliminated at any one time,
+but we can just put any new ones we come across into a “to-do” list
+and deal with them later. If we needed to make sure the elements were
+eliminated in the order in which we discover that they’re no longer
+useful, we would need to use a first-in, first-out queue such as the
+deque class (discussed in Chapter 5). We don’t really care, so we
+could use a set, for example, but just appending to and popping from
+a list will probably give us quite a bit less overhead. But feel free
+to experiment, of course.
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">max_perm</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="p">)</span> <span class="c1"># How many elements?</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="c1"># A = {0, 1, ... , n-1}</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">M</span><span class="p">)</span> <span class="c1"># desired positions by frequencies</span>
+    <span class="n">Q</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">A</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">count</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span> <span class="c1"># useless elements</span>
+    <span class="k">while</span> <span class="n">Q</span><span class="p">:</span> <span class="c1"># While useless elts. left...</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span> <span class="c1"># get one of them</span>
+        <span class="n">A</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1"># remove it from the maximal permutation</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1"># get its desired position</span>
+        <span class="n">count</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span> <span class="c1"># and release it for someone else</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">count</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span> <span class="c1"># if such position isn&#39;t desired anymore</span>
+            <span class="n">Q</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="c1"># enqueue such position in order to discard it</span>
+    <span class="k">return</span> <span class="n">A</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fix</span> <span class="o">=</span> <span class="n">max_perm</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+<span class="n">max_M</span> <span class="o">=</span> <span class="n">fix_perm</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">fix</span><span class="p">)</span>
+<span class="n">perm_isomorphism</span><span class="p">(</span><span class="n">max_M</span><span class="p">,</span> <span class="n">letters</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="counting-sort">
+<h2>Counting Sort<a class="headerlink" href="#counting-sort" title="Permalink to this headline">¶</a></h2>
+<p>Hetland, pag 85:</p>
+<blockquote>
+<div><p>By default, I’m just sorting objects based on their values. By
+supplying a key function, you can sort by anything you’d like. Note
+that the keys must be integers in a limited range. If this range is
+<span class="math notranslate nohighlight">\(0\ldots k-1\)</span>, running time is then <span class="math notranslate nohighlight">\(\mathcal{O}(n + k)\)</span>.
+(Note that although the common implementation simply counts the
+elements and then figures out where to put them in <code class="docutils literal notranslate"><span class="pre">B</span></code>, Python
+makes it easy to just build value lists for each key and then
+concatenate them.) If several values have the same key, they’ll end
+up in the original order with respect to each other. Sorting
+algorithms with this property are called <em>stable</em>.</p>
+</div></blockquote>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">counting_sort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sort_boundary</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Sorts the given collection A in linear time, assuming their elements are hashable.</span>
+
+<span class="sd">    This implementation implements a vanilla counting sort, working in linear time respect</span>
+<span class="sd">    iterable length and spacing between objects. It works best if elements are evenly, namely</span>
+<span class="sd">    *uniformly* distributed in the domain; on contrast, if they are sparse and concentrated</span>
+<span class="sd">    near accumulation points, traversing distances between them is time consuming.</span>
+
+<span class="sd">    If `sort_boundary` is instantiated to a float within [0,1], then the domain is ordered</span>
+<span class="sd">    using a classic loglinear algorithm before building the result.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
+
+    <span class="n">B</span><span class="p">,</span> <span class="n">C</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+        <span class="n">C</span><span class="p">[</span><span class="n">key</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="n">domain</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>  <span class="k">if</span> <span class="n">sort_boundary</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">*</span><span class="n">sort_boundary</span> \
+                        <span class="k">else</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">C</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">C</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">domain</span><span class="p">:</span>
+        <span class="n">B</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">B</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">randrange</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)]</span>
+
+<span class="k">assert</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span> <span class="n">counting_sort</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;elements&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;frequencies&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/gotchas_75_0.png" src="_images/gotchas_75_0.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> counting_sort(A)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>219 µs ± 10.7 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> counting_sort(A, sort_boundary=1)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>206 µs ± 8.96 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="p">([</span><span class="n">randrange</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)]</span> <span class="o">+</span>
+     <span class="p">[</span><span class="mi">10</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="n">randrange</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="mi">3</span><span class="p">)])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="p">,</span> <span class="n">bins</span><span class="p">,</span> <span class="n">patches</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;elements&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;frequencies&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/gotchas_79_0.png" src="_images/gotchas_79_0.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">==</span> <span class="n">counting_sort</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> counting_sort(B)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2.01 ms ± 136 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> counting_sort(B, sort_boundary=1/8)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>247 µs ± 20.4 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tips, tricks and gotchas</a><ul>
+<li><a class="reference internal" href="#a-grouping-pattern-avoiding-quadratic-time">A grouping pattern, avoiding <em>quadratic</em> time</a></li>
+<li><a class="reference internal" href="#the-bunch-pattern">The <em>Bunch</em> pattern</a></li>
+<li><a class="reference internal" href="#pythons-list-append-isnt-lisps-cons">Python’s <code class="docutils literal notranslate"><span class="pre">list.append</span></code> isn’t Lisp’s <code class="docutils literal notranslate"><span class="pre">cons</span></code></a><ul>
+<li><a class="reference internal" href="#enhance-with-deque-objects">enhance with <code class="docutils literal notranslate"><span class="pre">deque</span></code> objects</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hidden-squares-concerning-lists-and-sets">Hidden squares: concerning <code class="docutils literal notranslate"><span class="pre">list</span></code>s and <code class="docutils literal notranslate"><span class="pre">set</span></code>s</a><ul>
+<li><a class="reference internal" href="#concerning-strings">concerning <code class="docutils literal notranslate"><span class="pre">string</span></code>s</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#counting">Counting</a><ul>
+<li><a class="reference internal" href="#max-permutation">Max permutation</a></li>
+<li><a class="reference internal" href="#counting-sort">Counting Sort</a></li>
+</ul>
+</li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/gotchas.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Tips, tricks and gotchas</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Massimo Nocentini.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>
