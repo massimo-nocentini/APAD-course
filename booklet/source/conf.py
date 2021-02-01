@@ -56,7 +56,7 @@ html_static_path = ['_static']
 html_theme_options = {
     "sidebarwidth": "30%",
     "body_max_width": "70%",
-    "globaltoc_collapse": True,
+    "globaltoc_collapse": False,
     "stickysidebar": True,
 }
 

@@ -26,5 +26,6 @@ introduction:
 move:
 	mv *.slides.html ../slides
 	mv *.rst ../booklet/source
+	cp -r images ../booklet/source
 
 all: introduction notebook numpy pandas matplotlib networkx gotchas generators move
