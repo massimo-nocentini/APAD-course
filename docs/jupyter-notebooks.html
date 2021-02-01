@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IPython: Beyond Normal Python &#8212; APAD course  documentation</title>
+    <title>Jupyter notebooks &#8212; APAD course  documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     
@@ -16,7 +16,9 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="numpy module" href="numpy.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -24,8 +26,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="numpy.html" title="numpy module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">IPython: Beyond Normal Python</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Jupyter notebooks</a></li> 
       </ul>
     </div>  
 
@@ -34,7 +42,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p><div class="docutils container">
+  <div class="section" id="jupyter-notebooks">
+<h1>Jupyter notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">¶</a></h1>
+<p><div class="docutils container">
 <p>Massimo Nocentini, PhD. February 7, 2020: init</p>
 </div>
 </p><div class="docutils container">
@@ -50,7 +60,7 @@
 </pre></div>
 </div>
 <center></center><div class="section" id="ipython-beyond-normal-python">
-<h1>IPython: Beyond Normal Python<a class="headerlink" href="#ipython-beyond-normal-python" title="Permalink to this headline">¶</a></h1>
+<h2>IPython: Beyond Normal Python<a class="headerlink" href="#ipython-beyond-normal-python" title="Permalink to this headline">¶</a></h2>
 <p>There are many options for development environments for Python, and I’m
 often asked which one I use in my own work. My answer sometimes
 surprises people: my preferred environment is
@@ -82,7 +92,7 @@ creating and using data science code. Finally, we will touch on some of
 the features of the notebook that make it useful in understanding data
 and sharing results.</p>
 <div class="section" id="shell-or-notebook">
-<h2>Shell or Notebook?<a class="headerlink" href="#shell-or-notebook" title="Permalink to this headline">¶</a></h2>
+<h3>Shell or Notebook?<a class="headerlink" href="#shell-or-notebook" title="Permalink to this headline">¶</a></h3>
 <p>There are two primary means of using IPython that we’ll discuss in this
 chapter: the IPython shell and the IPython notebook. The bulk of the
 material in this chapter is relevant to both, and the examples will
@@ -91,7 +101,7 @@ sections that are relevant to just one or the other, we will explicitly
 state that fact. Before we start, some words on how to launch the
 IPython shell and IPython notebook.</p>
 <div class="section" id="launching-the-ipython-shell">
-<h3>Launching the IPython Shell<a class="headerlink" href="#launching-the-ipython-shell" title="Permalink to this headline">¶</a></h3>
+<h4>Launching the IPython Shell<a class="headerlink" href="#launching-the-ipython-shell" title="Permalink to this headline">¶</a></h4>
 <p>This chapter, like most of this book, is not designed to be absorbed
 passively. I recommend that as you read through it, you follow along and
 experiment with the tools and syntax we cover: the muscle-memory you
@@ -113,7 +123,7 @@ In [1]:
 <p>With that, you’re ready to follow along.</p>
 </div>
 <div class="section" id="launching-the-jupyter-notebook">
-<h3>Launching the Jupyter Notebook<a class="headerlink" href="#launching-the-jupyter-notebook" title="Permalink to this headline">¶</a></h3>
+<h4>Launching the Jupyter Notebook<a class="headerlink" href="#launching-the-jupyter-notebook" title="Permalink to this headline">¶</a></h4>
 <p>The Jupyter notebook is a browser-based graphical interface to the
 IPython shell, and builds on it a rich set of dynamic display
 capabilities. As well as executing Python/IPython statements, the
@@ -147,7 +157,7 @@ example).</p>
 </div>
 </div>
 <div class="section" id="help-and-documentation-in-ipython">
-<h1>Help and Documentation in IPython<a class="headerlink" href="#help-and-documentation-in-ipython" title="Permalink to this headline">¶</a></h1>
+<h2>Help and Documentation in IPython<a class="headerlink" href="#help-and-documentation-in-ipython" title="Permalink to this headline">¶</a></h2>
 <p>If you read no other section in this chapter, read this one: I find the
 tools discussed here to be the most transformative contributions of
 IPython to my daily workflow.</p>
@@ -180,7 +190,7 @@ this object have?</p></li>
 namely the <code class="docutils literal notranslate"><span class="pre">?</span></code> character to explore documentation, the <code class="docutils literal notranslate"><span class="pre">??</span></code>
 characters to explore source code, and the Tab key for auto-completion.</p>
 <div class="section" id="accessing-documentation-with">
-<h2>Accessing Documentation with <code class="docutils literal notranslate"><span class="pre">?</span></code><a class="headerlink" href="#accessing-documentation-with" title="Permalink to this headline">¶</a></h2>
+<h3>Accessing Documentation with <code class="docutils literal notranslate"><span class="pre">?</span></code><a class="headerlink" href="#accessing-documentation-with" title="Permalink to this headline">¶</a></h3>
 <p>The Python language and its data science ecosystem is built with the
 user in mind, and one big part of that is access to documentation. Every
 Python object contains the reference to a string, known as a <em>doc
@@ -365,7 +375,7 @@ should get in the habit of always adding such inline documentation to
 the code you write!</p>
 </div>
 <div class="section" id="accessing-source-code-with">
-<h2>Accessing Source Code with <code class="docutils literal notranslate"><span class="pre">??</span></code><a class="headerlink" href="#accessing-source-code-with" title="Permalink to this headline">¶</a></h2>
+<h3>Accessing Source Code with <code class="docutils literal notranslate"><span class="pre">??</span></code><a class="headerlink" href="#accessing-source-code-with" title="Permalink to this headline">¶</a></h3>
 <p>Because the Python language is so easily readable, another level of
 insight can usually be gained by reading the source code of the object
 you’re curious about. IPython provides a shortcut to the source code
@@ -403,13 +413,13 @@ from above:</p>
 finding information about what any Python function or module does.</p>
 </div>
 <div class="section" id="exploring-modules-with-tab-completion">
-<h2>Exploring Modules with Tab-Completion<a class="headerlink" href="#exploring-modules-with-tab-completion" title="Permalink to this headline">¶</a></h2>
+<h3>Exploring Modules with Tab-Completion<a class="headerlink" href="#exploring-modules-with-tab-completion" title="Permalink to this headline">¶</a></h3>
 <p>IPython’s other useful interface is the use of the tab key for
 auto-completion and exploration of the contents of objects, modules, and
 name-spaces. In the examples that follow, we’ll use <code class="docutils literal notranslate"><span class="pre">&lt;TAB&gt;</span></code> to
 indicate when the Tab key should be pressed.</p>
 <div class="section" id="tab-completion-of-object-contents">
-<h3>Tab-completion of object contents<a class="headerlink" href="#tab-completion-of-object-contents" title="Permalink to this headline">¶</a></h3>
+<h4>Tab-completion of object contents<a class="headerlink" href="#tab-completion-of-object-contents" title="Permalink to this headline">¶</a></h4>
 <p>Every Python object has various attributes and methods associated with
 it. Like with the <code class="docutils literal notranslate"><span class="pre">help</span></code> function discussed before, Python has a
 built-in <code class="docutils literal notranslate"><span class="pre">dir</span></code> function that returns a list of these, but the
@@ -453,7 +463,7 @@ of these are Python’s special double-underscore methods (often nicknamed
 “dunder” methods).</p>
 </div>
 <div class="section" id="tab-completion-when-importing">
-<h3>Tab completion when importing<a class="headerlink" href="#tab-completion-when-importing" title="Permalink to this headline">¶</a></h3>
+<h4>Tab completion when importing<a class="headerlink" href="#tab-completion-when-importing" title="Permalink to this headline">¶</a></h4>
 <p>Tab completion is also useful when importing objects from packages. Here
 we’ll use it to find all possible imports in the <code class="docutils literal notranslate"><span class="pre">itertools</span></code> package
 that start with <code class="docutils literal notranslate"><span class="pre">co</span></code>:</p>
@@ -481,7 +491,7 @@ heapq               html                husl
 and modules on my system.)</p>
 </div>
 <div class="section" id="beyond-tab-completion-wildcard-matching">
-<h3>Beyond tab completion: wildcard matching<a class="headerlink" href="#beyond-tab-completion-wildcard-matching" title="Permalink to this headline">¶</a></h3>
+<h4>Beyond tab completion: wildcard matching<a class="headerlink" href="#beyond-tab-completion-wildcard-matching" title="Permalink to this headline">¶</a></h4>
 <p>Tab completion is useful if you know the first few characters of the
 object or attribute you’re looking for, but is little help if you’d like
 to match characters at the middle or end of the word. For this use-case,
@@ -514,7 +524,7 @@ reacquainting myself with a familiar one.</p>
 </div>
 </div>
 <div class="section" id="ipython-magic-commands">
-<h1>IPython Magic Commands<a class="headerlink" href="#ipython-magic-commands" title="Permalink to this headline">¶</a></h1>
+<h2>IPython Magic Commands<a class="headerlink" href="#ipython-magic-commands" title="Permalink to this headline">¶</a></h2>
 <p>The previous two sections showed how IPython lets you use and explore
 Python efficiently and interactively. Here we’ll begin discussing some
 of the enhancements that IPython adds on top of the normal Python
@@ -528,7 +538,7 @@ input. We’ll demonstrate and discuss a few brief examples here, and come
 back to more focused discussion of several useful magic commands later
 in the chapter.</p>
 <div class="section" id="running-external-code-run">
-<h2>Running External Code: <code class="docutils literal notranslate"><span class="pre">%run</span></code><a class="headerlink" href="#running-external-code-run" title="Permalink to this headline">¶</a></h2>
+<h3>Running External Code: <code class="docutils literal notranslate"><span class="pre">%run</span></code><a class="headerlink" href="#running-external-code-run" title="Permalink to this headline">¶</a></h3>
 <p>As you begin developing more extensive code, you will likely find
 yourself working in both IPython for interactive exploration, as well as
 a text editor to store code that you want to reuse. Rather than running
@@ -571,7 +581,7 @@ the documentation in the normal way, by typing <strong>``%run?``</strong> in the
 IPython interpreter.</p>
 </div>
 <div class="section" id="timing-code-execution-timeit">
-<h2>Timing Code Execution: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code><a class="headerlink" href="#timing-code-execution-timeit" title="Permalink to this headline">¶</a></h2>
+<h3>Timing Code Execution: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code><a class="headerlink" href="#timing-code-execution-timeit" title="Permalink to this headline">¶</a></h3>
 <p>Another example of a useful magic function is <code class="docutils literal notranslate"><span class="pre">%timeit</span></code>, which will
 automatically determine the execution time of the single-line Python
 statement that follows it. For example, we may want to check the
@@ -601,7 +611,7 @@ here’s the equivalent construction with a <code class="docutils literal notran
 than the equivalent <code class="docutils literal notranslate"><span class="pre">for</span></code>-loop construction in this case.</p>
 </div>
 <div class="section" id="help-on-magic-functions-magic-and-lsmagic">
-<h2>Help on Magic Functions: <code class="docutils literal notranslate"><span class="pre">?</span></code>, <code class="docutils literal notranslate"><span class="pre">%magic</span></code>, and <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code><a class="headerlink" href="#help-on-magic-functions-magic-and-lsmagic" title="Permalink to this headline">¶</a></h2>
+<h3>Help on Magic Functions: <code class="docutils literal notranslate"><span class="pre">?</span></code>, <code class="docutils literal notranslate"><span class="pre">%magic</span></code>, and <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code><a class="headerlink" href="#help-on-magic-functions-magic-and-lsmagic" title="Permalink to this headline">¶</a></h3>
 <p>Like normal Python functions, IPython magic functions have docstrings,
 and this useful documentation can be accessed in the standard manner.
 So, for example, to read the documentation of the <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> magic
@@ -624,7 +634,7 @@ own magic functions if you wish.</p>
 </div>
 </div>
 <div class="section" id="input-and-output-history">
-<h1>Input and Output History<a class="headerlink" href="#input-and-output-history" title="Permalink to this headline">¶</a></h1>
+<h2>Input and Output History<a class="headerlink" href="#input-and-output-history" title="Permalink to this headline">¶</a></h2>
 <p>Previously we saw that the IPython shell allows you to access previous
 commands with the up and down arrow keys, or equivalently the
 Ctrl-p/Ctrl-n shortcuts. Additionally, in both the shell and the
@@ -632,7 +642,7 @@ notebook, IPython exposes several ways to obtain the output of previous
 commands, as well as string versions of the commands themselves. We’ll
 explore those here.</p>
 <div class="section" id="ipythons-in-and-out-objects">
-<h2>IPython’s <code class="docutils literal notranslate"><span class="pre">In</span></code> and <code class="docutils literal notranslate"><span class="pre">Out</span></code> Objects<a class="headerlink" href="#ipythons-in-and-out-objects" title="Permalink to this headline">¶</a></h2>
+<h3>IPython’s <code class="docutils literal notranslate"><span class="pre">In</span></code> and <code class="docutils literal notranslate"><span class="pre">Out</span></code> Objects<a class="headerlink" href="#ipythons-in-and-out-objects" title="Permalink to this headline">¶</a></h3>
 <p>By now I imagine you’re quite familiar with the <code class="docutils literal notranslate"><span class="pre">In</span> <span class="pre">[1]:</span></code>/<code class="docutils literal notranslate"><span class="pre">Out[1]:</span></code>
 style prompts used by IPython. But it turns out that these are not just
 pretty decoration: they give a clue as to how you can access previous
@@ -722,7 +732,7 @@ necessary, but it can become very handy if you execute a very expensive
 computation and want to reuse the result!</p>
 </div>
 <div class="section" id="underscore-shortcuts-and-previous-outputs">
-<h2>Underscore Shortcuts and Previous Outputs<a class="headerlink" href="#underscore-shortcuts-and-previous-outputs" title="Permalink to this headline">¶</a></h2>
+<h3>Underscore Shortcuts and Previous Outputs<a class="headerlink" href="#underscore-shortcuts-and-previous-outputs" title="Permalink to this headline">¶</a></h3>
 <p>The standard Python shell contains just one simple shortcut for
 accessing previous output; the variable <code class="docutils literal notranslate"><span class="pre">_</span></code> (i.e., a single
 underscore) is kept updated with the previous output; this works in
@@ -770,7 +780,7 @@ ipdb&gt; quit
 </div>
 </div>
 <div class="section" id="suppressing-output">
-<h2>Suppressing Output<a class="headerlink" href="#suppressing-output" title="Permalink to this headline">¶</a></h2>
+<h3>Suppressing Output<a class="headerlink" href="#suppressing-output" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes you might wish to suppress the output of a statement (this is
 perhaps most common with the plotting commands that we’ll explore in
 <a class="reference external" href="04.00-Introduction-To-Matplotlib.ipynb">Introduction to
@@ -792,7 +802,7 @@ displayed on the screen or stored in the <code class="docutils literal notransla
 </div>
 </div>
 <div class="section" id="related-magic-commands">
-<h2>Related Magic Commands<a class="headerlink" href="#related-magic-commands" title="Permalink to this headline">¶</a></h2>
+<h3>Related Magic Commands<a class="headerlink" href="#related-magic-commands" title="Permalink to this headline">¶</a></h3>
 <p>For accessing a batch of previous inputs at once, the <code class="docutils literal notranslate"><span class="pre">%history</span></code> magic
 command is very helpful. Here is how you can print the first four
 inputs:</p>
@@ -829,7 +839,7 @@ IPython</a>.</p>
 </div>
 </div>
 <div class="section" id="ipython-and-shell-commands">
-<h1>IPython and Shell Commands<a class="headerlink" href="#ipython-and-shell-commands" title="Permalink to this headline">¶</a></h1>
+<h2>IPython and Shell Commands<a class="headerlink" href="#ipython-and-shell-commands" title="Permalink to this headline">¶</a></h2>
 <p>When working interactively with the standard Python interpreter, one of
 the frustrations is the need to switch between multiple windows to
 access Python tools and system command-line tools. IPython bridges this
@@ -845,7 +855,7 @@ you’re unfamiliar with shell commands, I’d suggest reviewing the <a class="r
 Tutorial</a> put together by
 the always excellent Software Carpentry Foundation.</p>
 <div class="section" id="quick-introduction-to-the-shell">
-<h2>Quick Introduction to the Shell<a class="headerlink" href="#quick-introduction-to-the-shell" title="Permalink to this headline">¶</a></h2>
+<h3>Quick Introduction to the Shell<a class="headerlink" href="#quick-introduction-to-the-shell" title="Permalink to this headline">¶</a></h3>
 <p>A full intro to using the shell/terminal/command-line is well beyond the
 scope of this chapter, but for the uninitiated we will offer a quick
 introduction here. The shell is a way to interact textually with your
@@ -909,7 +919,7 @@ you go beyond these basics that the shell approach becomes really
 powerful.</p>
 </div>
 <div class="section" id="shell-commands-in-ipython">
-<h2>Shell Commands in IPython<a class="headerlink" href="#shell-commands-in-ipython" title="Permalink to this headline">¶</a></h2>
+<h3>Shell Commands in IPython<a class="headerlink" href="#shell-commands-in-ipython" title="Permalink to this headline">¶</a></h3>
 <p>Any command that works at the command-line can be used in IPython by
 prefixing it with the <code class="docutils literal notranslate"><span class="pre">!</span></code> character. For example, the <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">pwd</span></code>,
 and <code class="docutils literal notranslate"><span class="pre">echo</span></code> commands can be run as follows:</p>
@@ -936,7 +946,7 @@ and <code class="docutils literal notranslate"><span class="pre">echo</span></co
 </div>
 </div>
 <div class="section" id="passing-values-to-and-from-the-shell">
-<h2>Passing Values to and from the Shell<a class="headerlink" href="#passing-values-to-and-from-the-shell" title="Permalink to this headline">¶</a></h2>
+<h3>Passing Values to and from the Shell<a class="headerlink" href="#passing-values-to-and-from-the-shell" title="Permalink to this headline">¶</a></h3>
 <p>Shell commands can not only be called from IPython, but can also be made
 to interact with the IPython namespace. For example, you can save the
 output of any shell command to a Python list using the assignment
@@ -992,14 +1002,14 @@ variable’s contents in the shell command.</p>
 </div>
 </div>
 <div class="section" id="errors-and-debugging">
-<h1>Errors and Debugging<a class="headerlink" href="#errors-and-debugging" title="Permalink to this headline">¶</a></h1>
+<h2>Errors and Debugging<a class="headerlink" href="#errors-and-debugging" title="Permalink to this headline">¶</a></h2>
 <p>Code development and data analysis always require a bit of trial and
 error, and IPython contains tools to streamline this process. This
 section will briefly cover some options for controlling Python’s
 exception reporting, followed by exploring tools for debugging errors in
 code.</p>
 <div class="section" id="controlling-exceptions-xmode">
-<h2>Controlling Exceptions: <code class="docutils literal notranslate"><span class="pre">%xmode</span></code><a class="headerlink" href="#controlling-exceptions-xmode" title="Permalink to this headline">¶</a></h2>
+<h3>Controlling Exceptions: <code class="docutils literal notranslate"><span class="pre">%xmode</span></code><a class="headerlink" href="#controlling-exceptions-xmode" title="Permalink to this headline">¶</a></h3>
 <p>Most of the time when a Python script fails, it will raise an Exception.
 When the interpreter hits one of these exceptions, information about the
 cause of the error can be found in the <em>traceback</em>, which can be
@@ -1131,7 +1141,7 @@ the context, sometimes the brevity of <code class="docutils literal notranslate"
 with.</p>
 </div>
 <div class="section" id="debugging-when-reading-tracebacks-is-not-enough">
-<h2>Debugging: When Reading Tracebacks Is Not Enough<a class="headerlink" href="#debugging-when-reading-tracebacks-is-not-enough" title="Permalink to this headline">¶</a></h2>
+<h3>Debugging: When Reading Tracebacks Is Not Enough<a class="headerlink" href="#debugging-when-reading-tracebacks-is-not-enough" title="Permalink to this headline">¶</a></h3>
 <p>The standard Python tool for interactive debugging is <code class="docutils literal notranslate"><span class="pre">pdb</span></code>, the
 Python debugger. This debugger lets the user step through the code line
 by line in order to see what might be causing a more difficult error.
@@ -1252,7 +1262,7 @@ in interactive mode, you can run it with the command <code class="docutils liter
 use the <code class="docutils literal notranslate"><span class="pre">next</span></code> command to step through the lines of code
 interactively.</p>
 <div class="section" id="partial-list-of-debugging-commands">
-<h3>Partial list of debugging commands<a class="headerlink" href="#partial-list-of-debugging-commands" title="Permalink to this headline">¶</a></h3>
+<h4>Partial list of debugging commands<a class="headerlink" href="#partial-list-of-debugging-commands" title="Permalink to this headline">¶</a></h4>
 <p>There are many more available commands for interactive debugging than
 we’ve listed here; the following table contains a description of some of
 the more common and useful ones:</p>
@@ -1304,7 +1314,7 @@ documentation</a>.</p>
 </div>
 </div>
 <div class="section" id="profiling-and-timing-code">
-<h1>Profiling and Timing Code<a class="headerlink" href="#profiling-and-timing-code" title="Permalink to this headline">¶</a></h1>
+<h2>Profiling and Timing Code<a class="headerlink" href="#profiling-and-timing-code" title="Permalink to this headline">¶</a></h2>
 <p>In the process of developing code and creating data processing
 pipelines, there are often trade-offs you can make between various
 implementations. Early in developing your algorithm, it can be
@@ -1331,7 +1341,7 @@ accuracy</p></li>
 the <code class="docutils literal notranslate"><span class="pre">line_profiler</span></code> and <code class="docutils literal notranslate"><span class="pre">memory_profiler</span></code> extensions, which we will
 discuss in the following sections.</p>
 <div class="section" id="timing-code-snippets-timeit-and-time">
-<h2>Timing Code Snippets: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> and <code class="docutils literal notranslate"><span class="pre">%time</span></code><a class="headerlink" href="#timing-code-snippets-timeit-and-time" title="Permalink to this headline">¶</a></h2>
+<h3>Timing Code Snippets: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> and <code class="docutils literal notranslate"><span class="pre">%time</span></code><a class="headerlink" href="#timing-code-snippets-timeit-and-time" title="Permalink to this headline">¶</a></h3>
 <p>We saw the <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> line-magic and <code class="docutils literal notranslate"><span class="pre">%%timeit</span></code> cell-magic in the
 introduction to magic functions in <a class="reference external" href="01.03-Magic-Commands.ipynb">IPython Magic
 Commands</a>; it can be used to time the
@@ -1418,7 +1428,7 @@ available options, use the IPython help functionality (i.e., type
 <code class="docutils literal notranslate"><span class="pre">%time?</span></code> at the IPython prompt).</p>
 </div>
 <div class="section" id="profiling-full-scripts-prun">
-<h2>Profiling Full Scripts: <code class="docutils literal notranslate"><span class="pre">%prun</span></code><a class="headerlink" href="#profiling-full-scripts-prun" title="Permalink to this headline">¶</a></h2>
+<h3>Profiling Full Scripts: <code class="docutils literal notranslate"><span class="pre">%prun</span></code><a class="headerlink" href="#profiling-full-scripts-prun" title="Permalink to this headline">¶</a></h3>
 <p>A program is made of many single statements, and sometimes timing these
 statements in context is more important than timing them on their own.
 Python contains a built-in code profiler (which you can read about in
@@ -1462,7 +1472,7 @@ the IPython help functionality (i.e., type <code class="docutils literal notrans
 prompt).</p>
 </div>
 <div class="section" id="line-by-line-profiling-with-lprun">
-<h2>Line-By-Line Profiling with <code class="docutils literal notranslate"><span class="pre">%lprun</span></code><a class="headerlink" href="#line-by-line-profiling-with-lprun" title="Permalink to this headline">¶</a></h2>
+<h3>Line-By-Line Profiling with <code class="docutils literal notranslate"><span class="pre">%lprun</span></code><a class="headerlink" href="#line-by-line-profiling-with-lprun" title="Permalink to this headline">¶</a></h3>
 <p>The function-by-function profiling of <code class="docutils literal notranslate"><span class="pre">%prun</span></code> is useful, but sometimes
 it’s more convenient to have a line-by-line profile report. This is not
 built into Python or IPython, but there is a <code class="docutils literal notranslate"><span class="pre">line_profiler</span></code> package
@@ -1489,7 +1499,7 @@ Function: sum_of_lists at line 1</p>
 </div>
 </div>
 <div class="section" id="line-hits-time-per-hit-time-line-contents">
-<h1>Line # Hits Time Per Hit % Time Line Contents<a class="headerlink" href="#line-hits-time-per-hit-time-line-contents" title="Permalink to this headline">¶</a></h1>
+<h2>Line # Hits Time Per Hit % Time Line Contents<a class="headerlink" href="#line-hits-time-per-hit-time-line-contents" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1                                           def sum_of_lists(N):
 2         1          2.0      2.0      0.0      total = 0
 3         6          6.0      1.0      0.1      for i in range(5):
@@ -1508,7 +1518,7 @@ we might make to improve the performance in the algorithm.</p>
 the IPython help functionality (i.e., type <code class="docutils literal notranslate"><span class="pre">%prun?</span></code> at the IPython
 prompt).</p>
 <div class="section" id="profiling-memory-use-memit-and-mprun">
-<h2>Profiling Memory Use: <code class="docutils literal notranslate"><span class="pre">%memit</span></code> and <code class="docutils literal notranslate"><span class="pre">%mprun</span></code><a class="headerlink" href="#profiling-memory-use-memit-and-mprun" title="Permalink to this headline">¶</a></h2>
+<h3>Profiling Memory Use: <code class="docutils literal notranslate"><span class="pre">%memit</span></code> and <code class="docutils literal notranslate"><span class="pre">%mprun</span></code><a class="headerlink" href="#profiling-memory-use-memit-and-mprun" title="Permalink to this headline">¶</a></h3>
 <p>Another aspect of profiling is the amount of memory an operation uses.
 This can be evaluated with another IPython extension, the
 <code class="docutils literal notranslate"><span class="pre">memory_profiler</span></code>. As with the <code class="docutils literal notranslate"><span class="pre">line_profiler</span></code>, we start by
@@ -1565,7 +1575,7 @@ line profiler:</p>
 </div>
 </div>
 <div class="section" id="line-mem-usage-increment-line-contents">
-<h1>Line # Mem usage Increment Line Contents<a class="headerlink" href="#line-mem-usage-increment-line-contents" title="Permalink to this headline">¶</a></h1>
+<h2>Line # Mem usage Increment Line Contents<a class="headerlink" href="#line-mem-usage-increment-line-contents" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1     85.2 MiB     85.2 MiB   def sum_of_lists(N):
 2     85.2 MiB      0.0 MiB       total = 0
 3     85.2 MiB      0.0 MiB       for i in range(5):
@@ -1583,6 +1593,7 @@ background memory usage from the Python interpreter itself.</p>
 available options, use the IPython help functionality (i.e., type
 <code class="docutils literal notranslate"><span class="pre">%memit?</span></code> at the IPython prompt).</p>
 </div>
+</div>
 
 
             <div class="clearer"></div>
@@ -1593,7 +1604,8 @@ available options, use the IPython help functionality (i.e., type
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">IPython: Beyond Normal Python</a><ul>
+<li><a class="reference internal" href="#">Jupyter notebooks</a><ul>
+<li><a class="reference internal" href="#ipython-beyond-normal-python">IPython: Beyond Normal Python</a><ul>
 <li><a class="reference internal" href="#shell-or-notebook">Shell or Notebook?</a><ul>
 <li><a class="reference internal" href="#launching-the-ipython-shell">Launching the IPython Shell</a></li>
 <li><a class="reference internal" href="#launching-the-jupyter-notebook">Launching the Jupyter Notebook</a></li>
@@ -1651,7 +1663,15 @@ available options, use the IPython help functionality (i.e., type
 </li>
 <li><a class="reference internal" href="#line-mem-usage-increment-line-contents">Line # Mem usage Increment Line Contents</a></li>
 </ul>
+</li>
+</ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="introduction.html"
+                        title="previous chapter">Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="numpy.html"
+                        title="next chapter">numpy module</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -1679,8 +1699,14 @@ available options, use the IPython help functionality (i.e., type
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="numpy.html" title="numpy module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="Introduction"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">IPython: Beyond Normal Python</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Jupyter notebooks</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

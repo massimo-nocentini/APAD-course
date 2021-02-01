@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NetworkX &#8212; APAD course  documentation</title>
+    <title>networkx module &#8212; APAD course  documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     
@@ -16,7 +16,9 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tips an’ Tricks" href="gotchas.html" />
+    <link rel="prev" title="matplotlib module" href="matplotlib.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -24,8 +26,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="gotchas.html" title="Tips an’ Tricks"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="matplotlib.html" title="matplotlib module"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="docutils literal notranslate"><span class="pre">NetworkX</span></code></a></li> 
+        <li class="nav-item nav-item-this"><a href="">networkx module</a></li> 
       </ul>
     </div>  
 
@@ -34,7 +42,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p><div class="docutils container">
+  <div class="section" id="networkx-module">
+<h1>networkx module<a class="headerlink" href="#networkx-module" title="Permalink to this headline">¶</a></h1>
+<p><div class="docutils container">
 <p>Massimo Nocentini, PhD. May 2, 2020: init</p>
 </div>
 </p><div class="docutils container">
@@ -50,7 +60,7 @@
 </pre></div>
 </div>
 <center></center><div class="section" id="networkx">
-<h1><code class="docutils literal notranslate"><span class="pre">NetworkX</span></code><a class="headerlink" href="#networkx" title="Permalink to this headline">¶</a></h1>
+<h2><code class="docutils literal notranslate"><span class="pre">NetworkX</span></code><a class="headerlink" href="#networkx" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://github.com/networkx/networkx">https://github.com/networkx/networkx</a></p>
 <p>Aric A. Hagberg, Daniel A. Schult and Pieter J. Swart, <a class="reference external" href="http://conference.scipy.org/proceedings/SciPy2008/paper_2/">“Exploring
 network structure, dynamics, and function using NetworkX”, in
@@ -65,7 +75,7 @@ adapted to be shown as a presentation; moreover, we mix in additional
 resources such as examples (citing them and the original authors) in the
 last section.</p>
 <div class="section" id="creating-a-graph">
-<h2>Creating a graph<a class="headerlink" href="#creating-a-graph" title="Permalink to this headline">¶</a></h2>
+<h3>Creating a graph<a class="headerlink" href="#creating-a-graph" title="Permalink to this headline">¶</a></h3>
 <p>Create an empty graph with no nodes and no edges.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
@@ -82,7 +92,7 @@ compared to other objects (it needs an <code class="docutils literal notranslate
 objects which compare equal must have the same hash value.</p>
 </div></blockquote>
 <div class="section" id="nodes">
-<h3>Nodes<a class="headerlink" href="#nodes" title="Permalink to this headline">¶</a></h3>
+<h4>Nodes<a class="headerlink" href="#nodes" title="Permalink to this headline">¶</a></h4>
 <p>The graph <code class="docutils literal notranslate"><span class="pre">G</span></code> can be grown in several ways. NetworkX includes many
 graph generator functions and facilities to read and write graphs in
 many formats. To get started though we’ll look at simple manipulations.
@@ -114,7 +124,7 @@ can always use a unique identifier in <code class="docutils literal notranslate"
 dictionary keyed by identifier to the node information if you prefer.</p>
 </div>
 <div class="section" id="edges">
-<h3>Edges<a class="headerlink" href="#edges" title="Permalink to this headline">¶</a></h3>
+<h4>Edges<a class="headerlink" href="#edges" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">G</span></code> can also be grown by adding one edge at a time,</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -237,7 +247,7 @@ classes you can specify data in several formats.</p>
 </div>
 </div>
 <div class="section" id="what-to-use-as-nodes-and-edges">
-<h3>What to use as nodes and edges<a class="headerlink" href="#what-to-use-as-nodes-and-edges" title="Permalink to this headline">¶</a></h3>
+<h4>What to use as nodes and edges<a class="headerlink" href="#what-to-use-as-nodes-and-edges" title="Permalink to this headline">¶</a></h4>
 <p>You might notice that nodes and edges are not specified as NetworkX
 objects. This leaves you free to use meaningful items as nodes and
 edges. The most common choices are numbers or strings, but a node can be
@@ -252,7 +262,7 @@ consider using <code class="docutils literal notranslate"><span class="pre">conv
 traditional graph with integer labels.</p>
 </div>
 <div class="section" id="accessing-edges-and-neighbors">
-<h3>Accessing edges and neighbors<a class="headerlink" href="#accessing-edges-and-neighbors" title="Permalink to this headline">¶</a></h3>
+<h4>Accessing edges and neighbors<a class="headerlink" href="#accessing-edges-and-neighbors" title="Permalink to this headline">¶</a></h4>
 <p>In addition to the views <code class="docutils literal notranslate"><span class="pre">Graph.edges()</span></code>, and <code class="docutils literal notranslate"><span class="pre">Graph.adj()</span></code>, access
 to edges and neighbors is possible using subscript notation.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># same as G.adj[1]</span>
@@ -303,7 +313,7 @@ graphs, adjacency iteration sees each edge twice.</p>
 </div>
 </div>
 <div class="section" id="adding-attributes-to-graphs-nodes-and-edges">
-<h3>Adding attributes to graphs, nodes, and edges<a class="headerlink" href="#adding-attributes-to-graphs-nodes-and-edges" title="Permalink to this headline">¶</a></h3>
+<h4>Adding attributes to graphs, nodes, and edges<a class="headerlink" href="#adding-attributes-to-graphs-nodes-and-edges" title="Permalink to this headline">¶</a></h4>
 <p>Attributes such as weights, labels, colors, or whatever Python object
 you like, can be attached to graphs, nodes, or edges.</p>
 <p>Each graph, node, and edge can hold key/value attribute pairs in an
@@ -316,7 +326,7 @@ dictionaries named <code class="docutils literal notranslate"><span class="pre">
 </div>
 </div>
 <div class="section" id="graph-attributes">
-<h1>Graph attributes<a class="headerlink" href="#graph-attributes" title="Permalink to this headline">¶</a></h1>
+<h2>Graph attributes<a class="headerlink" href="#graph-attributes" title="Permalink to this headline">¶</a></h2>
 <p>Assign graph attributes when creating a new graph</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">day</span><span class="o">=</span><span class="s2">&quot;Friday&quot;</span><span class="p">)</span>
 <span class="n">G</span><span class="o">.</span><span class="n">graph</span>
@@ -885,6 +895,7 @@ for additional details.</p>
 </div>
 <img alt="_images/networkx_127_2.png" src="_images/networkx_127_2.png" />
 </div>
+</div>
 
 
             <div class="clearer"></div>
@@ -895,7 +906,8 @@ for additional details.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">NetworkX</span></code></a><ul>
+<li><a class="reference internal" href="#">networkx module</a><ul>
+<li><a class="reference internal" href="#networkx"><code class="docutils literal notranslate"><span class="pre">NetworkX</span></code></a><ul>
 <li><a class="reference internal" href="#creating-a-graph">Creating a graph</a><ul>
 <li><a class="reference internal" href="#nodes">Nodes</a></li>
 <li><a class="reference internal" href="#edges">Edges</a></li>
@@ -908,7 +920,15 @@ for additional details.</p>
 </li>
 <li><a class="reference internal" href="#graph-attributes">Graph attributes</a></li>
 </ul>
+</li>
+</ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="matplotlib.html"
+                        title="previous chapter">matplotlib module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="gotchas.html"
+                        title="next chapter">Tips an’ Tricks</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -936,8 +956,14 @@ for additional details.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="gotchas.html" title="Tips an’ Tricks"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="matplotlib.html" title="matplotlib module"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href=""><code class="docutils literal notranslate"><span class="pre">NetworkX</span></code></a></li> 
+        <li class="nav-item nav-item-this"><a href="">networkx module</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

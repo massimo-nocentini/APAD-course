@@ -9,8 +9,14 @@ APAD course's content
 .. toctree::
    :maxdepth: 4
 
-   all.rst
-
+   introduction.rst
+   jupyter-notebooks.rst
+   numpy.rst
+   pandas.rst
+   matplotlib.rst
+   networkx.rst
+   gotchas.rst
+   generators.rst
 .. 
    Indices and tables
    ==================

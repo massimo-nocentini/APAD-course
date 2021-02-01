@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction to NumPy &#8212; APAD course  documentation</title>
+    <title>numpy module &#8212; APAD course  documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     
@@ -16,7 +16,9 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pandas module" href="pandas.html" />
+    <link rel="prev" title="Jupyter notebooks" href="jupyter-notebooks.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -24,8 +26,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pandas.html" title="pandas module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="jupyter-notebooks.html" title="Jupyter notebooks"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Introduction to NumPy</a></li> 
+        <li class="nav-item nav-item-this"><a href="">numpy module</a></li> 
       </ul>
     </div>  
 
@@ -34,7 +42,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p><div class="docutils container">
+  <div class="section" id="numpy-module">
+<h1>numpy module<a class="headerlink" href="#numpy-module" title="Permalink to this headline">¶</a></h1>
+<p><div class="docutils container">
 <p>Massimo Nocentini, PhD. February 26, 2020: init</p>
 </div>
 </p><div class="docutils container">
@@ -51,7 +61,7 @@ storing, and manipulating in-memory data in Python.</p>
 </pre></div>
 </div>
 <center></center><div class="section" id="introduction-to-numpy">
-<h1>Introduction to NumPy<a class="headerlink" href="#introduction-to-numpy" title="Permalink to this headline">¶</a></h1>
+<h2>Introduction to NumPy<a class="headerlink" href="#introduction-to-numpy" title="Permalink to this headline">¶</a></h2>
 <p>The topic is very broad: datasets can come from a wide range of sources
 and a wide range of formats, including be collections of documents,
 collections of images, collections of sound clips, collections of
@@ -83,7 +93,7 @@ will import NumPy using <code class="docutils literal notranslate"><span class="
 that this is the way we will import and use NumPy.</p>
 </div>
 <div class="section" id="understanding-data-types-in-python">
-<h1>Understanding Data Types in Python<a class="headerlink" href="#understanding-data-types-in-python" title="Permalink to this headline">¶</a></h1>
+<h2>Understanding Data Types in Python<a class="headerlink" href="#understanding-data-types-in-python" title="Permalink to this headline">¶</a></h2>
 <p>Effective data-driven science and computation requires understanding how
 data is stored and manipulated.</p>
 <p>Here we outlines and contrasts how arrays of data are handled in the
@@ -106,7 +116,7 @@ package. While Python’s <code class="docutils literal notranslate"><span class
 array-based data, NumPy adds to this efficient <em>operations</em> on that
 data.</p>
 <div class="section" id="creating-arrays-from-python-lists">
-<h2>Creating Arrays from Python Lists<a class="headerlink" href="#creating-arrays-from-python-lists" title="Permalink to this headline">¶</a></h2>
+<h3>Creating Arrays from Python Lists<a class="headerlink" href="#creating-arrays-from-python-lists" title="Permalink to this headline">¶</a></h3>
 <p>First, we can use <code class="docutils literal notranslate"><span class="pre">np.array</span></code> to create arrays from Python lists:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 </pre></div>
@@ -133,7 +143,7 @@ can use the <code class="docutils literal notranslate"><span class="pre">dtype</
 </div>
 </div>
 <div class="section" id="creating-arrays-from-scratch">
-<h2>Creating Arrays from Scratch<a class="headerlink" href="#creating-arrays-from-scratch" title="Permalink to this headline">¶</a></h2>
+<h3>Creating Arrays from Scratch<a class="headerlink" href="#creating-arrays-from-scratch" title="Permalink to this headline">¶</a></h3>
 <p>Especially for larger arrays, it is more efficient to create arrays from
 scratch using routines built into NumPy:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
@@ -196,7 +206,7 @@ scratch using routines built into NumPy:</p>
 </div>
 </div>
 <div class="section" id="numpy-standard-data-types">
-<h2>NumPy Standard Data Types<a class="headerlink" href="#numpy-standard-data-types" title="Permalink to this headline">¶</a></h2>
+<h3>NumPy Standard Data Types<a class="headerlink" href="#numpy-standard-data-types" title="Permalink to this headline">¶</a></h3>
 <p>NumPy arrays contain values of a single type, so have a look at those
 types and their bounds:</p>
 <table class="docutils align-default">
@@ -292,7 +302,7 @@ two 64-bit floats</p></td>
 </div>
 </div>
 <div class="section" id="the-basics-of-numpy-arrays">
-<h1>The Basics of NumPy Arrays<a class="headerlink" href="#the-basics-of-numpy-arrays" title="Permalink to this headline">¶</a></h1>
+<h2>The Basics of NumPy Arrays<a class="headerlink" href="#the-basics-of-numpy-arrays" title="Permalink to this headline">¶</a></h2>
 <p>Data manipulation in Python is nearly synonymous with NumPy array
 manipulation: even newer tools like Pandas are built around the NumPy
 array.</p>
@@ -308,7 +318,7 @@ larger array</p></li>
 one, and splitting one array into many</p></li>
 </ul>
 <div class="section" id="numpy-array-attributes">
-<h2>NumPy Array Attributes<a class="headerlink" href="#numpy-array-attributes" title="Permalink to this headline">¶</a></h2>
+<h3>NumPy Array Attributes<a class="headerlink" href="#numpy-array-attributes" title="Permalink to this headline">¶</a></h3>
 <p>First let’s discuss some useful array attributes. We’ll start by
 defining three random arrays, a one-dimensional, two-dimensional, and
 three-dimensional array:</p>
@@ -336,7 +346,7 @@ three-dimensional array:</p>
 </div>
 </div>
 <div class="section" id="array-indexing-accessing-single-elements">
-<h2>Array Indexing: Accessing Single Elements<a class="headerlink" href="#array-indexing-accessing-single-elements" title="Permalink to this headline">¶</a></h2>
+<h3>Array Indexing: Accessing Single Elements<a class="headerlink" href="#array-indexing-accessing-single-elements" title="Permalink to this headline">¶</a></h3>
 <p>In a one-dimensional array, the <span class="math notranslate nohighlight">\(i^{th}\)</span> value (counting from
 zero) can be accessed by specifying the desired index in square
 brackets, just as with Python lists:</p>
@@ -400,7 +410,7 @@ comma-separated tuple of indices:</p>
 </div>
 </div>
 <div class="section" id="array-slicing-accessing-subarrays">
-<h2>Array Slicing: Accessing Subarrays<a class="headerlink" href="#array-slicing-accessing-subarrays" title="Permalink to this headline">¶</a></h2>
+<h3>Array Slicing: Accessing Subarrays<a class="headerlink" href="#array-slicing-accessing-subarrays" title="Permalink to this headline">¶</a></h3>
 <p>Just as we can use square brackets to access individual array elements,
 we can also use them to access subarrays with the <em>slice</em> notation,
 marked by the colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>) character.</p>
@@ -412,7 +422,7 @@ access a slice of an array <code class="docutils literal notranslate"><span clas
 <p>If any of these are unspecified, they default to the values <code class="docutils literal notranslate"><span class="pre">start=0</span></code>,
 <code class="docutils literal notranslate"><span class="pre">stop=</span></code><em>``size of dimension``</em>, <code class="docutils literal notranslate"><span class="pre">step=1</span></code>.</p>
 <div class="section" id="one-dimensional-subarrays">
-<h3>One-dimensional subarrays<a class="headerlink" href="#one-dimensional-subarrays" title="Permalink to this headline">¶</a></h3>
+<h4>One-dimensional subarrays<a class="headerlink" href="#one-dimensional-subarrays" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">x</span>
 </pre></div>
@@ -467,7 +477,7 @@ becomes a convenient way to reverse an array:</p>
 </div>
 </div>
 <div class="section" id="multi-dimensional-subarrays">
-<h3>Multi-dimensional subarrays<a class="headerlink" href="#multi-dimensional-subarrays" title="Permalink to this headline">¶</a></h3>
+<h4>Multi-dimensional subarrays<a class="headerlink" href="#multi-dimensional-subarrays" title="Permalink to this headline">¶</a></h4>
 <p>Multi-dimensional slices work in the same way, with multiple slices
 separated by commas:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x2</span>
@@ -502,7 +512,7 @@ separated by commas:</p>
 </pre></div>
 </div>
 <div class="section" id="accessing-array-rows-and-columns">
-<h4>Accessing array rows and columns<a class="headerlink" href="#accessing-array-rows-and-columns" title="Permalink to this headline">¶</a></h4>
+<h5>Accessing array rows and columns<a class="headerlink" href="#accessing-array-rows-and-columns" title="Permalink to this headline">¶</a></h5>
 <p>One commonly needed routine is accessing of single rows or columns of an
 array:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x2</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># first column of x2</span>
@@ -526,7 +536,7 @@ array:</p>
 </div>
 </div>
 <div class="section" id="subarrays-as-no-copy-views">
-<h3>Subarrays as no-copy views<a class="headerlink" href="#subarrays-as-no-copy-views" title="Permalink to this headline">¶</a></h3>
+<h4>Subarrays as no-copy views<a class="headerlink" href="#subarrays-as-no-copy-views" title="Permalink to this headline">¶</a></h4>
 <p>One important–and extremely useful–thing to know about array slices is
 that they return <em>views</em> rather than <em>copies</em> of the array data.</p>
 <p>This is one area in which NumPy array slicing differs from Python list
@@ -562,7 +572,7 @@ method.</p>
 </div>
 </div>
 <div class="section" id="reshaping-of-arrays">
-<h2>Reshaping of Arrays<a class="headerlink" href="#reshaping-of-arrays" title="Permalink to this headline">¶</a></h2>
+<h3>Reshaping of Arrays<a class="headerlink" href="#reshaping-of-arrays" title="Permalink to this headline">¶</a></h3>
 <p>If you want to put the numbers 1 through 9 in a <span class="math notranslate nohighlight">\(3 \times 3\)</span> grid:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 </pre></div>
@@ -602,7 +612,7 @@ method.</p>
 </pre></div>
 </div>
 <div class="section" id="concatenation-of-arrays">
-<h3>Concatenation of arrays<a class="headerlink" href="#concatenation-of-arrays" title="Permalink to this headline">¶</a></h3>
+<h4>Concatenation of arrays<a class="headerlink" href="#concatenation-of-arrays" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">np.concatenate</span></code> takes a tuple or list of arrays as its first
 argument:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
@@ -666,7 +676,7 @@ functions:</p>
 </div>
 </div>
 <div class="section" id="splitting-of-arrays">
-<h3>Splitting of arrays<a class="headerlink" href="#splitting-of-arrays" title="Permalink to this headline">¶</a></h3>
+<h4>Splitting of arrays<a class="headerlink" href="#splitting-of-arrays" title="Permalink to this headline">¶</a></h4>
 <p>The opposite of concatenation is splitting, we can pass a list of
 indices giving the split points:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
@@ -713,13 +723,13 @@ indices giving the split points:</p>
 </div>
 </div>
 <div class="section" id="computation-on-numpy-arrays-universal-functions">
-<h1>Computation on NumPy Arrays: Universal Functions<a class="headerlink" href="#computation-on-numpy-arrays-universal-functions" title="Permalink to this headline">¶</a></h1>
+<h2>Computation on NumPy Arrays: Universal Functions<a class="headerlink" href="#computation-on-numpy-arrays-universal-functions" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Numpy</span></code> provides an easy and flexible interface to optimized
 computation with arrays of data.</p>
 <p>The key to making it fast is to use <em>vectorized</em> operations, generally
 implemented through NumPy’s <em>universal functions</em> (ufuncs).</p>
 <div class="section" id="the-slowness-of-loops">
-<h2>The Slowness of Loops<a class="headerlink" href="#the-slowness-of-loops" title="Permalink to this headline">¶</a></h2>
+<h3>The Slowness of Loops<a class="headerlink" href="#the-slowness-of-loops" title="Permalink to this headline">¶</a></h3>
 <p>Python’s default implementation (known as CPython) does some operations
 very slowly, this is in part due to the dynamic, interpreted nature of
 the language.</p>
@@ -762,7 +772,7 @@ would be known before the code executes and the result could be computed
 much more efficiently.</p>
 </div>
 <div class="section" id="introducing-ufuncs">
-<h2>Introducing UFuncs<a class="headerlink" href="#introducing-ufuncs" title="Permalink to this headline">¶</a></h2>
+<h3>Introducing UFuncs<a class="headerlink" href="#introducing-ufuncs" title="Permalink to this headline">¶</a></h3>
 <p>For many types of operations, NumPy provides a convenient interface into
 just this kind of compiled routine.</p>
 <p>This is known as a <em>vectorized</em> operation.</p>
@@ -799,7 +809,7 @@ also act on multi-dimensional arrays as well:</p>
 <p><em>Any time you see such a loop in a Python script, you should consider
 whether it can be replaced with a vectorized expression.</em></p>
 <div class="section" id="array-arithmetic">
-<h3>Array arithmetic<a class="headerlink" href="#array-arithmetic" title="Permalink to this headline">¶</a></h3>
+<h4>Array arithmetic<a class="headerlink" href="#array-arithmetic" title="Permalink to this headline">¶</a></h4>
 <p>NumPy’s ufuncs feel very natural to use because they make use of
 Python’s native arithmetic operators:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
@@ -833,7 +843,7 @@ Python’s native arithmetic operators:</p>
 </div>
 </div>
 <div class="section" id="trigonometric-functions">
-<h3>Trigonometric functions<a class="headerlink" href="#trigonometric-functions" title="Permalink to this headline">¶</a></h3>
+<h4>Trigonometric functions<a class="headerlink" href="#trigonometric-functions" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">NumPy</span></code> provides a large number of useful ufuncs, we’ll start by
 defining an array of angles:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
@@ -853,7 +863,7 @@ defining an array of angles:</p>
 </div>
 </div>
 <div class="section" id="exponents-and-logarithms">
-<h3>Exponents and logarithms<a class="headerlink" href="#exponents-and-logarithms" title="Permalink to this headline">¶</a></h3>
+<h4>Exponents and logarithms<a class="headerlink" href="#exponents-and-logarithms" title="Permalink to this headline">¶</a></h4>
 <p>Another common <code class="docutils literal notranslate"><span class="pre">NumPy</span></code> ufunc are the exponentials (that are useful for
 maintaining precision with very small inputs)</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
@@ -884,7 +894,7 @@ maintaining precision with very small inputs)</p>
 </div>
 </div>
 <div class="section" id="specifying-output">
-<h3>Specifying output<a class="headerlink" href="#specifying-output" title="Permalink to this headline">¶</a></h3>
+<h4>Specifying output<a class="headerlink" href="#specifying-output" title="Permalink to this headline">¶</a></h4>
 <p>For large calculations, it is sometimes useful to be able to specify the
 array where the result of the calculation will be stored:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
@@ -906,7 +916,7 @@ array where the result of the calculation will be stored:</p>
 </div>
 </div>
 <div class="section" id="outer-products">
-<h3>Outer products<a class="headerlink" href="#outer-products" title="Permalink to this headline">¶</a></h3>
+<h4>Outer products<a class="headerlink" href="#outer-products" title="Permalink to this headline">¶</a></h4>
 <p>Finally, any ufunc can compute the output of all pairs of two different
 inputs using the <code class="docutils literal notranslate"><span class="pre">outer</span></code> method:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
@@ -924,9 +934,9 @@ inputs using the <code class="docutils literal notranslate"><span class="pre">ou
 </div>
 </div>
 <div class="section" id="aggregations-min-max-and-everything-in-between">
-<h1>Aggregations: Min, Max, and Everything In Between<a class="headerlink" href="#aggregations-min-max-and-everything-in-between" title="Permalink to this headline">¶</a></h1>
+<h2>Aggregations: Min, Max, and Everything In Between<a class="headerlink" href="#aggregations-min-max-and-everything-in-between" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="summing-the-values-in-an-array">
-<h2>Summing the Values in an Array<a class="headerlink" href="#summing-the-values-in-an-array" title="Permalink to this headline">¶</a></h2>
+<h3>Summing the Values in an Array<a class="headerlink" href="#summing-the-values-in-an-array" title="Permalink to this headline">¶</a></h3>
 <p>As a quick example, consider computing the sum of all values in an
 array. Python itself can do this using the built-in <code class="docutils literal notranslate"><span class="pre">sum</span></code> function:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
@@ -953,7 +963,7 @@ array. Python itself can do this using the built-in <code class="docutils litera
 </div>
 </div>
 <div class="section" id="minimum-and-maximum">
-<h2>Minimum and Maximum<a class="headerlink" href="#minimum-and-maximum" title="Permalink to this headline">¶</a></h2>
+<h3>Minimum and Maximum<a class="headerlink" href="#minimum-and-maximum" title="Permalink to this headline">¶</a></h3>
 <p>Similarly, Python has built-in <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code> functions:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">min</span><span class="p">(</span><span class="n">big_array</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">big_array</span><span class="p">)</span>
 </pre></div>
@@ -982,7 +992,7 @@ array. Python itself can do this using the built-in <code class="docutils litera
 </pre></div>
 </div>
 <div class="section" id="multi-dimensional-aggregates">
-<h3>Multi dimensional aggregates<a class="headerlink" href="#multi-dimensional-aggregates" title="Permalink to this headline">¶</a></h3>
+<h4>Multi dimensional aggregates<a class="headerlink" href="#multi-dimensional-aggregates" title="Permalink to this headline">¶</a></h4>
 <p>One common type of aggregation operation is an aggregate along a row or
 column:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -1014,7 +1024,7 @@ column:</p>
 </div>
 </div>
 <div class="section" id="other-aggregation-functions">
-<h3>Other aggregation functions<a class="headerlink" href="#other-aggregation-functions" title="Permalink to this headline">¶</a></h3>
+<h4>Other aggregation functions<a class="headerlink" href="#other-aggregation-functions" title="Permalink to this headline">¶</a></h4>
 <p>Additionally, most aggregates have a <code class="docutils literal notranslate"><span class="pre">NaN</span></code>-safe counterpart that
 computes the result while ignoring missing values, which are marked by
 the special IEEE floating-point <code class="docutils literal notranslate"><span class="pre">NaN</span></code> value</p>
@@ -1100,14 +1110,14 @@ elements are true</p></td>
 </div>
 </div>
 <div class="section" id="computation-on-arrays-broadcasting">
-<h1>Computation on Arrays: Broadcasting<a class="headerlink" href="#computation-on-arrays-broadcasting" title="Permalink to this headline">¶</a></h1>
+<h2>Computation on Arrays: Broadcasting<a class="headerlink" href="#computation-on-arrays-broadcasting" title="Permalink to this headline">¶</a></h2>
 <p>Another means of vectorizing operations is to use NumPy’s <em>broadcasting</em>
 functionality.</p>
 <p>Broadcasting is simply a set of rules for applying binary ufuncs (e.g.,
 addition, subtraction, multiplication, etc.) on arrays of different
 sizes.</p>
 <div class="section" id="introducing-broadcasting">
-<h2>Introducing Broadcasting<a class="headerlink" href="#introducing-broadcasting" title="Permalink to this headline">¶</a></h2>
+<h3>Introducing Broadcasting<a class="headerlink" href="#introducing-broadcasting" title="Permalink to this headline">¶</a></h3>
 <p>Recall that for arrays of the same size, binary operations are performed
 on an element-by-element basis:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
@@ -1172,7 +1182,7 @@ the second dimension in order to match the shape of <code class="docutils litera
 </div>
 </div>
 <div class="section" id="rules-of-broadcasting">
-<h2>Rules of Broadcasting<a class="headerlink" href="#rules-of-broadcasting" title="Permalink to this headline">¶</a></h2>
+<h3>Rules of Broadcasting<a class="headerlink" href="#rules-of-broadcasting" title="Permalink to this headline">¶</a></h3>
 <p>Broadcasting in NumPy follows a strict set of rules to determine the
 interaction between the two arrays:</p>
 <ul class="simple">
@@ -1186,7 +1196,7 @@ stretched to match the other shape.</p></li>
 to 1, an error is raised.</p></li>
 </ul>
 <div class="section" id="centering-an-array">
-<h3>Centering an array<a class="headerlink" href="#centering-an-array" title="Permalink to this headline">¶</a></h3>
+<h4>Centering an array<a class="headerlink" href="#centering-an-array" title="Permalink to this headline">¶</a></h4>
 <p>Imagine you have an array of 10 observations, each of which consists of
 3 values, we’ll store this in a <span class="math notranslate nohighlight">\(10 \times 3\)</span> array:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -1210,7 +1220,7 @@ to 1, an error is raised.</p></li>
 </div>
 </div>
 <div class="section" id="plotting-a-two-dimensional-function">
-<h3>Plotting a two-dimensional function<a class="headerlink" href="#plotting-a-two-dimensional-function" title="Permalink to this headline">¶</a></h3>
+<h4>Plotting a two-dimensional function<a class="headerlink" href="#plotting-a-two-dimensional-function" title="Permalink to this headline">¶</a></h4>
 <p>One place that broadcasting is very useful is in displaying images based
 on two-dimensional functions. If we want to define a function
 <span class="math notranslate nohighlight">\(z = f(x, y)\)</span>, broadcasting can be used to compute the function
@@ -1232,7 +1242,7 @@ across the grid:</p>
 </div>
 </div>
 <div class="section" id="comparisons-masks-and-boolean-logic">
-<h1>Comparisons, Masks, and Boolean Logic<a class="headerlink" href="#comparisons-masks-and-boolean-logic" title="Permalink to this headline">¶</a></h1>
+<h2>Comparisons, Masks, and Boolean Logic<a class="headerlink" href="#comparisons-masks-and-boolean-logic" title="Permalink to this headline">¶</a></h2>
 <p>Masking comes up when you want to extract, modify, count, or otherwise
 manipulate values in an array based on some criterion: for example, you
 might wish to count all values greater than a certain value, or perhaps
@@ -1240,7 +1250,7 @@ remove all outliers that are above some threshold. In NumPy, Boolean
 masking is often the most efficient way to accomplish these types of
 tasks.</p>
 <div class="section" id="comparison-operators-as-ufuncs">
-<h2>Comparison Operators as ufuncs<a class="headerlink" href="#comparison-operators-as-ufuncs" title="Permalink to this headline">¶</a></h2>
+<h3>Comparison Operators as ufuncs<a class="headerlink" href="#comparison-operators-as-ufuncs" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1289,7 +1299,7 @@ any size and shape:</p>
 </pre></div>
 </div>
 <div class="section" id="counting-entries">
-<h3>Counting entries<a class="headerlink" href="#counting-entries" title="Permalink to this headline">¶</a></h3>
+<h4>Counting entries<a class="headerlink" href="#counting-entries" title="Permalink to this headline">¶</a></h4>
 <p>To count the number of <code class="docutils literal notranslate"><span class="pre">True</span></code> entries in a Boolean array,
 <code class="docutils literal notranslate"><span class="pre">np.count_nonzero</span></code> is useful:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">)</span> <span class="c1"># how many values less than 6?</span>
@@ -1337,7 +1347,7 @@ any size and shape:</p>
 </div>
 </div>
 <div class="section" id="boolean-arrays-as-masks">
-<h2>Boolean Arrays as Masks<a class="headerlink" href="#boolean-arrays-as-masks" title="Permalink to this headline">¶</a></h2>
+<h3>Boolean Arrays as Masks<a class="headerlink" href="#boolean-arrays-as-masks" title="Permalink to this headline">¶</a></h3>
 <p>A more powerful pattern is to use Boolean arrays as masks, to select
 particular subsets of the data themselves:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
@@ -1368,7 +1378,7 @@ which the mask array is <code class="docutils literal notranslate"><span class="
 </div>
 </div>
 <div class="section" id="fancy-indexing">
-<h1>Fancy Indexing<a class="headerlink" href="#fancy-indexing" title="Permalink to this headline">¶</a></h1>
+<h2>Fancy Indexing<a class="headerlink" href="#fancy-indexing" title="Permalink to this headline">¶</a></h2>
 <p>We saw how to access and modify portions of arrays using simple indices
 (e.g., <code class="docutils literal notranslate"><span class="pre">arr[0]</span></code>), slices (e.g., <code class="docutils literal notranslate"><span class="pre">arr[:5]</span></code>), and Boolean masks (e.g.,
 <code class="docutils literal notranslate"><span class="pre">arr[arr</span> <span class="pre">&gt;</span> <span class="pre">0]</span></code>).</p>
@@ -1454,7 +1464,7 @@ broadcasting of arithmetic operations</p>
 the</em><strong>broadcasted shape of the indices</strong><em>, rather than the shape of
 the array being indexed</em>.</p>
 <div class="section" id="combined-indexing">
-<h2>Combined Indexing<a class="headerlink" href="#combined-indexing" title="Permalink to this headline">¶</a></h2>
+<h3>Combined Indexing<a class="headerlink" href="#combined-indexing" title="Permalink to this headline">¶</a></h3>
 <p>For even more powerful operations, fancy indexing can be combined with
 the other indexing schemes we’ve seen:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
@@ -1489,7 +1499,7 @@ the other indexing schemes we’ve seen:</p>
 </div>
 </div>
 <div class="section" id="example-selecting-random-points">
-<h2>Example: Selecting Random Points<a class="headerlink" href="#example-selecting-random-points" title="Permalink to this headline">¶</a></h2>
+<h3>Example: Selecting Random Points<a class="headerlink" href="#example-selecting-random-points" title="Permalink to this headline">¶</a></h3>
 <p>One common use of fancy indexing is the selection of subsets of rows
 from a matrix.</p>
 <p>For example, we might have an <span class="math notranslate nohighlight">\(N\)</span> by <span class="math notranslate nohighlight">\(D\)</span> matrix representing
@@ -1535,7 +1545,7 @@ the locations of the selected points:</p>
 <img alt="_images/numpy_207_0.png" src="_images/numpy_207_0.png" />
 </div>
 <div class="section" id="modifying-values-with-fancy-indexing">
-<h2>Modifying Values with Fancy Indexing<a class="headerlink" href="#modifying-values-with-fancy-indexing" title="Permalink to this headline">¶</a></h2>
+<h3>Modifying Values with Fancy Indexing<a class="headerlink" href="#modifying-values-with-fancy-indexing" title="Permalink to this headline">¶</a></h3>
 <p>Fancy indexing it can also be used to modify parts of an array:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">i</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
@@ -1597,7 +1607,7 @@ at the specified indices (here, <code class="docutils literal notranslate"><span
 method of ufuncs, which you can read about in the NumPy documentation.</p>
 </div>
 <div class="section" id="example-binning-data">
-<h2>Example: Binning Data<a class="headerlink" href="#example-binning-data" title="Permalink to this headline">¶</a></h2>
+<h3>Example: Binning Data<a class="headerlink" href="#example-binning-data" title="Permalink to this headline">¶</a></h3>
 <p>You can use these ideas to efficiently bin data to create a histogram by
 hand. For example, imagine we have 1,000 values and would like to
 quickly find where they fall within an array of bins. We could compute
@@ -1667,12 +1677,12 @@ lower-level functionality when you need more pointed behavior.</p>
 </div>
 </div>
 <div class="section" id="sorting-arrays">
-<h1>Sorting Arrays<a class="headerlink" href="#sorting-arrays" title="Permalink to this headline">¶</a></h1>
+<h2>Sorting Arrays<a class="headerlink" href="#sorting-arrays" title="Permalink to this headline">¶</a></h2>
 <p>Up to this point we have been concerned mainly with tools to access and
 operate on array data with NumPy. This section covers algorithms related
 to sorting values in NumPy arrays.</p>
 <div class="section" id="fast-sorting-in-numpy-np-sort-and-np-argsort">
-<h2>Fast Sorting in NumPy: <code class="docutils literal notranslate"><span class="pre">np.sort</span></code> and <code class="docutils literal notranslate"><span class="pre">np.argsort</span></code><a class="headerlink" href="#fast-sorting-in-numpy-np-sort-and-np-argsort" title="Permalink to this headline">¶</a></h2>
+<h3>Fast Sorting in NumPy: <code class="docutils literal notranslate"><span class="pre">np.sort</span></code> and <code class="docutils literal notranslate"><span class="pre">np.argsort</span></code><a class="headerlink" href="#fast-sorting-in-numpy-np-sort-and-np-argsort" title="Permalink to this headline">¶</a></h3>
 <p>Although Python has built-in <code class="docutils literal notranslate"><span class="pre">sort</span></code> and <code class="docutils literal notranslate"><span class="pre">sorted</span></code> functions to work
 with lists, NumPy’s <code class="docutils literal notranslate"><span class="pre">np.sort</span></code> function turns out to be much more
 efficient and useful.</p>
@@ -1712,7 +1722,7 @@ sorted array if desired:</p>
 </pre></div>
 </div>
 <div class="section" id="sorting-along-rows-or-columns">
-<h3>Sorting along rows or columns<a class="headerlink" href="#sorting-along-rows-or-columns" title="Permalink to this headline">¶</a></h3>
+<h4>Sorting along rows or columns<a class="headerlink" href="#sorting-along-rows-or-columns" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">rand</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">X</span>
@@ -1748,7 +1758,7 @@ lost!</p>
 </div>
 </div>
 <div class="section" id="partial-sorts-partitioning">
-<h2>Partial Sorts: Partitioning<a class="headerlink" href="#partial-sorts-partitioning" title="Permalink to this headline">¶</a></h2>
+<h3>Partial Sorts: Partitioning<a class="headerlink" href="#partial-sorts-partitioning" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes we’re not interested in sorting the entire array, but simply
 want to find the <em>k</em> smallest values in the array. <code class="docutils literal notranslate"><span class="pre">np.partition</span></code>
 takes an array and a number <em>K</em>; the result is a new array with the
@@ -1784,7 +1794,7 @@ sort, there is a <code class="docutils literal notranslate"><span class="pre">np
 partition.</p>
 </div>
 <div class="section" id="example-k-nearest-neighbors">
-<h2>Example: k-Nearest Neighbors<a class="headerlink" href="#example-k-nearest-neighbors" title="Permalink to this headline">¶</a></h2>
+<h3>Example: k-Nearest Neighbors<a class="headerlink" href="#example-k-nearest-neighbors" title="Permalink to this headline">¶</a></h3>
 <p>Let’s quickly see how we might use this <code class="docutils literal notranslate"><span class="pre">argsort</span></code> function along
 multiple axes to find the nearest neighbors of each point in a set.</p>
 <p>We’ll start by creating a random set of 10 points on a two-dimensional
@@ -1848,6 +1858,7 @@ the neighbors among 100 or 1,000,000 points in any number of dimensions,
 and the code would look the same.</p>
 </div>
 </div>
+</div>
 
 
             <div class="clearer"></div>
@@ -1858,7 +1869,8 @@ and the code would look the same.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Introduction to NumPy</a></li>
+<li><a class="reference internal" href="#">numpy module</a><ul>
+<li><a class="reference internal" href="#introduction-to-numpy">Introduction to NumPy</a></li>
 <li><a class="reference internal" href="#understanding-data-types-in-python">Understanding Data Types in Python</a><ul>
 <li><a class="reference internal" href="#creating-arrays-from-python-lists">Creating Arrays from Python Lists</a></li>
 <li><a class="reference internal" href="#creating-arrays-from-scratch">Creating Arrays from Scratch</a></li>
@@ -1939,7 +1951,15 @@ and the code would look the same.</p>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="jupyter-notebooks.html"
+                        title="previous chapter">Jupyter notebooks</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pandas.html"
+                        title="next chapter">pandas module</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -1967,8 +1987,14 @@ and the code would look the same.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="pandas.html" title="pandas module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="jupyter-notebooks.html" title="Jupyter notebooks"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Introduction to NumPy</a></li> 
+        <li class="nav-item nav-item-this"><a href="">numpy module</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

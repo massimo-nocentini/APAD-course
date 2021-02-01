@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tips, tricks and gotchas &#8212; APAD course  documentation</title>
+    <title>Tips an’ Tricks &#8212; APAD course  documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     
@@ -16,7 +16,9 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Generators" href="generators.html" />
+    <link rel="prev" title="networkx module" href="networkx.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -24,8 +26,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="generators.html" title="Generators"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="networkx.html" title="networkx module"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Tips, tricks and gotchas</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Tips an’ Tricks</a></li> 
       </ul>
     </div>  
 
@@ -34,7 +42,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p><div class="docutils container">
+  <div class="section" id="tips-an-tricks">
+<h1>Tips an’ Tricks<a class="headerlink" href="#tips-an-tricks" title="Permalink to this headline">¶</a></h1>
+<p><div class="docutils container">
 <p>Massimo Nocentini, PhD. May 27, 2020: init</p>
 </div>
 </p><div class="docutils container">
@@ -50,7 +60,7 @@
 </pre></div>
 </div>
 <center></center><div class="section" id="tips-tricks-and-gotchas">
-<h1>Tips, tricks and gotchas<a class="headerlink" href="#tips-tricks-and-gotchas" title="Permalink to this headline">¶</a></h1>
+<h2>Tips, tricks and gotchas<a class="headerlink" href="#tips-tricks-and-gotchas" title="Permalink to this headline">¶</a></h2>
 <p>This lecture addresses some gotchas that could arise in daily
 programming; moreover, at the beginning we will introduce some helpful
 objects that could make coding easier.</p>
@@ -64,7 +74,7 @@ objects that could make coding easier.</p>
 </pre></div>
 </div>
 <div class="section" id="a-grouping-pattern-avoiding-quadratic-time">
-<h2>A grouping pattern, avoiding <em>quadratic</em> time<a class="headerlink" href="#a-grouping-pattern-avoiding-quadratic-time" title="Permalink to this headline">¶</a></h2>
+<h3>A grouping pattern, avoiding <em>quadratic</em> time<a class="headerlink" href="#a-grouping-pattern-avoiding-quadratic-time" title="Permalink to this headline">¶</a></h3>
 <p>Assume to have two lists that have to be related in some way, namely
 using a predicate <span class="math notranslate nohighlight">\(P\)</span>. In the following example we want to build a
 list of all pairs (boy,girl) such that their names starts with the same
@@ -129,7 +139,7 @@ documentation:</p>
 </div>
 </div>
 <div class="section" id="the-bunch-pattern">
-<h2>The <em>Bunch</em> pattern<a class="headerlink" href="#the-bunch-pattern" title="Permalink to this headline">¶</a></h2>
+<h3>The <em>Bunch</em> pattern<a class="headerlink" href="#the-bunch-pattern" title="Permalink to this headline">¶</a></h3>
 <p>A very good book on algorithms implemented in Python is the one by
 Magnus Hetland, <a class="reference external" href="https://www.apress.com/gp/book/9781484200568">https://www.apress.com/gp/book/9781484200568</a>, with the
 companion Github repository
@@ -250,7 +260,7 @@ than promoting item/ attribute confusion.</p>
 instead.</p>
 </div>
 <div class="section" id="pythons-list-append-isnt-lisps-cons">
-<h2>Python’s <code class="docutils literal notranslate"><span class="pre">list.append</span></code> isn’t Lisp’s <code class="docutils literal notranslate"><span class="pre">cons</span></code><a class="headerlink" href="#pythons-list-append-isnt-lisps-cons" title="Permalink to this headline">¶</a></h2>
+<h3>Python’s <code class="docutils literal notranslate"><span class="pre">list.append</span></code> isn’t Lisp’s <code class="docutils literal notranslate"><span class="pre">cons</span></code><a class="headerlink" href="#pythons-list-append-isnt-lisps-cons" title="Permalink to this headline">¶</a></h3>
 <p>Python <code class="docutils literal notranslate"><span class="pre">list</span></code> objects behave like <code class="docutils literal notranslate"><span class="pre">stack</span></code> objects, such that it is
 <em>cheap</em> to <code class="docutils literal notranslate"><span class="pre">append</span></code> and <code class="docutils literal notranslate"><span class="pre">pop</span></code> at the <em>top</em>, which is the <em>right</em>
 end. On the other hand, Lisp <code class="docutils literal notranslate"><span class="pre">pair</span></code> objects allows us to <em>easily</em>
@@ -321,7 +331,7 @@ even 100 percent), the average cost, amortized over many appends, is
 constant.</p>
 </div></blockquote>
 <div class="section" id="enhance-with-deque-objects">
-<h3>enhance with <code class="docutils literal notranslate"><span class="pre">deque</span></code> objects<a class="headerlink" href="#enhance-with-deque-objects" title="Permalink to this headline">¶</a></h3>
+<h4>enhance with <code class="docutils literal notranslate"><span class="pre">deque</span></code> objects<a class="headerlink" href="#enhance-with-deque-objects" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">deque</span></code> implements <em>FIFO</em> queues: they are as cheap to append to the
 right as a normal <code class="docutils literal notranslate"><span class="pre">list</span></code>, but enhance it to <em>cheaply</em> insert on the
 <em>front</em> too.</p>
@@ -343,7 +353,7 @@ right as a normal <code class="docutils literal notranslate"><span class="pre">l
 </div>
 </div>
 <div class="section" id="hidden-squares-concerning-lists-and-sets">
-<h2>Hidden squares: concerning <code class="docutils literal notranslate"><span class="pre">list</span></code>s and <code class="docutils literal notranslate"><span class="pre">set</span></code>s<a class="headerlink" href="#hidden-squares-concerning-lists-and-sets" title="Permalink to this headline">¶</a></h2>
+<h3>Hidden squares: concerning <code class="docutils literal notranslate"><span class="pre">list</span></code>s and <code class="docutils literal notranslate"><span class="pre">set</span></code>s<a class="headerlink" href="#hidden-squares-concerning-lists-and-sets" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randrange</span>
 
 <span class="n">max_value</span> <span class="o">=</span> <span class="mi">10000</span>
@@ -406,7 +416,7 @@ thoroughly beaten.</p>
 </div>
 <p>try to do that with more populated lists…</p>
 <div class="section" id="concerning-strings">
-<h3>concerning <code class="docutils literal notranslate"><span class="pre">string</span></code>s<a class="headerlink" href="#concerning-strings" title="Permalink to this headline">¶</a></h3>
+<h4>concerning <code class="docutils literal notranslate"><span class="pre">string</span></code>s<a class="headerlink" href="#concerning-strings" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">string_producer</span><span class="p">(</span><span class="n">length</span><span class="p">):</span>
     <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">chr</span><span class="p">(</span><span class="n">randrange</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">)])</span>
 </pre></div>
@@ -446,9 +456,9 @@ object.</p>
 </div>
 </div>
 <div class="section" id="counting">
-<h1>Counting<a class="headerlink" href="#counting" title="Permalink to this headline">¶</a></h1>
+<h2>Counting<a class="headerlink" href="#counting" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="max-permutation">
-<h2>Max permutation<a class="headerlink" href="#max-permutation" title="Permalink to this headline">¶</a></h2>
+<h3>Max permutation<a class="headerlink" href="#max-permutation" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p>Eight persons with very particular tastes have bought tickets to the
 movies. Some of them are happy with their seats, but most of them are
@@ -587,7 +597,7 @@ to experiment, of course.
 </div>
 </div>
 <div class="section" id="counting-sort">
-<h2>Counting Sort<a class="headerlink" href="#counting-sort" title="Permalink to this headline">¶</a></h2>
+<h3>Counting Sort<a class="headerlink" href="#counting-sort" title="Permalink to this headline">¶</a></h3>
 <p>Hetland, pag 85:</p>
 <blockquote>
 <div><p>By default, I’m just sorting objects based on their values. By
@@ -677,6 +687,7 @@ algorithms with this property are called <em>stable</em>.</p>
 </div>
 </div>
 </div>
+</div>
 
 
             <div class="clearer"></div>
@@ -687,7 +698,8 @@ algorithms with this property are called <em>stable</em>.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Tips, tricks and gotchas</a><ul>
+<li><a class="reference internal" href="#">Tips an’ Tricks</a><ul>
+<li><a class="reference internal" href="#tips-tricks-and-gotchas">Tips, tricks and gotchas</a><ul>
 <li><a class="reference internal" href="#a-grouping-pattern-avoiding-quadratic-time">A grouping pattern, avoiding <em>quadratic</em> time</a></li>
 <li><a class="reference internal" href="#the-bunch-pattern">The <em>Bunch</em> pattern</a></li>
 <li><a class="reference internal" href="#pythons-list-append-isnt-lisps-cons">Python’s <code class="docutils literal notranslate"><span class="pre">list.append</span></code> isn’t Lisp’s <code class="docutils literal notranslate"><span class="pre">cons</span></code></a><ul>
@@ -706,7 +718,15 @@ algorithms with this property are called <em>stable</em>.</p>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="networkx.html"
+                        title="previous chapter">networkx module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="generators.html"
+                        title="next chapter">Generators</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -734,8 +754,14 @@ algorithms with this property are called <em>stable</em>.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="generators.html" title="Generators"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="networkx.html" title="networkx module"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Tips, tricks and gotchas</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Tips an’ Tricks</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

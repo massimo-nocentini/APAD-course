@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Visualization with Matplotlib &#8212; APAD course  documentation</title>
+    <title>matplotlib module &#8212; APAD course  documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     
@@ -16,7 +16,9 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="networkx module" href="networkx.html" />
+    <link rel="prev" title="pandas module" href="pandas.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -24,8 +26,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="networkx.html" title="networkx module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pandas.html" title="pandas module"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Visualization with Matplotlib</a></li> 
+        <li class="nav-item nav-item-this"><a href="">matplotlib module</a></li> 
       </ul>
     </div>  
 
@@ -34,7 +42,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p><div class="docutils container">
+  <div class="section" id="matplotlib-module">
+<h1>matplotlib module<a class="headerlink" href="#matplotlib-module" title="Permalink to this headline">¶</a></h1>
+<p><div class="docutils container">
 <p>Massimo Nocentini, PhD. February 7, 2020: init</p>
 </div>
 </p><div class="docutils container">
@@ -50,7 +60,7 @@
 </pre></div>
 </div>
 <center></center><div class="section" id="visualization-with-matplotlib">
-<h1>Visualization with Matplotlib<a class="headerlink" href="#visualization-with-matplotlib" title="Permalink to this headline">¶</a></h1>
+<h2>Visualization with Matplotlib<a class="headerlink" href="#visualization-with-matplotlib" title="Permalink to this headline">¶</a></h2>
 <p>We’ll now take an in-depth look at the Matplotlib package for
 visualization in Python. Matplotlib is a multi-platform data
 visualization library built on NumPy arrays, and designed to work with
@@ -97,7 +107,7 @@ will remain a vital piece of the data visualization stack, even if new
 tools mean the community gradually moves away from using the Matplotlib
 API directly.</p>
 <div class="section" id="importing-matplotlib">
-<h2>Importing Matplotlib<a class="headerlink" href="#importing-matplotlib" title="Permalink to this headline">¶</a></h2>
+<h3>Importing Matplotlib<a class="headerlink" href="#importing-matplotlib" title="Permalink to this headline">¶</a></h3>
 <p>Just as we use the <code class="docutils literal notranslate"><span class="pre">np</span></code> shorthand for NumPy and the <code class="docutils literal notranslate"><span class="pre">pd</span></code> shorthand
 for Pandas, we will use some standard shorthands for Matplotlib imports:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
@@ -106,7 +116,7 @@ for Pandas, we will use some standard shorthands for Matplotlib imports:</p>
 </div>
 </div>
 <div class="section" id="setting-styles">
-<h2>Setting Styles<a class="headerlink" href="#setting-styles" title="Permalink to this headline">¶</a></h2>
+<h3>Setting Styles<a class="headerlink" href="#setting-styles" title="Permalink to this headline">¶</a></h3>
 <p>We will use the <code class="docutils literal notranslate"><span class="pre">plt.style</span></code> directive to choose appropriate aesthetic
 styles for our figures. Here we will set the <code class="docutils literal notranslate"><span class="pre">classic</span></code> style, which
 ensures that the plots we create use the classic Matplotlib style:</p>
@@ -120,12 +130,12 @@ is available. For more information on stylesheets, see <a class="reference exter
 Matplotlib: Configurations and Style
 Sheets</a>.</p>
 <div class="section" id="general-matplotlib-tips">
-<h3>General Matplotlib Tips<a class="headerlink" href="#general-matplotlib-tips" title="Permalink to this headline">¶</a></h3>
+<h4>General Matplotlib Tips<a class="headerlink" href="#general-matplotlib-tips" title="Permalink to this headline">¶</a></h4>
 <p>Before we dive into the details of creating visualizations with
 Matplotlib, there are a few useful things you should know about using
 the package.</p>
 <div class="section" id="plotting-from-an-ipython-notebook">
-<h4>Plotting from an IPython notebook<a class="headerlink" href="#plotting-from-an-ipython-notebook" title="Permalink to this headline">¶</a></h4>
+<h5>Plotting from an IPython notebook<a class="headerlink" href="#plotting-from-an-ipython-notebook" title="Permalink to this headline">¶</a></h5>
 <p>The IPython notebook is a browser-based interactive data analysis tool
 that can combine narrative, code, graphics, HTML elements.</p>
 <p>Plotting interactively within an IPython notebook can be done with the
@@ -158,7 +168,7 @@ embed a PNG image of the resulting graphic:</p>
 </div>
 </div>
 <div class="section" id="saving-figures-to-file">
-<h2>Saving Figures to File<a class="headerlink" href="#saving-figures-to-file" title="Permalink to this headline">¶</a></h2>
+<h3>Saving Figures to File<a class="headerlink" href="#saving-figures-to-file" title="Permalink to this headline">¶</a></h3>
 <p>One nice feature of Matplotlib is the ability to save figures in a wide
 variety of formats. Saving a figure can be done using the <code class="docutils literal notranslate"><span class="pre">savefig()</span></code>
 command. For example, to save the previous figure as a PNG file, you can
@@ -194,13 +204,13 @@ canvas object:</p>
 </pre></div>
 </div>
 <div class="section" id="two-interfaces-for-the-price-of-one">
-<h3>Two Interfaces for the Price of One<a class="headerlink" href="#two-interfaces-for-the-price-of-one" title="Permalink to this headline">¶</a></h3>
+<h4>Two Interfaces for the Price of One<a class="headerlink" href="#two-interfaces-for-the-price-of-one" title="Permalink to this headline">¶</a></h4>
 <p>A potentially confusing feature of Matplotlib is its dual interfaces: a
 convenient MATLAB-style state-based interface, and a more powerful
 object-oriented interface. We’ll quickly highlight the differences
 between the two here.</p>
 <div class="section" id="matlab-style-interface">
-<h4>MATLAB-style Interface<a class="headerlink" href="#matlab-style-interface" title="Permalink to this headline">¶</a></h4>
+<h5>MATLAB-style Interface<a class="headerlink" href="#matlab-style-interface" title="Permalink to this headline">¶</a></h5>
 <p>Matplotlib was originally written as a Python alternative for MATLAB
 users, and much of its syntax reflects that fact. The MATLAB-style tools
 are contained in the pyplot (<code class="docutils literal notranslate"><span class="pre">plt</span></code>) interface. For example, the
@@ -219,7 +229,7 @@ following code will probably look quite familiar to MATLAB users:</p>
 <img alt="_images/matplotlib_23_0.png" src="_images/matplotlib_23_0.png" />
 </div>
 <div class="section" id="object-oriented-interface">
-<h4>Object-oriented interface<a class="headerlink" href="#object-oriented-interface" title="Permalink to this headline">¶</a></h4>
+<h5>Object-oriented interface<a class="headerlink" href="#object-oriented-interface" title="Permalink to this headline">¶</a></h5>
 <p>The object-oriented interface is available for these more complicated
 situations, and for when you want more control over your figure. Rather
 than depending on some notion of an “active” figure or axes, in the
@@ -241,7 +251,7 @@ using this style of plotting, you might do the following:</p>
 </div>
 </div>
 <div class="section" id="simple-line-plots">
-<h1>Simple Line Plots<a class="headerlink" href="#simple-line-plots" title="Permalink to this headline">¶</a></h1>
+<h2>Simple Line Plots<a class="headerlink" href="#simple-line-plots" title="Permalink to this headline">¶</a></h2>
 <p>Perhaps the simplest of all plots is the visualization of a single
 function <span class="math notranslate nohighlight">\(y = f(x)\)</span>. Here we will take a first look at creating a
 simple plot of this type. As with all the following sections, we’ll
@@ -427,7 +437,7 @@ functions individually, it is often more convenient to use the
 <img alt="_images/matplotlib_59_0.png" src="_images/matplotlib_59_0.png" />
 </div>
 <div class="section" id="simple-scatter-plots">
-<h1>Simple Scatter Plots<a class="headerlink" href="#simple-scatter-plots" title="Permalink to this headline">¶</a></h1>
+<h2>Simple Scatter Plots<a class="headerlink" href="#simple-scatter-plots" title="Permalink to this headline">¶</a></h2>
 <p>Another commonly used plot type is the simple scatter plot, a close
 cousin of the line plot. Instead of points being joined by line
 segments, here the points are represented individually with a dot,
@@ -540,7 +550,7 @@ different performance, and for this reason, <code class="docutils literal notran
 preferred over <code class="docutils literal notranslate"><span class="pre">plt.scatter</span></code> for large datasets.</p>
 </div>
 <div class="section" id="visualizing-errors">
-<h1>Visualizing Errors<a class="headerlink" href="#visualizing-errors" title="Permalink to this headline">¶</a></h1>
+<h2>Visualizing Errors<a class="headerlink" href="#visualizing-errors" title="Permalink to this headline">¶</a></h2>
 <p>For any scientific measurement, accurate accounting for errors is nearly
 as important, if not more important, than accurate reporting of the
 number itself. For example, imagine that I am using some astrophysical
@@ -585,7 +595,7 @@ the points themselves:</p>
 <img alt="_images/matplotlib_85_0.png" src="_images/matplotlib_85_0.png" />
 </div>
 <div class="section" id="density-and-contour-plots">
-<h1>Density and Contour Plots<a class="headerlink" href="#density-and-contour-plots" title="Permalink to this headline">¶</a></h1>
+<h2>Density and Contour Plots<a class="headerlink" href="#density-and-contour-plots" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes it is useful to display three-dimensional data in two
 dimensions using contours or color-coded regions. There are three
 Matplotlib functions that can be helpful for this task: <code class="docutils literal notranslate"><span class="pre">plt.contour</span></code>
@@ -698,7 +708,7 @@ contours with labels on the contours themselves (using the
 <img alt="_images/matplotlib_104_0.png" src="_images/matplotlib_104_0.png" />
 </div>
 <div class="section" id="histograms-binnings-and-density">
-<h1>Histograms, Binnings, and Density<a class="headerlink" href="#histograms-binnings-and-density" title="Permalink to this headline">¶</a></h1>
+<h2>Histograms, Binnings, and Density<a class="headerlink" href="#histograms-binnings-and-density" title="Permalink to this headline">¶</a></h2>
 <p>A simple histogram can be a great first step in understanding a dataset.
 Earlier, we saw a preview of Matplotlib’s histogram function (see
 <a class="reference external" href="02.06-Boolean-Arrays-and-Masks.ipynb">Comparisons, Masks, and Boolean
@@ -760,7 +770,7 @@ at several ways to do this here. We’ll start by defining some data—an
 </pre></div>
 </div>
 <div class="section" id="plt-hist2d-two-dimensional-histogram">
-<h2><code class="docutils literal notranslate"><span class="pre">plt.hist2d</span></code>: Two-dimensional histogram<a class="headerlink" href="#plt-hist2d-two-dimensional-histogram" title="Permalink to this headline">¶</a></h2>
+<h3><code class="docutils literal notranslate"><span class="pre">plt.hist2d</span></code>: Two-dimensional histogram<a class="headerlink" href="#plt-hist2d-two-dimensional-histogram" title="Permalink to this headline">¶</a></h3>
 <p>One straightforward way to plot a two-dimensional histogram is to use
 Matplotlib’s <code class="docutils literal notranslate"><span class="pre">plt.hist2d</span></code> function:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
@@ -779,7 +789,7 @@ function docstring. Further, just as <code class="docutils literal notranslate">
 </div>
 </div>
 <div class="section" id="plt-hexbin-hexagonal-binnings">
-<h2><code class="docutils literal notranslate"><span class="pre">plt.hexbin</span></code>: Hexagonal binnings<a class="headerlink" href="#plt-hexbin-hexagonal-binnings" title="Permalink to this headline">¶</a></h2>
+<h3><code class="docutils literal notranslate"><span class="pre">plt.hexbin</span></code>: Hexagonal binnings<a class="headerlink" href="#plt-hexbin-hexagonal-binnings" title="Permalink to this headline">¶</a></h3>
 <p>The two-dimensional histogram creates a tesselation of squares across
 the axes. Another natural shape for such a tesselation is the regular
 hexagon. For this purpose, Matplotlib provides the <code class="docutils literal notranslate"><span class="pre">plt.hexbin</span></code>
@@ -796,7 +806,7 @@ each bin to any NumPy aggregate (mean of weights, standard deviation of
 weights, etc.).</p>
 </div>
 <div class="section" id="kernel-density-estimation">
-<h2>Kernel density estimation<a class="headerlink" href="#kernel-density-estimation" title="Permalink to this headline">¶</a></h2>
+<h3>Kernel density estimation<a class="headerlink" href="#kernel-density-estimation" title="Permalink to this headline">¶</a></h3>
 <p>Another common method of evaluating densities in multiple dimensions is
 <em>kernel density estimation</em> (KDE). This will be discussed more fully in
 <a class="reference external" href="05.13-Kernel-Density-Estimation.ipynb">In-Depth: Kernel Density
@@ -837,7 +847,7 @@ with its own strengths and weaknesses; see, for example,
 </div>
 </div>
 <div class="section" id="customizing-plot-legends">
-<h1>Customizing Plot Legends<a class="headerlink" href="#customizing-plot-legends" title="Permalink to this headline">¶</a></h1>
+<h2>Customizing Plot Legends<a class="headerlink" href="#customizing-plot-legends" title="Permalink to this headline">¶</a></h2>
 <p>Plot legends give meaning to a visualization, assigning meaning to the
 various plot elements. We previously saw how to create a simple legend;
 here we’ll take a look at customizing the placement and aesthetics of
@@ -978,7 +988,7 @@ manually add the second artist to the plot:</p>
 <img alt="_images/matplotlib_143_0.png" src="_images/matplotlib_143_0.png" />
 </div>
 <div class="section" id="customizing-colorbars">
-<h1>Customizing Colorbars<a class="headerlink" href="#customizing-colorbars" title="Permalink to this headline">¶</a></h1>
+<h2>Customizing Colorbars<a class="headerlink" href="#customizing-colorbars" title="Permalink to this headline">¶</a></h2>
 <p>Plot legends identify discrete labels of discrete points. For continuous
 labels based on the color of points, lines, or regions, a labeled
 colorbar can be a great tool. In Matplotlib, a colorbar is a separate
@@ -1013,7 +1023,7 @@ plotting function that is creating the visualization:</p>
 </div>
 <img alt="_images/matplotlib_150_0.png" src="_images/matplotlib_150_0.png" />
 <div class="section" id="choosing-the-colormap">
-<h2>Choosing the Colormap<a class="headerlink" href="#choosing-the-colormap" title="Permalink to this headline">¶</a></h2>
+<h3>Choosing the Colormap<a class="headerlink" href="#choosing-the-colormap" title="Permalink to this headline">¶</a></h3>
 <p>A full treatment of color choice within visualization is beyond the
 scope of this book, but for entertaining reading on this subject and
 others, see the article <a class="reference external" href="http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003833">“Ten Simple Rules for Better
@@ -1100,7 +1110,7 @@ upon translation to grayscale!</p>
 <img alt="_images/matplotlib_161_0.png" src="_images/matplotlib_161_0.png" />
 </div>
 <div class="section" id="color-limits-and-extensions">
-<h2>Color limits and extensions<a class="headerlink" href="#color-limits-and-extensions" title="Permalink to this headline">¶</a></h2>
+<h3>Color limits and extensions<a class="headerlink" href="#color-limits-and-extensions" title="Permalink to this headline">¶</a></h3>
 <p>Matplotlib allows for a large range of colorbar customization. The
 colorbar itself is simply an instance of <code class="docutils literal notranslate"><span class="pre">plt.Axes</span></code>, so all of the
 axes and tick formatting tricks we’ve learned are applicable. The
@@ -1134,7 +1144,7 @@ below those limits. The result is a much more useful visualization of
 our data.</p>
 </div>
 <div class="section" id="discrete-color-bars">
-<h2>Discrete Color Bars<a class="headerlink" href="#discrete-color-bars" title="Permalink to this headline">¶</a></h2>
+<h3>Discrete Color Bars<a class="headerlink" href="#discrete-color-bars" title="Permalink to this headline">¶</a></h3>
 <p>Colormaps are by default continuous, but sometimes you’d like to
 represent discrete values. The easiest way to do this is to use the
 <code class="docutils literal notranslate"><span class="pre">plt.cm.get_cmap()</span></code> function, and pass the name of a suitable colormap
@@ -1146,7 +1156,7 @@ along with the number of desired bins:</p>
 </div>
 <img alt="_images/matplotlib_166_0.png" src="_images/matplotlib_166_0.png" />
 <div class="section" id="example-handwritten-digits">
-<h3>Example: Handwritten Digits<a class="headerlink" href="#example-handwritten-digits" title="Permalink to this headline">¶</a></h3>
+<h4>Example: Handwritten Digits<a class="headerlink" href="#example-handwritten-digits" title="Permalink to this headline">¶</a></h4>
 <p>For an example of where this might be useful, let’s look at an
 interesting visualization of some hand written digits data. This data is
 included in Scikit-Learn, and consists of nearly 2,000
@@ -1203,7 +1213,7 @@ because 5 and 3 look much more similar than do 0 and 1.</p>
 </div>
 </div>
 <div class="section" id="multiple-subplots">
-<h1>Multiple Subplots<a class="headerlink" href="#multiple-subplots" title="Permalink to this headline">¶</a></h1>
+<h2>Multiple Subplots<a class="headerlink" href="#multiple-subplots" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes it is helpful to compare different views of data side by side.
 To this end, Matplotlib has the concept of <em>subplots</em>: groups of smaller
 axes that can exist together within a single figure. These subplots
@@ -1352,7 +1362,7 @@ shown here:</p>
 <img alt="_images/matplotlib_198_0.png" src="_images/matplotlib_198_0.png" />
 </div>
 <div class="section" id="text-and-annotation">
-<h1>Text and Annotation<a class="headerlink" href="#text-and-annotation" title="Permalink to this headline">¶</a></h1>
+<h2>Text and Annotation<a class="headerlink" href="#text-and-annotation" title="Permalink to this headline">¶</a></h2>
 <p>Creating a good visualization involves guiding the reader so that the
 figure tells a story. In some cases, this story can be told in an
 entirely visual manner, without the need for added text, but in others,
@@ -1574,7 +1584,7 @@ using the birthrate plot from before:</p>
 <img alt="_images/matplotlib_218_0.png" src="_images/matplotlib_218_0.png" />
 </div>
 <div class="section" id="customizing-ticks">
-<h1>Customizing Ticks<a class="headerlink" href="#customizing-ticks" title="Permalink to this headline">¶</a></h1>
+<h2>Customizing Ticks<a class="headerlink" href="#customizing-ticks" title="Permalink to this headline">¶</a></h2>
 <p>Matplotlib’s default tick locators and formatters are designed to be
 generally sufficient in many common situations, but are in no way
 optimal for every plot. This section will give several examples of
@@ -1823,7 +1833,7 @@ locations</p></td>
 </table>
 </div>
 <div class="section" id="customizing-matplotlib-configurations-and-stylesheets">
-<h1>Customizing Matplotlib: Configurations and Stylesheets<a class="headerlink" href="#customizing-matplotlib-configurations-and-stylesheets" title="Permalink to this headline">¶</a></h1>
+<h2>Customizing Matplotlib: Configurations and Stylesheets<a class="headerlink" href="#customizing-matplotlib-configurations-and-stylesheets" title="Permalink to this headline">¶</a></h2>
 <p>Matplotlib’s default plot settings are often the subject of complaint
 among its users. While much is slated to change in the 2.0 Matplotlib
 release in late 2016, the ability to customize default settings helps
@@ -1953,7 +1963,7 @@ sets a style temporarily:</p>
 </pre></div>
 </div>
 <div class="section" id="default-style">
-<h2>Default style<a class="headerlink" href="#default-style" title="Permalink to this headline">¶</a></h2>
+<h3>Default style<a class="headerlink" href="#default-style" title="Permalink to this headline">¶</a></h3>
 <p>The default style is what we’ve been seeing so far throughout the book;
 we’ll start with that. First, let’s reset our runtime configuration to
 the notebook default:</p>
@@ -1968,7 +1978,7 @@ the notebook default:</p>
 <img alt="_images/matplotlib_266_0.png" src="_images/matplotlib_266_0.png" />
 </div>
 <div class="section" id="fivethiryeight-style">
-<h2>FiveThiryEight style<a class="headerlink" href="#fivethiryeight-style" title="Permalink to this headline">¶</a></h2>
+<h3>FiveThiryEight style<a class="headerlink" href="#fivethiryeight-style" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">fivethirtyeight</span></code> style mimics the graphics found on the popular
 <a class="reference external" href="https://fivethirtyeight.com">FiveThirtyEight website</a>. As you can
 see here, it is typified by bold colors, thick lines, and transparent
@@ -1980,7 +1990,7 @@ axes:</p>
 <img alt="_images/matplotlib_268_0.png" src="_images/matplotlib_268_0.png" />
 </div>
 <div class="section" id="ggplot">
-<h2>ggplot<a class="headerlink" href="#ggplot" title="Permalink to this headline">¶</a></h2>
+<h3>ggplot<a class="headerlink" href="#ggplot" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ggplot</span></code> package in the R language is a very popular visualization
 tool. Matplotlib’s <code class="docutils literal notranslate"><span class="pre">ggplot</span></code> style mimics the default styles from that
 package:</p>
@@ -1991,7 +2001,7 @@ package:</p>
 <img alt="_images/matplotlib_270_0.png" src="_images/matplotlib_270_0.png" />
 </div>
 <div class="section" id="bayesian-methods-for-hackers-style">
-<h2><em>Bayesian Methods for Hackers</em> style<a class="headerlink" href="#bayesian-methods-for-hackers-style" title="Permalink to this headline">¶</a></h2>
+<h3><em>Bayesian Methods for Hackers</em> style<a class="headerlink" href="#bayesian-methods-for-hackers-style" title="Permalink to this headline">¶</a></h3>
 <p>There is a very nice short online book called <a class="reference external" href="http://camdavidsonpilon.github.io/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/">Probabilistic Programming
 and Bayesian Methods for
 Hackers</a>;
@@ -2005,7 +2015,7 @@ throughout the book. This style is reproduced in the <code class="docutils liter
 <img alt="_images/matplotlib_272_0.png" src="_images/matplotlib_272_0.png" />
 </div>
 <div class="section" id="seaborn-style">
-<h2>Seaborn style<a class="headerlink" href="#seaborn-style" title="Permalink to this headline">¶</a></h2>
+<h3>Seaborn style<a class="headerlink" href="#seaborn-style" title="Permalink to this headline">¶</a></h3>
 <p>Matplotlib also has stylesheets inspired by the Seaborn library. As we
 will see, these styles are loaded automatically when Seaborn is imported
 into a notebook. I’ve found these settings to be very nice, and tend to
@@ -2018,7 +2028,7 @@ use them as defaults in my own data exploration.</p>
 </div>
 </div>
 <div class="section" id="three-dimensional-plotting-in-matplotlib">
-<h1>Three-Dimensional Plotting in Matplotlib<a class="headerlink" href="#three-dimensional-plotting-in-matplotlib" title="Permalink to this headline">¶</a></h1>
+<h2>Three-Dimensional Plotting in Matplotlib<a class="headerlink" href="#three-dimensional-plotting-in-matplotlib" title="Permalink to this headline">¶</a></h2>
 <p>Matplotlib was initially designed with only two-dimensional plotting in
 mind. Around the time of the 1.0 release, some three-dimensional
 plotting utilities were built on top of Matplotlib’s two-dimensional
@@ -2180,7 +2190,7 @@ z here are one-dimensional arrays):</p>
 </div>
 <img alt="_images/matplotlib_300_0.png" src="_images/matplotlib_300_0.png" />
 <div class="section" id="example-visualizing-a-mobius-strip">
-<h2>Example: Visualizing a Möbius strip<a class="headerlink" href="#example-visualizing-a-mobius-strip" title="Permalink to this headline">¶</a></h2>
+<h3>Example: Visualizing a Möbius strip<a class="headerlink" href="#example-visualizing-a-mobius-strip" title="Permalink to this headline">¶</a></h3>
 <p>A Möbius strip is similar to a strip of paper glued into a loop with a
 half-twist. Topologically, it’s quite interesting because despite
 appearances it has only a single side! Here we will visualize such an
@@ -2238,7 +2248,7 @@ can be accomplished as follows:</p>
 </div>
 </div>
 <div class="section" id="visualization-with-seaborn">
-<h1>Visualization with Seaborn<a class="headerlink" href="#visualization-with-seaborn" title="Permalink to this headline">¶</a></h1>
+<h2>Visualization with Seaborn<a class="headerlink" href="#visualization-with-seaborn" title="Permalink to this headline">¶</a></h2>
 <p>Matplotlib has proven to be an incredibly useful and popular
 visualization tool, but even avid users will admit it often leaves much
 to be desired. There are several valid complaints about Matplotlib that
@@ -2319,7 +2329,7 @@ Seaborn. Note that all of the following <em>could</em> be done using raw
 Matplotlib commands (this is, in fact, what Seaborn does under the hood)
 but the Seaborn API is much more convenient.</p>
 <div class="section" id="histograms-kde-and-densities">
-<h2>Histograms, KDE, and densities<a class="headerlink" href="#histograms-kde-and-densities" title="Permalink to this headline">¶</a></h2>
+<h3>Histograms, KDE, and densities<a class="headerlink" href="#histograms-kde-and-densities" title="Permalink to this headline">¶</a></h3>
 <p>Often in statistical data visualization, all you want is to plot
 histograms and joint distributions of variables. We have seen that this
 is relatively straightforward in Matplotlib:</p>
@@ -2372,7 +2382,7 @@ example, we can use a hexagonally based histogram instead:</p>
 <img alt="_images/matplotlib_333_0.png" src="_images/matplotlib_333_0.png" />
 </div>
 <div class="section" id="pair-plots">
-<h2>Pair plots<a class="headerlink" href="#pair-plots" title="Permalink to this headline">¶</a></h2>
+<h3>Pair plots<a class="headerlink" href="#pair-plots" title="Permalink to this headline">¶</a></h3>
 <p>When you generalize joint plots to datasets of larger dimensions, you
 end up with <em>pair plots</em>. This is very useful for exploring correlations
 between multidimensional data, when you’d like to plot all pairs of
@@ -2459,7 +2469,7 @@ easy as calling <code class="docutils literal notranslate"><span class="pre">sns
 <img alt="_images/matplotlib_337_0.png" src="_images/matplotlib_337_0.png" />
 </div>
 <div class="section" id="faceted-histograms">
-<h2>Faceted histograms<a class="headerlink" href="#faceted-histograms" title="Permalink to this headline">¶</a></h2>
+<h3>Faceted histograms<a class="headerlink" href="#faceted-histograms" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes the best way to view data is via histograms of subsets.
 Seaborn’s <code class="docutils literal notranslate"><span class="pre">FacetGrid</span></code> makes this extremely simple. We’ll take a look
 at some data that shows the amount that restaurant staff receive in tips
@@ -2557,7 +2567,7 @@ based on various indicator data:</p>
 <img alt="_images/matplotlib_340_0.png" src="_images/matplotlib_340_0.png" />
 </div>
 <div class="section" id="factor-plots">
-<h2>Factor plots<a class="headerlink" href="#factor-plots" title="Permalink to this headline">¶</a></h2>
+<h3>Factor plots<a class="headerlink" href="#factor-plots" title="Permalink to this headline">¶</a></h3>
 <p>Factor plots can be useful for this kind of visualization as well. This
 allows you to view the distribution of a parameter within bins defined
 by any other parameter:</p>
@@ -2569,7 +2579,7 @@ by any other parameter:</p>
 <img alt="_images/matplotlib_342_0.png" src="_images/matplotlib_342_0.png" />
 </div>
 <div class="section" id="joint-distributions">
-<h2>Joint distributions<a class="headerlink" href="#joint-distributions" title="Permalink to this headline">¶</a></h2>
+<h3>Joint distributions<a class="headerlink" href="#joint-distributions" title="Permalink to this headline">¶</a></h3>
 <p>Similar to the pairplot we saw earlier, we can use <code class="docutils literal notranslate"><span class="pre">sns.jointplot</span></code> to
 show the joint distribution between different datasets, along with the
 associated marginal distributions:</p>
@@ -2586,7 +2596,7 @@ regression:</p>
 <img alt="_images/matplotlib_346_0.png" src="_images/matplotlib_346_0.png" />
 </div>
 <div class="section" id="bar-plots">
-<h2>Bar plots<a class="headerlink" href="#bar-plots" title="Permalink to this headline">¶</a></h2>
+<h3>Bar plots<a class="headerlink" href="#bar-plots" title="Permalink to this headline">¶</a></h3>
 <p>Time series can be plotted using <code class="docutils literal notranslate"><span class="pre">sns.factorplot</span></code>. In the following
 example, we’ll use the Planets data:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">planets</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;planets&#39;</span><span class="p">)</span>
@@ -2684,7 +2694,7 @@ these planets:</p>
 </div>
 <img alt="_images/matplotlib_351_0.png" src="_images/matplotlib_351_0.png" />
 <div class="section" id="example-exploring-marathon-finishing-times">
-<h3>Example: Exploring Marathon Finishing Times<a class="headerlink" href="#example-exploring-marathon-finishing-times" title="Permalink to this headline">¶</a></h3>
+<h4>Example: Exploring Marathon Finishing Times<a class="headerlink" href="#example-exploring-marathon-finishing-times" title="Permalink to this headline">¶</a></h4>
 <p>Here we’ll look at using Seaborn to help visualize and understand
 finishing results from a marathon. I’ve scraped the data from sources on
 the Web, aggregated it and removed any identifying information, and put
@@ -3230,6 +3240,7 @@ regression to the data:</p>
 </div>
 </div>
 </div>
+</div>
 
 
             <div class="clearer"></div>
@@ -3240,7 +3251,8 @@ regression to the data:</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Visualization with Matplotlib</a><ul>
+<li><a class="reference internal" href="#">matplotlib module</a><ul>
+<li><a class="reference internal" href="#visualization-with-matplotlib">Visualization with Matplotlib</a><ul>
 <li><a class="reference internal" href="#importing-matplotlib">Importing Matplotlib</a></li>
 <li><a class="reference internal" href="#setting-styles">Setting Styles</a><ul>
 <li><a class="reference internal" href="#general-matplotlib-tips">General Matplotlib Tips</a><ul>
@@ -3307,7 +3319,15 @@ regression to the data:</p>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pandas.html"
+                        title="previous chapter">pandas module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="networkx.html"
+                        title="next chapter">networkx module</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -3335,8 +3355,14 @@ regression to the data:</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="networkx.html" title="networkx module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pandas.html" title="pandas module"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Visualization with Matplotlib</a></li> 
+        <li class="nav-item nav-item-this"><a href="">matplotlib module</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

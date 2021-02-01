@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introducing Pandas Objects &#8212; APAD course  documentation</title>
+    <title>pandas module &#8212; APAD course  documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/classic.css" type="text/css" />
     
@@ -16,7 +16,9 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="matplotlib module" href="matplotlib.html" />
+    <link rel="prev" title="numpy module" href="numpy.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -24,8 +26,14 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="matplotlib.html" title="matplotlib module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="numpy.html" title="numpy module"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Introducing Pandas Objects</a></li> 
+        <li class="nav-item nav-item-this"><a href="">pandas module</a></li> 
       </ul>
     </div>  
 
@@ -34,7 +42,9 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <p><div class="docutils container">
+  <div class="section" id="pandas-module">
+<h1>pandas module<a class="headerlink" href="#pandas-module" title="Permalink to this headline">¶</a></h1>
+<p><div class="docutils container">
 <p>Massimo Nocentini, PhD. February 26, 2020: init</p>
 </div>
 </p><div class="docutils container">
@@ -51,7 +61,7 @@ storing, and manipulating in-memory data in Python.</p>
 </pre></div>
 </div>
 <center></center><div class="section" id="introducing-pandas-objects">
-<h1>Introducing Pandas Objects<a class="headerlink" href="#introducing-pandas-objects" title="Permalink to this headline">¶</a></h1>
+<h2>Introducing Pandas Objects<a class="headerlink" href="#introducing-pandas-objects" title="Permalink to this headline">¶</a></h2>
 <p>Pandas objects can be thought of as enhanced versions of NumPy
 structured arrays in which the rows and columns are identified with
 labels rather than simple integer indices.</p>
@@ -62,7 +72,7 @@ labels rather than simple integer indices.</p>
 </pre></div>
 </div>
 <div class="section" id="the-pandas-series-object">
-<h2>The Pandas Series Object<a class="headerlink" href="#the-pandas-series-object" title="Permalink to this headline">¶</a></h2>
+<h3>The Pandas Series Object<a class="headerlink" href="#the-pandas-series-object" title="Permalink to this headline">¶</a></h3>
 <p>A Pandas <code class="docutils literal notranslate"><span class="pre">Series</span></code> is a one-dimensional array of indexed data:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
 <span class="n">data</span>
@@ -109,7 +119,7 @@ via the familiar Python square-bracket notation:</p>
 </pre></div>
 </div>
 <div class="section" id="series-as-generalized-numpy-array">
-<h3><code class="docutils literal notranslate"><span class="pre">Series</span></code> as generalized NumPy array<a class="headerlink" href="#series-as-generalized-numpy-array" title="Permalink to this headline">¶</a></h3>
+<h4><code class="docutils literal notranslate"><span class="pre">Series</span></code> as generalized NumPy array<a class="headerlink" href="#series-as-generalized-numpy-array" title="Permalink to this headline">¶</a></h4>
 <p>It may look like the <code class="docutils literal notranslate"><span class="pre">Series</span></code> object is basically interchangeable with
 a one-dimensional NumPy array. The essential difference is the presence
 of the index: while the Numpy Array has an <em>implicitly defined</em> integer
@@ -154,7 +164,7 @@ index used to access the values, the Pandas <code class="docutils literal notran
 </div>
 </div>
 <div class="section" id="series-as-specialized-dictionary">
-<h3>Series as specialized dictionary<a class="headerlink" href="#series-as-specialized-dictionary" title="Permalink to this headline">¶</a></h3>
+<h4>Series as specialized dictionary<a class="headerlink" href="#series-as-specialized-dictionary" title="Permalink to this headline">¶</a></h4>
 <p>You can think of a Pandas <code class="docutils literal notranslate"><span class="pre">Series</span></code> a bit like a specialization of a
 Python dictionary. A dictionary is a structure that maps arbitrary keys
 to a set of arbitrary values, and a <code class="docutils literal notranslate"><span class="pre">Series</span></code> is a structure which maps
@@ -196,12 +206,12 @@ typed keys to a set of typed values:</p>
 </div>
 </div>
 <div class="section" id="the-pandas-dataframe-object">
-<h2>The Pandas DataFrame Object<a class="headerlink" href="#the-pandas-dataframe-object" title="Permalink to this headline">¶</a></h2>
+<h3>The Pandas DataFrame Object<a class="headerlink" href="#the-pandas-dataframe-object" title="Permalink to this headline">¶</a></h3>
 <p>The next fundamental structure in Pandas is the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> which can
 be thought of either as a generalization of a NumPy array, or as a
 specialization of a Python dictionary.</p>
 <div class="section" id="dataframe-as-a-generalized-numpy-array">
-<h3>DataFrame as a generalized NumPy array<a class="headerlink" href="#dataframe-as-a-generalized-numpy-array" title="Permalink to this headline">¶</a></h3>
+<h4>DataFrame as a generalized NumPy array<a class="headerlink" href="#dataframe-as-a-generalized-numpy-array" title="Permalink to this headline">¶</a></h4>
 <p>If a <code class="docutils literal notranslate"><span class="pre">Series</span></code> is an analog of a one-dimensional array with flexible
 indices, a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> is an analog of a two-dimensional array with
 both flexible row indices and flexible column names.</p>
@@ -295,7 +305,7 @@ two-dimensional NumPy array, where both the rows and columns have a
 generalized index for accessing the data.</p>
 </div>
 <div class="section" id="dataframe-as-specialized-dictionary">
-<h3>DataFrame as specialized dictionary<a class="headerlink" href="#dataframe-as-specialized-dictionary" title="Permalink to this headline">¶</a></h3>
+<h4>DataFrame as specialized dictionary<a class="headerlink" href="#dataframe-as-specialized-dictionary" title="Permalink to this headline">¶</a></h4>
 <p>Similarly, we can also think of a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> as a specialization of a
 dictionary.</p>
 <p>Where a dictionary maps a key to a value, a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> maps a column
@@ -313,9 +323,9 @@ name to a <code class="docutils literal notranslate"><span class="pre">Series</s
 </div>
 </div>
 <div class="section" id="constructing-dataframe-objects">
-<h3>Constructing DataFrame objects<a class="headerlink" href="#constructing-dataframe-objects" title="Permalink to this headline">¶</a></h3>
+<h4>Constructing DataFrame objects<a class="headerlink" href="#constructing-dataframe-objects" title="Permalink to this headline">¶</a></h4>
 <div class="section" id="from-a-single-series-object">
-<h4>From a single Series object<a class="headerlink" href="#from-a-single-series-object" title="Permalink to this headline">¶</a></h4>
+<h5>From a single Series object<a class="headerlink" href="#from-a-single-series-object" title="Permalink to this headline">¶</a></h5>
 <p>A <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> is a collection of <code class="docutils literal notranslate"><span class="pre">Series</span></code> objects, and a
 single-column <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> can be constructed from a single <code class="docutils literal notranslate"><span class="pre">Series</span></code>:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">population</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">])</span>
@@ -367,7 +377,7 @@ single-column <code class="docutils literal notranslate"><span class="pre">DataF
 </table>
 </div></div>
 <div class="section" id="from-a-list-of-dicts">
-<h4>From a list of dicts<a class="headerlink" href="#from-a-list-of-dicts" title="Permalink to this headline">¶</a></h4>
+<h5>From a list of dicts<a class="headerlink" href="#from-a-list-of-dicts" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">}</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -456,7 +466,7 @@ single-column <code class="docutils literal notranslate"><span class="pre">DataF
 </table>
 </div></div>
 <div class="section" id="from-a-two-dimensional-numpy-array">
-<h4>From a two-dimensional NumPy array<a class="headerlink" href="#from-a-two-dimensional-numpy-array" title="Permalink to this headline">¶</a></h4>
+<h5>From a two-dimensional NumPy array<a class="headerlink" href="#from-a-two-dimensional-numpy-array" title="Permalink to this headline">¶</a></h5>
 <p>Given a two-dimensional array of data, we can create a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>
 with any specified column and index names:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
@@ -506,7 +516,7 @@ with any specified column and index names:</p>
 </table>
 </div></div>
 <div class="section" id="from-a-numpy-structured-array">
-<h4>From a NumPy structured array<a class="headerlink" href="#from-a-numpy-structured-array" title="Permalink to this headline">¶</a></h4>
+<h5>From a NumPy structured array<a class="headerlink" href="#from-a-numpy-structured-array" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;i8&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;f8&#39;</span><span class="p">)])</span>
 <span class="n">A</span>
 </pre></div>
@@ -561,7 +571,7 @@ with any specified column and index names:</p>
 </div>
 </div>
 <div class="section" id="the-pandas-index-object">
-<h2>The Pandas Index Object<a class="headerlink" href="#the-pandas-index-object" title="Permalink to this headline">¶</a></h2>
+<h3>The Pandas Index Object<a class="headerlink" href="#the-pandas-index-object" title="Permalink to this headline">¶</a></h3>
 <p>This <code class="docutils literal notranslate"><span class="pre">Index</span></code> object is an interesting structure in itself, and it can
 be thought of either as an <em>immutable array</em> or as an <em>ordered set</em>
 (technically a multi-set, as <code class="docutils literal notranslate"><span class="pre">Index</span></code> objects may contain repeated
@@ -574,7 +584,7 @@ values).</p>
 </pre></div>
 </div>
 <div class="section" id="index-as-immutable-array">
-<h3>Index as immutable array<a class="headerlink" href="#index-as-immutable-array" title="Permalink to this headline">¶</a></h3>
+<h4>Index as immutable array<a class="headerlink" href="#index-as-immutable-array" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">Index</span></code> in many ways operates like an array.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ind</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
@@ -622,7 +632,7 @@ modified via the normal means:</p>
 </div>
 </div>
 <div class="section" id="index-as-ordered-set">
-<h3>Index as ordered set<a class="headerlink" href="#index-as-ordered-set" title="Permalink to this headline">¶</a></h3>
+<h4>Index as ordered set<a class="headerlink" href="#index-as-ordered-set" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">Index</span></code> object follows many of the conventions used by Python’s
 built-in <code class="docutils literal notranslate"><span class="pre">set</span></code> data structure, so that unions, intersections,
 differences, and other combinations can be computed in a familiar way:</p>
@@ -652,7 +662,7 @@ differences, and other combinations can be computed in a familiar way:</p>
 </div>
 </div>
 <div class="section" id="data-indexing-and-selection">
-<h1>Data Indexing and Selection<a class="headerlink" href="#data-indexing-and-selection" title="Permalink to this headline">¶</a></h1>
+<h2>Data Indexing and Selection<a class="headerlink" href="#data-indexing-and-selection" title="Permalink to this headline">¶</a></h2>
 <p>To modify values in NumPy arrays we use indexing (e.g., <code class="docutils literal notranslate"><span class="pre">arr[2,</span> <span class="pre">1]</span></code>),
 slicing (e.g., <code class="docutils literal notranslate"><span class="pre">arr[:,</span> <span class="pre">1:5]</span></code>), masking (e.g., <code class="docutils literal notranslate"><span class="pre">arr[arr</span> <span class="pre">&gt;</span> <span class="pre">0]</span></code>), fancy
 indexing (e.g., <code class="docutils literal notranslate"><span class="pre">arr[0,</span> <span class="pre">[1,</span> <span class="pre">5]]</span></code>), and combinations thereof (e.g.,
@@ -662,11 +672,11 @@ Pandas <code class="docutils literal notranslate"><span class="pre">Series</span
 patterns, the corresponding patterns in Pandas will feel very familiar,
 though there are a few quirks to be aware of.</p>
 <div class="section" id="data-selection-in-series">
-<h2>Data Selection in Series<a class="headerlink" href="#data-selection-in-series" title="Permalink to this headline">¶</a></h2>
+<h3>Data Selection in Series<a class="headerlink" href="#data-selection-in-series" title="Permalink to this headline">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">Series</span></code> object acts in many ways like a one-dimensional NumPy
 array, and in many ways like a standard Python dictionary.</p>
 <div class="section" id="series-as-dictionary">
-<h3>Series as dictionary<a class="headerlink" href="#series-as-dictionary" title="Permalink to this headline">¶</a></h3>
+<h4>Series as dictionary<a class="headerlink" href="#series-as-dictionary" title="Permalink to this headline">¶</a></h4>
 <p>Like a dictionary, the <code class="docutils literal notranslate"><span class="pre">Series</span></code> object provides a mapping from a
 collection of keys to a collection of values:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
@@ -723,7 +733,7 @@ hood, Pandas is making decisions about memory layout and data copying
 that might need to take place.</p>
 </div>
 <div class="section" id="series-as-one-dimensional-array">
-<h3>Series as one-dimensional array<a class="headerlink" href="#series-as-one-dimensional-array" title="Permalink to this headline">¶</a></h3>
+<h4>Series as one-dimensional array<a class="headerlink" href="#series-as-one-dimensional-array" title="Permalink to this headline">¶</a></h4>
 <p>A <code class="docutils literal notranslate"><span class="pre">Series</span></code> builds on this dictionary-like interface and provides
 array-style item selection via the same basic mechanisms as NumPy arrays
 – that is, <em>slices</em>, <em>masking</em>, and <em>fancy indexing</em>:</p>
@@ -766,7 +776,7 @@ when slicing with an implicit index (i.e., <code class="docutils literal notrans
 index is <em>excluded</em> from the slice.</p>
 </div>
 <div class="section" id="indexers-loc-iloc-and-ix">
-<h3>Indexers: loc, iloc, and ix<a class="headerlink" href="#indexers-loc-iloc-and-ix" title="Permalink to this headline">¶</a></h3>
+<h4>Indexers: loc, iloc, and ix<a class="headerlink" href="#indexers-loc-iloc-and-ix" title="Permalink to this headline">¶</a></h4>
 <p>If your <code class="docutils literal notranslate"><span class="pre">Series</span></code> has an explicit integer index, an indexing operation
 such as <code class="docutils literal notranslate"><span class="pre">data[1]</span></code> will use the explicit indices, while a slicing
 operation like <code class="docutils literal notranslate"><span class="pre">data[1:3]</span></code> will use the implicit Python-style index.</p>
@@ -832,7 +842,7 @@ context of <code class="docutils literal notranslate"><span class="pre">DataFram
 </div>
 </div>
 <div class="section" id="data-selection-in-dataframe">
-<h2>Data Selection in DataFrame<a class="headerlink" href="#data-selection-in-dataframe" title="Permalink to this headline">¶</a></h2>
+<h3>Data Selection in DataFrame<a class="headerlink" href="#data-selection-in-dataframe" title="Permalink to this headline">¶</a></h3>
 <p>Recall that a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> acts in many ways like a two-dimensional or
 structured array, and in other ways like a dictionary of <code class="docutils literal notranslate"><span class="pre">Series</span></code>
 structures sharing the same index.</p>
@@ -983,7 +993,7 @@ this case adding a new column:</p>
   </tbody>
 </table>
 </div><div class="section" id="dataframe-as-two-dimensional-array">
-<h3>DataFrame as two-dimensional array<a class="headerlink" href="#dataframe-as-two-dimensional-array" title="Permalink to this headline">¶</a></h3>
+<h4>DataFrame as two-dimensional array<a class="headerlink" href="#dataframe-as-two-dimensional-array" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> can also be viewed as an enhanced two-dimensional array:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">values</span> <span class="c1"># examine the raw underlying data array</span>
 </pre></div>
@@ -1272,7 +1282,7 @@ from working with NumPy:</p>
 </table>
 </div></div>
 <div class="section" id="additional-indexing-conventions">
-<h3>Additional indexing conventions<a class="headerlink" href="#additional-indexing-conventions" title="Permalink to this headline">¶</a></h3>
+<h4>Additional indexing conventions<a class="headerlink" href="#additional-indexing-conventions" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Florida&#39;</span><span class="p">:</span><span class="s1">&#39;Illinois&#39;</span><span class="p">]</span> <span class="c1"># *slicing* refers to rows</span>
 </pre></div>
 </div>
@@ -1359,7 +1369,7 @@ from working with NumPy:</p>
 </div>
 </div>
 <div class="section" id="operating-on-data-in-pandas">
-<h1>Operating on Data in Pandas<a class="headerlink" href="#operating-on-data-in-pandas" title="Permalink to this headline">¶</a></h1>
+<h2>Operating on Data in Pandas<a class="headerlink" href="#operating-on-data-in-pandas" title="Permalink to this headline">¶</a></h2>
 <p>One of the essential pieces of NumPy is the ability to perform quick
 element-wise operations, both with basic arithmetic (addition,
 subtraction, multiplication, etc.) and with more sophisticated
@@ -1372,7 +1382,7 @@ index and column labels</em> in the output, and for binary operations such
 as addition and multiplication, Pandas will automatically <em>align
 indices</em> when passing the objects to the ufunc.</p>
 <div class="section" id="ufuncs-index-preservation">
-<h2>Ufuncs: Index Preservation<a class="headerlink" href="#ufuncs-index-preservation" title="Permalink to this headline">¶</a></h2>
+<h3>Ufuncs: Index Preservation<a class="headerlink" href="#ufuncs-index-preservation" title="Permalink to this headline">¶</a></h3>
 <p>Because Pandas is designed to work with NumPy, any NumPy ufunc will work
 on Pandas <code class="docutils literal notranslate"><span class="pre">Series</span></code> and <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> objects:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
@@ -1505,11 +1515,11 @@ another Pandas object <em>with the indices preserved:</em></p>
 </table>
 </div></div>
 <div class="section" id="ufuncs-index-alignment">
-<h2>UFuncs: Index Alignment<a class="headerlink" href="#ufuncs-index-alignment" title="Permalink to this headline">¶</a></h2>
+<h3>UFuncs: Index Alignment<a class="headerlink" href="#ufuncs-index-alignment" title="Permalink to this headline">¶</a></h3>
 <p>For binary operations on two <code class="docutils literal notranslate"><span class="pre">Series</span></code> or <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> objects, Pandas
 will align indices in the process of performing the operation.</p>
 <div class="section" id="index-alignment-in-series">
-<h3>Index alignment in Series<a class="headerlink" href="#index-alignment-in-series" title="Permalink to this headline">¶</a></h3>
+<h4>Index alignment in Series<a class="headerlink" href="#index-alignment-in-series" title="Permalink to this headline">¶</a></h4>
 <p>Suppose we are combining two different data sources, and find only the
 top three US states by <em>area</em> and the top three US states by
 <em>population</em>:</p>
@@ -1569,7 +1579,7 @@ modified using appropriate object methods in place of the operators:</p>
 </div>
 </div>
 <div class="section" id="index-alignment-in-dataframe">
-<h3>Index alignment in DataFrame<a class="headerlink" href="#index-alignment-in-dataframe" title="Permalink to this headline">¶</a></h3>
+<h4>Index alignment in DataFrame<a class="headerlink" href="#index-alignment-in-dataframe" title="Permalink to this headline">¶</a></h4>
 <p>A similar type of alignment takes place for <em>both</em> columns and indices
 when performing operations on <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
@@ -1795,7 +1805,7 @@ object methods:</p>
 </div>
 </div>
 <div class="section" id="ufuncs-operations-between-dataframe-and-series">
-<h2>Ufuncs: Operations Between DataFrame and Series<a class="headerlink" href="#ufuncs-operations-between-dataframe-and-series" title="Permalink to this headline">¶</a></h2>
+<h3>Ufuncs: Operations Between DataFrame and Series<a class="headerlink" href="#ufuncs-operations-between-dataframe-and-series" title="Permalink to this headline">¶</a></h3>
 <p>When performing operations between a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> and a <code class="docutils literal notranslate"><span class="pre">Series</span></code>, the
 index and column alignment is similarly maintained. Operations between a
 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> and a <code class="docutils literal notranslate"><span class="pre">Series</span></code> are similar to operations between a
@@ -1928,7 +1938,7 @@ two-dimensional array and one of its rows is applied row-wise.</p>
 </div></div>
 </div>
 <div class="section" id="handling-missing-data">
-<h1>Handling Missing Data<a class="headerlink" href="#handling-missing-data" title="Permalink to this headline">¶</a></h1>
+<h2>Handling Missing Data<a class="headerlink" href="#handling-missing-data" title="Permalink to this headline">¶</a></h2>
 <p>The difference between data found in many tutorials and data in the real
 world is that real-world data is rarely clean and homogeneous. In
 particular, many interesting datasets will have some amount of data
@@ -1936,7 +1946,7 @@ missing.</p>
 <p>To make matters even more complicated, different data sources may
 indicate missing data in different ways.</p>
 <div class="section" id="trade-offs-in-missing-data-conventions">
-<h2>Trade-Offs in Missing Data Conventions<a class="headerlink" href="#trade-offs-in-missing-data-conventions" title="Permalink to this headline">¶</a></h2>
+<h3>Trade-Offs in Missing Data Conventions<a class="headerlink" href="#trade-offs-in-missing-data-conventions" title="Permalink to this headline">¶</a></h3>
 <p>To indicate the presence of missing data in a table or DataFrame we can
 use two strategies: using a <em>mask</em> that globally indicates missing
 values, or choosing a <em>sentinel value</em> that indicates a missing entry.</p>
@@ -1953,7 +1963,7 @@ value reduces the range of valid values that can be represented, and may
 require extra (often non-optimized) logic in CPU and GPU arithmetic.</p>
 </div>
 <div class="section" id="missing-data-in-pandas">
-<h2>Missing Data in Pandas<a class="headerlink" href="#missing-data-in-pandas" title="Permalink to this headline">¶</a></h2>
+<h3>Missing Data in Pandas<a class="headerlink" href="#missing-data-in-pandas" title="Permalink to this headline">¶</a></h3>
 <p>The way in which Pandas handles missing values is constrained by its
 reliance on the NumPy package, which does <strong>not have</strong> a built-in notion
 of NA values for non-floating-point data types.</p>
@@ -1967,7 +1977,7 @@ missing data, and further chose to use two already-existing Python null
 values: the special floating-point <code class="docutils literal notranslate"><span class="pre">NaN</span></code> value, and the Python
 <code class="docutils literal notranslate"><span class="pre">None</span></code> object.</p>
 <div class="section" id="none-pythonic-missing-data">
-<h3><code class="docutils literal notranslate"><span class="pre">None</span></code>: Pythonic missing data<a class="headerlink" href="#none-pythonic-missing-data" title="Permalink to this headline">¶</a></h3>
+<h4><code class="docutils literal notranslate"><span class="pre">None</span></code>: Pythonic missing data<a class="headerlink" href="#none-pythonic-missing-data" title="Permalink to this headline">¶</a></h4>
 <p>The first sentinel value used by Pandas is <code class="docutils literal notranslate"><span class="pre">None</span></code>, a Python singleton
 object that is often used for missing data in Python code.</p>
 <p>Because it is a Python object, <code class="docutils literal notranslate"><span class="pre">None</span></code> cannot be used in any arbitrary
@@ -2023,7 +2033,7 @@ value, you will generally get an error:</p>
 </div>
 </div>
 <div class="section" id="nan-missing-numerical-data">
-<h3><code class="docutils literal notranslate"><span class="pre">NaN</span></code>: Missing numerical data<a class="headerlink" href="#nan-missing-numerical-data" title="Permalink to this headline">¶</a></h3>
+<h4><code class="docutils literal notranslate"><span class="pre">NaN</span></code>: Missing numerical data<a class="headerlink" href="#nan-missing-numerical-data" title="Permalink to this headline">¶</a></h4>
 <p>The other missing data representation, <code class="docutils literal notranslate"><span class="pre">NaN</span></code> (acronym for <em>Not a
 Number</em>), is different; it is a special floating-point value recognized
 by all systems that use the standard IEEE floating-point representation:</p>
@@ -2056,7 +2066,7 @@ missing values:</p>
 </div>
 </div>
 <div class="section" id="nan-and-none-in-pandas">
-<h3>NaN and None in Pandas<a class="headerlink" href="#nan-and-none-in-pandas" title="Permalink to this headline">¶</a></h3>
+<h4>NaN and None in Pandas<a class="headerlink" href="#nan-and-none-in-pandas" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">NaN</span></code> and <code class="docutils literal notranslate"><span class="pre">None</span></code> both have their place, and Pandas is built to
 handle the two of them nearly interchangeably, converting between them
 where appropriate:</p>
@@ -2108,7 +2118,7 @@ values are introduced:</p>
 </div>
 </div>
 <div class="section" id="operating-on-null-values">
-<h2>Operating on Null Values<a class="headerlink" href="#operating-on-null-values" title="Permalink to this headline">¶</a></h2>
+<h3>Operating on Null Values<a class="headerlink" href="#operating-on-null-values" title="Permalink to this headline">¶</a></h3>
 <p>As we have seen, Pandas treats <code class="docutils literal notranslate"><span class="pre">None</span></code> and <code class="docutils literal notranslate"><span class="pre">NaN</span></code> as essentially
 interchangeable for indicating missing or null values. To facilitate
 this convention, there are several useful methods for detecting,
@@ -2121,7 +2131,7 @@ removing, and replacing null values in Pandas data structures. They are:</p>
 imputed</p></li>
 </ul>
 <div class="section" id="detecting-null-values">
-<h3>Detecting null values<a class="headerlink" href="#detecting-null-values" title="Permalink to this headline">¶</a></h3>
+<h4>Detecting null values<a class="headerlink" href="#detecting-null-values" title="Permalink to this headline">¶</a></h4>
 <p>Pandas data structures have two useful methods for detecting null data:
 <code class="docutils literal notranslate"><span class="pre">isnull()</span></code> and <code class="docutils literal notranslate"><span class="pre">notnull()</span></code>. Either one will return a Boolean mask
 over the data:</p>
@@ -2138,7 +2148,7 @@ over the data:</p>
 </div>
 </div>
 <div class="section" id="dropping-null-values">
-<h3>Dropping null values<a class="headerlink" href="#dropping-null-values" title="Permalink to this headline">¶</a></h3>
+<h4>Dropping null values<a class="headerlink" href="#dropping-null-values" title="Permalink to this headline">¶</a></h4>
 <p>In addition to the masking used before, there are the convenience
 methods, <code class="docutils literal notranslate"><span class="pre">dropna()</span></code> (which removes NA values) and <code class="docutils literal notranslate"><span class="pre">fillna()</span></code> (which
 fills in NA values):</p>
@@ -2419,7 +2429,7 @@ values for the row/column to be kept:</p>
 </table>
 </div></div>
 <div class="section" id="filling-null-values">
-<h3>Filling null values<a class="headerlink" href="#filling-null-values" title="Permalink to this headline">¶</a></h3>
+<h4>Filling null values<a class="headerlink" href="#filling-null-values" title="Permalink to this headline">¶</a></h4>
 <p>Sometimes rather than dropping NA values, you’d rather replace them with
 a valid value. This value might be a single number like zero, or it
 might be some sort of imputation or interpolation from the good values.
@@ -2579,7 +2589,7 @@ an <code class="docutils literal notranslate"><span class="pre">axis</span></cod
 </div>
 </div>
 <div class="section" id="hierarchical-indexing">
-<h1>Hierarchical Indexing<a class="headerlink" href="#hierarchical-indexing" title="Permalink to this headline">¶</a></h1>
+<h2>Hierarchical Indexing<a class="headerlink" href="#hierarchical-indexing" title="Permalink to this headline">¶</a></h2>
 <p>Up to this point we’ve been focused primarily on one-dimensional and
 two-dimensional data, stored in Pandas <code class="docutils literal notranslate"><span class="pre">Series</span></code> and <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>
 objects, respectively. Often it is useful to go beyond this and store
@@ -2591,11 +2601,11 @@ indexing</em> (also known as <em>multi-indexing</em>) to incorporate multiple in
 be compactly represented within the familiar one-dimensional <code class="docutils literal notranslate"><span class="pre">Series</span></code>
 and two-dimensional <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> objects.</p>
 <div class="section" id="a-multiply-indexed-series">
-<h2>A Multiply Indexed Series<a class="headerlink" href="#a-multiply-indexed-series" title="Permalink to this headline">¶</a></h2>
+<h3>A Multiply Indexed Series<a class="headerlink" href="#a-multiply-indexed-series" title="Permalink to this headline">¶</a></h3>
 <p>Let’s start by considering how we might represent two-dimensional data
 within a one-dimensional <code class="docutils literal notranslate"><span class="pre">Series</span></code>.</p>
 <div class="section" id="the-bad-way">
-<h3>The bad way<a class="headerlink" href="#the-bad-way" title="Permalink to this headline">¶</a></h3>
+<h4>The bad way<a class="headerlink" href="#the-bad-way" title="Permalink to this headline">¶</a></h4>
 <p>Suppose you would like to track data about states from two different
 years. Using the Pandas tools we’ve already covered, you might be
 tempted to simply use Python tuples as keys:</p>
@@ -2631,7 +2641,7 @@ tempted to simply use Python tuples as keys:</p>
 </div>
 </div>
 <div class="section" id="the-better-way-pandas-multiindex">
-<h3>The Better Way: Pandas MultiIndex<a class="headerlink" href="#the-better-way-pandas-multiindex" title="Permalink to this headline">¶</a></h3>
+<h4>The Better Way: Pandas MultiIndex<a class="headerlink" href="#the-better-way-pandas-multiindex" title="Permalink to this headline">¶</a></h4>
 <p>Our tuple-based indexing is essentially a rudimentary multi-index, and
 the Pandas <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> type gives us the type of operations we wish
 to have:</p>
@@ -2688,7 +2698,7 @@ efficient!) than the home-spun tuple-based multi-indexing solution that
 we started with.</p>
 </div>
 <div class="section" id="multiindex-as-extra-dimension">
-<h3>MultiIndex as extra dimension<a class="headerlink" href="#multiindex-as-extra-dimension" title="Permalink to this headline">¶</a></h3>
+<h4>MultiIndex as extra dimension<a class="headerlink" href="#multiindex-as-extra-dimension" title="Permalink to this headline">¶</a></h4>
 <p>We could have stored the same data using a simple <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> with
 index and column labels; in fact, Pandas is built with this equivalence
 in mind.</p>
@@ -2878,7 +2888,7 @@ each state at each year (say, population under 18) ; with a
 </div></div>
 </div>
 <div class="section" id="methods-of-multiindex-creation">
-<h2>Methods of MultiIndex Creation<a class="headerlink" href="#methods-of-multiindex-creation" title="Permalink to this headline">¶</a></h2>
+<h3>Methods of MultiIndex Creation<a class="headerlink" href="#methods-of-multiindex-creation" title="Permalink to this headline">¶</a></h3>
 <p>The most straightforward way to construct a multiply indexed <code class="docutils literal notranslate"><span class="pre">Series</span></code>
 or <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> is to simply pass a list of two or more index arrays to
 the constructor:</p>
@@ -2958,7 +2968,7 @@ default:</p>
 </pre></div>
 </div>
 <div class="section" id="explicit-multiindex-constructors">
-<h3>Explicit MultiIndex constructors<a class="headerlink" href="#explicit-multiindex-constructors" title="Permalink to this headline">¶</a></h3>
+<h4>Explicit MultiIndex constructors<a class="headerlink" href="#explicit-multiindex-constructors" title="Permalink to this headline">¶</a></h4>
 <p>For more flexibility in how the index is constructed, you can instead
 use the class method constructors available in the <code class="docutils literal notranslate"><span class="pre">pd.MultiIndex</span></code>.</p>
 <p>You can construct the <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> from a simple list of arrays giving
@@ -2986,7 +2996,7 @@ the index values within each level:</p>
 </div>
 </div>
 <div class="section" id="multiindex-level-names">
-<h3>MultiIndex level names<a class="headerlink" href="#multiindex-level-names" title="Permalink to this headline">¶</a></h3>
+<h4>MultiIndex level names<a class="headerlink" href="#multiindex-level-names" title="Permalink to this headline">¶</a></h4>
 <p>Sometimes it is convenient to name the levels of the <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code>.
 This can be accomplished by passing the <code class="docutils literal notranslate"><span class="pre">names</span></code> argument to any of the
 above <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> constructors, or by setting the <code class="docutils literal notranslate"><span class="pre">names</span></code> attribute
@@ -3007,7 +3017,7 @@ of the index after the fact:</p>
 </div>
 </div>
 <div class="section" id="multiindex-for-columns">
-<h3>MultiIndex for columns<a class="headerlink" href="#multiindex-for-columns" title="Permalink to this headline">¶</a></h3>
+<h4>MultiIndex for columns<a class="headerlink" href="#multiindex-for-columns" title="Permalink to this headline">¶</a></h4>
 <p>In a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, the rows and columns are completely symmetric, and
 just as the rows can have multiple levels of indices, the columns can
 have multiple levels as well:</p>
@@ -3175,11 +3185,11 @@ can index the top-level column by the person’s name and get a full
 </div></div>
 </div>
 <div class="section" id="indexing-and-slicing-a-multiindex">
-<h2>Indexing and Slicing a MultiIndex<a class="headerlink" href="#indexing-and-slicing-a-multiindex" title="Permalink to this headline">¶</a></h2>
+<h3>Indexing and Slicing a MultiIndex<a class="headerlink" href="#indexing-and-slicing-a-multiindex" title="Permalink to this headline">¶</a></h3>
 <p>Indexing and slicing on a <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> is designed to be intuitive,
 and it helps if you think about the indices as added dimensions.</p>
 <div class="section" id="multiply-indexed-series">
-<h3>Multiply indexed Series<a class="headerlink" href="#multiply-indexed-series" title="Permalink to this headline">¶</a></h3>
+<h4>Multiply indexed Series<a class="headerlink" href="#multiply-indexed-series" title="Permalink to this headline">¶</a></h4>
 <p>Consider the multiply indexed <code class="docutils literal notranslate"><span class="pre">Series</span></code> of state populations we saw
 earlier:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop</span>
@@ -3239,7 +3249,7 @@ masks:</p>
 </div>
 </div>
 <div class="section" id="multiply-indexed-dataframes">
-<h3>Multiply indexed DataFrames<a class="headerlink" href="#multiply-indexed-dataframes" title="Permalink to this headline">¶</a></h3>
+<h4>Multiply indexed DataFrames<a class="headerlink" href="#multiply-indexed-dataframes" title="Permalink to this headline">¶</a></h4>
 <p>A multiply indexed <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> behaves in a similar manner:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">health_data</span>
 </pre></div>
@@ -3421,7 +3431,7 @@ can be passed a tuple of multiple indices:</p>
 </div>
 </div>
 <div class="section" id="rearranging-multi-indices">
-<h2>Rearranging Multi-Indices<a class="headerlink" href="#rearranging-multi-indices" title="Permalink to this headline">¶</a></h2>
+<h3>Rearranging Multi-Indices<a class="headerlink" href="#rearranging-multi-indices" title="Permalink to this headline">¶</a></h3>
 <p>One of the keys to working with multiply indexed data is knowing how to
 effectively transform the data.</p>
 <p>There are a number of operations that will preserve all the information
@@ -3431,7 +3441,7 @@ computations.</p>
 methods, but there are many more ways to finely control the
 rearrangement of data between hierarchical indices and columns.</p>
 <div class="section" id="sorted-and-unsorted-indices">
-<h3>Sorted and unsorted indices<a class="headerlink" href="#sorted-and-unsorted-indices" title="Permalink to this headline">¶</a></h3>
+<h4>Sorted and unsorted indices<a class="headerlink" href="#sorted-and-unsorted-indices" title="Permalink to this headline">¶</a></h4>
 <p>Earlier, we briefly mentioned a caveat, but we should emphasize it more
 here.</p>
 <p><em>Many of the ``MultiIndex`` slicing operations will fail if the index is
@@ -3500,7 +3510,7 @@ expected:</p>
 </div>
 </div>
 <div class="section" id="stacking-and-unstacking-indices">
-<h3>Stacking and unstacking indices<a class="headerlink" href="#stacking-and-unstacking-indices" title="Permalink to this headline">¶</a></h3>
+<h4>Stacking and unstacking indices<a class="headerlink" href="#stacking-and-unstacking-indices" title="Permalink to this headline">¶</a></h4>
 <p>As we saw briefly before, it is possible to convert a dataset from a
 stacked multi-index to a simple two-dimensional representation,
 optionally specifying the level to use:</p>
@@ -3616,7 +3626,7 @@ recover the original series:</p>
 </div>
 </div>
 <div class="section" id="index-setting-and-resetting">
-<h3>Index setting and resetting<a class="headerlink" href="#index-setting-and-resetting" title="Permalink to this headline">¶</a></h3>
+<h4>Index setting and resetting<a class="headerlink" href="#index-setting-and-resetting" title="Permalink to this headline">¶</a></h4>
 <p>Another way to rearrange hierarchical data is to turn the index labels
 into columns; this can be accomplished with the <code class="docutils literal notranslate"><span class="pre">reset_index</span></code> method.</p>
 <p>Calling this on the population dictionary will result in a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>
@@ -3755,7 +3765,7 @@ values. This can be done with the <code class="docutils literal notranslate"><sp
 </div></div>
 </div>
 <div class="section" id="data-aggregations-on-multi-indices">
-<h2>Data Aggregations on Multi-Indices<a class="headerlink" href="#data-aggregations-on-multi-indices" title="Permalink to this headline">¶</a></h2>
+<h3>Data Aggregations on Multi-Indices<a class="headerlink" href="#data-aggregations-on-multi-indices" title="Permalink to this headline">¶</a></h3>
 <p>We’ve previously seen that Pandas has built-in data aggregation methods,
 such as <code class="docutils literal notranslate"><span class="pre">mean()</span></code>, <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, and <code class="docutils literal notranslate"><span class="pre">max()</span></code>. For hierarchically indexed
 data, these can be passed a <code class="docutils literal notranslate"><span class="pre">level</span></code> parameter that controls which
@@ -3973,7 +3983,7 @@ among levels on the columns as well:</p>
 </div></div>
 </div>
 <div class="section" id="combining-datasets-concat-and-append">
-<h1>Combining Datasets: Concat and Append<a class="headerlink" href="#combining-datasets-concat-and-append" title="Permalink to this headline">¶</a></h1>
+<h2>Combining Datasets: Concat and Append<a class="headerlink" href="#combining-datasets-concat-and-append" title="Permalink to this headline">¶</a></h2>
 <p>Some of the most interesting studies of data come from combining
 different data sources. These operations can involve anything from very
 straightforward concatenation of two different datasets, to more
@@ -4062,7 +4072,7 @@ object display:</p>
 </pre></div>
 </div>
 <div class="section" id="simple-concatenation-with-pd-concat">
-<h2>Simple Concatenation with <code class="docutils literal notranslate"><span class="pre">pd.concat</span></code><a class="headerlink" href="#simple-concatenation-with-pd-concat" title="Permalink to this headline">¶</a></h2>
+<h3>Simple Concatenation with <code class="docutils literal notranslate"><span class="pre">pd.concat</span></code><a class="headerlink" href="#simple-concatenation-with-pd-concat" title="Permalink to this headline">¶</a></h3>
 <p>Pandas has a function, <code class="docutils literal notranslate"><span class="pre">pd.concat()</span></code>, which has a similar syntax to
 <code class="docutils literal notranslate"><span class="pre">np.concatenate</span></code> but contains a number of options that we’ll discuss
 momentarily:</p>
@@ -4346,7 +4356,7 @@ place:</p>
 </table>
 </div>
     </div><div class="section" id="duplicate-indices">
-<h3>Duplicate indices<a class="headerlink" href="#duplicate-indices" title="Permalink to this headline">¶</a></h3>
+<h4>Duplicate indices<a class="headerlink" href="#duplicate-indices" title="Permalink to this headline">¶</a></h4>
 <p>One important difference between <code class="docutils literal notranslate"><span class="pre">np.concatenate</span></code> and <code class="docutils literal notranslate"><span class="pre">pd.concat</span></code> is
 that Pandas concatenation <em>preserves indices</em>, even if the result will
 have duplicate indices:</p>
@@ -4492,7 +4502,7 @@ gives us a few ways to handle it.</p>
 </pre></div>
 </div>
 <div class="section" id="ignoring-the-index">
-<h4>Ignoring the index<a class="headerlink" href="#ignoring-the-index" title="Permalink to this headline">¶</a></h4>
+<h5>Ignoring the index<a class="headerlink" href="#ignoring-the-index" title="Permalink to this headline">¶</a></h5>
 <p>Sometimes the index itself does not matter, and you would prefer it to
 simply be ignored. This option can be specified using the
 <code class="docutils literal notranslate"><span class="pre">ignore_index</span></code> flag. With this set to true, the concatenation will
@@ -4625,7 +4635,7 @@ create a new integer index for the resulting <code class="docutils literal notra
 </div>
     </div></div>
 <div class="section" id="adding-multiindex-keys">
-<h4>Adding MultiIndex keys<a class="headerlink" href="#adding-multiindex-keys" title="Permalink to this headline">¶</a></h4>
+<h5>Adding MultiIndex keys<a class="headerlink" href="#adding-multiindex-keys" title="Permalink to this headline">¶</a></h5>
 <p>Another option is to use the <code class="docutils literal notranslate"><span class="pre">keys</span></code> option to specify a label for the
 data sources; the result will be a hierarchically indexed series
 containing the data:</p>
@@ -4761,7 +4771,7 @@ containing the data:</p>
     </div></div>
 </div>
 <div class="section" id="concatenation-with-joins">
-<h3>Concatenation with joins<a class="headerlink" href="#concatenation-with-joins" title="Permalink to this headline">¶</a></h3>
+<h4>Concatenation with joins<a class="headerlink" href="#concatenation-with-joins" title="Permalink to this headline">¶</a></h4>
 <p>In practice, data from different sources might have different sets of
 column names, and <code class="docutils literal notranslate"><span class="pre">pd.concat</span></code> offers several options in this case.
 Consider the concatenation of the following two <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s, which
@@ -5059,7 +5069,7 @@ using the <code class="docutils literal notranslate"><span class="pre">join_axes
 </div>
     </div></div>
 <div class="section" id="the-append-method">
-<h3>The <code class="docutils literal notranslate"><span class="pre">append()</span></code> method<a class="headerlink" href="#the-append-method" title="Permalink to this headline">¶</a></h3>
+<h4>The <code class="docutils literal notranslate"><span class="pre">append()</span></code> method<a class="headerlink" href="#the-append-method" title="Permalink to this headline">¶</a></h4>
 <p>Because direct array concatenation is so common, <code class="docutils literal notranslate"><span class="pre">Series</span></code> and
 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> objects have an <code class="docutils literal notranslate"><span class="pre">append</span></code> method that can accomplish the
 same thing in fewer keystrokes. For example, rather than calling
@@ -5201,7 +5211,7 @@ a new index <em>and</em> data buffer. Thus, if you plan to do multiple
 </div>
 </div>
 <div class="section" id="combining-datasets-merge-and-join">
-<h1>Combining Datasets: Merge and Join<a class="headerlink" href="#combining-datasets-merge-and-join" title="Permalink to this headline">¶</a></h1>
+<h2>Combining Datasets: Merge and Join<a class="headerlink" href="#combining-datasets-merge-and-join" title="Permalink to this headline">¶</a></h2>
 <p>One essential feature offered by Pandas is its high-performance,
 in-memory join and merge operations. If you have ever worked with
 databases, you should be familiar with this type of data interaction.
@@ -5227,7 +5237,7 @@ functionality:</p>
 </pre></div>
 </div>
 <div class="section" id="relational-algebra">
-<h2>Relational Algebra<a class="headerlink" href="#relational-algebra" title="Permalink to this headline">¶</a></h2>
+<h3>Relational Algebra<a class="headerlink" href="#relational-algebra" title="Permalink to this headline">¶</a></h3>
 <p>The behavior implemented in <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code> is a subset of what is known
 as <em>relational algebra</em>, which is a formal set of rules for manipulating
 relational data, and forms the conceptual foundation of operations
@@ -5242,14 +5252,14 @@ operations can be performed.</p>
 and <code class="docutils literal notranslate"><span class="pre">Dataframe</span></code>s.</p>
 </div>
 <div class="section" id="categories-of-joins">
-<h2>Categories of Joins<a class="headerlink" href="#categories-of-joins" title="Permalink to this headline">¶</a></h2>
+<h3>Categories of Joins<a class="headerlink" href="#categories-of-joins" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code> function implements a number of types of joins: the
 <em>one-to-one</em>, <em>many-to-one</em>, and <em>many-to-many</em> joins. All three types
 of joins are accessed via an identical call to the <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code>
 interface; the type of join performed depends on the form of the input
 data.</p>
 <div class="section" id="one-to-one-joins">
-<h3>One-to-one joins<a class="headerlink" href="#one-to-one-joins" title="Permalink to this headline">¶</a></h3>
+<h4>One-to-one joins<a class="headerlink" href="#one-to-one-joins" title="Permalink to this headline">¶</a></h4>
 <p>Perhaps the simplest type of merge expresion is the one-to-one join,
 which is in many ways very similar to the column-wise concatenation that
 we have already seen. As a concrete example, consider the following two
@@ -5425,7 +5435,7 @@ special case of merges by index (see the <code class="docutils literal notransla
 <code class="docutils literal notranslate"><span class="pre">right_index</span></code> keywords, discussed momentarily).</p>
 </div>
 <div class="section" id="many-to-one-joins">
-<h3>Many-to-one joins<a class="headerlink" href="#many-to-one-joins" title="Permalink to this headline">¶</a></h3>
+<h4>Many-to-one joins<a class="headerlink" href="#many-to-one-joins" title="Permalink to this headline">¶</a></h4>
 <p>Many-to-one joins are joins in which one of the two key columns contains
 duplicate entries. For the many-to-one case, the resulting <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>
 will preserve those duplicate entries as appropriate:</p>
@@ -5589,7 +5599,7 @@ will preserve those duplicate entries as appropriate:</p>
 </div>
     </div></div>
 <div class="section" id="many-to-many-joins">
-<h3>Many-to-many joins<a class="headerlink" href="#many-to-many-joins" title="Permalink to this headline">¶</a></h3>
+<h4>Many-to-many joins<a class="headerlink" href="#many-to-many-joins" title="Permalink to this headline">¶</a></h4>
 <p>Many-to-many joins are a bit confusing conceptually, but are
 nevertheless well defined. If the key column in both the left and right
 array contains duplicates, then the result is a many-to-many merge.
@@ -5789,13 +5799,13 @@ individual person:</p>
     </div></div>
 </div>
 <div class="section" id="specification-of-the-merge-key">
-<h2>Specification of the Merge Key<a class="headerlink" href="#specification-of-the-merge-key" title="Permalink to this headline">¶</a></h2>
+<h3>Specification of the Merge Key<a class="headerlink" href="#specification-of-the-merge-key" title="Permalink to this headline">¶</a></h3>
 <p>We’ve already seen the default behavior of <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code>: it looks for
 one or more matching column names between the two inputs, and uses this
 as the key. However, often the column names will not match so nicely,
 and <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code> provides a variety of options for handling this.</p>
 <div class="section" id="the-on-keyword">
-<h3>The <code class="docutils literal notranslate"><span class="pre">on</span></code> keyword<a class="headerlink" href="#the-on-keyword" title="Permalink to this headline">¶</a></h3>
+<h4>The <code class="docutils literal notranslate"><span class="pre">on</span></code> keyword<a class="headerlink" href="#the-on-keyword" title="Permalink to this headline">¶</a></h4>
 <p>Most simply, you can explicitly specify the name of the key column using
 the <code class="docutils literal notranslate"><span class="pre">on</span></code> keyword, which takes a column name or a list of column names:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="s1">&#39;df1&#39;</span><span class="p">,</span> <span class="s1">&#39;df2&#39;</span><span class="p">,</span> <span class="s2">&quot;pd.merge(df1, df2, on=&#39;employee&#39;)&quot;</span><span class="p">)</span>
@@ -5951,7 +5961,7 @@ the <code class="docutils literal notranslate"><span class="pre">on</span></code
 </div>
     </div></div>
 <div class="section" id="the-left-on-and-right-on-keywords">
-<h3>The <code class="docutils literal notranslate"><span class="pre">left_on</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on</span></code> keywords<a class="headerlink" href="#the-left-on-and-right-on-keywords" title="Permalink to this headline">¶</a></h3>
+<h4>The <code class="docutils literal notranslate"><span class="pre">left_on</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on</span></code> keywords<a class="headerlink" href="#the-left-on-and-right-on-keywords" title="Permalink to this headline">¶</a></h4>
 <p>At times you may wish to merge two datasets with different column names;
 for example, we may have a dataset in which the employee name is labeled
 as “name” rather than “employee”. In this case, we can use the
@@ -6171,7 +6181,7 @@ example, by using the <code class="docutils literal notranslate"><span class="pr
 </table>
 </div></div>
 <div class="section" id="the-left-index-and-right-index-keywords">
-<h3>The <code class="docutils literal notranslate"><span class="pre">left_index</span></code> and <code class="docutils literal notranslate"><span class="pre">right_index</span></code> keywords<a class="headerlink" href="#the-left-index-and-right-index-keywords" title="Permalink to this headline">¶</a></h3>
+<h4>The <code class="docutils literal notranslate"><span class="pre">left_index</span></code> and <code class="docutils literal notranslate"><span class="pre">right_index</span></code> keywords<a class="headerlink" href="#the-left-index-and-right-index-keywords" title="Permalink to this headline">¶</a></h4>
 <p>Sometimes, rather than merging on a column, you would instead like to
 merge on an index. For example, your data might look like this:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1a</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;employee&#39;</span><span class="p">)</span>
@@ -6731,7 +6741,7 @@ behavior:</p>
     </div></div>
 </div>
 <div class="section" id="specifying-set-arithmetic-for-joins">
-<h2>Specifying Set Arithmetic for Joins<a class="headerlink" href="#specifying-set-arithmetic-for-joins" title="Permalink to this headline">¶</a></h2>
+<h3>Specifying Set Arithmetic for Joins<a class="headerlink" href="#specifying-set-arithmetic-for-joins" title="Permalink to this headline">¶</a></h3>
 <p>We have glossed over one important consideration in performing a join:
 the type of set arithmetic used in the join. This comes up when a value
 appears in one key column but not the other:</p>
@@ -7170,7 +7180,7 @@ right entries, respectively:</p>
 </div>
     </div></div>
 <div class="section" id="overlapping-column-names-the-suffixes-keyword">
-<h2>Overlapping Column Names: The <code class="docutils literal notranslate"><span class="pre">suffixes</span></code> Keyword<a class="headerlink" href="#overlapping-column-names-the-suffixes-keyword" title="Permalink to this headline">¶</a></h2>
+<h3>Overlapping Column Names: The <code class="docutils literal notranslate"><span class="pre">suffixes</span></code> Keyword<a class="headerlink" href="#overlapping-column-names-the-suffixes-keyword" title="Permalink to this headline">¶</a></h3>
 <p>Finally, you may end up in a case where your two input <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s
 have conflicting column names:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df8</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Jake&#39;</span><span class="p">,</span> <span class="s1">&#39;Lisa&#39;</span><span class="p">,</span> <span class="s1">&#39;Sue&#39;</span><span class="p">],</span>
@@ -7485,7 +7495,7 @@ possible to specify a custom suffix using the <code class="docutils literal notr
 </div>
     </div></div>
 <div class="section" id="example-us-states-data">
-<h2>Example: US States Data<a class="headerlink" href="#example-us-states-data" title="Permalink to this headline">¶</a></h2>
+<h3>Example: US States Data<a class="headerlink" href="#example-us-states-data" title="Permalink to this headline">¶</a></h3>
 <p>Merge and join operations come up most often when combining data from
 different sources. Here we will consider an example of some data about
 US states and their populations. The data files can be found at
@@ -8176,7 +8186,7 @@ questions using real-world data sources.</p>
 </div>
 </div>
 <div class="section" id="aggregation-and-grouping">
-<h1>Aggregation and Grouping<a class="headerlink" href="#aggregation-and-grouping" title="Permalink to this headline">¶</a></h1>
+<h2>Aggregation and Grouping<a class="headerlink" href="#aggregation-and-grouping" title="Permalink to this headline">¶</a></h2>
 <p>An essential piece of analysis of large data is efficient summarization:
 computing aggregations like <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, <code class="docutils literal notranslate"><span class="pre">mean()</span></code>, <code class="docutils literal notranslate"><span class="pre">median()</span></code>,
 <code class="docutils literal notranslate"><span class="pre">min()</span></code>, and <code class="docutils literal notranslate"><span class="pre">max()</span></code>, in which a single number gives insight into
@@ -8200,7 +8210,7 @@ the nature of a potentially large dataset.</p>
 </pre></div>
 </div>
 <div class="section" id="planets-data">
-<h2>Planets Data<a class="headerlink" href="#planets-data" title="Permalink to this headline">¶</a></h2>
+<h3>Planets Data<a class="headerlink" href="#planets-data" title="Permalink to this headline">¶</a></h3>
 <p>Here we will use the Planets dataset, available via the <a class="reference external" href="http://seaborn.pydata.org/">Seaborn
 package</a>. It gives information on planets
 that astronomers have discovered around other stars (known as
@@ -8293,7 +8303,7 @@ with a simple Seaborn command:</p>
 </table>
 </div></div>
 <div class="section" id="simple-aggregation-in-pandas">
-<h2>Simple Aggregation in Pandas<a class="headerlink" href="#simple-aggregation-in-pandas" title="Permalink to this headline">¶</a></h2>
+<h3>Simple Aggregation in Pandas<a class="headerlink" href="#simple-aggregation-in-pandas" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">ser</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">ser</span>
@@ -8535,7 +8545,7 @@ specifically designed for finding eclipsing planets around other stars.</p>
 <p>These are all methods of <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> and <code class="docutils literal notranslate"><span class="pre">Series</span></code> objects.</p>
 </div>
 <div class="section" id="groupby-split-apply-combine">
-<h2>GroupBy: Split, Apply, Combine<a class="headerlink" href="#groupby-split-apply-combine" title="Permalink to this headline">¶</a></h2>
+<h3>GroupBy: Split, Apply, Combine<a class="headerlink" href="#groupby-split-apply-combine" title="Permalink to this headline">¶</a></h3>
 <p>Simple aggregations can give you a flavor of your dataset, but often we
 would prefer to aggregate conditionally on some label or index: this is
 implemented in the so-called <code class="docutils literal notranslate"><span class="pre">groupby</span></code> operation. The name “group by”
@@ -8543,7 +8553,7 @@ comes from a command in the SQL database language, but it is perhaps
 more illuminative to think of it in the terms first coined by Hadley
 Wickham of Rstats fame: <em>split, apply, combine</em>.</p>
 <div class="section" id="split-apply-combine">
-<h3>Split, apply, combine<a class="headerlink" href="#split-apply-combine" title="Permalink to this headline">¶</a></h3>
+<h4>Split, apply, combine<a class="headerlink" href="#split-apply-combine" title="Permalink to this headline">¶</a></h4>
 <p>A canonical example of this split-apply-combine operation, where the
 “apply” is a summation aggregation, is illustrated in this figure:</p>
 <img alt="_images/03.08-split-apply-combine.png" src="_images/03.08-split-apply-combine.png" />
@@ -8695,7 +8705,7 @@ virtually any common Pandas or NumPy aggregation function, as well as
 virtually any valid <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> operation.</p>
 </div>
 <div class="section" id="the-groupby-object">
-<h3>The GroupBy object<a class="headerlink" href="#the-groupby-object" title="Permalink to this headline">¶</a></h3>
+<h4>The GroupBy object<a class="headerlink" href="#the-groupby-object" title="Permalink to this headline">¶</a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object is a very flexible abstraction. In many ways, you
 can simply treat it as if it’s a collection of <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s, and it
 does the difficult things under the hood. Let’s see some examples using
@@ -8705,7 +8715,7 @@ are <em>aggregate</em>, <em>filter</em>, <em>transform</em>, and <em>apply</em> 
 let’s introduce some of the other functionality that can be used with
 the basic <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> operation.</p>
 <div class="section" id="column-indexing">
-<h4>Column indexing<a class="headerlink" href="#column-indexing" title="Permalink to this headline">¶</a></h4>
+<h5>Column indexing<a class="headerlink" href="#column-indexing" title="Permalink to this headline">¶</a></h5>
 <p>The <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object supports column indexing in the same way as the
 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, and returns a modified <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">planets</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">)</span>
@@ -8743,7 +8753,7 @@ on the object:</p>
 </div>
 </div>
 <div class="section" id="iteration-over-groups">
-<h4>Iteration over groups<a class="headerlink" href="#iteration-over-groups" title="Permalink to this headline">¶</a></h4>
+<h5>Iteration over groups<a class="headerlink" href="#iteration-over-groups" title="Permalink to this headline">¶</a></h5>
 <p>The <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object supports direct iteration over the groups,
 returning each group as a <code class="docutils literal notranslate"><span class="pre">Series</span></code> or <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span> <span class="ow">in</span> <span class="n">planets</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;method&#39;</span><span class="p">):</span>
@@ -8764,7 +8774,7 @@ returning each group as a <code class="docutils literal notranslate"><span class
 </div>
 </div>
 <div class="section" id="dispatch-methods">
-<h4>Dispatch methods<a class="headerlink" href="#dispatch-methods" title="Permalink to this headline">¶</a></h4>
+<h5>Dispatch methods<a class="headerlink" href="#dispatch-methods" title="Permalink to this headline">¶</a></h5>
 <p>Through some Python class magic, any method not explicitly implemented
 by the <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object will be passed through and called on the
 groups, whether they are <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> or <code class="docutils literal notranslate"><span class="pre">Series</span></code> objects. For
@@ -8940,7 +8950,7 @@ operations!</p>
 </div>
 </div>
 <div class="section" id="aggregate-filter-transform-apply">
-<h3>Aggregate, filter, transform, apply<a class="headerlink" href="#aggregate-filter-transform-apply" title="Permalink to this headline">¶</a></h3>
+<h4>Aggregate, filter, transform, apply<a class="headerlink" href="#aggregate-filter-transform-apply" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> objects have <code class="docutils literal notranslate"><span class="pre">aggregate()</span></code>, <code class="docutils literal notranslate"><span class="pre">filter()</span></code>, <code class="docutils literal notranslate"><span class="pre">transform()</span></code>,
 and <code class="docutils literal notranslate"><span class="pre">apply()</span></code> methods that efficiently implement a variety of useful
 operations before combining the grouped data.</p>
@@ -9015,7 +9025,7 @@ operations before combining the grouped data.</p>
   </tbody>
 </table>
 </div><div class="section" id="aggregation">
-<h4>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h4>
+<h5>Aggregation<a class="headerlink" href="#aggregation" title="Permalink to this headline">¶</a></h5>
 <p>We’re now familiar with <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> aggregations with <code class="docutils literal notranslate"><span class="pre">sum()</span></code>,
 <code class="docutils literal notranslate"><span class="pre">median()</span></code>, and the like, but the <code class="docutils literal notranslate"><span class="pre">aggregate()</span></code> method allows for
 even more flexibility. It can take a string, a function, or a list
@@ -9099,7 +9109,7 @@ thereof, and compute all the aggregates at once.</p>
 </table>
 </div></div>
 <div class="section" id="filtering">
-<h4>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h4>
+<h5>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h5>
 <p>A filtering operation allows you to drop data based on the group
 properties. For example, we might want to keep all groups in which the
 standard deviation is larger than some critical value:</p>
@@ -9276,7 +9286,7 @@ standard deviation is larger than some critical value:</p>
 </div>
     </div></div>
 <div class="section" id="transformation">
-<h4>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">¶</a></h4>
+<h5>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">¶</a></h5>
 <p>While aggregation must return a reduced version of the data,
 transformation can return some transformed version of the full data to
 recombine. For such a transformation, the output is the same shape as
@@ -9341,7 +9351,7 @@ the input.</p>
 </table>
 </div></div>
 <div class="section" id="the-apply-method">
-<h4>The apply() method<a class="headerlink" href="#the-apply-method" title="Permalink to this headline">¶</a></h4>
+<h5>The apply() method<a class="headerlink" href="#the-apply-method" title="Permalink to this headline">¶</a></h5>
 <p>The <code class="docutils literal notranslate"><span class="pre">apply()</span></code> method lets you apply an arbitrary function to the group
 results. The function should take a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, and return either a
 Pandas object (e.g., <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, <code class="docutils literal notranslate"><span class="pre">Series</span></code>) or a scalar; the combine
@@ -9486,13 +9496,13 @@ operation will be tailored to the type of output returned.</p>
     </div></div>
 </div>
 <div class="section" id="specifying-the-split-key">
-<h3>Specifying the split key<a class="headerlink" href="#specifying-the-split-key" title="Permalink to this headline">¶</a></h3>
+<h4>Specifying the split key<a class="headerlink" href="#specifying-the-split-key" title="Permalink to this headline">¶</a></h4>
 <p>In the simple examples presented before, we split the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> on a
 single column name. This is just one of many options by which the groups
 can be defined, and we’ll go through some other options for group
 specification here.</p>
 <div class="section" id="a-list-array-series-or-index-providing-the-grouping-keys">
-<h4>A list, array, series, or index providing the grouping keys<a class="headerlink" href="#a-list-array-series-or-index-providing-the-grouping-keys" title="Permalink to this headline">¶</a></h4>
+<h5>A list, array, series, or index providing the grouping keys<a class="headerlink" href="#a-list-array-series-or-index-providing-the-grouping-keys" title="Permalink to this headline">¶</a></h5>
 <p>The key can be any series or list with a length matching that of the
 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
@@ -9725,7 +9735,7 @@ the <code class="docutils literal notranslate"><span class="pre">df.groupby('key
 </div>
     </div></div>
 <div class="section" id="a-dictionary-or-series-mapping-index-to-group">
-<h4>A dictionary or series mapping index to group<a class="headerlink" href="#a-dictionary-or-series-mapping-index-to-group" title="Permalink to this headline">¶</a></h4>
+<h5>A dictionary or series mapping index to group<a class="headerlink" href="#a-dictionary-or-series-mapping-index-to-group" title="Permalink to this headline">¶</a></h5>
 <p>Another method is to provide a dictionary that maps index values to the
 group keys:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">)</span>
@@ -9835,7 +9845,7 @@ group keys:</p>
 </div>
     </div></div>
 <div class="section" id="any-python-function">
-<h4>Any Python function<a class="headerlink" href="#any-python-function" title="Permalink to this headline">¶</a></h4>
+<h5>Any Python function<a class="headerlink" href="#any-python-function" title="Permalink to this headline">¶</a></h5>
 <p>Similar to mapping, you can pass any Python function that will input the
 index value and output the group:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="s1">&#39;df2&#39;</span><span class="p">,</span> <span class="s1">&#39;df2.groupby(str.lower).mean()&#39;</span><span class="p">)</span>
@@ -9948,7 +9958,7 @@ index value and output the group:</p>
 </div>
     </div></div>
 <div class="section" id="a-list-of-valid-keys">
-<h4>A list of valid keys<a class="headerlink" href="#a-list-of-valid-keys" title="Permalink to this headline">¶</a></h4>
+<h5>A list of valid keys<a class="headerlink" href="#a-list-of-valid-keys" title="Permalink to this headline">¶</a></h5>
 <p>Further, any of the preceding key choices can be combined to group on a
 multi-index:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">mapping</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -10001,7 +10011,7 @@ multi-index:</p>
 </div></div>
 </div>
 <div class="section" id="grouping-example">
-<h3>Grouping example<a class="headerlink" href="#grouping-example" title="Permalink to this headline">¶</a></h3>
+<h4>Grouping example<a class="headerlink" href="#grouping-example" title="Permalink to this headline">¶</a></h4>
 <p>As an example of this, in a couple lines of Python code we can put all
 these together and count discovered planets by method and by decade:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">decade</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">planets</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">//</span> <span class="mi">10</span><span class="p">)</span>
@@ -10122,7 +10132,7 @@ the past several decades!</p>
 </div>
 </div>
 <div class="section" id="pivot-tables">
-<h1>Pivot Tables<a class="headerlink" href="#pivot-tables" title="Permalink to this headline">¶</a></h1>
+<h2>Pivot Tables<a class="headerlink" href="#pivot-tables" title="Permalink to this headline">¶</a></h2>
 <p>We have seen how the <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> abstraction lets us explore
 relationships within a dataset. A <em>pivot table</em> is a similar operation
 that is commonly seen in spreadsheets and other programs that operate on
@@ -10135,7 +10145,7 @@ to think of pivot tables as essentially a <em>multidimensional</em> version of
 the split and the combine happen across not a one-dimensional index, but
 across a two-dimensional grid.</p>
 <div class="section" id="motivating-pivot-tables">
-<h2>Motivating Pivot Tables<a class="headerlink" href="#motivating-pivot-tables" title="Permalink to this headline">¶</a></h2>
+<h3>Motivating Pivot Tables<a class="headerlink" href="#motivating-pivot-tables" title="Permalink to this headline">¶</a></h3>
 <p>We’ll use the database of passengers on the <em>Titanic</em>, available through
 the Seaborn library:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -10273,7 +10283,7 @@ the Seaborn library:</p>
 </table>
 </div></div>
 <div class="section" id="pivot-tables-by-hand">
-<h2>Pivot Tables by Hand<a class="headerlink" href="#pivot-tables-by-hand" title="Permalink to this headline">¶</a></h2>
+<h3>Pivot Tables by Hand<a class="headerlink" href="#pivot-tables-by-hand" title="Permalink to this headline">¶</a></h3>
 <p>To start learning more about this data, we might begin by grouping
 according to gender, survival status, or some combination thereof. If
 you have read the previous section, you might be tempted to apply a
@@ -10382,7 +10392,7 @@ includes a convenience routine, <code class="docutils literal notranslate"><span
 handles this type of multi-dimensional aggregation.</p>
 </div>
 <div class="section" id="pivot-table-syntax">
-<h2>Pivot Table Syntax<a class="headerlink" href="#pivot-table-syntax" title="Permalink to this headline">¶</a></h2>
+<h3>Pivot Table Syntax<a class="headerlink" href="#pivot-table-syntax" title="Permalink to this headline">¶</a></h3>
 <p>Here is the equivalent to the preceding operation using the
 <code class="docutils literal notranslate"><span class="pre">pivot_table</span></code> method of <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;survived&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">)</span>
@@ -10438,7 +10448,7 @@ transatlantic cruise, the survival gradient favors both women and higher
 classes. First-class women survived with near certainty (hi, Rose!),
 while only one in ten third-class men survived (sorry, Jack!).</p>
 <div class="section" id="multi-level-pivot-tables">
-<h3>Multi-level pivot tables<a class="headerlink" href="#multi-level-pivot-tables" title="Permalink to this headline">¶</a></h3>
+<h4>Multi-level pivot tables<a class="headerlink" href="#multi-level-pivot-tables" title="Permalink to this headline">¶</a></h4>
 <p>Just as in the <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code>, the grouping in pivot tables can be
 specified with multiple levels, and via a number of options. For
 example, we might be interested in looking at age as a third dimension.
@@ -10606,7 +10616,7 @@ compute quantiles:</p>
 shown in a grid demonstrating the relationship between the values.</p>
 </div>
 <div class="section" id="additional-pivot-table-options">
-<h3>Additional pivot table options<a class="headerlink" href="#additional-pivot-table-options" title="Permalink to this headline">¶</a></h3>
+<h4>Additional pivot table options<a class="headerlink" href="#additional-pivot-table-options" title="Permalink to this headline">¶</a></h4>
 <p>The full call signature of the <code class="docutils literal notranslate"><span class="pre">pivot_table</span></code> method of
 <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s is as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># call signature as of Pandas 0.18</span>
@@ -10765,7 +10775,7 @@ the <code class="docutils literal notranslate"><span class="pre">margins_name</s
 </div>
 </div>
 <div class="section" id="example-birthrate-data">
-<h2>Example: Birthrate Data<a class="headerlink" href="#example-birthrate-data" title="Permalink to this headline">¶</a></h2>
+<h3>Example: Birthrate Data<a class="headerlink" href="#example-birthrate-data" title="Permalink to this headline">¶</a></h3>
 <p>As a more interesting example, let’s take a look at the freely available
 data on births in the United States, provided by the Centers for Disease
 Control (CDC). This data can be found at
@@ -11016,7 +11026,7 @@ year:</p>
 the annual trend in births by gender. By eye, it appears that over the
 past 50 years male births have outnumbered female births by around 5%.</p>
 <div class="section" id="further-data-exploration">
-<h3>Further data exploration<a class="headerlink" href="#further-data-exploration" title="Permalink to this headline">¶</a></h3>
+<h4>Further data exploration<a class="headerlink" href="#further-data-exploration" title="Permalink to this headline">¶</a></h4>
 <p>Though this doesn’t necessarily relate to the pivot table, there are a
 few more interesting features we can pull out of this dataset using the
 Pandas tools covered up to this point. We must start by cleaning the
@@ -11193,7 +11203,7 @@ insight from a variety of datasets.</p>
 </div>
 </div>
 <div class="section" id="working-with-time-series">
-<h1>Working with Time Series<a class="headerlink" href="#working-with-time-series" title="Permalink to this headline">¶</a></h1>
+<h2>Working with Time Series<a class="headerlink" href="#working-with-time-series" title="Permalink to this headline">¶</a></h2>
 <p>Pandas was developed in the context of financial modeling, so as you
 might expect, it contains a fairly extensive set of tools for working
 with dates, times, and time-indexed data. Date and time data comes in a
@@ -11210,13 +11220,13 @@ hour-long periods comprising days).</p></li>
 a duration of 22.56 seconds).</p></li>
 </ul>
 <div class="section" id="dates-and-times-in-python">
-<h2>Dates and Times in Python<a class="headerlink" href="#dates-and-times-in-python" title="Permalink to this headline">¶</a></h2>
+<h3>Dates and Times in Python<a class="headerlink" href="#dates-and-times-in-python" title="Permalink to this headline">¶</a></h3>
 <p>The Python world has a number of available representations of dates,
 times, deltas, and timespans. While the time series tools provided by
 Pandas tend to be the most useful for data science applications, it is
 helpful to see their relationship to other packages used in Python.</p>
 <div class="section" id="native-python-dates-and-times-datetime-and-dateutil">
-<h3>Native Python dates and times: <code class="docutils literal notranslate"><span class="pre">datetime</span></code> and <code class="docutils literal notranslate"><span class="pre">dateutil</span></code><a class="headerlink" href="#native-python-dates-and-times-datetime-and-dateutil" title="Permalink to this headline">¶</a></h3>
+<h4>Native Python dates and times: <code class="docutils literal notranslate"><span class="pre">datetime</span></code> and <code class="docutils literal notranslate"><span class="pre">dateutil</span></code><a class="headerlink" href="#native-python-dates-and-times-datetime-and-dateutil" title="Permalink to this headline">¶</a></h4>
 <p>Python’s basic objects for working with dates and times reside in the
 built-in <code class="docutils literal notranslate"><span class="pre">datetime</span></code> module. Along with the third-party <code class="docutils literal notranslate"><span class="pre">dateutil</span></code>
 module, you can use it to quickly perform a host of useful
@@ -11259,7 +11269,7 @@ compared to NumPy-style typed numerical arrays, lists of Python datetime
 objects are suboptimal compared to typed arrays of encoded dates.</p>
 </div>
 <div class="section" id="typed-arrays-of-times-numpys-datetime64">
-<h3>Typed arrays of times: NumPy’s <code class="docutils literal notranslate"><span class="pre">datetime64</span></code><a class="headerlink" href="#typed-arrays-of-times-numpys-datetime64" title="Permalink to this headline">¶</a></h3>
+<h4>Typed arrays of times: NumPy’s <code class="docutils literal notranslate"><span class="pre">datetime64</span></code><a class="headerlink" href="#typed-arrays-of-times-numpys-datetime64" title="Permalink to this headline">¶</a></h4>
 <p>The weaknesses of Python’s datetime format inspired the NumPy team to
 add a set of native time series data type to NumPy. The <code class="docutils literal notranslate"><span class="pre">datetime64</span></code>
 dtype encodes dates as 64-bit integers, and thus allows arrays of dates
@@ -11399,7 +11409,7 @@ relative and absolute timespans that they can encode:</p>
 </table>
 </div>
 <div class="section" id="dates-and-times-in-pandas-best-of-both-worlds">
-<h3>Dates and times in pandas: best of both worlds<a class="headerlink" href="#dates-and-times-in-pandas-best-of-both-worlds" title="Permalink to this headline">¶</a></h3>
+<h4>Dates and times in pandas: best of both worlds<a class="headerlink" href="#dates-and-times-in-pandas-best-of-both-worlds" title="Permalink to this headline">¶</a></h4>
 <p>Pandas builds upon all the tools just discussed to provide a
 <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> object, which combines the ease-of-use of <code class="docutils literal notranslate"><span class="pre">datetime</span></code> and
 <code class="docutils literal notranslate"><span class="pre">dateutil</span></code> with the efficient storage and vectorized interface of
@@ -11431,7 +11441,7 @@ in a <code class="docutils literal notranslate"><span class="pre">Series</span><
 </div>
 </div>
 <div class="section" id="pandas-time-series-indexing-by-time">
-<h2>Pandas Time Series: Indexing by Time<a class="headerlink" href="#pandas-time-series-indexing-by-time" title="Permalink to this headline">¶</a></h2>
+<h3>Pandas Time Series: Indexing by Time<a class="headerlink" href="#pandas-time-series-indexing-by-time" title="Permalink to this headline">¶</a></h3>
 <p>Where the Pandas time series tools really become useful is when you
 begin to <em>index data by timestamps</em>:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">([</span><span class="s1">&#39;2014-07-04&#39;</span><span class="p">,</span> <span class="s1">&#39;2014-08-04&#39;</span><span class="p">,</span> <span class="s1">&#39;2015-07-04&#39;</span><span class="p">,</span> <span class="s1">&#39;2015-08-04&#39;</span><span class="p">])</span>
@@ -11468,7 +11478,7 @@ dates:</p>
 </div>
 </div>
 <div class="section" id="pandas-time-series-data-structures">
-<h2>Pandas Time Series Data Structures<a class="headerlink" href="#pandas-time-series-data-structures" title="Permalink to this headline">¶</a></h2>
+<h3>Pandas Time Series Data Structures<a class="headerlink" href="#pandas-time-series-data-structures" title="Permalink to this headline">¶</a></h3>
 <p>The fundamental Pandas data structures for working with time series
 data:</p>
 <ul class="simple">
@@ -11519,7 +11529,7 @@ we’ll use <code class="docutils literal notranslate"><span class="pre">'D'</sp
 </pre></div>
 </div>
 <div class="section" id="regular-sequences-pd-date-range">
-<h3>Regular sequences: <code class="docutils literal notranslate"><span class="pre">pd.date_range()</span></code><a class="headerlink" href="#regular-sequences-pd-date-range" title="Permalink to this headline">¶</a></h3>
+<h4>Regular sequences: <code class="docutils literal notranslate"><span class="pre">pd.date_range()</span></code><a class="headerlink" href="#regular-sequences-pd-date-range" title="Permalink to this headline">¶</a></h4>
 <p>To make the creation of regular date sequences more convenient, Pandas
 offers a few functions for this purpose: <code class="docutils literal notranslate"><span class="pre">pd.date_range()</span></code> for
 timestamps, <code class="docutils literal notranslate"><span class="pre">pd.period_range()</span></code> for periods, and
@@ -11569,7 +11579,7 @@ timestamps, <code class="docutils literal notranslate"><span class="pre">pd.peri
 </div>
 </div>
 <div class="section" id="frequencies-and-offsets">
-<h2>Frequencies and Offsets<a class="headerlink" href="#frequencies-and-offsets" title="Permalink to this headline">¶</a></h2>
+<h3>Frequencies and Offsets<a class="headerlink" href="#frequencies-and-offsets" title="Permalink to this headline">¶</a></h3>
 <p>Fundamental to these Pandas time series tools is the concept of a
 frequency or date offset. Just as we saw the <code class="docutils literal notranslate"><span class="pre">D</span></code> (day) and <code class="docutils literal notranslate"><span class="pre">H</span></code>
 (hour) codes above, we can use such codes to specify any desired
@@ -11692,7 +11702,7 @@ For example, we can create a business day offset directly as follows:</p>
 </div>
 </div>
 <div class="section" id="resampling-shifting-and-windowing">
-<h2>Resampling, Shifting, and Windowing<a class="headerlink" href="#resampling-shifting-and-windowing" title="Permalink to this headline">¶</a></h2>
+<h3>Resampling, Shifting, and Windowing<a class="headerlink" href="#resampling-shifting-and-windowing" title="Permalink to this headline">¶</a></h3>
 <p>The ability to use dates and times as indices to intuitively organize
 and access data is an important piece of the Pandas time series tools.
 The benefits of indexed data in general (automatic alignment during
@@ -11771,7 +11781,7 @@ Finance, and others.</p>
 </div>
 <img alt="_images/pandas_522_0.png" src="_images/pandas_522_0.png" />
 <div class="section" id="resampling-and-converting-frequencies">
-<h3>Resampling and converting frequencies<a class="headerlink" href="#resampling-and-converting-frequencies" title="Permalink to this headline">¶</a></h3>
+<h4>Resampling and converting frequencies<a class="headerlink" href="#resampling-and-converting-frequencies" title="Permalink to this headline">¶</a></h4>
 <p>One common need for time series data is resampling at a higher or lower
 frequency. This can be done using the <code class="docutils literal notranslate"><span class="pre">resample()</span></code> method, or the much
 simpler <code class="docutils literal notranslate"><span class="pre">asfreq()</span></code> method. The primary difference between the two is
@@ -11814,7 +11824,7 @@ between two strategies for filling the gaps: forward-filling and
 backward-filling.</p>
 </div>
 <div class="section" id="time-shifts">
-<h3>Time-shifts<a class="headerlink" href="#time-shifts" title="Permalink to this headline">¶</a></h3>
+<h4>Time-shifts<a class="headerlink" href="#time-shifts" title="Permalink to this headline">¶</a></h4>
 <p>Another common time series-specific operation is shifting of data in
 time. Pandas has two closely related methods for computing this:
 <code class="docutils literal notranslate"><span class="pre">shift()</span></code> and <code class="docutils literal notranslate"><span class="pre">tshift()</span></code> In short, the difference between them is
@@ -11867,7 +11877,7 @@ retrospect) shortly after its IPO, and in the middle of the 2009
 recession.</p>
 </div>
 <div class="section" id="rolling-windows">
-<h3>Rolling windows<a class="headerlink" href="#rolling-windows" title="Permalink to this headline">¶</a></h3>
+<h4>Rolling windows<a class="headerlink" href="#rolling-windows" title="Permalink to this headline">¶</a></h4>
 <p>Rolling statistics are a third type of time series-specific operation
 implemented by Pandas. These can be accomplished via the <code class="docutils literal notranslate"><span class="pre">rolling()</span></code>
 attribute of <code class="docutils literal notranslate"><span class="pre">Series</span></code> and <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> objects, which returns a view
@@ -11891,7 +11901,7 @@ can be used for custom rolling computations.</p>
 </div>
 </div>
 <div class="section" id="example-visualizing-seattle-bicycle-counts">
-<h2>Example: Visualizing Seattle Bicycle Counts<a class="headerlink" href="#example-visualizing-seattle-bicycle-counts" title="Permalink to this headline">¶</a></h2>
+<h3>Example: Visualizing Seattle Bicycle Counts<a class="headerlink" href="#example-visualizing-seattle-bicycle-counts" title="Permalink to this headline">¶</a></h3>
 <p>As a more involved example of working with some time series data, let’s
 take a look at bicycle counts on Seattle’s <a class="reference external" href="http://www.openstreetmap.org/#map=17/47.64813/-122.34965">Fremont
 Bridge</a>.
@@ -12068,7 +12078,7 @@ adding a “Total” column:</p>
   </tbody>
 </table>
 </div><div class="section" id="visualizing-the-data">
-<h3>Visualizing the data<a class="headerlink" href="#visualizing-the-data" title="Permalink to this headline">¶</a></h3>
+<h4>Visualizing the data<a class="headerlink" href="#visualizing-the-data" title="Permalink to this headline">¶</a></h4>
 <p>We can gain some insight into the dataset by visualizing it:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">seaborn</span><span class="p">;</span> <span class="n">seaborn</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
@@ -12113,7 +12123,7 @@ days):</p>
 <img alt="_images/pandas_556_0.png" src="_images/pandas_556_0.png" />
 </div>
 <div class="section" id="digging-into-the-data">
-<h3>Digging into the data<a class="headerlink" href="#digging-into-the-data" title="Permalink to this headline">¶</a></h3>
+<h4>Digging into the data<a class="headerlink" href="#digging-into-the-data" title="Permalink to this headline">¶</a></h4>
 <p>While these smoothed data views are useful to get an idea of the general
 trend in the data, they hide much of the interesting structure. For
 example, we might want to look at the average traffic as a function of
@@ -12163,6 +12173,7 @@ the work week, and a unimodal recreational pattern during the weekends.</p>
 </div>
 </div>
 </div>
+</div>
 
 
             <div class="clearer"></div>
@@ -12173,7 +12184,8 @@ the work week, and a unimodal recreational pattern during the weekends.</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Introducing Pandas Objects</a><ul>
+<li><a class="reference internal" href="#">pandas module</a><ul>
+<li><a class="reference internal" href="#introducing-pandas-objects">Introducing Pandas Objects</a><ul>
 <li><a class="reference internal" href="#the-pandas-series-object">The Pandas Series Object</a><ul>
 <li><a class="reference internal" href="#series-as-generalized-numpy-array"><code class="docutils literal notranslate"><span class="pre">Series</span></code> as generalized NumPy array</a></li>
 <li><a class="reference internal" href="#series-as-specialized-dictionary">Series as specialized dictionary</a></li>
@@ -12368,7 +12380,15 @@ the work week, and a unimodal recreational pattern during the weekends.</p>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="numpy.html"
+                        title="previous chapter">numpy module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="matplotlib.html"
+                        title="next chapter">matplotlib module</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -12396,8 +12416,14 @@ the work week, and a unimodal recreational pattern during the weekends.</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="matplotlib.html" title="matplotlib module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="numpy.html" title="numpy module"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Introducing Pandas Objects</a></li> 
+        <li class="nav-item nav-item-this"><a href="">pandas module</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
