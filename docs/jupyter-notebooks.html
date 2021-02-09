@@ -7,39 +7,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jupyter notebooks &#8212; APAD course  documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="numpy module" href="numpy.html" />
-    <link rel="prev" title="Introduction" href="introduction.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="numpy.html" title="numpy module"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="introduction.html" title="Introduction"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Jupyter notebooks</a></li> 
-      </ul>
-    </div>  
+    <link rel="prev" title="Introduction" href="introduction.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <div class="document">
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">APAD course</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=massimo-nocentini&repo=APAD-course&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Jupyter notebooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ipython-beyond-normal-python">IPython: Beyond Normal Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#shell-or-notebook">Shell or Notebook?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#launching-the-ipython-shell">Launching the IPython Shell</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#launching-the-jupyter-notebook">Launching the Jupyter Notebook</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#help-and-documentation-in-ipython">Help and Documentation in IPython</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#accessing-documentation-with">Accessing Documentation with <code class="docutils literal notranslate"><span class="pre">?</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessing-source-code-with">Accessing Source Code with <code class="docutils literal notranslate"><span class="pre">??</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exploring-modules-with-tab-completion">Exploring Modules with Tab-Completion</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tab-completion-of-object-contents">Tab-completion of object contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tab-completion-when-importing">Tab completion when importing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#beyond-tab-completion-wildcard-matching">Beyond tab completion: wildcard matching</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ipython-magic-commands">IPython Magic Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#running-external-code-run">Running External Code: <code class="docutils literal notranslate"><span class="pre">%run</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#timing-code-execution-timeit">Timing Code Execution: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#help-on-magic-functions-magic-and-lsmagic">Help on Magic Functions: <code class="docutils literal notranslate"><span class="pre">?</span></code>, <code class="docutils literal notranslate"><span class="pre">%magic</span></code>, and <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#input-and-output-history">Input and Output History</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ipythons-in-and-out-objects">IPython’s <code class="docutils literal notranslate"><span class="pre">In</span></code> and <code class="docutils literal notranslate"><span class="pre">Out</span></code> Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#underscore-shortcuts-and-previous-outputs">Underscore Shortcuts and Previous Outputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#suppressing-output">Suppressing Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#related-magic-commands">Related Magic Commands</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ipython-and-shell-commands">IPython and Shell Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quick-introduction-to-the-shell">Quick Introduction to the Shell</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shell-commands-in-ipython">Shell Commands in IPython</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#passing-values-to-and-from-the-shell">Passing Values to and from the Shell</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#errors-and-debugging">Errors and Debugging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#controlling-exceptions-xmode">Controlling Exceptions: <code class="docutils literal notranslate"><span class="pre">%xmode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debugging-when-reading-tracebacks-is-not-enough">Debugging: When Reading Tracebacks Is Not Enough</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#partial-list-of-debugging-commands">Partial list of debugging commands</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#profiling-and-timing-code">Profiling and Timing Code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#timing-code-snippets-timeit-and-time">Timing Code Snippets: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> and <code class="docutils literal notranslate"><span class="pre">%time</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#profiling-full-scripts-prun">Profiling Full Scripts: <code class="docutils literal notranslate"><span class="pre">%prun</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#line-by-line-profiling-with-lprun">Line-By-Line Profiling with <code class="docutils literal notranslate"><span class="pre">%lprun</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#line-hits-time-per-hit-time-line-contents">Line # Hits Time Per Hit % Time Line Contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#profiling-memory-use-memit-and-mprun">Profiling Memory Use: <code class="docutils literal notranslate"><span class="pre">%memit</span></code> and <code class="docutils literal notranslate"><span class="pre">%mprun</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#line-mem-usage-increment-line-contents">Line # Mem usage Increment Line Contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="numpy.html">numpy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas.html">pandas module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matplotlib.html">matplotlib module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networkx.html">networkx module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gotchas.html">Tips an’ Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="introduction.html" title="previous chapter">Introduction</a></li>
+      <li>Next: <a href="numpy.html" title="next chapter">numpy module</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
+              <div class="related top">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="introduction.html" title="Previous document">Introduction</a>
+        </li>
+        <li>
+          <a href="numpy.html" title="Next document">numpy module</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+
           <div class="body" role="main">
             
   <div class="section" id="jupyter-notebooks">
@@ -1596,122 +1719,41 @@ available options, use the IPython help functionality (i.e., type
 </div>
 
 
-            <div class="clearer"></div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Jupyter notebooks</a><ul>
-<li><a class="reference internal" href="#ipython-beyond-normal-python">IPython: Beyond Normal Python</a><ul>
-<li><a class="reference internal" href="#shell-or-notebook">Shell or Notebook?</a><ul>
-<li><a class="reference internal" href="#launching-the-ipython-shell">Launching the IPython Shell</a></li>
-<li><a class="reference internal" href="#launching-the-jupyter-notebook">Launching the Jupyter Notebook</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#help-and-documentation-in-ipython">Help and Documentation in IPython</a><ul>
-<li><a class="reference internal" href="#accessing-documentation-with">Accessing Documentation with <code class="docutils literal notranslate"><span class="pre">?</span></code></a></li>
-<li><a class="reference internal" href="#accessing-source-code-with">Accessing Source Code with <code class="docutils literal notranslate"><span class="pre">??</span></code></a></li>
-<li><a class="reference internal" href="#exploring-modules-with-tab-completion">Exploring Modules with Tab-Completion</a><ul>
-<li><a class="reference internal" href="#tab-completion-of-object-contents">Tab-completion of object contents</a></li>
-<li><a class="reference internal" href="#tab-completion-when-importing">Tab completion when importing</a></li>
-<li><a class="reference internal" href="#beyond-tab-completion-wildcard-matching">Beyond tab completion: wildcard matching</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#ipython-magic-commands">IPython Magic Commands</a><ul>
-<li><a class="reference internal" href="#running-external-code-run">Running External Code: <code class="docutils literal notranslate"><span class="pre">%run</span></code></a></li>
-<li><a class="reference internal" href="#timing-code-execution-timeit">Timing Code Execution: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code></a></li>
-<li><a class="reference internal" href="#help-on-magic-functions-magic-and-lsmagic">Help on Magic Functions: <code class="docutils literal notranslate"><span class="pre">?</span></code>, <code class="docutils literal notranslate"><span class="pre">%magic</span></code>, and <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#input-and-output-history">Input and Output History</a><ul>
-<li><a class="reference internal" href="#ipythons-in-and-out-objects">IPython’s <code class="docutils literal notranslate"><span class="pre">In</span></code> and <code class="docutils literal notranslate"><span class="pre">Out</span></code> Objects</a></li>
-<li><a class="reference internal" href="#underscore-shortcuts-and-previous-outputs">Underscore Shortcuts and Previous Outputs</a></li>
-<li><a class="reference internal" href="#suppressing-output">Suppressing Output</a></li>
-<li><a class="reference internal" href="#related-magic-commands">Related Magic Commands</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#ipython-and-shell-commands">IPython and Shell Commands</a><ul>
-<li><a class="reference internal" href="#quick-introduction-to-the-shell">Quick Introduction to the Shell</a></li>
-<li><a class="reference internal" href="#shell-commands-in-ipython">Shell Commands in IPython</a></li>
-<li><a class="reference internal" href="#passing-values-to-and-from-the-shell">Passing Values to and from the Shell</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#errors-and-debugging">Errors and Debugging</a><ul>
-<li><a class="reference internal" href="#controlling-exceptions-xmode">Controlling Exceptions: <code class="docutils literal notranslate"><span class="pre">%xmode</span></code></a></li>
-<li><a class="reference internal" href="#debugging-when-reading-tracebacks-is-not-enough">Debugging: When Reading Tracebacks Is Not Enough</a><ul>
-<li><a class="reference internal" href="#partial-list-of-debugging-commands">Partial list of debugging commands</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#profiling-and-timing-code">Profiling and Timing Code</a><ul>
-<li><a class="reference internal" href="#timing-code-snippets-timeit-and-time">Timing Code Snippets: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> and <code class="docutils literal notranslate"><span class="pre">%time</span></code></a></li>
-<li><a class="reference internal" href="#profiling-full-scripts-prun">Profiling Full Scripts: <code class="docutils literal notranslate"><span class="pre">%prun</span></code></a></li>
-<li><a class="reference internal" href="#line-by-line-profiling-with-lprun">Line-By-Line Profiling with <code class="docutils literal notranslate"><span class="pre">%lprun</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#line-hits-time-per-hit-time-line-contents">Line # Hits Time Per Hit % Time Line Contents</a><ul>
-<li><a class="reference internal" href="#profiling-memory-use-memit-and-mprun">Profiling Memory Use: <code class="docutils literal notranslate"><span class="pre">%memit</span></code> and <code class="docutils literal notranslate"><span class="pre">%mprun</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#line-mem-usage-increment-line-contents">Line # Mem usage Increment Line Contents</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="introduction.html"
-                        title="previous chapter">Introduction</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="numpy.html"
-                        title="next chapter">numpy module</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/jupyter-notebooks.rst.txt"
-            rel="nofollow">Show Source</a></li>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="introduction.html" title="Previous document">Introduction</a>
+        </li>
+        <li>
+          <a href="numpy.html" title="Next document">numpy module</a>
+          &rarr;
+        </li>
     </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+  </nav>
+              </div>
+          
         </div>
       </div>
-      <div class="clearer"></div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, Massimo Nocentini.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/jupyter-notebooks.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="numpy.html" title="numpy module"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="introduction.html" title="Introduction"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Jupyter notebooks</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2021, Massimo Nocentini.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
-    </div>
+
+    
+
+    
   </body>
 </html>

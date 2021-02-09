@@ -7,39 +7,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>matplotlib module &#8212; APAD course  documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="networkx module" href="networkx.html" />
-    <link rel="prev" title="pandas module" href="pandas.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="networkx.html" title="networkx module"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="pandas.html" title="pandas module"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">matplotlib module</a></li> 
-      </ul>
-    </div>  
+    <link rel="prev" title="pandas module" href="pandas.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <div class="document">
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">APAD course</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=massimo-nocentini&repo=APAD-course&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter-notebooks.html">Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy.html">numpy module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas.html">pandas module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">matplotlib module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#visualization-with-matplotlib">Visualization with Matplotlib</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#importing-matplotlib">Importing Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-styles">Setting Styles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#general-matplotlib-tips">General Matplotlib Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#saving-figures-to-file">Saving Figures to File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#two-interfaces-for-the-price-of-one">Two Interfaces for the Price of One</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#simple-line-plots">Simple Line Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simple-scatter-plots">Simple Scatter Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualizing-errors">Visualizing Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#density-and-contour-plots">Density and Contour Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#histograms-binnings-and-density">Histograms, Binnings, and Density</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plt-hist2d-two-dimensional-histogram"><code class="docutils literal notranslate"><span class="pre">plt.hist2d</span></code>: Two-dimensional histogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plt-hexbin-hexagonal-binnings"><code class="docutils literal notranslate"><span class="pre">plt.hexbin</span></code>: Hexagonal binnings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kernel-density-estimation">Kernel density estimation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#customizing-plot-legends">Customizing Plot Legends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#customizing-colorbars">Customizing Colorbars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#choosing-the-colormap">Choosing the Colormap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#color-limits-and-extensions">Color limits and extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#discrete-color-bars">Discrete Color Bars</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-handwritten-digits">Example: Handwritten Digits</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#multiple-subplots">Multiple Subplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#text-and-annotation">Text and Annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#customizing-ticks">Customizing Ticks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#customizing-matplotlib-configurations-and-stylesheets">Customizing Matplotlib: Configurations and Stylesheets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#default-style">Default style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fivethiryeight-style">FiveThiryEight style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ggplot">ggplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bayesian-methods-for-hackers-style"><em>Bayesian Methods for Hackers</em> style</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#seaborn-style">Seaborn style</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#three-dimensional-plotting-in-matplotlib">Three-Dimensional Plotting in Matplotlib</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-visualizing-a-mobius-strip">Example: Visualizing a Möbius strip</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#visualization-with-seaborn">Visualization with Seaborn</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#histograms-kde-and-densities">Histograms, KDE, and densities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pair-plots">Pair plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#faceted-histograms">Faceted histograms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#factor-plots">Factor plots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#joint-distributions">Joint distributions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bar-plots">Bar plots</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-exploring-marathon-finishing-times">Example: Exploring Marathon Finishing Times</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="networkx.html">networkx module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gotchas.html">Tips an’ Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="pandas.html" title="previous chapter">pandas module</a></li>
+      <li>Next: <a href="networkx.html" title="next chapter">networkx module</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
+              <div class="related top">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="pandas.html" title="Previous document">pandas module</a>
+        </li>
+        <li>
+          <a href="networkx.html" title="Next document">networkx module</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+
           <div class="body" role="main">
             
   <div class="section" id="matplotlib-module">
@@ -3243,131 +3368,41 @@ regression to the data:</p>
 </div>
 
 
-            <div class="clearer"></div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">matplotlib module</a><ul>
-<li><a class="reference internal" href="#visualization-with-matplotlib">Visualization with Matplotlib</a><ul>
-<li><a class="reference internal" href="#importing-matplotlib">Importing Matplotlib</a></li>
-<li><a class="reference internal" href="#setting-styles">Setting Styles</a><ul>
-<li><a class="reference internal" href="#general-matplotlib-tips">General Matplotlib Tips</a><ul>
-<li><a class="reference internal" href="#plotting-from-an-ipython-notebook">Plotting from an IPython notebook</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#saving-figures-to-file">Saving Figures to File</a><ul>
-<li><a class="reference internal" href="#two-interfaces-for-the-price-of-one">Two Interfaces for the Price of One</a><ul>
-<li><a class="reference internal" href="#matlab-style-interface">MATLAB-style Interface</a></li>
-<li><a class="reference internal" href="#object-oriented-interface">Object-oriented interface</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#simple-line-plots">Simple Line Plots</a></li>
-<li><a class="reference internal" href="#simple-scatter-plots">Simple Scatter Plots</a></li>
-<li><a class="reference internal" href="#visualizing-errors">Visualizing Errors</a></li>
-<li><a class="reference internal" href="#density-and-contour-plots">Density and Contour Plots</a></li>
-<li><a class="reference internal" href="#histograms-binnings-and-density">Histograms, Binnings, and Density</a><ul>
-<li><a class="reference internal" href="#plt-hist2d-two-dimensional-histogram"><code class="docutils literal notranslate"><span class="pre">plt.hist2d</span></code>: Two-dimensional histogram</a></li>
-<li><a class="reference internal" href="#plt-hexbin-hexagonal-binnings"><code class="docutils literal notranslate"><span class="pre">plt.hexbin</span></code>: Hexagonal binnings</a></li>
-<li><a class="reference internal" href="#kernel-density-estimation">Kernel density estimation</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#customizing-plot-legends">Customizing Plot Legends</a></li>
-<li><a class="reference internal" href="#customizing-colorbars">Customizing Colorbars</a><ul>
-<li><a class="reference internal" href="#choosing-the-colormap">Choosing the Colormap</a></li>
-<li><a class="reference internal" href="#color-limits-and-extensions">Color limits and extensions</a></li>
-<li><a class="reference internal" href="#discrete-color-bars">Discrete Color Bars</a><ul>
-<li><a class="reference internal" href="#example-handwritten-digits">Example: Handwritten Digits</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#multiple-subplots">Multiple Subplots</a></li>
-<li><a class="reference internal" href="#text-and-annotation">Text and Annotation</a></li>
-<li><a class="reference internal" href="#customizing-ticks">Customizing Ticks</a></li>
-<li><a class="reference internal" href="#customizing-matplotlib-configurations-and-stylesheets">Customizing Matplotlib: Configurations and Stylesheets</a><ul>
-<li><a class="reference internal" href="#default-style">Default style</a></li>
-<li><a class="reference internal" href="#fivethiryeight-style">FiveThiryEight style</a></li>
-<li><a class="reference internal" href="#ggplot">ggplot</a></li>
-<li><a class="reference internal" href="#bayesian-methods-for-hackers-style"><em>Bayesian Methods for Hackers</em> style</a></li>
-<li><a class="reference internal" href="#seaborn-style">Seaborn style</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#three-dimensional-plotting-in-matplotlib">Three-Dimensional Plotting in Matplotlib</a><ul>
-<li><a class="reference internal" href="#example-visualizing-a-mobius-strip">Example: Visualizing a Möbius strip</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#visualization-with-seaborn">Visualization with Seaborn</a><ul>
-<li><a class="reference internal" href="#histograms-kde-and-densities">Histograms, KDE, and densities</a></li>
-<li><a class="reference internal" href="#pair-plots">Pair plots</a></li>
-<li><a class="reference internal" href="#faceted-histograms">Faceted histograms</a></li>
-<li><a class="reference internal" href="#factor-plots">Factor plots</a></li>
-<li><a class="reference internal" href="#joint-distributions">Joint distributions</a></li>
-<li><a class="reference internal" href="#bar-plots">Bar plots</a><ul>
-<li><a class="reference internal" href="#example-exploring-marathon-finishing-times">Example: Exploring Marathon Finishing Times</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="pandas.html"
-                        title="previous chapter">pandas module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="networkx.html"
-                        title="next chapter">networkx module</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/matplotlib.rst.txt"
-            rel="nofollow">Show Source</a></li>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="pandas.html" title="Previous document">pandas module</a>
+        </li>
+        <li>
+          <a href="networkx.html" title="Next document">networkx module</a>
+          &rarr;
+        </li>
     </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+  </nav>
+              </div>
+          
         </div>
       </div>
-      <div class="clearer"></div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, Massimo Nocentini.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/matplotlib.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="networkx.html" title="networkx module"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="pandas.html" title="pandas module"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">matplotlib module</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2021, Massimo Nocentini.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
-    </div>
+
+    
+
+    
   </body>
 </html>

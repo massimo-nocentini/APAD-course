@@ -7,39 +7,272 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pandas module &#8212; APAD course  documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="matplotlib module" href="matplotlib.html" />
-    <link rel="prev" title="numpy module" href="numpy.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="matplotlib.html" title="matplotlib module"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="numpy.html" title="numpy module"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">pandas module</a></li> 
-      </ul>
-    </div>  
+    <link rel="prev" title="numpy module" href="numpy.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <div class="document">
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">APAD course</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=massimo-nocentini&repo=APAD-course&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter-notebooks.html">Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy.html">numpy module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pandas module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introducing-pandas-objects">Introducing Pandas Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-pandas-series-object">The Pandas Series Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#series-as-generalized-numpy-array"><code class="docutils literal notranslate"><span class="pre">Series</span></code> as generalized NumPy array</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#series-as-specialized-dictionary">Series as specialized dictionary</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-pandas-dataframe-object">The Pandas DataFrame Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dataframe-as-a-generalized-numpy-array">DataFrame as a generalized NumPy array</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dataframe-as-specialized-dictionary">DataFrame as specialized dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#constructing-dataframe-objects">Constructing DataFrame objects</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-pandas-index-object">The Pandas Index Object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#index-as-immutable-array">Index as immutable array</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#index-as-ordered-set">Index as ordered set</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-indexing-and-selection">Data Indexing and Selection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-selection-in-series">Data Selection in Series</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#series-as-dictionary">Series as dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#series-as-one-dimensional-array">Series as one-dimensional array</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#indexers-loc-iloc-and-ix">Indexers: loc, iloc, and ix</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#data-selection-in-dataframe">Data Selection in DataFrame</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dataframe-as-two-dimensional-array">DataFrame as two-dimensional array</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-indexing-conventions">Additional indexing conventions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#operating-on-data-in-pandas">Operating on Data in Pandas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ufuncs-index-preservation">Ufuncs: Index Preservation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ufuncs-index-alignment">UFuncs: Index Alignment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#index-alignment-in-series">Index alignment in Series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#index-alignment-in-dataframe">Index alignment in DataFrame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ufuncs-operations-between-dataframe-and-series">Ufuncs: Operations Between DataFrame and Series</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#handling-missing-data">Handling Missing Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#trade-offs-in-missing-data-conventions">Trade-Offs in Missing Data Conventions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#missing-data-in-pandas">Missing Data in Pandas</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#none-pythonic-missing-data"><code class="docutils literal notranslate"><span class="pre">None</span></code>: Pythonic missing data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nan-missing-numerical-data"><code class="docutils literal notranslate"><span class="pre">NaN</span></code>: Missing numerical data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nan-and-none-in-pandas">NaN and None in Pandas</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#operating-on-null-values">Operating on Null Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#detecting-null-values">Detecting null values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dropping-null-values">Dropping null values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filling-null-values">Filling null values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hierarchical-indexing">Hierarchical Indexing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#a-multiply-indexed-series">A Multiply Indexed Series</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-bad-way">The bad way</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-better-way-pandas-multiindex">The Better Way: Pandas MultiIndex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiindex-as-extra-dimension">MultiIndex as extra dimension</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#methods-of-multiindex-creation">Methods of MultiIndex Creation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#explicit-multiindex-constructors">Explicit MultiIndex constructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiindex-level-names">MultiIndex level names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiindex-for-columns">MultiIndex for columns</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#indexing-and-slicing-a-multiindex">Indexing and Slicing a MultiIndex</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#multiply-indexed-series">Multiply indexed Series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiply-indexed-dataframes">Multiply indexed DataFrames</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rearranging-multi-indices">Rearranging Multi-Indices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sorted-and-unsorted-indices">Sorted and unsorted indices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stacking-and-unstacking-indices">Stacking and unstacking indices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#index-setting-and-resetting">Index setting and resetting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#data-aggregations-on-multi-indices">Data Aggregations on Multi-Indices</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#combining-datasets-concat-and-append">Combining Datasets: Concat and Append</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simple-concatenation-with-pd-concat">Simple Concatenation with <code class="docutils literal notranslate"><span class="pre">pd.concat</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#duplicate-indices">Duplicate indices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#concatenation-with-joins">Concatenation with joins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-append-method">The <code class="docutils literal notranslate"><span class="pre">append()</span></code> method</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#combining-datasets-merge-and-join">Combining Datasets: Merge and Join</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#relational-algebra">Relational Algebra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#categories-of-joins">Categories of Joins</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#one-to-one-joins">One-to-one joins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#many-to-one-joins">Many-to-one joins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#many-to-many-joins">Many-to-many joins</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#specification-of-the-merge-key">Specification of the Merge Key</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-on-keyword">The <code class="docutils literal notranslate"><span class="pre">on</span></code> keyword</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-left-on-and-right-on-keywords">The <code class="docutils literal notranslate"><span class="pre">left_on</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on</span></code> keywords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-left-index-and-right-index-keywords">The <code class="docutils literal notranslate"><span class="pre">left_index</span></code> and <code class="docutils literal notranslate"><span class="pre">right_index</span></code> keywords</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#specifying-set-arithmetic-for-joins">Specifying Set Arithmetic for Joins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overlapping-column-names-the-suffixes-keyword">Overlapping Column Names: The <code class="docutils literal notranslate"><span class="pre">suffixes</span></code> Keyword</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-us-states-data">Example: US States Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#aggregation-and-grouping">Aggregation and Grouping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#planets-data">Planets Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-aggregation-in-pandas">Simple Aggregation in Pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#groupby-split-apply-combine">GroupBy: Split, Apply, Combine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#split-apply-combine">Split, apply, combine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-groupby-object">The GroupBy object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aggregate-filter-transform-apply">Aggregate, filter, transform, apply</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#specifying-the-split-key">Specifying the split key</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#grouping-example">Grouping example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pivot-tables">Pivot Tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#motivating-pivot-tables">Motivating Pivot Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pivot-tables-by-hand">Pivot Tables by Hand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pivot-table-syntax">Pivot Table Syntax</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#multi-level-pivot-tables">Multi-level pivot tables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-pivot-table-options">Additional pivot table options</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example-birthrate-data">Example: Birthrate Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#further-data-exploration">Further data exploration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-time-series">Working with Time Series</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dates-and-times-in-python">Dates and Times in Python</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#native-python-dates-and-times-datetime-and-dateutil">Native Python dates and times: <code class="docutils literal notranslate"><span class="pre">datetime</span></code> and <code class="docutils literal notranslate"><span class="pre">dateutil</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#typed-arrays-of-times-numpys-datetime64">Typed arrays of times: NumPy’s <code class="docutils literal notranslate"><span class="pre">datetime64</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dates-and-times-in-pandas-best-of-both-worlds">Dates and times in pandas: best of both worlds</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pandas-time-series-indexing-by-time">Pandas Time Series: Indexing by Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pandas-time-series-data-structures">Pandas Time Series Data Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#regular-sequences-pd-date-range">Regular sequences: <code class="docutils literal notranslate"><span class="pre">pd.date_range()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#frequencies-and-offsets">Frequencies and Offsets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resampling-shifting-and-windowing">Resampling, Shifting, and Windowing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#resampling-and-converting-frequencies">Resampling and converting frequencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#time-shifts">Time-shifts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rolling-windows">Rolling windows</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example-visualizing-seattle-bicycle-counts">Example: Visualizing Seattle Bicycle Counts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#visualizing-the-data">Visualizing the data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#digging-into-the-data">Digging into the data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="matplotlib.html">matplotlib module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networkx.html">networkx module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gotchas.html">Tips an’ Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="numpy.html" title="previous chapter">numpy module</a></li>
+      <li>Next: <a href="matplotlib.html" title="next chapter">matplotlib module</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
+              <div class="related top">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="numpy.html" title="Previous document">numpy module</a>
+        </li>
+        <li>
+          <a href="matplotlib.html" title="Next document">matplotlib module</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+
           <div class="body" role="main">
             
   <div class="section" id="pandas-module">
@@ -12176,259 +12409,41 @@ the work week, and a unimodal recreational pattern during the weekends.</p>
 </div>
 
 
-            <div class="clearer"></div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">pandas module</a><ul>
-<li><a class="reference internal" href="#introducing-pandas-objects">Introducing Pandas Objects</a><ul>
-<li><a class="reference internal" href="#the-pandas-series-object">The Pandas Series Object</a><ul>
-<li><a class="reference internal" href="#series-as-generalized-numpy-array"><code class="docutils literal notranslate"><span class="pre">Series</span></code> as generalized NumPy array</a></li>
-<li><a class="reference internal" href="#series-as-specialized-dictionary">Series as specialized dictionary</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#the-pandas-dataframe-object">The Pandas DataFrame Object</a><ul>
-<li><a class="reference internal" href="#dataframe-as-a-generalized-numpy-array">DataFrame as a generalized NumPy array</a></li>
-<li><a class="reference internal" href="#dataframe-as-specialized-dictionary">DataFrame as specialized dictionary</a></li>
-<li><a class="reference internal" href="#constructing-dataframe-objects">Constructing DataFrame objects</a><ul>
-<li><a class="reference internal" href="#from-a-single-series-object">From a single Series object</a></li>
-<li><a class="reference internal" href="#from-a-list-of-dicts">From a list of dicts</a></li>
-<li><a class="reference internal" href="#from-a-two-dimensional-numpy-array">From a two-dimensional NumPy array</a></li>
-<li><a class="reference internal" href="#from-a-numpy-structured-array">From a NumPy structured array</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#the-pandas-index-object">The Pandas Index Object</a><ul>
-<li><a class="reference internal" href="#index-as-immutable-array">Index as immutable array</a></li>
-<li><a class="reference internal" href="#index-as-ordered-set">Index as ordered set</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#data-indexing-and-selection">Data Indexing and Selection</a><ul>
-<li><a class="reference internal" href="#data-selection-in-series">Data Selection in Series</a><ul>
-<li><a class="reference internal" href="#series-as-dictionary">Series as dictionary</a></li>
-<li><a class="reference internal" href="#series-as-one-dimensional-array">Series as one-dimensional array</a></li>
-<li><a class="reference internal" href="#indexers-loc-iloc-and-ix">Indexers: loc, iloc, and ix</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#data-selection-in-dataframe">Data Selection in DataFrame</a><ul>
-<li><a class="reference internal" href="#dataframe-as-two-dimensional-array">DataFrame as two-dimensional array</a></li>
-<li><a class="reference internal" href="#additional-indexing-conventions">Additional indexing conventions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#operating-on-data-in-pandas">Operating on Data in Pandas</a><ul>
-<li><a class="reference internal" href="#ufuncs-index-preservation">Ufuncs: Index Preservation</a></li>
-<li><a class="reference internal" href="#ufuncs-index-alignment">UFuncs: Index Alignment</a><ul>
-<li><a class="reference internal" href="#index-alignment-in-series">Index alignment in Series</a></li>
-<li><a class="reference internal" href="#index-alignment-in-dataframe">Index alignment in DataFrame</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#ufuncs-operations-between-dataframe-and-series">Ufuncs: Operations Between DataFrame and Series</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#handling-missing-data">Handling Missing Data</a><ul>
-<li><a class="reference internal" href="#trade-offs-in-missing-data-conventions">Trade-Offs in Missing Data Conventions</a></li>
-<li><a class="reference internal" href="#missing-data-in-pandas">Missing Data in Pandas</a><ul>
-<li><a class="reference internal" href="#none-pythonic-missing-data"><code class="docutils literal notranslate"><span class="pre">None</span></code>: Pythonic missing data</a></li>
-<li><a class="reference internal" href="#nan-missing-numerical-data"><code class="docutils literal notranslate"><span class="pre">NaN</span></code>: Missing numerical data</a></li>
-<li><a class="reference internal" href="#nan-and-none-in-pandas">NaN and None in Pandas</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#operating-on-null-values">Operating on Null Values</a><ul>
-<li><a class="reference internal" href="#detecting-null-values">Detecting null values</a></li>
-<li><a class="reference internal" href="#dropping-null-values">Dropping null values</a></li>
-<li><a class="reference internal" href="#filling-null-values">Filling null values</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#hierarchical-indexing">Hierarchical Indexing</a><ul>
-<li><a class="reference internal" href="#a-multiply-indexed-series">A Multiply Indexed Series</a><ul>
-<li><a class="reference internal" href="#the-bad-way">The bad way</a></li>
-<li><a class="reference internal" href="#the-better-way-pandas-multiindex">The Better Way: Pandas MultiIndex</a></li>
-<li><a class="reference internal" href="#multiindex-as-extra-dimension">MultiIndex as extra dimension</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#methods-of-multiindex-creation">Methods of MultiIndex Creation</a><ul>
-<li><a class="reference internal" href="#explicit-multiindex-constructors">Explicit MultiIndex constructors</a></li>
-<li><a class="reference internal" href="#multiindex-level-names">MultiIndex level names</a></li>
-<li><a class="reference internal" href="#multiindex-for-columns">MultiIndex for columns</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#indexing-and-slicing-a-multiindex">Indexing and Slicing a MultiIndex</a><ul>
-<li><a class="reference internal" href="#multiply-indexed-series">Multiply indexed Series</a></li>
-<li><a class="reference internal" href="#multiply-indexed-dataframes">Multiply indexed DataFrames</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#rearranging-multi-indices">Rearranging Multi-Indices</a><ul>
-<li><a class="reference internal" href="#sorted-and-unsorted-indices">Sorted and unsorted indices</a></li>
-<li><a class="reference internal" href="#stacking-and-unstacking-indices">Stacking and unstacking indices</a></li>
-<li><a class="reference internal" href="#index-setting-and-resetting">Index setting and resetting</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#data-aggregations-on-multi-indices">Data Aggregations on Multi-Indices</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#combining-datasets-concat-and-append">Combining Datasets: Concat and Append</a><ul>
-<li><a class="reference internal" href="#simple-concatenation-with-pd-concat">Simple Concatenation with <code class="docutils literal notranslate"><span class="pre">pd.concat</span></code></a><ul>
-<li><a class="reference internal" href="#duplicate-indices">Duplicate indices</a><ul>
-<li><a class="reference internal" href="#ignoring-the-index">Ignoring the index</a></li>
-<li><a class="reference internal" href="#adding-multiindex-keys">Adding MultiIndex keys</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#concatenation-with-joins">Concatenation with joins</a></li>
-<li><a class="reference internal" href="#the-append-method">The <code class="docutils literal notranslate"><span class="pre">append()</span></code> method</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#combining-datasets-merge-and-join">Combining Datasets: Merge and Join</a><ul>
-<li><a class="reference internal" href="#relational-algebra">Relational Algebra</a></li>
-<li><a class="reference internal" href="#categories-of-joins">Categories of Joins</a><ul>
-<li><a class="reference internal" href="#one-to-one-joins">One-to-one joins</a></li>
-<li><a class="reference internal" href="#many-to-one-joins">Many-to-one joins</a></li>
-<li><a class="reference internal" href="#many-to-many-joins">Many-to-many joins</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#specification-of-the-merge-key">Specification of the Merge Key</a><ul>
-<li><a class="reference internal" href="#the-on-keyword">The <code class="docutils literal notranslate"><span class="pre">on</span></code> keyword</a></li>
-<li><a class="reference internal" href="#the-left-on-and-right-on-keywords">The <code class="docutils literal notranslate"><span class="pre">left_on</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on</span></code> keywords</a></li>
-<li><a class="reference internal" href="#the-left-index-and-right-index-keywords">The <code class="docutils literal notranslate"><span class="pre">left_index</span></code> and <code class="docutils literal notranslate"><span class="pre">right_index</span></code> keywords</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#specifying-set-arithmetic-for-joins">Specifying Set Arithmetic for Joins</a></li>
-<li><a class="reference internal" href="#overlapping-column-names-the-suffixes-keyword">Overlapping Column Names: The <code class="docutils literal notranslate"><span class="pre">suffixes</span></code> Keyword</a></li>
-<li><a class="reference internal" href="#example-us-states-data">Example: US States Data</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#aggregation-and-grouping">Aggregation and Grouping</a><ul>
-<li><a class="reference internal" href="#planets-data">Planets Data</a></li>
-<li><a class="reference internal" href="#simple-aggregation-in-pandas">Simple Aggregation in Pandas</a></li>
-<li><a class="reference internal" href="#groupby-split-apply-combine">GroupBy: Split, Apply, Combine</a><ul>
-<li><a class="reference internal" href="#split-apply-combine">Split, apply, combine</a></li>
-<li><a class="reference internal" href="#the-groupby-object">The GroupBy object</a><ul>
-<li><a class="reference internal" href="#column-indexing">Column indexing</a></li>
-<li><a class="reference internal" href="#iteration-over-groups">Iteration over groups</a></li>
-<li><a class="reference internal" href="#dispatch-methods">Dispatch methods</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#aggregate-filter-transform-apply">Aggregate, filter, transform, apply</a><ul>
-<li><a class="reference internal" href="#aggregation">Aggregation</a></li>
-<li><a class="reference internal" href="#filtering">Filtering</a></li>
-<li><a class="reference internal" href="#transformation">Transformation</a></li>
-<li><a class="reference internal" href="#the-apply-method">The apply() method</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#specifying-the-split-key">Specifying the split key</a><ul>
-<li><a class="reference internal" href="#a-list-array-series-or-index-providing-the-grouping-keys">A list, array, series, or index providing the grouping keys</a></li>
-<li><a class="reference internal" href="#a-dictionary-or-series-mapping-index-to-group">A dictionary or series mapping index to group</a></li>
-<li><a class="reference internal" href="#any-python-function">Any Python function</a></li>
-<li><a class="reference internal" href="#a-list-of-valid-keys">A list of valid keys</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#grouping-example">Grouping example</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#pivot-tables">Pivot Tables</a><ul>
-<li><a class="reference internal" href="#motivating-pivot-tables">Motivating Pivot Tables</a></li>
-<li><a class="reference internal" href="#pivot-tables-by-hand">Pivot Tables by Hand</a></li>
-<li><a class="reference internal" href="#pivot-table-syntax">Pivot Table Syntax</a><ul>
-<li><a class="reference internal" href="#multi-level-pivot-tables">Multi-level pivot tables</a></li>
-<li><a class="reference internal" href="#additional-pivot-table-options">Additional pivot table options</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#example-birthrate-data">Example: Birthrate Data</a><ul>
-<li><a class="reference internal" href="#further-data-exploration">Further data exploration</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#working-with-time-series">Working with Time Series</a><ul>
-<li><a class="reference internal" href="#dates-and-times-in-python">Dates and Times in Python</a><ul>
-<li><a class="reference internal" href="#native-python-dates-and-times-datetime-and-dateutil">Native Python dates and times: <code class="docutils literal notranslate"><span class="pre">datetime</span></code> and <code class="docutils literal notranslate"><span class="pre">dateutil</span></code></a></li>
-<li><a class="reference internal" href="#typed-arrays-of-times-numpys-datetime64">Typed arrays of times: NumPy’s <code class="docutils literal notranslate"><span class="pre">datetime64</span></code></a></li>
-<li><a class="reference internal" href="#dates-and-times-in-pandas-best-of-both-worlds">Dates and times in pandas: best of both worlds</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#pandas-time-series-indexing-by-time">Pandas Time Series: Indexing by Time</a></li>
-<li><a class="reference internal" href="#pandas-time-series-data-structures">Pandas Time Series Data Structures</a><ul>
-<li><a class="reference internal" href="#regular-sequences-pd-date-range">Regular sequences: <code class="docutils literal notranslate"><span class="pre">pd.date_range()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#frequencies-and-offsets">Frequencies and Offsets</a></li>
-<li><a class="reference internal" href="#resampling-shifting-and-windowing">Resampling, Shifting, and Windowing</a><ul>
-<li><a class="reference internal" href="#resampling-and-converting-frequencies">Resampling and converting frequencies</a></li>
-<li><a class="reference internal" href="#time-shifts">Time-shifts</a></li>
-<li><a class="reference internal" href="#rolling-windows">Rolling windows</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#example-visualizing-seattle-bicycle-counts">Example: Visualizing Seattle Bicycle Counts</a><ul>
-<li><a class="reference internal" href="#visualizing-the-data">Visualizing the data</a></li>
-<li><a class="reference internal" href="#digging-into-the-data">Digging into the data</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="numpy.html"
-                        title="previous chapter">numpy module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="matplotlib.html"
-                        title="next chapter">matplotlib module</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/pandas.rst.txt"
-            rel="nofollow">Show Source</a></li>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="numpy.html" title="Previous document">numpy module</a>
+        </li>
+        <li>
+          <a href="matplotlib.html" title="Next document">matplotlib module</a>
+          &rarr;
+        </li>
     </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+  </nav>
+              </div>
+          
         </div>
       </div>
-      <div class="clearer"></div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, Massimo Nocentini.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/pandas.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="matplotlib.html" title="matplotlib module"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="numpy.html" title="numpy module"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">pandas module</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2021, Massimo Nocentini.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
-    </div>
+
+    
+
+    
   </body>
 </html>

@@ -7,39 +7,182 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>numpy module &#8212; APAD course  documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="pandas module" href="pandas.html" />
-    <link rel="prev" title="Jupyter notebooks" href="jupyter-notebooks.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="pandas.html" title="pandas module"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="jupyter-notebooks.html" title="Jupyter notebooks"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">numpy module</a></li> 
-      </ul>
-    </div>  
+    <link rel="prev" title="Jupyter notebooks" href="jupyter-notebooks.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-    <div class="document">
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">APAD course</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=massimo-nocentini&repo=APAD-course&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyter-notebooks.html">Jupyter notebooks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">numpy module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction-to-numpy">Introduction to NumPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#understanding-data-types-in-python">Understanding Data Types in Python</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-arrays-from-python-lists">Creating Arrays from Python Lists</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-arrays-from-scratch">Creating Arrays from Scratch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#numpy-standard-data-types">NumPy Standard Data Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#the-basics-of-numpy-arrays">The Basics of NumPy Arrays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#numpy-array-attributes">NumPy Array Attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#array-indexing-accessing-single-elements">Array Indexing: Accessing Single Elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#array-slicing-accessing-subarrays">Array Slicing: Accessing Subarrays</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#one-dimensional-subarrays">One-dimensional subarrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multi-dimensional-subarrays">Multi-dimensional subarrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subarrays-as-no-copy-views">Subarrays as no-copy views</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#reshaping-of-arrays">Reshaping of Arrays</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#concatenation-of-arrays">Concatenation of arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#splitting-of-arrays">Splitting of arrays</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#computation-on-numpy-arrays-universal-functions">Computation on NumPy Arrays: Universal Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-slowness-of-loops">The Slowness of Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#introducing-ufuncs">Introducing UFuncs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#array-arithmetic">Array arithmetic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trigonometric-functions">Trigonometric functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#exponents-and-logarithms">Exponents and logarithms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#specifying-output">Specifying output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#outer-products">Outer products</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#aggregations-min-max-and-everything-in-between">Aggregations: Min, Max, and Everything In Between</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#summing-the-values-in-an-array">Summing the Values in an Array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#minimum-and-maximum">Minimum and Maximum</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#multi-dimensional-aggregates">Multi dimensional aggregates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-aggregation-functions">Other aggregation functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#computation-on-arrays-broadcasting">Computation on Arrays: Broadcasting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introducing-broadcasting">Introducing Broadcasting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rules-of-broadcasting">Rules of Broadcasting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#centering-an-array">Centering an array</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plotting-a-two-dimensional-function">Plotting a two-dimensional function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#comparisons-masks-and-boolean-logic">Comparisons, Masks, and Boolean Logic</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#comparison-operators-as-ufuncs">Comparison Operators as ufuncs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#counting-entries">Counting entries</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#boolean-arrays-as-masks">Boolean Arrays as Masks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#fancy-indexing">Fancy Indexing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#combined-indexing">Combined Indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-selecting-random-points">Example: Selecting Random Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modifying-values-with-fancy-indexing">Modifying Values with Fancy Indexing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-binning-data">Example: Binning Data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sorting-arrays">Sorting Arrays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fast-sorting-in-numpy-np-sort-and-np-argsort">Fast Sorting in NumPy: <code class="docutils literal notranslate"><span class="pre">np.sort</span></code> and <code class="docutils literal notranslate"><span class="pre">np.argsort</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sorting-along-rows-or-columns">Sorting along rows or columns</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#partial-sorts-partitioning">Partial Sorts: Partitioning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-k-nearest-neighbors">Example: k-Nearest Neighbors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pandas.html">pandas module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matplotlib.html">matplotlib module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="networkx.html">networkx module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gotchas.html">Tips an’ Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="jupyter-notebooks.html" title="previous chapter">Jupyter notebooks</a></li>
+      <li>Next: <a href="pandas.html" title="next chapter">pandas module</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
       <div class="documentwrapper">
         <div class="bodywrapper">
+              <div class="related top">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="jupyter-notebooks.html" title="Previous document">Jupyter notebooks</a>
+        </li>
+        <li>
+          <a href="pandas.html" title="Next document">pandas module</a>
+          &rarr;
+        </li>
+    </ul>
+  </nav>
+              </div>
+          
+
           <div class="body" role="main">
             
   <div class="section" id="numpy-module">
@@ -1861,145 +2004,41 @@ and the code would look the same.</p>
 </div>
 
 
-            <div class="clearer"></div>
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">numpy module</a><ul>
-<li><a class="reference internal" href="#introduction-to-numpy">Introduction to NumPy</a></li>
-<li><a class="reference internal" href="#understanding-data-types-in-python">Understanding Data Types in Python</a><ul>
-<li><a class="reference internal" href="#creating-arrays-from-python-lists">Creating Arrays from Python Lists</a></li>
-<li><a class="reference internal" href="#creating-arrays-from-scratch">Creating Arrays from Scratch</a></li>
-<li><a class="reference internal" href="#numpy-standard-data-types">NumPy Standard Data Types</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#the-basics-of-numpy-arrays">The Basics of NumPy Arrays</a><ul>
-<li><a class="reference internal" href="#numpy-array-attributes">NumPy Array Attributes</a></li>
-<li><a class="reference internal" href="#array-indexing-accessing-single-elements">Array Indexing: Accessing Single Elements</a></li>
-<li><a class="reference internal" href="#array-slicing-accessing-subarrays">Array Slicing: Accessing Subarrays</a><ul>
-<li><a class="reference internal" href="#one-dimensional-subarrays">One-dimensional subarrays</a></li>
-<li><a class="reference internal" href="#multi-dimensional-subarrays">Multi-dimensional subarrays</a><ul>
-<li><a class="reference internal" href="#accessing-array-rows-and-columns">Accessing array rows and columns</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#subarrays-as-no-copy-views">Subarrays as no-copy views</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#reshaping-of-arrays">Reshaping of Arrays</a><ul>
-<li><a class="reference internal" href="#concatenation-of-arrays">Concatenation of arrays</a></li>
-<li><a class="reference internal" href="#splitting-of-arrays">Splitting of arrays</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#computation-on-numpy-arrays-universal-functions">Computation on NumPy Arrays: Universal Functions</a><ul>
-<li><a class="reference internal" href="#the-slowness-of-loops">The Slowness of Loops</a></li>
-<li><a class="reference internal" href="#introducing-ufuncs">Introducing UFuncs</a><ul>
-<li><a class="reference internal" href="#array-arithmetic">Array arithmetic</a></li>
-<li><a class="reference internal" href="#trigonometric-functions">Trigonometric functions</a></li>
-<li><a class="reference internal" href="#exponents-and-logarithms">Exponents and logarithms</a></li>
-<li><a class="reference internal" href="#specifying-output">Specifying output</a></li>
-<li><a class="reference internal" href="#outer-products">Outer products</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#aggregations-min-max-and-everything-in-between">Aggregations: Min, Max, and Everything In Between</a><ul>
-<li><a class="reference internal" href="#summing-the-values-in-an-array">Summing the Values in an Array</a></li>
-<li><a class="reference internal" href="#minimum-and-maximum">Minimum and Maximum</a><ul>
-<li><a class="reference internal" href="#multi-dimensional-aggregates">Multi dimensional aggregates</a></li>
-<li><a class="reference internal" href="#other-aggregation-functions">Other aggregation functions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#computation-on-arrays-broadcasting">Computation on Arrays: Broadcasting</a><ul>
-<li><a class="reference internal" href="#introducing-broadcasting">Introducing Broadcasting</a></li>
-<li><a class="reference internal" href="#rules-of-broadcasting">Rules of Broadcasting</a><ul>
-<li><a class="reference internal" href="#centering-an-array">Centering an array</a></li>
-<li><a class="reference internal" href="#plotting-a-two-dimensional-function">Plotting a two-dimensional function</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#comparisons-masks-and-boolean-logic">Comparisons, Masks, and Boolean Logic</a><ul>
-<li><a class="reference internal" href="#comparison-operators-as-ufuncs">Comparison Operators as ufuncs</a><ul>
-<li><a class="reference internal" href="#counting-entries">Counting entries</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#boolean-arrays-as-masks">Boolean Arrays as Masks</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#fancy-indexing">Fancy Indexing</a><ul>
-<li><a class="reference internal" href="#combined-indexing">Combined Indexing</a></li>
-<li><a class="reference internal" href="#example-selecting-random-points">Example: Selecting Random Points</a></li>
-<li><a class="reference internal" href="#modifying-values-with-fancy-indexing">Modifying Values with Fancy Indexing</a></li>
-<li><a class="reference internal" href="#example-binning-data">Example: Binning Data</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#sorting-arrays">Sorting Arrays</a><ul>
-<li><a class="reference internal" href="#fast-sorting-in-numpy-np-sort-and-np-argsort">Fast Sorting in NumPy: <code class="docutils literal notranslate"><span class="pre">np.sort</span></code> and <code class="docutils literal notranslate"><span class="pre">np.argsort</span></code></a><ul>
-<li><a class="reference internal" href="#sorting-along-rows-or-columns">Sorting along rows or columns</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#partial-sorts-partitioning">Partial Sorts: Partitioning</a></li>
-<li><a class="reference internal" href="#example-k-nearest-neighbors">Example: k-Nearest Neighbors</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="jupyter-notebooks.html"
-                        title="previous chapter">Jupyter notebooks</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="pandas.html"
-                        title="next chapter">pandas module</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/numpy.rst.txt"
-            rel="nofollow">Show Source</a></li>
+              <div class="related bottom">
+                &nbsp;
+  <nav id="rellinks">
+    <ul>
+        <li>
+          &larr;
+          <a href="jupyter-notebooks.html" title="Previous document">Jupyter notebooks</a>
+        </li>
+        <li>
+          <a href="pandas.html" title="Next document">pandas module</a>
+          &rarr;
+        </li>
     </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+  </nav>
+              </div>
+          
         </div>
       </div>
-      <div class="clearer"></div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2021, Massimo Nocentini.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/numpy.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="pandas.html" title="pandas module"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="jupyter-notebooks.html" title="Jupyter notebooks"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">APAD course  documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">numpy module</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2021, Massimo Nocentini.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
-    </div>
+
+    
+
+    
   </body>
 </html>

@@ -46,7 +46,7 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'classic'
+html_theme = 'alabaster'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -54,9 +54,16 @@ html_theme = 'classic'
 html_static_path = ['_static']
 
 html_theme_options = {
-    "sidebarwidth": "30%",
-    "body_max_width": "70%",
-    "globaltoc_collapse": True,
-    "stickysidebar": True,
+    "sidebarwidth": "20%",
+    "body_max_width": "80%",
+    "globaltoc_collapse": False,
+    'github_user': 'massimo-nocentini',
+    'github_repo': 'APAD-course',
+    'code_font_family': 'Monaco',
+    'code_font_size': '0.8em',
+    'show_relbars': True,
+    'fixed_sidebar':True,
+    'page_width':'80%',
+    'pre_bg':'white transparent',
+    'note_bg':'white',
 }
-
