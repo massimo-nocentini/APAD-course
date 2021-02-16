@@ -4,3 +4,5 @@ Content for https://e-l.unifi.it/course/view.php?id=13262 taught at University o
 
 In Italian `APAD` stands for *Algoritmi per la Programmazione e Analisi dei Dati*, 
 translated is *Algorithms for Programming and Analysis of Data*.
+
+A booklet can be read at https://massimo-nocentini.github.io/APAD-course/.
