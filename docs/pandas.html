@@ -51,114 +51,44 @@
 <li class="toctree-l1"><a class="reference internal" href="numpy.html">numpy module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">pandas module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introducing-pandas-objects">Introducing Pandas Objects</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#the-pandas-series-object">The Pandas Series Object</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#series-as-generalized-numpy-array"><code class="docutils literal notranslate"><span class="pre">Series</span></code> as generalized NumPy array</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#series-as-specialized-dictionary">Series as specialized dictionary</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#the-pandas-dataframe-object">The Pandas DataFrame Object</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#dataframe-as-a-generalized-numpy-array">DataFrame as a generalized NumPy array</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dataframe-as-specialized-dictionary">DataFrame as specialized dictionary</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#constructing-dataframe-objects">Constructing DataFrame objects</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#the-pandas-index-object">The Pandas Index Object</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#index-as-immutable-array">Index as immutable array</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#index-as-ordered-set">Index as ordered set</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-pandas-series-object">The Pandas Series Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-pandas-dataframe-object">The Pandas DataFrame Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-pandas-index-object">The Pandas Index Object</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#data-indexing-and-selection">Data Indexing and Selection</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#data-selection-in-series">Data Selection in Series</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#series-as-dictionary">Series as dictionary</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#series-as-one-dimensional-array">Series as one-dimensional array</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#indexers-loc-iloc-and-ix">Indexers: loc, iloc, and ix</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#data-selection-in-dataframe">Data Selection in DataFrame</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#dataframe-as-two-dimensional-array">DataFrame as two-dimensional array</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#additional-indexing-conventions">Additional indexing conventions</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#data-selection-in-series">Data Selection in Series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-selection-in-dataframe">Data Selection in DataFrame</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#operating-on-data-in-pandas">Operating on Data in Pandas</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#ufuncs-index-preservation">Ufuncs: Index Preservation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ufuncs-index-alignment">UFuncs: Index Alignment</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#index-alignment-in-series">Index alignment in Series</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#index-alignment-in-dataframe">Index alignment in DataFrame</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#ufuncs-index-alignment">UFuncs: Index Alignment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ufuncs-operations-between-dataframe-and-series">Ufuncs: Operations Between DataFrame and Series</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#handling-missing-data">Handling Missing Data</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#trade-offs-in-missing-data-conventions">Trade-Offs in Missing Data Conventions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#missing-data-in-pandas">Missing Data in Pandas</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#none-pythonic-missing-data"><code class="docutils literal notranslate"><span class="pre">None</span></code>: Pythonic missing data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nan-missing-numerical-data"><code class="docutils literal notranslate"><span class="pre">NaN</span></code>: Missing numerical data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#nan-and-none-in-pandas">NaN and None in Pandas</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#operating-on-null-values">Operating on Null Values</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#detecting-null-values">Detecting null values</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dropping-null-values">Dropping null values</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#filling-null-values">Filling null values</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#missing-data-in-pandas">Missing Data in Pandas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operating-on-null-values">Operating on Null Values</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#hierarchical-indexing">Hierarchical Indexing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#a-multiply-indexed-series">A Multiply Indexed Series</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#the-bad-way">The bad way</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#the-better-way-pandas-multiindex">The Better Way: Pandas MultiIndex</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#multiindex-as-extra-dimension">MultiIndex as extra dimension</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#methods-of-multiindex-creation">Methods of MultiIndex Creation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#explicit-multiindex-constructors">Explicit MultiIndex constructors</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#multiindex-level-names">MultiIndex level names</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#multiindex-for-columns">MultiIndex for columns</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#indexing-and-slicing-a-multiindex">Indexing and Slicing a MultiIndex</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#multiply-indexed-series">Multiply indexed Series</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#multiply-indexed-dataframes">Multiply indexed DataFrames</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#rearranging-multi-indices">Rearranging Multi-Indices</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#sorted-and-unsorted-indices">Sorted and unsorted indices</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#stacking-and-unstacking-indices">Stacking and unstacking indices</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#index-setting-and-resetting">Index setting and resetting</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#a-multiply-indexed-series">A Multiply Indexed Series</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#methods-of-multiindex-creation">Methods of MultiIndex Creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#indexing-and-slicing-a-multiindex">Indexing and Slicing a MultiIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rearranging-multi-indices">Rearranging Multi-Indices</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#data-aggregations-on-multi-indices">Data Aggregations on Multi-Indices</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#combining-datasets-concat-and-append">Combining Datasets: Concat and Append</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#simple-concatenation-with-pd-concat">Simple Concatenation with <code class="docutils literal notranslate"><span class="pre">pd.concat</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#duplicate-indices">Duplicate indices</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#concatenation-with-joins">Concatenation with joins</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#the-append-method">The <code class="docutils literal notranslate"><span class="pre">append()</span></code> method</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-concatenation-with-pd-concat">Simple Concatenation with <code class="docutils literal notranslate"><span class="pre">pd.concat</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#combining-datasets-merge-and-join">Combining Datasets: Merge and Join</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#relational-algebra">Relational Algebra</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#categories-of-joins">Categories of Joins</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#one-to-one-joins">One-to-one joins</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#many-to-one-joins">Many-to-one joins</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#many-to-many-joins">Many-to-many joins</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#specification-of-the-merge-key">Specification of the Merge Key</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#the-on-keyword">The <code class="docutils literal notranslate"><span class="pre">on</span></code> keyword</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#the-left-on-and-right-on-keywords">The <code class="docutils literal notranslate"><span class="pre">left_on</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on</span></code> keywords</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#the-left-index-and-right-index-keywords">The <code class="docutils literal notranslate"><span class="pre">left_index</span></code> and <code class="docutils literal notranslate"><span class="pre">right_index</span></code> keywords</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#categories-of-joins">Categories of Joins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specification-of-the-merge-key">Specification of the Merge Key</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#specifying-set-arithmetic-for-joins">Specifying Set Arithmetic for Joins</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#overlapping-column-names-the-suffixes-keyword">Overlapping Column Names: The <code class="docutils literal notranslate"><span class="pre">suffixes</span></code> Keyword</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example-us-states-data">Example: US States Data</a></li>
@@ -167,54 +97,23 @@
 <li class="toctree-l2"><a class="reference internal" href="#aggregation-and-grouping">Aggregation and Grouping</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#planets-data">Planets Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#simple-aggregation-in-pandas">Simple Aggregation in Pandas</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#groupby-split-apply-combine">GroupBy: Split, Apply, Combine</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#split-apply-combine">Split, apply, combine</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#the-groupby-object">The GroupBy object</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#aggregate-filter-transform-apply">Aggregate, filter, transform, apply</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#specifying-the-split-key">Specifying the split key</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#grouping-example">Grouping example</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#groupby-split-apply-combine">GroupBy: Split, Apply, Combine</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#pivot-tables">Pivot Tables</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#motivating-pivot-tables">Motivating Pivot Tables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pivot-tables-by-hand">Pivot Tables by Hand</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pivot-table-syntax">Pivot Table Syntax</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#multi-level-pivot-tables">Multi-level pivot tables</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#additional-pivot-table-options">Additional pivot table options</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#example-birthrate-data">Example: Birthrate Data</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#further-data-exploration">Further data exploration</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#pivot-table-syntax">Pivot Table Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-birthrate-data">Example: Birthrate Data</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#working-with-time-series">Working with Time Series</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#dates-and-times-in-python">Dates and Times in Python</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#native-python-dates-and-times-datetime-and-dateutil">Native Python dates and times: <code class="docutils literal notranslate"><span class="pre">datetime</span></code> and <code class="docutils literal notranslate"><span class="pre">dateutil</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#typed-arrays-of-times-numpys-datetime64">Typed arrays of times: NumPy’s <code class="docutils literal notranslate"><span class="pre">datetime64</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#dates-and-times-in-pandas-best-of-both-worlds">Dates and times in pandas: best of both worlds</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#dates-and-times-in-python">Dates and Times in Python</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pandas-time-series-indexing-by-time">Pandas Time Series: Indexing by Time</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#pandas-time-series-data-structures">Pandas Time Series Data Structures</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#regular-sequences-pd-date-range">Regular sequences: <code class="docutils literal notranslate"><span class="pre">pd.date_range()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#pandas-time-series-data-structures">Pandas Time Series Data Structures</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#frequencies-and-offsets">Frequencies and Offsets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#resampling-shifting-and-windowing">Resampling, Shifting, and Windowing</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#resampling-and-converting-frequencies">Resampling and converting frequencies</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#time-shifts">Time-shifts</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#rolling-windows">Rolling windows</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#example-visualizing-seattle-bicycle-counts">Example: Visualizing Seattle Bicycle Counts</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#visualizing-the-data">Visualizing the data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#digging-into-the-data">Digging into the data</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#resampling-shifting-and-windowing">Resampling, Shifting, and Windowing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-visualizing-seattle-bicycle-counts">Example: Visualizing Seattle Bicycle Counts</a></li>
 </ul>
 </li>
 </ul>

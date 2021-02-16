@@ -33,7 +33,7 @@ On one hand, a set of slides can be used for presenting
 On the other hand, the content can be read according to the TOC
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 3
 
    introduction.rst
    jupyter-notebooks.rst
@@ -43,6 +43,7 @@ On the other hand, the content can be read according to the TOC
    networkx.rst
    gotchas.rst
    generators.rst
+
 .. 
    Indices and tables
    ==================

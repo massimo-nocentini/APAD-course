@@ -59,54 +59,27 @@
 <li class="toctree-l2"><a class="reference internal" href="#the-basics-of-numpy-arrays">The Basics of NumPy Arrays</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#numpy-array-attributes">NumPy Array Attributes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#array-indexing-accessing-single-elements">Array Indexing: Accessing Single Elements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#array-slicing-accessing-subarrays">Array Slicing: Accessing Subarrays</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#one-dimensional-subarrays">One-dimensional subarrays</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#multi-dimensional-subarrays">Multi-dimensional subarrays</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#subarrays-as-no-copy-views">Subarrays as no-copy views</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#reshaping-of-arrays">Reshaping of Arrays</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#concatenation-of-arrays">Concatenation of arrays</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#splitting-of-arrays">Splitting of arrays</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#array-slicing-accessing-subarrays">Array Slicing: Accessing Subarrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reshaping-of-arrays">Reshaping of Arrays</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#computation-on-numpy-arrays-universal-functions">Computation on NumPy Arrays: Universal Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-slowness-of-loops">The Slowness of Loops</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#introducing-ufuncs">Introducing UFuncs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#array-arithmetic">Array arithmetic</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#trigonometric-functions">Trigonometric functions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#exponents-and-logarithms">Exponents and logarithms</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#specifying-output">Specifying output</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#outer-products">Outer products</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#introducing-ufuncs">Introducing UFuncs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#aggregations-min-max-and-everything-in-between">Aggregations: Min, Max, and Everything In Between</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#summing-the-values-in-an-array">Summing the Values in an Array</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#minimum-and-maximum">Minimum and Maximum</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#multi-dimensional-aggregates">Multi dimensional aggregates</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#other-aggregation-functions">Other aggregation functions</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#minimum-and-maximum">Minimum and Maximum</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#computation-on-arrays-broadcasting">Computation on Arrays: Broadcasting</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#introducing-broadcasting">Introducing Broadcasting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#rules-of-broadcasting">Rules of Broadcasting</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#centering-an-array">Centering an array</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#plotting-a-two-dimensional-function">Plotting a two-dimensional function</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#rules-of-broadcasting">Rules of Broadcasting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#comparisons-masks-and-boolean-logic">Comparisons, Masks, and Boolean Logic</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#comparison-operators-as-ufuncs">Comparison Operators as ufuncs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#counting-entries">Counting entries</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#comparison-operators-as-ufuncs">Comparison Operators as ufuncs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#boolean-arrays-as-masks">Boolean Arrays as Masks</a></li>
 </ul>
 </li>
@@ -118,10 +91,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#sorting-arrays">Sorting Arrays</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#fast-sorting-in-numpy-np-sort-and-np-argsort">Fast Sorting in NumPy: <code class="docutils literal notranslate"><span class="pre">np.sort</span></code> and <code class="docutils literal notranslate"><span class="pre">np.argsort</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#sorting-along-rows-or-columns">Sorting along rows or columns</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#fast-sorting-in-numpy-np-sort-and-np-argsort">Fast Sorting in NumPy: <code class="docutils literal notranslate"><span class="pre">np.sort</span></code> and <code class="docutils literal notranslate"><span class="pre">np.argsort</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#partial-sorts-partitioning">Partial Sorts: Partitioning</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#example-k-nearest-neighbors">Example: k-Nearest Neighbors</a></li>
 </ul>
