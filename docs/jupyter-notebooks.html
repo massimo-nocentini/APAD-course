@@ -155,22 +155,7 @@
             
   <div class="section" id="jupyter-notebooks">
 <h1>Jupyter notebooks<a class="headerlink" href="#jupyter-notebooks" title="Permalink to this headline">¶</a></h1>
-<p><div class="docutils container">
-<p>Massimo Nocentini, PhD. February 7, 2020: init</p>
-</div>
-</p><div class="docutils container">
-<p>Abstract A (very concise) introduction to the Python ecosystem.</p>
-</div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__AUTHORS__</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;am&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Andrea Marino&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;andrea.marino@unifi.it&quot;</span><span class="p">,),</span>
-               <span class="s1">&#39;mn&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Massimo Nocentini&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;massimo.nocentini@unifi.it&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;https://github.com/massimo-nocentini/&quot;</span><span class="p">,)}</span>
-
-<span class="n">__KEYWORDS__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;Jupyter&#39;</span><span class="p">,</span> <span class="s1">&#39;notebooks&#39;</span><span class="p">,</span> <span class="s1">&#39;keynote&#39;</span><span class="p">,]</span>
-</pre></div>
-</div>
-<center></center><div class="section" id="ipython-beyond-normal-python">
+<div class="section" id="ipython-beyond-normal-python">
 <h2>IPython: Beyond Normal Python<a class="headerlink" href="#ipython-beyond-normal-python" title="Permalink to this headline">¶</a></h2>
 <p>There are many options for development environments for Python, and I’m
 often asked which one I use in my own work. My answer sometimes
@@ -448,13 +433,27 @@ class list(object)
  |  reverse(self, /)
  |      Reverse *IN PLACE</em>.
  |
- |  sort(self, /, <em>, key=None, reverse=False)
- |      Stable sort *IN PLACE</em>.
+ |  sort(self, /, <a href="#id1"><span class="problematic" id="id2">*</span></a>, key=None, reverse=False)
+ |      Sort the list in ascending order and return None.
+ |
+ |      The sort is in-place (i.e. the list itself is modified) and stable (i.e. the
+ |      order of two equal elements is maintained).
+ |
+ |      If a key function is given, apply it once to each list item and sort them,
+ |      ascending or descending, according to their function values.
+ |
+ |      The reverse flag can be set to sort in descending order.
+ |
+ |  ----------------------------------------------------------------------
+ |  Class methods defined here:
+ |
+ |  __class_getitem__(...) from builtins.type
+ |      See PEP 585
  |
  |  ----------------------------------------------------------------------
  |  Static methods defined here:
  |
- |  __new__(<a href="#id1"><span class="problematic" id="id2">*</span></a>args, <a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs) from builtins.type
+ |  __new__(<a href="#id3"><span class="problematic" id="id4">*</span></a>args, <a href="#id5"><span class="problematic" id="id6">**</span></a>kwargs) from builtins.type
  |      Create and return a new object.  See help(type) for accurate signature.
  |
  |  ----------------------------------------------------------------------
@@ -700,7 +699,7 @@ performance of a list comprehension:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> L = [n ** 2 for n in range(1000)]
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>307 µs ± 262 ns per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>277 µs ± 4.2 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre></div>
 </div>
 <p>The benefit of <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> is that for short commands it will
@@ -715,7 +714,7 @@ here’s the equivalent construction with a <code class="docutils literal notran
     <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>346 µs ± 351 ns per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>299 µs ± 3.05 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre></div>
 </div>
 <p>We can immediately see that list comprehensions are about 10% faster
@@ -781,11 +780,13 @@ automatically updated to reflect this history:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">In</span><span class="p">)[:</span><span class="mi">1000</span><span class="p">])</span>
 </pre></div>
 </div>
-<pre class="literal-block">['', '__AUTHORS__ = {'am': (&quot;Andrea Marino&quot;, n                      &quot;<a class="reference external" href="mailto:andrea&#46;marino&#37;&#52;&#48;unifi&#46;it">andrea<span>&#46;</span>marino<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;,),n               'mn': (&quot;Massimo Nocentini&quot;, n                      &quot;<a class="reference external" href="mailto:massimo&#46;nocentini&#37;&#52;&#48;unifi&#46;it">massimo<span>&#46;</span>nocentini<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;, n                      &quot;<a class="reference external" href="https://github.com/massimo-nocentini/">https://github.com/massimo-nocentini/</a>&quot;,)}nn__KEYWORDS__ = ['Python', 'Jupyter', 'notebooks', 'keynote',]', &quot;outline = []noutline.append('Hello!')noutline.append('Python')noutline.append('Whys and refs')noutline.append('On the shoulders of giants')noutline.append('Set the env up')noutline.append('Notebooks')noutline.append('Course agenda')&quot;, 'help(len)', '__AUTHORS__ = {'am': (&quot;Andrea Marino&quot;, n                      &quot;<a class="reference external" href="mailto:andrea&#46;marino&#37;&#52;&#48;unifi&#46;it">andrea<span>&#46;</span>marino<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;,),n               'mn': (&quot;Massimo Nocentini&quot;, n                      &quot;<a class="reference external" href="mailto:massimo&#46;nocentini&#37;&#52;&#48;unifi&#46;it">massimo<span>&#46;</span>nocentini<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;, n                      &quot;<a class="reference external" href="https://github.com/massimo-nocentini/">https://github.com/massimo-nocentini/</a>&quot;,)}nn__KEYWORDS__ = ['Python', 'Jupyter', 'notebooks', 'keynote',]', 'help(len)', 'L = [1, 2, 3]nhelp(L.insert)', 'help(L)', 'This nota</pre>
+<pre class="literal-block">['', 'help(len)', 'L = [1, 2, 3]nhelp(L.insert)', 'help(L)', 'def square(a):n    &quot;&quot;&quot;Return the square of a.&quot;&quot;&quot;n    return a ** 2', 'help(square)', &quot;get_ipython().run_cell_magic('bash', '', '\ncat my-script.py\n')&quot;, &quot;get_ipython().run_line_magic('run', 'my-script.py')&quot;, 'square(5)', &quot;get_ipython().run_line_magic('timeit', 'L = [n ** 2 for n in range(1000)]')&quot;, &quot;get_ipython().run_cell_magic('timeit', '', 'L = []\nfor n in range(1000):\n    L.append(n ** 2)\n')&quot;, 'import mathnnmath.sin(2)', 'math.cos(2)', 'print(str(In)[:1000])']</pre>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">Out</span><span class="p">)[:</span><span class="mi">1000</span><span class="p">])</span>
 </pre></div>
 </div>
-<pre class="literal-block">{29: 25, 30: 0.9092974268256817, 31: -0.4161468365471424, 32: -0.4161468365471424, 33: 0.9092974268256817, 49: False, 51: False, 61: ['images', 'introduction.ipynb', 'introduction.slides.html', 'jupyter-notebooks.ipynb', 'jupyter-notebooks.slides.html', 'Makefile', 'my-script.py', 'notebooks.ipynb'], 62: ['/home/mn/Developer/working-copies/pythons/on-python/UniFiCourseSpring2020'], 63: &lt;class 'IPython.utils.text.SList'&gt;, 71: '['', '__AUTHORS__ = {\'am\': (&quot;Andrea Marino&quot;, \n                      &quot;<a class="reference external" href="mailto:andrea&#46;marino&#37;&#52;&#48;unifi&#46;it">andrea<span>&#46;</span>marino<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;,),\n', 72: '['', '__AUTHORS__ = {\'am\': (&quot;Andrea Marino&quot;, \n                      &quot;<a class="reference external" href="mailto:andrea&#46;marino&#37;&#52;&#48;unifi&#46;it">andrea<span>&#46;</span>marino<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;,),\n               \'mn\': (&quot;Massimo Nocentini&quot;, \n                      &quot;<a class="reference external" href="mailto:massimo&#46;nocentini&#37;&#52;&#48;unifi&#46;it">massimo<span>&#46;</span>nocentini<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;, \n                      &quot;<a class="reference external" href="https://github.com/massimo-nocentini/">https://github.com/massimo-nocentini/</a>&quot;,)}\n\n__KEYWORDS__ = [\'Python\', \'Jupyter\', \'notebooks\', \'keynote\',]', &quot;outline = []\noutline.append('Hello!')\noutline.append('Python')\noutl</pre>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="mi">8</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span> <span class="mf">0.9092974268256817</span><span class="p">,</span> <span class="mi">12</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.4161468365471424</span><span class="p">}</span>
+</pre></div>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">In</span></code> object is a list, which keeps track of the commands in order
 (the first item in the list is a place-holder so that <code class="docutils literal notranslate"><span class="pre">In[1]</span></code> can
 refer to the first command):</p>
@@ -793,21 +794,15 @@ refer to the first command):</p>
 <span class="kn">import</span> <span class="nn">math</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">__AUTHORS__</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;am&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Andrea Marino&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;andrea.marino@unifi.it&quot;</span><span class="p">,),</span>
-               <span class="s1">&#39;mn&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Massimo Nocentini&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;massimo.nocentini@unifi.it&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;https://github.com/massimo-nocentini/&quot;</span><span class="p">,)}</span>
-
-<span class="n">__KEYWORDS__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;Jupyter&#39;</span><span class="p">,</span> <span class="s1">&#39;notebooks&#39;</span><span class="p">,</span> <span class="s1">&#39;keynote&#39;</span><span class="p">,]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">Out</span></code> object is not a list but a dictionary mapping input numbers
 to their outputs (if any):</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Out</span><span class="p">[</span><span class="mi">29</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">Out</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">25</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="mi">8</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span> <span class="mf">0.9092974268256817</span><span class="p">,</span> <span class="mi">12</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.4161468365471424</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Note that not all operations have outputs: for example, <code class="docutils literal notranslate"><span class="pre">import</span></code>
@@ -818,23 +813,10 @@ function that returns <code class="docutils literal notranslate"><span class="pr
 <p>Where this can be useful is if you want to interact with past results.
 For example, let’s check the sum of <code class="docutils literal notranslate"><span class="pre">sin(2)</span> <span class="pre">**</span> <span class="pre">2</span></code> and <code class="docutils literal notranslate"><span class="pre">cos(2)</span> <span class="pre">**</span> <span class="pre">2</span></code>
 using the previously-computed results:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Out</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-
-
-  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-131-26f5e7e673c2&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-    <span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
-
-
-<span class="ne">KeyError</span><span class="p">:</span> <span class="mi">2</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-131-26f5e7e673c2&gt;[0m(1)[0;36m&lt;module&gt;[0;34m()[0m
-[0;32m----&gt; 1 [0;31m[0mOut[0m[0;34m[[0m[0;36m2[0m[0;34m][0m [0;34m**[0m [0;36m2[0m [0;34m+[0m [0mOut[0m[0;34m[[0m[0;36m3[0m[0;34m][0m [0;34m**[0m [0;36m2[0m[0;34m[0m[0;34m[0m[0m
-[0m
-ipdb&gt; quit
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">625.1731781895681</span>
 </pre></div>
 </div>
 <p>The result is <code class="docutils literal notranslate"><span class="pre">1.0</span></code> as we’d expect from the well-known trigonometric
@@ -851,7 +833,9 @@ IPython as well:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
 </pre></div>
 </div>
-<pre class="literal-block">{29: 25, 30: 0.9092974268256817, 31: -0.4161468365471424, 32: -0.4161468365471424, 33: 0.9092974268256817, 49: False, 51: False, 61: ['images', 'introduction.ipynb', 'introduction.slides.html', 'jupyter-notebooks.ipynb', 'jupyter-notebooks.slides.html', 'Makefile', 'my-script.py', 'notebooks.ipynb'], 62: ['/home/mn/Developer/working-copies/pythons/on-python/UniFiCourseSpring2020'], 63: &lt;class 'IPython.utils.text.SList'&gt;, 71: '['', '__AUTHORS__ = {\'am\': (&quot;Andrea Marino&quot;, \n                      &quot;<a class="reference external" href="mailto:andrea&#46;marino&#37;&#52;&#48;unifi&#46;it">andrea<span>&#46;</span>marino<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;,),\n', 72: '['', '__AUTHORS__ = {\'am\': (&quot;Andrea Marino&quot;, \n                      &quot;<a class="reference external" href="mailto:andrea&#46;marino&#37;&#52;&#48;unifi&#46;it">andrea<span>&#46;</span>marino<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;,),\n               \'mn\': (&quot;Massimo Nocentini&quot;, \n                      &quot;<a class="reference external" href="mailto:massimo&#46;nocentini&#37;&#52;&#48;unifi&#46;it">massimo<span>&#46;</span>nocentini<span>&#64;</span>unifi<span>&#46;</span>it</a>&quot;, \n                      &quot;<a class="reference external" href="https://github.com/massimo-nocentini/">https://github.com/massimo-nocentini/</a>&quot;,)}\n\n__KEYWORDS__ = [\'Python\', \'Jupyter\', \'notebooks\', \'keynote\',]', &quot;outline = []\noutline.append('Hello!')\noutline.append('Python')\noutl</pre>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">625.1731781895681</span>
+</pre></div>
+</div>
 <p>But IPython takes this a bit further—you can use a double underscore to
 access the second-to-last output, and a triple underscore to access the
 third-to-last output (skipping any commands with no output):</p>
@@ -870,23 +854,10 @@ line number.</p>
 <p>There is one more shortcut we should mention, however–a shorthand for
 <code class="docutils literal notranslate"><span class="pre">Out[X]</span></code> is <code class="docutils literal notranslate"><span class="pre">_X</span></code> (i.e., a single underscore followed by the line
 number):</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">_2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Out</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-
-
-  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-134-32d637638f50&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-    <span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">_2</span>
-
-
-<span class="ne">KeyError</span><span class="p">:</span> <span class="mi">2</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-134-32d637638f50&gt;[0m(1)[0;36m&lt;module&gt;[0;34m()[0m
-[0;32m----&gt; 1 [0;31m[0mOut[0m[0;34m[[0m[0;36m2[0m[0;34m][0m[0;34m,[0m [0m_2[0m[0;34m[0m[0;34m[0m[0m
-[0m
-ipdb&gt; quit
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="mi">8</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span> <span class="mf">0.9092974268256817</span><span class="p">,</span> <span class="mi">12</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.4161468365471424</span><span class="p">,</span> <span class="mi">17</span><span class="p">:</span> <span class="mf">625.1731781895681</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -920,24 +891,11 @@ inputs:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">history</span> -n 1-3
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="mi">1</span><span class="p">:</span>
-<span class="n">__AUTHORS__</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;am&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Andrea Marino&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;andrea.marino@unifi.it&quot;</span><span class="p">,),</span>
-               <span class="s1">&#39;mn&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Massimo Nocentini&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;massimo.nocentini@unifi.it&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;https://github.com/massimo-nocentini/&quot;</span><span class="p">,)}</span>
-
-<span class="n">__KEYWORDS__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;Jupyter&#39;</span><span class="p">,</span> <span class="s1">&#39;notebooks&#39;</span><span class="p">,</span> <span class="s1">&#39;keynote&#39;</span><span class="p">,]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="mi">1</span><span class="p">:</span> <span class="n">help</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
    <span class="mi">2</span><span class="p">:</span>
-<span class="n">outline</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Hello!&#39;</span><span class="p">)</span>
-<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Python&#39;</span><span class="p">)</span>
-<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Whys and refs&#39;</span><span class="p">)</span>
-<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;On the shoulders of giants&#39;</span><span class="p">)</span>
-<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Set the env up&#39;</span><span class="p">)</span>
-<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Notebooks&#39;</span><span class="p">)</span>
-<span class="n">outline</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;Course agenda&#39;</span><span class="p">)</span>
-   <span class="mi">3</span><span class="p">:</span> <span class="n">help</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">help</span><span class="p">(</span><span class="n">L</span><span class="o">.</span><span class="n">insert</span><span class="p">)</span>
+   <span class="mi">3</span><span class="p">:</span> <span class="n">help</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>As usual, you can type <code class="docutils literal notranslate"><span class="pre">%history?</span></code> for more information and a
@@ -1037,16 +995,27 @@ and <code class="docutils literal notranslate"><span class="pre">echo</span></co
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ls
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">images</span>                        <span class="n">jupyter</span><span class="o">-</span><span class="n">notebooks</span><span class="o">.</span><span class="n">slides</span><span class="o">.</span><span class="n">html</span>  <span class="n">notebooks</span><span class="o">.</span><span class="n">ipynb</span>
-<span class="n">introduction</span><span class="o">.</span><span class="n">ipynb</span>    <span class="n">Makefile</span>                       <span class="n">__pycache__</span>
-<span class="n">introduction</span><span class="o">.</span><span class="n">slides</span><span class="o">.</span><span class="n">html</span>  <span class="n">mprun_demo</span><span class="o">.</span><span class="n">py</span>                      <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
-<span class="n">jupyter</span><span class="o">-</span><span class="n">notebooks</span><span class="o">.</span><span class="n">ipynb</span>   <span class="n">my</span><span class="o">-</span><span class="n">script</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Makefile                      matplotlib.slides.html
+[34mdata[m[m                          mprun_demo.py
+file.dot                      my-script.py
+generators.ipynb              my_figure.png
+generators.slides.html        networkx.ipynb
+gotchas.ipynb                 networkx.slides.html
+gotchas.slides.html           notebooks.ipynb
+grid.edgelist                 numpy.ipynb
+[34mimages[m[m                        numpy.slides.html
+introduction.ipynb            pandas.ipynb
+introduction.slides.html      pandas.slides.html
+jupyter-notebooks.ipynb       path.png
+jupyter-notebooks.slides.html path.to.file
+marathon-data.csv             requirements.txt
+matplotlib.ipynb              roget_dat.txt.gz
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pwd
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mn</span><span class="o">/</span><span class="n">Developer</span><span class="o">/</span><span class="n">working</span><span class="o">-</span><span class="n">copies</span><span class="o">/</span><span class="n">pythons</span><span class="o">/</span><span class="n">on</span><span class="o">-</span><span class="n">python</span><span class="o">/</span><span class="n">UniFiCourseSpring2020</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">mn</span><span class="o">/</span><span class="n">Developer</span><span class="o">/</span><span class="n">working</span><span class="o">-</span><span class="n">copies</span><span class="o">/</span><span class="n">pythons</span><span class="o">/</span><span class="n">APAD</span><span class="o">-</span><span class="n">course</span><span class="o">/</span><span class="n">ipynbs</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="nb">echo</span> <span class="s2">&quot;printing from the shell&quot;</span>
@@ -1066,24 +1035,43 @@ operator:</p>
 <span class="n">contents</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;images&#39;</span><span class="p">,</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;Makefile&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;data&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;file.dot&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;generators.ipynb&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;generators.slides.html&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;gotchas.ipynb&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;gotchas.slides.html&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;grid.edgelist&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;images&#39;</span><span class="p">,</span>
  <span class="s1">&#39;introduction.ipynb&#39;</span><span class="p">,</span>
  <span class="s1">&#39;introduction.slides.html&#39;</span><span class="p">,</span>
  <span class="s1">&#39;jupyter-notebooks.ipynb&#39;</span><span class="p">,</span>
  <span class="s1">&#39;jupyter-notebooks.slides.html&#39;</span><span class="p">,</span>
- <span class="s1">&#39;Makefile&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;marathon-data.csv&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;matplotlib.ipynb&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;matplotlib.slides.html&#39;</span><span class="p">,</span>
  <span class="s1">&#39;mprun_demo.py&#39;</span><span class="p">,</span>
  <span class="s1">&#39;my-script.py&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;my_figure.png&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;networkx.ipynb&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;networkx.slides.html&#39;</span><span class="p">,</span>
  <span class="s1">&#39;notebooks.ipynb&#39;</span><span class="p">,</span>
- <span class="s1">&#39;__pycache__&#39;</span><span class="p">,</span>
- <span class="s1">&#39;requirements.txt&#39;</span><span class="p">]</span>
+ <span class="s1">&#39;numpy.ipynb&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;numpy.slides.html&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;pandas.ipynb&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;pandas.slides.html&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;path.png&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;path.to.file&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;requirements.txt&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;roget_dat.txt.gz&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">directory</span> <span class="o">=</span> <span class="o">!</span>pwd
 <span class="n">directory</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;/home/mn/Developer/working-copies/pythons/on-python/UniFiCourseSpring2020&#39;</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;/Users/mn/Developer/working-copies/pythons/APAD-course/ipynbs&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Note that these results are not returned as lists, but as a special
@@ -1139,32 +1127,29 @@ exception is raised. Consider the following code:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">ZeroDivisionError</span>                         <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">32</span><span class="o">-</span><span class="mi">7</span><span class="n">cb498ea7ed1</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 
-  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-147-7cb498ea7ed1&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-    <span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">31</span><span class="o">-</span><span class="mi">586</span><span class="n">ccabd0db3</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">func2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+      <span class="mi">5</span>     <span class="n">a</span> <span class="o">=</span> <span class="n">x</span>
+      <span class="mi">6</span>     <span class="n">b</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="o">----&gt;</span> <span class="mi">7</span>     <span class="k">return</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
 
-  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-146-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">7</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func2</span>
-    <span class="k">return</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-
-
-  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-146-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func1</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">31</span><span class="o">-</span><span class="mi">586</span><span class="n">ccabd0db3</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+      <span class="mi">1</span> <span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="o">----&gt;</span> <span class="mi">2</span>     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+      <span class="mi">3</span>
+      <span class="mi">4</span> <span class="k">def</span> <span class="nf">func2</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+      <span class="mi">5</span>     <span class="n">a</span> <span class="o">=</span> <span class="n">x</span>
 
 
 <span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-146-586ccabd0db3&gt;[0m(2)[0;36mfunc1[0;34m()[0m
-[0;32m      1 [0;31m[0;32mdef[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0m[0;32m----&gt; 2 [0;31m    [0;32mreturn[0m [0ma[0m [0;34m/[0m [0mb[0m[0;34m[0m[0;34m[0m[0m
-[0m[0;32m      3 [0;31m[0;34m[0m[0m
-[0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
-[0m
-ipdb&gt; quit
 </pre></div>
 </div>
 <p>Calling <code class="docutils literal notranslate"><span class="pre">func2</span></code> results in an error, and reading the printed trace
@@ -1188,15 +1173,15 @@ more compact and gives less information:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
 
 
-  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-80-7cb498ea7ed1&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-34-7cb498ea7ed1&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
     <span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 
-  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-77-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">7</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func2</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-31-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">7</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func2</span>
     <span class="k">return</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
 
-  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-77-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func1</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-31-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func1</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
 
 
@@ -1218,21 +1203,21 @@ arguments to any functions that are called:</p>
 
 <span class="ne">ZeroDivisionError</span>                         <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
 
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">82</span><span class="o">-</span><span class="mi">7</span><span class="n">cb498ea7ed1</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">36</span><span class="o">-</span><span class="mi">7</span><span class="n">cb498ea7ed1</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">global</span> <span class="n">func2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">function</span> <span class="n">func2</span> <span class="n">at</span> <span class="mh">0x7fd96a3ce048</span><span class="o">&gt;</span>
+        <span class="k">global</span> <span class="n">func2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">function</span> <span class="n">func2</span> <span class="n">at</span> <span class="mh">0x7fd878f41670</span><span class="o">&gt;</span>
 
 
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">77</span><span class="o">-</span><span class="mi">586</span><span class="n">ccabd0db3</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">func2</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">31</span><span class="o">-</span><span class="mi">586</span><span class="n">ccabd0db3</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">func2</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
       <span class="mi">5</span>     <span class="n">a</span> <span class="o">=</span> <span class="n">x</span>
       <span class="mi">6</span>     <span class="n">b</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span>
 <span class="o">----&gt;</span> <span class="mi">7</span>     <span class="k">return</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-        <span class="k">global</span> <span class="n">func1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">function</span> <span class="n">func1</span> <span class="n">at</span> <span class="mh">0x7fd96a3ce2f0</span><span class="o">&gt;</span>
+        <span class="k">global</span> <span class="n">func1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">function</span> <span class="n">func1</span> <span class="n">at</span> <span class="mh">0x7fd878f41af0</span><span class="o">&gt;</span>
         <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
 
 
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">77</span><span class="o">-</span><span class="mi">586</span><span class="n">ccabd0db3</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">31</span><span class="o">-</span><span class="mi">586</span><span class="n">ccabd0db3</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
       <span class="mi">1</span> <span class="k">def</span> <span class="nf">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <span class="o">----&gt;</span> <span class="mi">2</span>     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
         <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1272,18 +1257,14 @@ session:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">debug</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-77-586ccabd0db3&gt;[0m(2)[0;36mfunc1[0;34m()[0m
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-31-586ccabd0db3&gt;[0m(2)[0;36mfunc1[0;34m()[0m
 [0;32m      1 [0;31m[0;32mdef[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 [0m[0;32m----&gt; 2 [0;31m    [0;32mreturn[0m [0ma[0m [0;34m/[0m [0mb[0m[0;34m[0m[0;34m[0m[0m
 [0m[0;32m      3 [0;31m[0;34m[0m[0m
 [0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 [0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
 [0m
-ipdb&gt; print(a)
-1
-ipdb&gt; print(b)
-0
-ipdb&gt; quit
+ipdb&gt; continue
 </pre></div>
 </div>
 <p>The interactive debugger allows much more than this, though–we can even
@@ -1292,36 +1273,14 @@ there:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">debug</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-77-586ccabd0db3&gt;[0m(2)[0;36mfunc1[0;34m()[0m
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-31-586ccabd0db3&gt;[0m(2)[0;36mfunc1[0;34m()[0m
 [0;32m      1 [0;31m[0;32mdef[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 [0m[0;32m----&gt; 2 [0;31m    [0;32mreturn[0m [0ma[0m [0;34m/[0m [0mb[0m[0;34m[0m[0;34m[0m[0m
 [0m[0;32m      3 [0;31m[0;34m[0m[0m
 [0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 [0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
 [0m
-ipdb&gt; up
-&gt; [0;32m&lt;ipython-input-77-586ccabd0db3&gt;[0m(7)[0;36mfunc2[0;34m()[0m
-[0;32m      3 [0;31m[0;34m[0m[0m
-[0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
-[0m[0;32m      6 [0;31m    [0mb[0m [0;34m=[0m [0mx[0m [0;34m-[0m [0;36m1[0m[0;34m[0m[0;34m[0m[0m
-[0m[0;32m----&gt; 7 [0;31m    [0;32mreturn[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
-ipdb&gt; print(x)
-1
-ipdb&gt; up
-&gt; [0;32m&lt;ipython-input-82-7cb498ea7ed1&gt;[0m(1)[0;36m&lt;module&gt;[0;34m()[0m
-[0;32m----&gt; 1 [0;31m[0mfunc2[0m[0;34m([0m[0;36m1[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
-ipdb&gt; down
-&gt; [0;32m&lt;ipython-input-77-586ccabd0db3&gt;[0m(7)[0;36mfunc2[0;34m()[0m
-[0;32m      3 [0;31m[0;34m[0m[0m
-[0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
-[0m[0;32m      6 [0;31m    [0mb[0m [0;34m=[0m [0mx[0m [0;34m-[0m [0;36m1[0m[0;34m[0m[0;34m[0m[0m
-[0m[0;32m----&gt; 7 [0;31m    [0;32mreturn[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
-ipdb&gt; quit
+ipdb&gt; continue
 </pre></div>
 </div>
 <p>This allows you to quickly find out not only what caused the error, but
@@ -1341,31 +1300,29 @@ automatic behavior:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
 
 
-  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-85-f80f6b5cecf3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">3</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-39-f80f6b5cecf3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">3</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
     <span class="n">func2</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 
-  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-77-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">7</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func2</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-31-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">7</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func2</span>
     <span class="k">return</span> <span class="n">func1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
 
-  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-77-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func1</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;ipython-input-31-586ccabd0db3&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="n">func1</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
 
 
 <span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-77-586ccabd0db3&gt;[0m(2)[0;36mfunc1[0;34m()[0m
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&gt; [0;32m&lt;ipython-input-31-586ccabd0db3&gt;[0m(2)[0;36mfunc1[0;34m()[0m
 [0;32m      1 [0;31m[0;32mdef[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 [0m[0;32m----&gt; 2 [0;31m    [0;32mreturn[0m [0ma[0m [0;34m/[0m [0mb[0m[0;34m[0m[0;34m[0m[0m
 [0m[0;32m      3 [0;31m[0;34m[0m[0m
 [0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
 [0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
 [0m
-ipdb&gt; print(b)
-0
-ipdb&gt; quit
+ipdb&gt; continue
 </pre></div>
 </div>
 <p>Finally, if you have a script that you’d like to run from the beginning
@@ -1460,7 +1417,7 @@ repeated execution of snippets of code:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> sum(range(100))
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.3 µs ± 7.05 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.11 µs ± 4.94 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
 </pre></div>
 </div>
 <p>Note that because this operation is so fast, <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> automatically
@@ -1474,7 +1431,7 @@ fewer repetitions:</p>
         <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">j</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>368 ms ± 3.52 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>325 ms ± 5.44 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 <p>Sometimes repeating an operation is not the best option. For example, if
@@ -1486,7 +1443,7 @@ unsorted list, so the repetition will skew the result:</p>
 <span class="o">%</span><span class="k">timeit</span> L.sort()
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>693 µs ± 39.3 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>444 µs ± 10.6 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre></div>
 </div>
 <p>For this, the <code class="docutils literal notranslate"><span class="pre">%time</span></code> magic function may be a better choice. It also
@@ -1500,8 +1457,8 @@ unsorted and a presorted list:</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sorting</span> <span class="n">an</span> <span class="n">unsorted</span> <span class="nb">list</span><span class="p">:</span>
-<span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mi">24</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mi">0</span> <span class="n">ns</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mi">24</span> <span class="n">ms</span>
-<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mf">23.7</span> <span class="n">ms</span>
+<span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mf">22.1</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mi">78</span> <span class="n">µs</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mf">22.1</span> <span class="n">ms</span>
+<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mf">22.1</span> <span class="n">ms</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sorting an already sorted list:&quot;</span><span class="p">)</span>
@@ -1509,8 +1466,8 @@ unsorted and a presorted list:</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sorting</span> <span class="n">an</span> <span class="n">already</span> <span class="nb">sorted</span> <span class="nb">list</span><span class="p">:</span>
-<span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mf">1.19</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mi">19</span> <span class="n">µs</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mf">1.21</span> <span class="n">ms</span>
-<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mf">1.22</span> <span class="n">ms</span>
+<span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mf">1.29</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mi">1</span> <span class="n">µs</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mf">1.29</span> <span class="n">ms</span>
+<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mf">1.3</span> <span class="n">ms</span>
 </pre></div>
 </div>
 <p>Notice how much faster the presorted list is to sort, but notice also
@@ -1530,8 +1487,8 @@ magic syntax allows timing of multiline scripts:</p>
         <span class="n">total</span> <span class="o">+=</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="n">j</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mi">465</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mi">0</span> <span class="n">ns</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mi">465</span> <span class="n">ms</span>
-<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mi">464</span> <span class="n">ms</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CPU</span> <span class="n">times</span><span class="p">:</span> <span class="n">user</span> <span class="mi">418</span> <span class="n">ms</span><span class="p">,</span> <span class="n">sys</span><span class="p">:</span> <span class="mf">2.57</span> <span class="n">ms</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="mi">421</span> <span class="n">ms</span>
+<span class="n">Wall</span> <span class="n">time</span><span class="p">:</span> <span class="mi">420</span> <span class="n">ms</span>
 </pre></div>
 </div>
 <p>For more information on <code class="docutils literal notranslate"><span class="pre">%time</span></code> and <code class="docutils literal notranslate"><span class="pre">%timeit</span></code>, as well as their
@@ -1649,7 +1606,7 @@ be used rather simply:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">memit</span> sum_of_lists(1000000)
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">peak</span> <span class="n">memory</span><span class="p">:</span> <span class="mf">106.86</span> <span class="n">MiB</span><span class="p">,</span> <span class="n">increment</span><span class="p">:</span> <span class="mf">28.78</span> <span class="n">MiB</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">peak</span> <span class="n">memory</span><span class="p">:</span> <span class="mf">129.71</span> <span class="n">MiB</span><span class="p">,</span> <span class="n">increment</span><span class="p">:</span> <span class="mf">72.76</span> <span class="n">MiB</span>
 </pre></div>
 </div>
 <p>We see that this function uses about 100 MB of memory.</p>

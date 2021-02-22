@@ -2,41 +2,6 @@ pandas module
 #################
 
 
-.. raw:: html
-
-   <p>
-
-.. container::
-
-   Massimo Nocentini, PhD. February 26, 2020: init
-
-.. raw:: html
-
-   </p>
-
-.. container::
-
-   Abstract These slides outline techniques for effectively loading,
-   storing, and manipulating in-memory data in Python.
-
-.. code:: ipython3
-
-    __AUTHORS__ = {'am': ("Andrea Marino", 
-                          "andrea.marino@unifi.it",),
-                   'mn': ("Massimo Nocentini", 
-                          "massimo.nocentini@unifi.it", 
-                          "https://github.com/massimo-nocentini/",)}
-    
-    __KEYWORDS__ = ['Python', 'numpy', 'numerical', 'data',]
-
-.. raw:: html
-
-   <center>
-
-.. raw:: html
-
-   </center>
-
 Introducing Pandas Objects
 ==========================
 
@@ -13019,7 +12984,7 @@ year:
 
 
 
-.. image:: pandas_files/pandas_451_0.png
+.. image:: pandas_files/pandas_448_0.png
 
 
 With a simple pivot table and ``plot()`` method, we can immediately see
@@ -13086,7 +13051,7 @@ This allows us to quickly compute the weekday corresponding to each row:
 
 
 
-.. image:: pandas_files/pandas_462_0.png
+.. image:: pandas_files/pandas_459_0.png
 
 
 Apparently births are slightly less common on weekends than on weekdays!
@@ -13234,7 +13199,7 @@ trends:
 
 
 
-.. image:: pandas_files/pandas_470_0.png
+.. image:: pandas_files/pandas_467_0.png
 
 
 In particular, the striking feature of this graph is the dip in
@@ -13914,7 +13879,7 @@ Download some data (**ADD A DESCRIPTION FOR IT**)
 
 
 
-.. image:: pandas_files/pandas_522_0.png
+.. image:: pandas_files/pandas_519_0.png
 
 
 Resampling and converting frequencies
@@ -13938,7 +13903,7 @@ resample the data at the end of business year:
 
 
 
-.. image:: pandas_files/pandas_525_0.png
+.. image:: pandas_files/pandas_522_0.png
 
 
 Notice the difference: at each point, ``resample`` reports the *average
@@ -13968,7 +13933,7 @@ weekends):
 
 
 
-.. image:: pandas_files/pandas_529_0.png
+.. image:: pandas_files/pandas_526_0.png
 
 
 The top panel is the default: non-business days are left as NA values
@@ -14017,7 +13982,7 @@ Here we will both ``shift()`` and ``tshift()`` by 900 days;
 
 
 
-.. image:: pandas_files/pandas_532_0.png
+.. image:: pandas_files/pandas_529_0.png
 
 
 We see here that ``shift(900)`` shifts the *data* by 900 days, pushing
@@ -14036,7 +14001,7 @@ on investment for Google stock over the course of the dataset:
 
 
 
-.. image:: pandas_files/pandas_534_0.png
+.. image:: pandas_files/pandas_531_0.png
 
 
 This helps us to see the overall trend in Google stock: thus far, the
@@ -14069,7 +14034,7 @@ deviation of the Google stock prices:
 
 
 
-.. image:: pandas_files/pandas_538_0.png
+.. image:: pandas_files/pandas_535_0.png
 
 
 As with group-by operations, the ``aggregate()`` and ``apply()`` methods
@@ -14298,7 +14263,7 @@ We can gain some insight into the dataset by visualizing it:
 
 
 
-.. image:: pandas_files/pandas_548_0.png
+.. image:: pandas_files/pandas_545_0.png
 
 
 The ~25,000 hourly samples are far too dense for us to make much sense
@@ -14312,7 +14277,7 @@ of. We can gain more insight by resampling the data to a coarser grid:
 
 
 
-.. image:: pandas_files/pandas_550_0.png
+.. image:: pandas_files/pandas_547_0.png
 
 
 This shows us some interesting seasonal trends: as you might expect,
@@ -14332,7 +14297,7 @@ do a 30 day rolling mean of our data, making sure to center the window:
 
 
 
-.. image:: pandas_files/pandas_553_0.png
+.. image:: pandas_files/pandas_550_0.png
 
 
 The jaggedness of the result is due to the hard cutoff of the window. We
@@ -14350,7 +14315,7 @@ days):
 
 
 
-.. image:: pandas_files/pandas_556_0.png
+.. image:: pandas_files/pandas_553_0.png
 
 
 Digging into the data
@@ -14369,7 +14334,7 @@ the time of day; we do this by grouping:
 
 
 
-.. image:: pandas_files/pandas_558_0.png
+.. image:: pandas_files/pandas_555_0.png
 
 
 The hourly traffic is a strongly bimodal distribution, with peaks around
@@ -14391,7 +14356,7 @@ week. Again, we can do this with a simple groupby:
 
 
 
-.. image:: pandas_files/pandas_561_0.png
+.. image:: pandas_files/pandas_558_0.png
 
 
 This shows a strong distinction between weekday and weekend totals, with
@@ -14418,7 +14383,7 @@ flag marking the weekend, and the time of day:
 
 
 
-.. image:: pandas_files/pandas_565_0.png
+.. image:: pandas_files/pandas_562_0.png
 
 
 The result is very interesting: we see a bimodal commute pattern during

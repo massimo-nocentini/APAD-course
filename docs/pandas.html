@@ -176,23 +176,7 @@
             
   <div class="section" id="pandas-module">
 <h1>pandas module<a class="headerlink" href="#pandas-module" title="Permalink to this headline">¶</a></h1>
-<p><div class="docutils container">
-<p>Massimo Nocentini, PhD. February 26, 2020: init</p>
-</div>
-</p><div class="docutils container">
-<p>Abstract These slides outline techniques for effectively loading,
-storing, and manipulating in-memory data in Python.</p>
-</div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__AUTHORS__</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;am&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Andrea Marino&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;andrea.marino@unifi.it&quot;</span><span class="p">,),</span>
-               <span class="s1">&#39;mn&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Massimo Nocentini&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;massimo.nocentini@unifi.it&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;https://github.com/massimo-nocentini/&quot;</span><span class="p">,)}</span>
-
-<span class="n">__KEYWORDS__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;numpy&#39;</span><span class="p">,</span> <span class="s1">&#39;numerical&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,]</span>
-</pre></div>
-</div>
-<center></center><div class="section" id="introducing-pandas-objects">
+<div class="section" id="introducing-pandas-objects">
 <h2>Introducing Pandas Objects<a class="headerlink" href="#introducing-pandas-objects" title="Permalink to this headline">¶</a></h2>
 <p>Pandas objects can be thought of as enhanced versions of NumPy
 structured arrays in which the rows and columns are identified with
@@ -11153,7 +11137,7 @@ year:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;total births per year&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_451_0.png" src="_images/pandas_451_0.png" />
+<img alt="_images/pandas_448_0.png" src="_images/pandas_448_0.png" />
 <p>With a simple pivot table and <code class="docutils literal notranslate"><span class="pre">plot()</span></code> method, we can immediately see
 the annual trend in births by gender. By eye, it appears that over the
 past 50 years male births have outnumbered female births by around 5%.</p>
@@ -11204,7 +11188,7 @@ This allows us to quickly compute the weekday corresponding to each row:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;mean births by day&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_462_0.png" src="_images/pandas_462_0.png" />
+<img alt="_images/pandas_459_0.png" src="_images/pandas_459_0.png" />
 <p>Apparently births are slightly less common on weekends than on weekdays!
 Note that the 1990s and 2000s are missing because the CDC data contains
 only the month of birth starting in 1989.</p>
@@ -11322,7 +11306,7 @@ trends:</p>
 <span class="n">births_by_date</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_470_0.png" src="_images/pandas_470_0.png" />
+<img alt="_images/pandas_467_0.png" src="_images/pandas_467_0.png" />
 <p>In particular, the striking feature of this graph is the dip in
 birthrate on US holidays (e.g., Independence Day, Labor Day,
 Thanksgiving, Christmas, New Year’s Day) although this likely reflects
@@ -11911,7 +11895,7 @@ Finance, and others.</p>
 <span class="n">goog</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_522_0.png" src="_images/pandas_522_0.png" />
+<img alt="_images/pandas_519_0.png" src="_images/pandas_519_0.png" />
 <div class="section" id="resampling-and-converting-frequencies">
 <h4>Resampling and converting frequencies<a class="headerlink" href="#resampling-and-converting-frequencies" title="Permalink to this headline">¶</a></h4>
 <p>One common need for time series data is resampling at a higher or lower
@@ -11927,7 +11911,7 @@ resample the data at the end of business year:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="s1">&#39;resample&#39;</span><span class="p">,</span> <span class="s1">&#39;asfreq&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_525_0.png" src="_images/pandas_525_0.png" />
+<img alt="_images/pandas_522_0.png" src="_images/pandas_522_0.png" />
 <p>Notice the difference: at each point, <code class="docutils literal notranslate"><span class="pre">resample</span></code> reports the <em>average
 of the previous year</em>, while <code class="docutils literal notranslate"><span class="pre">asfreq</span></code> reports the <em>value at the end of
 the year</em>.</p>
@@ -11949,7 +11933,7 @@ weekends):</p>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;back-fill&quot;</span><span class="p">,</span> <span class="s2">&quot;forward-fill&quot;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_529_0.png" src="_images/pandas_529_0.png" />
+<img alt="_images/pandas_526_0.png" src="_images/pandas_526_0.png" />
 <p>The top panel is the default: non-business days are left as NA values
 and do not appear on the plot. The bottom panel shows the differences
 between two strategies for filling the gaps: forward-filling and
@@ -11990,7 +11974,7 @@ frequency.</p>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">local_max</span> <span class="o">+</span> <span class="n">offset</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_532_0.png" src="_images/pandas_532_0.png" />
+<img alt="_images/pandas_529_0.png" src="_images/pandas_529_0.png" />
 <p>We see here that <code class="docutils literal notranslate"><span class="pre">shift(900)</span></code> shifts the <em>data</em> by 900 days, pushing
 some of it off the end of the graph (and leaving NA values at the other
 end), while <code class="docutils literal notranslate"><span class="pre">tshift(900)</span></code> shifts the <em>index values</em> by 900 days.</p>
@@ -12002,7 +11986,7 @@ on investment for Google stock over the course of the dataset:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;% Return on Investment&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_534_0.png" src="_images/pandas_534_0.png" />
+<img alt="_images/pandas_531_0.png" src="_images/pandas_531_0.png" />
 <p>This helps us to see the overall trend in Google stock: thus far, the
 most profitable times to invest in Google have been (unsurprisingly, in
 retrospect) shortly after its IPO, and in the middle of the 2009
@@ -12027,7 +12011,7 @@ deviation of the Google stock prices:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_538_0.png" src="_images/pandas_538_0.png" />
+<img alt="_images/pandas_535_0.png" src="_images/pandas_535_0.png" />
 <p>As with group-by operations, the <code class="docutils literal notranslate"><span class="pre">aggregate()</span></code> and <code class="docutils literal notranslate"><span class="pre">apply()</span></code> methods
 can be used for custom rolling computations.</p>
 </div>
@@ -12220,7 +12204,7 @@ adding a “Total” column:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Hourly Bicycle Count&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_548_0.png" src="_images/pandas_548_0.png" />
+<img alt="_images/pandas_545_0.png" src="_images/pandas_545_0.png" />
 <p>The ~25,000 hourly samples are far too dense for us to make much sense
 of. We can gain more insight by resampling the data to a coarser grid:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weekly</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -12228,7 +12212,7 @@ of. We can gain more insight by resampling the data to a coarser grid:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Weekly bicycle count&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_550_0.png" src="_images/pandas_550_0.png" />
+<img alt="_images/pandas_547_0.png" src="_images/pandas_547_0.png" />
 <p>This shows us some interesting seasonal trends: as you might expect,
 people bicycle more in the summer than in the winter, and even within a
 particular season the bicycle use varies from week to week (likely
@@ -12241,7 +12225,7 @@ do a 30 day rolling mean of our data, making sure to center the window:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;mean hourly count&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_553_0.png" src="_images/pandas_553_0.png" />
+<img alt="_images/pandas_550_0.png" src="_images/pandas_550_0.png" />
 <p>The jaggedness of the result is due to the hard cutoff of the window. We
 can get a smoother version of a rolling mean using a window function–for
 example, a Gaussian window.</p>
@@ -12252,7 +12236,7 @@ days):</p>
               <span class="n">win_type</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_556_0.png" src="_images/pandas_556_0.png" />
+<img alt="_images/pandas_553_0.png" src="_images/pandas_553_0.png" />
 </div>
 <div class="section" id="digging-into-the-data">
 <h4>Digging into the data<a class="headerlink" href="#digging-into-the-data" title="Permalink to this headline">¶</a></h4>
@@ -12265,7 +12249,7 @@ the time of day; we do this by grouping:</p>
 <span class="n">by_time</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="n">hourly_ticks</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_558_0.png" src="_images/pandas_558_0.png" />
+<img alt="_images/pandas_555_0.png" src="_images/pandas_555_0.png" />
 <p>The hourly traffic is a strongly bimodal distribution, with peaks around
 8:00 in the morning and 5:00 in the evening. This is likely evidence of
 a strong component of commuter traffic crossing the bridge. This is
@@ -12280,7 +12264,7 @@ week. Again, we can do this with a simple groupby:</p>
 <span class="n">by_weekday</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_561_0.png" src="_images/pandas_561_0.png" />
+<img alt="_images/pandas_558_0.png" src="_images/pandas_558_0.png" />
 <p>This shows a strong distinction between weekday and weekend totals, with
 around twice as many average riders crossing the bridge on Monday
 through Friday than on Saturday and Sunday.</p>
@@ -12299,7 +12283,7 @@ flag marking the weekend, and the time of day:</p>
                            <span class="n">xticks</span><span class="o">=</span><span class="n">hourly_ticks</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_565_0.png" src="_images/pandas_565_0.png" />
+<img alt="_images/pandas_562_0.png" src="_images/pandas_562_0.png" />
 <p>The result is very interesting: we see a bimodal commute pattern during
 the work week, and a unimodal recreational pattern during the weekends.</p>
 </div>

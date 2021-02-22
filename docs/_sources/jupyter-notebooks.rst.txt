@@ -2,40 +2,6 @@ Jupyter notebooks
 #################
 
 
-.. raw:: html
-
-   <p>
-
-.. container::
-
-   Massimo Nocentini, PhD. February 7, 2020: init
-
-.. raw:: html
-
-   </p>
-
-.. container::
-
-   Abstract A (very concise) introduction to the Python ecosystem.
-
-.. code:: ipython3
-
-    __AUTHORS__ = {'am': ("Andrea Marino", 
-                          "andrea.marino@unifi.it",),
-                   'mn': ("Massimo Nocentini", 
-                          "massimo.nocentini@unifi.it", 
-                          "https://github.com/massimo-nocentini/",)}
-    
-    __KEYWORDS__ = ['Python', 'Jupyter', 'notebooks', 'keynote',]
-
-.. raw:: html
-
-   <center>
-
-.. raw:: html
-
-   </center>
-
 IPython: Beyond Normal Python
 =============================
 
@@ -354,7 +320,21 @@ or even objects themselves, with the documentation from their type:
      |      Reverse *IN PLACE*.
      |  
      |  sort(self, /, *, key=None, reverse=False)
-     |      Stable sort *IN PLACE*.
+     |      Sort the list in ascending order and return None.
+     |      
+     |      The sort is in-place (i.e. the list itself is modified) and stable (i.e. the
+     |      order of two equal elements is maintained).
+     |      
+     |      If a key function is given, apply it once to each list item and sort them,
+     |      ascending or descending, according to their function values.
+     |      
+     |      The reverse flag can be set to sort in descending order.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Class methods defined here:
+     |  
+     |  __class_getitem__(...) from builtins.type
+     |      See PEP 585
      |  
      |  ----------------------------------------------------------------------
      |  Static methods defined here:
@@ -672,7 +652,7 @@ performance of a list comprehension:
 
 .. parsed-literal::
 
-    307 µs ± 262 ns per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+    277 µs ± 4.2 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 
 
 The benefit of ``%timeit`` is that for short commands it will
@@ -693,7 +673,7 @@ here’s the equivalent construction with a ``for``-loop:
 
 .. parsed-literal::
 
-    346 µs ± 351 ns per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+    299 µs ± 3.05 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 
 
 We can immediately see that list comprehensions are about 10% faster
@@ -788,7 +768,7 @@ automatically updated to reflect this history:
 
 .. parsed-literal::
 
-    ['', '__AUTHORS__ = {\'am\': ("Andrea Marino", \n                      "andrea.marino@unifi.it",),\n               \'mn\': ("Massimo Nocentini", \n                      "massimo.nocentini@unifi.it", \n                      "https://github.com/massimo-nocentini/",)}\n\n__KEYWORDS__ = [\'Python\', \'Jupyter\', \'notebooks\', \'keynote\',]', "outline = []\noutline.append('Hello!')\noutline.append('Python')\noutline.append('Whys and refs')\noutline.append('On the shoulders of giants')\noutline.append('Set the env up')\noutline.append('Notebooks')\noutline.append('Course agenda')", 'help(len)', '__AUTHORS__ = {\'am\': ("Andrea Marino", \n                      "andrea.marino@unifi.it",),\n               \'mn\': ("Massimo Nocentini", \n                      "massimo.nocentini@unifi.it", \n                      "https://github.com/massimo-nocentini/",)}\n\n__KEYWORDS__ = [\'Python\', \'Jupyter\', \'notebooks\', \'keynote\',]', 'help(len)', 'L = [1, 2, 3]\nhelp(L.insert)', 'help(L)', 'This nota
+    ['', 'help(len)', 'L = [1, 2, 3]\nhelp(L.insert)', 'help(L)', 'def square(a):\n    """Return the square of a."""\n    return a ** 2', 'help(square)', "get_ipython().run_cell_magic('bash', '', '\\ncat my-script.py\\n')", "get_ipython().run_line_magic('run', 'my-script.py')", 'square(5)', "get_ipython().run_line_magic('timeit', 'L = [n ** 2 for n in range(1000)]')", "get_ipython().run_cell_magic('timeit', '', 'L = []\\nfor n in range(1000):\\n    L.append(n ** 2)\\n')", 'import math\n\nmath.sin(2)', 'math.cos(2)', 'print(str(In)[:1000])']
 
 
 .. code:: ipython3
@@ -798,7 +778,7 @@ automatically updated to reflect this history:
 
 .. parsed-literal::
 
-    {29: 25, 30: 0.9092974268256817, 31: -0.4161468365471424, 32: -0.4161468365471424, 33: 0.9092974268256817, 49: False, 51: False, 61: ['images', 'introduction.ipynb', 'introduction.slides.html', 'jupyter-notebooks.ipynb', 'jupyter-notebooks.slides.html', 'Makefile', 'my-script.py', 'notebooks.ipynb'], 62: ['/home/mn/Developer/working-copies/pythons/on-python/UniFiCourseSpring2020'], 63: <class 'IPython.utils.text.SList'>, 71: '[\'\', \'__AUTHORS__ = {\\\'am\\\': ("Andrea Marino", \\n                      "andrea.marino@unifi.it",),\\n', 72: '[\'\', \'__AUTHORS__ = {\\\'am\\\': ("Andrea Marino", \\n                      "andrea.marino@unifi.it",),\\n               \\\'mn\\\': ("Massimo Nocentini", \\n                      "massimo.nocentini@unifi.it", \\n                      "https://github.com/massimo-nocentini/",)}\\n\\n__KEYWORDS__ = [\\\'Python\\\', \\\'Jupyter\\\', \\\'notebooks\\\', \\\'keynote\\\',]\', "outline = []\\noutline.append(\'Hello!\')\\noutline.append(\'Python\')\\noutl
+    {8: 25, 11: 0.9092974268256817, 12: -0.4161468365471424}
 
 
 The ``In`` object is a list, which keeps track of the commands in order
@@ -813,13 +793,7 @@ refer to the first command):
 
 .. parsed-literal::
 
-    __AUTHORS__ = {'am': ("Andrea Marino", 
-                          "andrea.marino@unifi.it",),
-                   'mn': ("Massimo Nocentini", 
-                          "massimo.nocentini@unifi.it", 
-                          "https://github.com/massimo-nocentini/",)}
-    
-    __KEYWORDS__ = ['Python', 'Jupyter', 'notebooks', 'keynote',]
+    help(len)
 
 
 The ``Out`` object is not a list but a dictionary mapping input numbers
@@ -827,12 +801,12 @@ to their outputs (if any):
 
 .. code:: ipython3
 
-    print(Out[29])
+    print(Out)
 
 
 .. parsed-literal::
 
-    25
+    {8: 25, 11: 0.9092974268256817, 12: -0.4161468365471424}
 
 
 Note that not all operations have outputs: for example, ``import``
@@ -847,29 +821,15 @@ using the previously-computed results:
 
 .. code:: ipython3
 
-    Out[2] ** 2 + Out[3] ** 2
+    Out[8] ** 2 + Out[12] ** 2
 
-
-::
-
-
-    Traceback (most recent call last):
-
-
-      File "<ipython-input-131-26f5e7e673c2>", line 1, in <module>
-        Out[2] ** 2 + Out[3] ** 2
-
-
-    KeyError: 2
 
 
 
 .. parsed-literal::
 
-    > [0;32m<ipython-input-131-26f5e7e673c2>[0m(1)[0;36m<module>[0;34m()[0m
-    [0;32m----> 1 [0;31m[0mOut[0m[0;34m[[0m[0;36m2[0m[0;34m][0m [0;34m**[0m [0;36m2[0m [0;34m+[0m [0mOut[0m[0;34m[[0m[0;36m3[0m[0;34m][0m [0;34m**[0m [0;36m2[0m[0;34m[0m[0;34m[0m[0m
-    [0m
-    ipdb> quit
+    625.1731781895681
+
 
 
 The result is ``1.0`` as we’d expect from the well-known trigonometric
@@ -892,7 +852,7 @@ IPython as well:
 
 .. parsed-literal::
 
-    {29: 25, 30: 0.9092974268256817, 31: -0.4161468365471424, 32: -0.4161468365471424, 33: 0.9092974268256817, 49: False, 51: False, 61: ['images', 'introduction.ipynb', 'introduction.slides.html', 'jupyter-notebooks.ipynb', 'jupyter-notebooks.slides.html', 'Makefile', 'my-script.py', 'notebooks.ipynb'], 62: ['/home/mn/Developer/working-copies/pythons/on-python/UniFiCourseSpring2020'], 63: <class 'IPython.utils.text.SList'>, 71: '[\'\', \'__AUTHORS__ = {\\\'am\\\': ("Andrea Marino", \\n                      "andrea.marino@unifi.it",),\\n', 72: '[\'\', \'__AUTHORS__ = {\\\'am\\\': ("Andrea Marino", \\n                      "andrea.marino@unifi.it",),\\n               \\\'mn\\\': ("Massimo Nocentini", \\n                      "massimo.nocentini@unifi.it", \\n                      "https://github.com/massimo-nocentini/",)}\\n\\n__KEYWORDS__ = [\\\'Python\\\', \\\'Jupyter\\\', \\\'notebooks\\\', \\\'keynote\\\',]\', "outline = []\\noutline.append(\'Hello!\')\\noutline.append(\'Python\')\\noutl
+    625.1731781895681
 
 
 But IPython takes this a bit further—you can use a double underscore to
@@ -923,29 +883,15 @@ number):
 
 .. code:: ipython3
 
-    Out[2], _2
+    Out
 
-
-::
-
-
-    Traceback (most recent call last):
-
-
-      File "<ipython-input-134-32d637638f50>", line 1, in <module>
-        Out[2], _2
-
-
-    KeyError: 2
 
 
 
 .. parsed-literal::
 
-    > [0;32m<ipython-input-134-32d637638f50>[0m(1)[0;36m<module>[0;34m()[0m
-    [0;32m----> 1 [0;31m[0mOut[0m[0;34m[[0m[0;36m2[0m[0;34m][0m[0;34m,[0m [0m_2[0m[0;34m[0m[0;34m[0m[0m
-    [0m
-    ipdb> quit
+    {8: 25, 11: 0.9092974268256817, 12: -0.4161468365471424, 17: 625.1731781895681}
+
 
 
 Suppressing Output
@@ -994,24 +940,11 @@ inputs:
 
 .. parsed-literal::
 
-       1:
-    __AUTHORS__ = {'am': ("Andrea Marino", 
-                          "andrea.marino@unifi.it",),
-                   'mn': ("Massimo Nocentini", 
-                          "massimo.nocentini@unifi.it", 
-                          "https://github.com/massimo-nocentini/",)}
-    
-    __KEYWORDS__ = ['Python', 'Jupyter', 'notebooks', 'keynote',]
+       1: help(len)
        2:
-    outline = []
-    outline.append('Hello!')
-    outline.append('Python')
-    outline.append('Whys and refs')
-    outline.append('On the shoulders of giants')
-    outline.append('Set the env up')
-    outline.append('Notebooks')
-    outline.append('Course agenda')
-       3: help(len)
+    L = [1, 2, 3]
+    help(L.insert)
+       3: help(L)
 
 
 As usual, you can type ``%history?`` for more information and a
@@ -1125,10 +1058,21 @@ and ``echo`` commands can be run as follows:
 
 .. parsed-literal::
 
-    images			  jupyter-notebooks.slides.html  notebooks.ipynb
-    introduction.ipynb	  Makefile			 __pycache__
-    introduction.slides.html  mprun_demo.py			 requirements.txt
-    jupyter-notebooks.ipynb   my-script.py
+    Makefile                      matplotlib.slides.html
+    [34mdata[m[m                          mprun_demo.py
+    file.dot                      my-script.py
+    generators.ipynb              my_figure.png
+    generators.slides.html        networkx.ipynb
+    gotchas.ipynb                 networkx.slides.html
+    gotchas.slides.html           notebooks.ipynb
+    grid.edgelist                 numpy.ipynb
+    [34mimages[m[m                        numpy.slides.html
+    introduction.ipynb            pandas.ipynb
+    introduction.slides.html      pandas.slides.html
+    jupyter-notebooks.ipynb       path.png
+    jupyter-notebooks.slides.html path.to.file
+    marathon-data.csv             requirements.txt
+    matplotlib.ipynb              roget_dat.txt.gz
 
 
 .. code:: ipython3
@@ -1138,7 +1082,7 @@ and ``echo`` commands can be run as follows:
 
 .. parsed-literal::
 
-    /home/mn/Developer/working-copies/pythons/on-python/UniFiCourseSpring2020
+    /Users/mn/Developer/working-copies/pythons/APAD-course/ipynbs
 
 
 .. code:: ipython3
@@ -1169,17 +1113,36 @@ operator:
 
 .. parsed-literal::
 
-    ['images',
+    ['Makefile',
+     'data',
+     'file.dot',
+     'generators.ipynb',
+     'generators.slides.html',
+     'gotchas.ipynb',
+     'gotchas.slides.html',
+     'grid.edgelist',
+     'images',
      'introduction.ipynb',
      'introduction.slides.html',
      'jupyter-notebooks.ipynb',
      'jupyter-notebooks.slides.html',
-     'Makefile',
+     'marathon-data.csv',
+     'matplotlib.ipynb',
+     'matplotlib.slides.html',
      'mprun_demo.py',
      'my-script.py',
+     'my_figure.png',
+     'networkx.ipynb',
+     'networkx.slides.html',
      'notebooks.ipynb',
-     '__pycache__',
-     'requirements.txt']
+     'numpy.ipynb',
+     'numpy.slides.html',
+     'pandas.ipynb',
+     'pandas.slides.html',
+     'path.png',
+     'path.to.file',
+     'requirements.txt',
+     'roget_dat.txt.gz']
 
 
 
@@ -1193,7 +1156,7 @@ operator:
 
 .. parsed-literal::
 
-    ['/home/mn/Developer/working-copies/pythons/on-python/UniFiCourseSpring2020']
+    ['/Users/mn/Developer/working-copies/pythons/APAD-course/ipynbs']
 
 
 
@@ -1274,35 +1237,29 @@ exception is raised. Consider the following code:
 ::
 
 
-    Traceback (most recent call last):
+    ---------------------------------------------------------------------------
 
+    ZeroDivisionError                         Traceback (most recent call last)
 
-      File "<ipython-input-147-7cb498ea7ed1>", line 1, in <module>
-        func2(1)
+    <ipython-input-32-7cb498ea7ed1> in <module>
+    ----> 1 func2(1)
+    
 
+    <ipython-input-31-586ccabd0db3> in func2(x)
+          5     a = x
+          6     b = x - 1
+    ----> 7     return func1(a, b)
+    
 
-      File "<ipython-input-146-586ccabd0db3>", line 7, in func2
-        return func1(a, b)
-
-
-      File "<ipython-input-146-586ccabd0db3>", line 2, in func1
-        return a / b
+    <ipython-input-31-586ccabd0db3> in func1(a, b)
+          1 def func1(a, b):
+    ----> 2     return a / b
+          3 
+          4 def func2(x):
+          5     a = x
 
 
     ZeroDivisionError: division by zero
-
-
-
-.. parsed-literal::
-
-    > [0;32m<ipython-input-146-586ccabd0db3>[0m(2)[0;36mfunc1[0;34m()[0m
-    [0;32m      1 [0;31m[0;32mdef[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-    [0m[0;32m----> 2 [0;31m    [0;32mreturn[0m [0ma[0m [0;34m/[0m [0mb[0m[0;34m[0m[0;34m[0m[0m
-    [0m[0;32m      3 [0;31m[0;34m[0m[0m
-    [0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-    [0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
-    [0m
-    ipdb> quit
 
 
 Calling ``func2`` results in an error, and reading the printed trace
@@ -1337,15 +1294,15 @@ more compact and gives less information:
     Traceback (most recent call last):
 
 
-      File "<ipython-input-80-7cb498ea7ed1>", line 1, in <module>
+      File "<ipython-input-34-7cb498ea7ed1>", line 1, in <module>
         func2(1)
 
 
-      File "<ipython-input-77-586ccabd0db3>", line 7, in func2
+      File "<ipython-input-31-586ccabd0db3>", line 7, in func2
         return func1(a, b)
 
 
-      File "<ipython-input-77-586ccabd0db3>", line 2, in func1
+      File "<ipython-input-31-586ccabd0db3>", line 2, in func1
         return a / b
 
 
@@ -1378,21 +1335,21 @@ arguments to any functions that are called:
 
     ZeroDivisionError                         Traceback (most recent call last)
 
-    <ipython-input-82-7cb498ea7ed1> in <module>
+    <ipython-input-36-7cb498ea7ed1> in <module>
     ----> 1 func2(1)
-            global func2 = <function func2 at 0x7fd96a3ce048>
+            global func2 = <function func2 at 0x7fd878f41670>
 
 
-    <ipython-input-77-586ccabd0db3> in func2(x=1)
+    <ipython-input-31-586ccabd0db3> in func2(x=1)
           5     a = x
           6     b = x - 1
     ----> 7     return func1(a, b)
-            global func1 = <function func1 at 0x7fd96a3ce2f0>
+            global func1 = <function func1 at 0x7fd878f41af0>
             a = 1
             b = 0
 
 
-    <ipython-input-77-586ccabd0db3> in func1(a=1, b=0)
+    <ipython-input-31-586ccabd0db3> in func1(a=1, b=0)
           1 def func1(a, b):
     ----> 2     return a / b
             a = 1
@@ -1441,18 +1398,14 @@ session:
 
 .. parsed-literal::
 
-    > [0;32m<ipython-input-77-586ccabd0db3>[0m(2)[0;36mfunc1[0;34m()[0m
+    > [0;32m<ipython-input-31-586ccabd0db3>[0m(2)[0;36mfunc1[0;34m()[0m
     [0;32m      1 [0;31m[0;32mdef[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
     [0m[0;32m----> 2 [0;31m    [0;32mreturn[0m [0ma[0m [0;34m/[0m [0mb[0m[0;34m[0m[0;34m[0m[0m
     [0m[0;32m      3 [0;31m[0;34m[0m[0m
     [0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
     [0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
     [0m
-    ipdb> print(a)
-    1
-    ipdb> print(b)
-    0
-    ipdb> quit
+    ipdb> continue
 
 
 The interactive debugger allows much more than this, though–we can even
@@ -1466,36 +1419,14 @@ there:
 
 .. parsed-literal::
 
-    > [0;32m<ipython-input-77-586ccabd0db3>[0m(2)[0;36mfunc1[0;34m()[0m
+    > [0;32m<ipython-input-31-586ccabd0db3>[0m(2)[0;36mfunc1[0;34m()[0m
     [0;32m      1 [0;31m[0;32mdef[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
     [0m[0;32m----> 2 [0;31m    [0;32mreturn[0m [0ma[0m [0;34m/[0m [0mb[0m[0;34m[0m[0;34m[0m[0m
     [0m[0;32m      3 [0;31m[0;34m[0m[0m
     [0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
     [0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
     [0m
-    ipdb> up
-    > [0;32m<ipython-input-77-586ccabd0db3>[0m(7)[0;36mfunc2[0;34m()[0m
-    [0;32m      3 [0;31m[0;34m[0m[0m
-    [0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-    [0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
-    [0m[0;32m      6 [0;31m    [0mb[0m [0;34m=[0m [0mx[0m [0;34m-[0m [0;36m1[0m[0;34m[0m[0;34m[0m[0m
-    [0m[0;32m----> 7 [0;31m    [0;32mreturn[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-    [0m
-    ipdb> print(x)
-    1
-    ipdb> up
-    > [0;32m<ipython-input-82-7cb498ea7ed1>[0m(1)[0;36m<module>[0;34m()[0m
-    [0;32m----> 1 [0;31m[0mfunc2[0m[0;34m([0m[0;36m1[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-    [0m
-    ipdb> down
-    > [0;32m<ipython-input-77-586ccabd0db3>[0m(7)[0;36mfunc2[0;34m()[0m
-    [0;32m      3 [0;31m[0;34m[0m[0m
-    [0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-    [0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
-    [0m[0;32m      6 [0;31m    [0mb[0m [0;34m=[0m [0mx[0m [0;34m-[0m [0;36m1[0m[0;34m[0m[0;34m[0m[0m
-    [0m[0;32m----> 7 [0;31m    [0;32mreturn[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-    [0m
-    ipdb> quit
+    ipdb> continue
 
 
 This allows you to quickly find out not only what caused the error, but
@@ -1524,15 +1455,15 @@ automatic behavior:
     Traceback (most recent call last):
 
 
-      File "<ipython-input-85-f80f6b5cecf3>", line 3, in <module>
+      File "<ipython-input-39-f80f6b5cecf3>", line 3, in <module>
         func2(1)
 
 
-      File "<ipython-input-77-586ccabd0db3>", line 7, in func2
+      File "<ipython-input-31-586ccabd0db3>", line 7, in func2
         return func1(a, b)
 
 
-      File "<ipython-input-77-586ccabd0db3>", line 2, in func1
+      File "<ipython-input-31-586ccabd0db3>", line 2, in func1
         return a / b
 
 
@@ -1542,16 +1473,14 @@ automatic behavior:
 
 .. parsed-literal::
 
-    > [0;32m<ipython-input-77-586ccabd0db3>[0m(2)[0;36mfunc1[0;34m()[0m
+    > [0;32m<ipython-input-31-586ccabd0db3>[0m(2)[0;36mfunc1[0;34m()[0m
     [0;32m      1 [0;31m[0;32mdef[0m [0mfunc1[0m[0;34m([0m[0ma[0m[0;34m,[0m [0mb[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
     [0m[0;32m----> 2 [0;31m    [0;32mreturn[0m [0ma[0m [0;34m/[0m [0mb[0m[0;34m[0m[0;34m[0m[0m
     [0m[0;32m      3 [0;31m[0;34m[0m[0m
     [0m[0;32m      4 [0;31m[0;32mdef[0m [0mfunc2[0m[0;34m([0m[0mx[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
     [0m[0;32m      5 [0;31m    [0ma[0m [0;34m=[0m [0mx[0m[0;34m[0m[0;34m[0m[0m
     [0m
-    ipdb> print(b)
-    0
-    ipdb> quit
+    ipdb> continue
 
 
 Finally, if you have a script that you’d like to run from the beginning
@@ -1638,7 +1567,7 @@ repeated execution of snippets of code:
 
 .. parsed-literal::
 
-    1.3 µs ± 7.05 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+    1.11 µs ± 4.94 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
 
 
 Note that because this operation is so fast, ``%timeit`` automatically
@@ -1658,7 +1587,7 @@ fewer repetitions:
 
 .. parsed-literal::
 
-    368 ms ± 3.52 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+    325 ms ± 5.44 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 
 
 Sometimes repeating an operation is not the best option. For example, if
@@ -1675,7 +1604,7 @@ unsorted list, so the repetition will skew the result:
 
 .. parsed-literal::
 
-    693 µs ± 39.3 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+    444 µs ± 10.6 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 
 
 For this, the ``%time`` magic function may be a better choice. It also
@@ -1694,8 +1623,8 @@ unsorted and a presorted list:
 .. parsed-literal::
 
     sorting an unsorted list:
-    CPU times: user 24 ms, sys: 0 ns, total: 24 ms
-    Wall time: 23.7 ms
+    CPU times: user 22.1 ms, sys: 78 µs, total: 22.1 ms
+    Wall time: 22.1 ms
 
 
 .. code:: ipython3
@@ -1707,8 +1636,8 @@ unsorted and a presorted list:
 .. parsed-literal::
 
     sorting an already sorted list:
-    CPU times: user 1.19 ms, sys: 19 µs, total: 1.21 ms
-    Wall time: 1.22 ms
+    CPU times: user 1.29 ms, sys: 1 µs, total: 1.29 ms
+    Wall time: 1.3 ms
 
 
 Notice how much faster the presorted list is to sort, but notice also
@@ -1734,8 +1663,8 @@ magic syntax allows timing of multiline scripts:
 
 .. parsed-literal::
 
-    CPU times: user 465 ms, sys: 0 ns, total: 465 ms
-    Wall time: 464 ms
+    CPU times: user 418 ms, sys: 2.57 ms, total: 421 ms
+    Wall time: 420 ms
 
 
 For more information on ``%time`` and ``%timeit``, as well as their
@@ -1887,7 +1816,7 @@ be used rather simply:
 
 .. parsed-literal::
 
-    peak memory: 106.86 MiB, increment: 28.78 MiB
+    peak memory: 129.71 MiB, increment: 72.76 MiB
 
 
 We see that this function uses about 100 MB of memory.

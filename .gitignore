@@ -1,3 +1,4 @@
 *.DS_Store
 ipynbs/.ipynb_checkpoints/
+ipynbs/__pycache__/
 booklet/build/

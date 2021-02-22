@@ -2,48 +2,8 @@ Introduction
 ############
 
 
-.. raw:: html
-
-   <p>
-
-.. container::
-
-   Massimo Nocentini, PhD. February 7, 2020: init
-
-.. raw:: html
-
-   </p>
-
-.. container::
-
-   Abstract A (very concise) introduction to the Python ecosystem.
-
-.. code:: ipython3
-
-    __AUTHORS__ = {'am': ("Andrea Marino", 
-                          "andrea.marino@unifi.it",),
-                   'mn': ("Massimo Nocentini", 
-                          "massimo.nocentini@unifi.it", 
-                          "https://github.com/massimo-nocentini/",)}
-    
-    __KEYWORDS__ = ['Python', 'Jupyter', 'notebooks', 'keynote',]
-
-.. raw:: html
-
-   <center>
-
-.. raw:: html
-
-   </center>
-
-.. code:: ipython3
-
-    outline = []
-    outline.append('Hello!')
-    outline.append('Python')
-    outline.append('Whys and refs')
-    outline.append('On the shoulders of giants')
-    outline.append('Course agenda')
+``print('Hello!')``
+===================
 
 .. code:: ipython3
 

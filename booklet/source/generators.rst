@@ -2,41 +2,6 @@ Generators
 ##########
 
 
-.. raw:: html
-
-   <p>
-
-.. container::
-
-   Massimo Nocentini, PhD. May 28, 2020: init
-
-.. raw:: html
-
-   </p>
-
-.. container::
-
-   Abstract A (very concise) introduction to some Python language
-   constructs.
-
-.. code:: ipython3
-
-    __AUTHORS__ = {'am': ("Andrea Marino", 
-                          "andrea.marino@unifi.it",),
-                   'mn': ("Massimo Nocentini", 
-                          "massimo.nocentini@unifi.it", 
-                          "https://github.com/massimo-nocentini/",)}
-    
-    __KEYWORDS__ = ['Python', 'Jupyter', 'language', 'keynote',]
-
-.. raw:: html
-
-   <center>
-
-.. raw:: html
-
-   </center>
-
 The Python language documentation
 =================================
 

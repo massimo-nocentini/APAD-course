@@ -157,22 +157,7 @@
             
   <div class="section" id="matplotlib-module">
 <h1>matplotlib module<a class="headerlink" href="#matplotlib-module" title="Permalink to this headline">¶</a></h1>
-<p><div class="docutils container">
-<p>Massimo Nocentini, PhD. February 7, 2020: init</p>
-</div>
-</p><div class="docutils container">
-<p>Abstract A (very concise) introduction to matplotlib.</p>
-</div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__AUTHORS__</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;am&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Andrea Marino&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;andrea.marino@unifi.it&quot;</span><span class="p">,),</span>
-               <span class="s1">&#39;mn&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Massimo Nocentini&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;massimo.nocentini@unifi.it&quot;</span><span class="p">,</span>
-                      <span class="s2">&quot;https://github.com/massimo-nocentini/&quot;</span><span class="p">,)}</span>
-
-<span class="n">__KEYWORDS__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Python&#39;</span><span class="p">,</span> <span class="s1">&#39;Jupyter&#39;</span><span class="p">,</span> <span class="s1">&#39;matplotlib&#39;</span><span class="p">,</span> <span class="s1">&#39;keynote&#39;</span><span class="p">,]</span>
-</pre></div>
-</div>
-<center></center><div class="section" id="visualization-with-matplotlib">
+<div class="section" id="visualization-with-matplotlib">
 <h2>Visualization with Matplotlib<a class="headerlink" href="#visualization-with-matplotlib" title="Permalink to this headline">¶</a></h2>
 <p>We’ll now take an in-depth look at the Matplotlib package for
 visualization in Python. Matplotlib is a multi-platform data
@@ -276,7 +261,7 @@ embed a PNG image of the resulting graphic:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_14_0.png" src="_images/matplotlib_14_0.png" />
+<img alt="_images/matplotlib_11_0.png" src="_images/matplotlib_11_0.png" />
 </div>
 </div>
 </div>
@@ -339,7 +324,7 @@ following code will probably look quite familiar to MATLAB users:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_23_0.png" src="_images/matplotlib_23_0.png" />
+<img alt="_images/matplotlib_20_0.png" src="_images/matplotlib_20_0.png" />
 </div>
 <div class="section" id="object-oriented-interface">
 <h5>Object-oriented interface<a class="headerlink" href="#object-oriented-interface" title="Permalink to this headline">¶</a></h5>
@@ -358,7 +343,7 @@ using this style of plotting, you might do the following:</p>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_25_0.png" src="_images/matplotlib_25_0.png" />
+<img alt="_images/matplotlib_22_0.png" src="_images/matplotlib_22_0.png" />
 </div>
 </div>
 </div>
@@ -382,7 +367,7 @@ their simplest form, a figure and axes can be created as follows:</p>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_29_0.png" src="_images/matplotlib_29_0.png" />
+<img alt="_images/matplotlib_26_0.png" src="_images/matplotlib_26_0.png" />
 <p>In Matplotlib, the <em>figure</em> (an instance of the class <code class="docutils literal notranslate"><span class="pre">plt.Figure</span></code>)
 can be thought of as a single container that contains all the objects
 representing axes, graphics, text, and labels. The <em>axes</em> (an instance
@@ -400,20 +385,20 @@ plot some data. Let’s start with a simple sinusoid:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_32_0.png" src="_images/matplotlib_32_0.png" />
+<img alt="_images/matplotlib_29_0.png" src="_images/matplotlib_29_0.png" />
 <p>Alternatively, we can use the pylab interface and let the figure and
 axes be created for us in the background:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_34_0.png" src="_images/matplotlib_34_0.png" />
+<img alt="_images/matplotlib_31_0.png" src="_images/matplotlib_31_0.png" />
 <p>If we want to create a single figure with multiple lines, we can simply
 call the <code class="docutils literal notranslate"><span class="pre">plot</span></code> function multiple times:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_36_0.png" src="_images/matplotlib_36_0.png" />
+<img alt="_images/matplotlib_33_0.png" src="_images/matplotlib_33_0.png" />
 <p>The first adjustment you might wish to make to a plot is to control the
 line colors and styles. The <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> function takes additional
 arguments that can be used to specify these. To adjust the color, you
@@ -430,7 +415,7 @@ colors for multiple lines):</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">5</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;chartreuse&#39;</span><span class="p">);</span> <span class="c1"># all HTML color names supported</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_39_0.png" src="_images/matplotlib_39_0.png" />
+<img alt="_images/matplotlib_36_0.png" src="_images/matplotlib_36_0.png" />
 <p>Similarly, the line style can be adjusted using the <code class="docutils literal notranslate"><span class="pre">linestyle</span></code>
 keyword:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;solid&#39;</span><span class="p">)</span>
@@ -445,7 +430,7 @@ keyword:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">7</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">);</span>  <span class="c1"># dotted</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_41_0.png" src="_images/matplotlib_41_0.png" />
+<img alt="_images/matplotlib_38_0.png" src="_images/matplotlib_38_0.png" />
 <p>If you would like to be extremely terse, these <code class="docutils literal notranslate"><span class="pre">linestyle</span></code> and
 <code class="docutils literal notranslate"><span class="pre">color</span></code> codes can be combined into a single non-keyword argument to
 the <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> function:</p>
@@ -455,7 +440,7 @@ the <code class="docutils literal notranslate"><span class="pre">plt.plot()</spa
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;:r&#39;</span><span class="p">);</span>  <span class="c1"># dotted red</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_43_0.png" src="_images/matplotlib_43_0.png" />
+<img alt="_images/matplotlib_40_0.png" src="_images/matplotlib_40_0.png" />
 <p>Matplotlib does a decent job of choosing default axes limits for your
 plot, but sometimes it’s nice to have finer control. The most basic way
 to adjust axis limits is to use the <code class="docutils literal notranslate"><span class="pre">plt.xlim()</span></code> and <code class="docutils literal notranslate"><span class="pre">plt.ylim()</span></code>
@@ -466,7 +451,7 @@ methods:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_45_0.png" src="_images/matplotlib_45_0.png" />
+<img alt="_images/matplotlib_42_0.png" src="_images/matplotlib_42_0.png" />
 <p>If for some reason you’d like either axis to be displayed in reverse,
 you can simply reverse the order of the arguments:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
@@ -475,7 +460,7 @@ you can simply reverse the order of the arguments:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.2</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_47_0.png" src="_images/matplotlib_47_0.png" />
+<img alt="_images/matplotlib_44_0.png" src="_images/matplotlib_44_0.png" />
 <p>A useful related method is <code class="docutils literal notranslate"><span class="pre">plt.axis()</span></code> (note here the potential
 confusion between <em>axes</em> with an <em>e</em>, and <em>axis</em> with an <em>i</em>). The
 <code class="docutils literal notranslate"><span class="pre">plt.axis()</span></code> method allows you to set the <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> limits with
@@ -485,14 +470,14 @@ a single call, by passing a list which specifies
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_49_0.png" src="_images/matplotlib_49_0.png" />
+<img alt="_images/matplotlib_46_0.png" src="_images/matplotlib_46_0.png" />
 <p>The <code class="docutils literal notranslate"><span class="pre">plt.axis()</span></code> method goes even beyond this, allowing you to do
 things like automatically tighten the bounds around the current plot:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;tight&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_51_0.png" src="_images/matplotlib_51_0.png" />
+<img alt="_images/matplotlib_48_0.png" src="_images/matplotlib_48_0.png" />
 <p>It allows even higher-level specifications, such as ensuring an equal
 aspect ratio so that on your screen, one unit in <code class="docutils literal notranslate"><span class="pre">x</span></code> is equal to one
 unit in <code class="docutils literal notranslate"><span class="pre">y</span></code>:</p>
@@ -500,7 +485,7 @@ unit in <code class="docutils literal notranslate"><span class="pre">y</span></c
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_53_0.png" src="_images/matplotlib_53_0.png" />
+<img alt="_images/matplotlib_50_0.png" src="_images/matplotlib_50_0.png" />
 <p>As the last piece of this section, we’ll briefly look at the labeling of
 plots: titles, axis labels, and simple legends.</p>
 <p>Titles and axis labels are the simplest such labels—there are methods
@@ -511,7 +496,7 @@ that can be used to quickly set them:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;sin(x)&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_55_0.png" src="_images/matplotlib_55_0.png" />
+<img alt="_images/matplotlib_52_0.png" src="_images/matplotlib_52_0.png" />
 <p>When multiple lines are being shown within a single axes, it can be
 useful to create a plot legend that labels each line type. Again,
 Matplotlib has a built-in way of quickly creating such a legend. It is
@@ -525,7 +510,7 @@ of each line using the <code class="docutils literal notranslate"><span class="p
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_57_0.png" src="_images/matplotlib_57_0.png" />
+<img alt="_images/matplotlib_54_0.png" src="_images/matplotlib_54_0.png" />
 <p>While most <code class="docutils literal notranslate"><span class="pre">plt</span></code> functions translate directly to <code class="docutils literal notranslate"><span class="pre">ax</span></code> methods (such
 as <code class="docutils literal notranslate"><span class="pre">plt.plot()</span></code> → <code class="docutils literal notranslate"><span class="pre">ax.plot()</span></code>, <code class="docutils literal notranslate"><span class="pre">plt.legend()</span></code> → <code class="docutils literal notranslate"><span class="pre">ax.legend()</span></code>,
 etc.), this is not the case for all commands. In particular, functions
@@ -547,7 +532,7 @@ functions individually, it is often more convenient to use the
 <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;A Simple Plot&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_59_0.png" src="_images/matplotlib_59_0.png" />
+<img alt="_images/matplotlib_56_0.png" src="_images/matplotlib_56_0.png" />
 </div>
 <div class="section" id="simple-scatter-plots">
 <h2>Simple Scatter Plots<a class="headerlink" href="#simple-scatter-plots" title="Permalink to this headline">¶</a></h2>
@@ -571,7 +556,7 @@ plots as well:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_63_0.png" src="_images/matplotlib_63_0.png" />
+<img alt="_images/matplotlib_60_0.png" src="_images/matplotlib_60_0.png" />
 <p>The third argument in the function call is a character that represents
 the type of symbol used for the plotting. Just as you can specify
 options such as <code class="docutils literal notranslate"><span class="pre">'-'</span></code>, <code class="docutils literal notranslate"><span class="pre">'--'</span></code> to control the line style, the marker
@@ -586,14 +571,14 @@ intuitive, and we’ll show a number of the more common ones here:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_65_0.png" src="_images/matplotlib_65_0.png" />
+<img alt="_images/matplotlib_62_0.png" src="_images/matplotlib_62_0.png" />
 <p>For even more possibilities, these character codes can be used together
 with line and color codes to plot points along with a line connecting
 them:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-ok&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_67_0.png" src="_images/matplotlib_67_0.png" />
+<img alt="_images/matplotlib_64_0.png" src="_images/matplotlib_64_0.png" />
 <p>Additional keyword arguments to <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code> specify a wide range of
 properties of the lines and markers:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;-p&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
@@ -604,14 +589,14 @@ properties of the lines and markers:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_69_0.png" src="_images/matplotlib_69_0.png" />
+<img alt="_images/matplotlib_66_0.png" src="_images/matplotlib_66_0.png" />
 <p>A second, more powerful method of creating scatter plots is the
 <code class="docutils literal notranslate"><span class="pre">plt.scatter</span></code> function, which can be used very similarly to the
 <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code> function:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_71_0.png" src="_images/matplotlib_71_0.png" />
+<img alt="_images/matplotlib_68_0.png" src="_images/matplotlib_68_0.png" />
 <p>The primary difference of <code class="docutils literal notranslate"><span class="pre">plt.scatter</span></code> from <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code> is that it
 can be used to create scatter plots where the properties of each
 individual point (size, face color, edge color, etc.) can be
@@ -629,7 +614,7 @@ also use the <code class="docutils literal notranslate"><span class="pre">alpha<
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">();</span>  <span class="c1"># show color scale</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_74_0.png" src="_images/matplotlib_74_0.png" />
+<img alt="_images/matplotlib_71_0.png" src="_images/matplotlib_71_0.png" />
 <p>Notice that the color argument is automatically mapped to a color scale
 (shown here by the <code class="docutils literal notranslate"><span class="pre">colorbar()</span></code> command), and that the size argument
 is given in pixels. In this way, the color and size of points can be
@@ -647,7 +632,7 @@ petals and sepals carefully measured:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_77_0.png" src="_images/matplotlib_77_0.png" />
+<img alt="_images/matplotlib_74_0.png" src="_images/matplotlib_74_0.png" />
 <p>Aside from the different features available in <code class="docutils literal notranslate"><span class="pre">plt.plot</span></code> and
 <code class="docutils literal notranslate"><span class="pre">plt.scatter</span></code>, why might you choose to use one over the other? While
 it doesn’t matter as much for small amounts of data, as datasets get
@@ -696,7 +681,7 @@ and points, and has the same syntax as the shorthand used in
 <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">dy</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.k&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_83_0.png" src="_images/matplotlib_83_0.png" />
+<img alt="_images/matplotlib_80_0.png" src="_images/matplotlib_80_0.png" />
 <p>In addition to these basic options, the <code class="docutils literal notranslate"><span class="pre">errorbar</span></code> function has many
 options to fine-tune the outputs. Using these additional options you can
 easily customize the aesthetics of your errorbar plot. I often find it
@@ -705,7 +690,7 @@ the points themselves:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">dy</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ecolor</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">,</span> <span class="n">elinewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_85_0.png" src="_images/matplotlib_85_0.png" />
+<img alt="_images/matplotlib_82_0.png" src="_images/matplotlib_82_0.png" />
 </div>
 <div class="section" id="density-and-contour-plots">
 <h2>Density and Contour Plots<a class="headerlink" href="#density-and-contour-plots" title="Permalink to this headline">¶</a></h2>
@@ -749,7 +734,7 @@ one-dimensional arrays:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_93_0.png" src="_images/matplotlib_93_0.png" />
+<img alt="_images/matplotlib_90_0.png" src="_images/matplotlib_90_0.png" />
 <p>Notice that by default when a single color is used, negative values are
 represented by dashed lines, and positive values by solid lines.</p>
 <p>Alternatively, the lines can be color-coded by specifying a colormap
@@ -758,7 +743,7 @@ lines to be drawn—20 equally spaced intervals within the data range:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdGy&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_96_0.png" src="_images/matplotlib_96_0.png" />
+<img alt="_images/matplotlib_93_0.png" src="_images/matplotlib_93_0.png" />
 <p>Here we chose the <code class="docutils literal notranslate"><span class="pre">RdGy</span></code> (short for <em>Red-Gray</em>) colormap, which is a
 good choice for centered data. Matplotlib has a wide range of colormaps
 available, which you can easily browse in IPython by doing a tab
@@ -778,7 +763,7 @@ for the plot:</p>
                 <span class="c1"># are &quot;peaks,&quot; while the red regions are &quot;valleys.&quot;</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_99_0.png" src="_images/matplotlib_99_0.png" />
+<img alt="_images/matplotlib_96_0.png" src="_images/matplotlib_96_0.png" />
 <p>One potential issue with this plot is that it is a bit “splotchy.” That
 is, the color steps are discrete rather than continuous, which is not
 always what is desired. This could be remedied by setting the number of
@@ -792,7 +777,7 @@ code shows this:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;image&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_101_0.png" src="_images/matplotlib_101_0.png" />
+<img alt="_images/matplotlib_98_0.png" src="_images/matplotlib_98_0.png" />
 <p>There are a few potential gotchas with <code class="docutils literal notranslate"><span class="pre">imshow()</span></code>, however:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">plt.imshow()</span></code> doesn’t accept an <em>x</em> and <em>y</em> grid, so you must
@@ -818,7 +803,7 @@ contours with labels on the contours themselves (using the
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">();</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_104_0.png" src="_images/matplotlib_104_0.png" />
+<img alt="_images/matplotlib_101_0.png" src="_images/matplotlib_101_0.png" />
 </div>
 <div class="section" id="histograms-binnings-and-density">
 <h2>Histograms, Binnings, and Density<a class="headerlink" href="#histograms-binnings-and-density" title="Permalink to this headline">¶</a></h2>
@@ -837,7 +822,7 @@ histogram in one line, once the normal boiler-plate imports are done:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_107_0.png" src="_images/matplotlib_107_0.png" />
+<img alt="_images/matplotlib_104_0.png" src="_images/matplotlib_104_0.png" />
 <p>The <code class="docutils literal notranslate"><span class="pre">hist()</span></code> function has many options to tune both the calculation
 and the display; here’s an example of a more customized histogram:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
@@ -845,7 +830,7 @@ and the display; here’s an example of a more customized histogram:</p>
          <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_109_0.png" src="_images/matplotlib_109_0.png" />
+<img alt="_images/matplotlib_106_0.png" src="_images/matplotlib_106_0.png" />
 <p>The <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code> docstring has more information on other customization
 options available. I find this combination of <code class="docutils literal notranslate"><span class="pre">histtype='stepfilled'</span></code>
 along with some transparency <code class="docutils literal notranslate"><span class="pre">alpha</span></code> to be very useful when comparing
@@ -861,7 +846,7 @@ histograms of several distributions:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_111_0.png" src="_images/matplotlib_111_0.png" />
+<img alt="_images/matplotlib_108_0.png" src="_images/matplotlib_108_0.png" />
 <p>If you would like to simply compute the histogram (that is, count the
 number of points in a given bin) and not display it, the
 <code class="docutils literal notranslate"><span class="pre">np.histogram()</span></code> function is available:</p>
@@ -891,7 +876,7 @@ Matplotlib’s <code class="docutils literal notranslate"><span class="pre">plt.
 <span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;counts in bin&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_117_0.png" src="_images/matplotlib_117_0.png" />
+<img alt="_images/matplotlib_114_0.png" src="_images/matplotlib_114_0.png" />
 <p>Just as with <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code>, <code class="docutils literal notranslate"><span class="pre">plt.hist2d</span></code> has a number of extra options
 to fine-tune the plot and the binning, which are nicely outlined in the
 function docstring. Further, just as <code class="docutils literal notranslate"><span class="pre">plt.hist</span></code> has a counterpart in
@@ -912,7 +897,7 @@ grid of hexagons:</p>
 <span class="n">cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;count in bin&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_121_0.png" src="_images/matplotlib_121_0.png" />
+<img alt="_images/matplotlib_118_0.png" src="_images/matplotlib_118_0.png" />
 <p><code class="docutils literal notranslate"><span class="pre">plt.hexbin</span></code> has a number of interesting options, including the
 ability to specify weights for each point, and to change the output in
 each bin to any NumPy aggregate (mean of weights, standard deviation of
@@ -947,7 +932,7 @@ this data:</p>
 <span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s2">&quot;density&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_124_0.png" src="_images/matplotlib_124_0.png" />
+<img alt="_images/matplotlib_121_0.png" src="_images/matplotlib_121_0.png" />
 <p>KDE has a smoothing length that effectively slides the knob between
 detail and smoothness (one example of the ubiquitous bias–variance
 trade-off). The literature on choosing an appropriate smoothing length
@@ -981,21 +966,21 @@ which automatically creates a legend for any labeled plot elements:</p>
 <span class="n">leg</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_128_0.png" src="_images/matplotlib_128_0.png" />
+<img alt="_images/matplotlib_125_0.png" src="_images/matplotlib_125_0.png" />
 <p>But there are many ways we might want to customize such a legend. For
 example, we can specify the location and turn off the frame:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">fig</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_130_0.png" src="_images/matplotlib_130_0.png" />
+<img alt="_images/matplotlib_127_0.png" src="_images/matplotlib_127_0.png" />
 <p>We can use the <code class="docutils literal notranslate"><span class="pre">ncol</span></code> command to specify the number of columns in the
 legend:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower center&#39;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">fig</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_132_0.png" src="_images/matplotlib_132_0.png" />
+<img alt="_images/matplotlib_129_0.png" src="_images/matplotlib_129_0.png" />
 <p>We can use a rounded box (<code class="docutils literal notranslate"><span class="pre">fancybox</span></code>) or add a shadow, change the
 transparency (alpha value) of the frame, or change the padding around
 the text:</p>
@@ -1003,7 +988,7 @@ the text:</p>
 <span class="n">fig</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_134_0.png" src="_images/matplotlib_134_0.png" />
+<img alt="_images/matplotlib_131_0.png" src="_images/matplotlib_131_0.png" />
 <p>As we have already seen, the legend includes all labeled elements by
 default. If this is not what is desired, we can fine-tune which elements
 and labels appear in the legend by using the objects returned by plot
@@ -1018,7 +1003,7 @@ labels we’d like to specify:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">lines</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;second&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_136_0.png" src="_images/matplotlib_136_0.png" />
+<img alt="_images/matplotlib_133_0.png" src="_images/matplotlib_133_0.png" />
 <p>I generally find in practice that it is clearer to use the first method,
 applying labels to the plot elements you’d like to show on the legend:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span>
@@ -1027,7 +1012,7 @@ applying labels to the plot elements you’d like to show on the legend:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">framealpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_138_0.png" src="_images/matplotlib_138_0.png" />
+<img alt="_images/matplotlib_135_0.png" src="_images/matplotlib_135_0.png" />
 <p>Sometimes the legend defaults are not sufficient for the given
 visualization. For example, perhaps you’re be using the size of points
 to mark certain features of the data, and want to create a legend
@@ -1059,7 +1044,7 @@ this by plotting some labeled data with no entries:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;California Cities: Area and Population&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_140_0.png" src="_images/matplotlib_140_0.png" />
+<img alt="_images/matplotlib_137_0.png" src="_images/matplotlib_137_0.png" />
 <p>The legend will always reference some object that is on the plot, so if
 we’d like to display a particular shape we need to plot it. In this
 case, the objects we want (gray circles) are not on the plot, so we fake
@@ -1098,7 +1083,7 @@ manually add the second artist to the plot:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">leg</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_143_0.png" src="_images/matplotlib_143_0.png" />
+<img alt="_images/matplotlib_140_0.png" src="_images/matplotlib_140_0.png" />
 </div>
 <div class="section" id="customizing-colorbars">
 <h2>Customizing Colorbars<a class="headerlink" href="#customizing-colorbars" title="Permalink to this headline">¶</a></h2>
@@ -1128,13 +1113,13 @@ colorbar can be created with the <code class="docutils literal notranslate"><spa
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">();</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_148_0.png" src="_images/matplotlib_148_0.png" />
+<img alt="_images/matplotlib_145_0.png" src="_images/matplotlib_145_0.png" />
 <p>The colormap can be specified using the <code class="docutils literal notranslate"><span class="pre">cmap</span></code> argument to the
 plotting function that is creating the visualization:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_150_0.png" src="_images/matplotlib_150_0.png" />
+<img alt="_images/matplotlib_147_0.png" src="_images/matplotlib_147_0.png" />
 <div class="section" id="choosing-the-colormap">
 <h3>Choosing the Colormap<a class="headerlink" href="#choosing-the-colormap" title="Permalink to this headline">¶</a></h3>
 <p>A full treatment of color choice within visualization is beyond the
@@ -1193,7 +1178,7 @@ progression in brightness as the scale increases.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">view_colormap</span><span class="p">(</span><span class="s1">&#39;jet&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_154_0.png" src="_images/matplotlib_154_0.png" />
+<img alt="_images/matplotlib_151_0.png" src="_images/matplotlib_151_0.png" />
 <p>Notice the bright stripes in the grayscale image. Even in full color,
 this uneven brightness means that the eye will be drawn to certain
 portions of the color range, which will potentially emphasize
@@ -1205,13 +1190,13 @@ translate well to grayscale printing:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">view_colormap</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_157_0.png" src="_images/matplotlib_157_0.png" />
+<img alt="_images/matplotlib_154_0.png" src="_images/matplotlib_154_0.png" />
 <p>If you favor rainbow schemes, another good option for continuous data is
 the <code class="docutils literal notranslate"><span class="pre">cubehelix</span></code> colormap:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">view_colormap</span><span class="p">(</span><span class="s1">&#39;cubehelix&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_159_0.png" src="_images/matplotlib_159_0.png" />
+<img alt="_images/matplotlib_156_0.png" src="_images/matplotlib_156_0.png" />
 <p>For other situations, such as showing positive and negative deviations
 from some mean, dual-color colorbars such as <code class="docutils literal notranslate"><span class="pre">RdBu</span></code> (<em>Red-Blue</em>) can
 be useful. However, as you can see in the following figure, it’s
@@ -1220,7 +1205,7 @@ upon translation to grayscale!</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">view_colormap</span><span class="p">(</span><span class="s1">&#39;RdBu&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_161_0.png" src="_images/matplotlib_161_0.png" />
+<img alt="_images/matplotlib_158_0.png" src="_images/matplotlib_158_0.png" />
 </div>
 <div class="section" id="color-limits-and-extensions">
 <h3>Color limits and extensions<a class="headerlink" href="#color-limits-and-extensions" title="Permalink to this headline">¶</a></h3>
@@ -1248,7 +1233,7 @@ to noise:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_163_0.png" src="_images/matplotlib_163_0.png" />
+<img alt="_images/matplotlib_160_0.png" src="_images/matplotlib_160_0.png" />
 <p>Notice that in the left panel, the default color limits respond to the
 noisy pixels, and the range of the noise completely washes-out the
 pattern we are interested in. In the right panel, we manually set the
@@ -1267,7 +1252,7 @@ along with the number of desired bins:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_166_0.png" src="_images/matplotlib_166_0.png" />
+<img alt="_images/matplotlib_163_0.png" src="_images/matplotlib_163_0.png" />
 <div class="section" id="example-handwritten-digits">
 <h4>Example: Handwritten Digits<a class="headerlink" href="#example-handwritten-digits" title="Permalink to this headline">¶</a></h4>
 <p>For an example of where this might be useful, let’s look at an
@@ -1286,7 +1271,7 @@ several of the example images with <code class="docutils literal notranslate"><s
     <span class="n">axi</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[])</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_169_0.png" src="_images/matplotlib_169_0.png" />
+<img alt="_images/matplotlib_166_0.png" src="_images/matplotlib_166_0.png" />
 <p>Because each digit is defined by the hue of its 64 pixels, we can
 consider each digit to be a point lying in 64-dimensional space: each
 dimension represents the brightness of one pixel. But visualizing
@@ -1313,7 +1298,7 @@ colorbar:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_174_0.png" src="_images/matplotlib_174_0.png" />
+<img alt="_images/matplotlib_171_0.png" src="_images/matplotlib_171_0.png" />
 <p>The projection also gives us some interesting insights on the
 relationships within the dataset: for example, the ranges of 5 and 3
 nearly overlap in this projection, indicating that some hand written
@@ -1356,7 +1341,7 @@ the width and 20% of the height of the figure):</p>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_180_0.png" src="_images/matplotlib_180_0.png" />
+<img alt="_images/matplotlib_177_0.png" src="_images/matplotlib_177_0.png" />
 <p>The equivalent of this command within the object-oriented interface is
 <code class="docutils literal notranslate"><span class="pre">fig.add_axes()</span></code>. Let’s use this to create two vertically stacked
 axes:</p>
@@ -1371,7 +1356,7 @@ axes:</p>
 <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_182_0.png" src="_images/matplotlib_182_0.png" />
+<img alt="_images/matplotlib_179_0.png" src="_images/matplotlib_179_0.png" />
 <p>Aligned columns or rows of subplots are a common-enough need that
 Matplotlib has several convenience routines that make them easy to
 create. The lowest level of these is <code class="docutils literal notranslate"><span class="pre">plt.subplot()</span></code>, which creates a
@@ -1385,7 +1370,7 @@ upper left to the bottom right:</p>
              <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_184_0.png" src="_images/matplotlib_184_0.png" />
+<img alt="_images/matplotlib_181_0.png" src="_images/matplotlib_181_0.png" />
 <p>The command <code class="docutils literal notranslate"><span class="pre">plt.subplots_adjust</span></code> can be used to adjust the spacing
 between these plots. The following code uses the equivalent
 object-oriented command, <code class="docutils literal notranslate"><span class="pre">fig.add_subplot()</span></code>:</p>
@@ -1397,7 +1382,7 @@ object-oriented command, <code class="docutils literal notranslate"><span class=
            <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_186_0.png" src="_images/matplotlib_186_0.png" />
+<img alt="_images/matplotlib_183_0.png" src="_images/matplotlib_183_0.png" />
 <p>We’ve used the <code class="docutils literal notranslate"><span class="pre">hspace</span></code> and <code class="docutils literal notranslate"><span class="pre">wspace</span></code> arguments of
 <code class="docutils literal notranslate"><span class="pre">plt.subplots_adjust</span></code>, which specify the spacing along the height and
 width of the figure, in units of the subplot size (in this case, the
@@ -1417,7 +1402,7 @@ column share their x-axis scale:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="s1">&#39;col&#39;</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_190_0.png" src="_images/matplotlib_190_0.png" />
+<img alt="_images/matplotlib_187_0.png" src="_images/matplotlib_187_0.png" />
 <p>Note that by specifying <code class="docutils literal notranslate"><span class="pre">sharex</span></code> and <code class="docutils literal notranslate"><span class="pre">sharey</span></code>, we’ve automatically
 removed inner labels on the grid to make the plot cleaner. The resulting
 grid of axes instances is returned within a NumPy array, allowing for
@@ -1431,7 +1416,7 @@ indexing notation:</p>
 <span class="n">fig</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_192_0.png" src="_images/matplotlib_192_0.png" />
+<img alt="_images/matplotlib_189_0.png" src="_images/matplotlib_189_0.png" />
 <p>To go beyond a regular grid to subplots that span multiple rows and
 columns, <code class="docutils literal notranslate"><span class="pre">plt.GridSpec()</span></code> is the best tool. The <code class="docutils literal notranslate"><span class="pre">plt.GridSpec()</span></code>
 object does not create a plot by itself; it is simply a convenient
@@ -1449,7 +1434,7 @@ familiary Python slicing syntax:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_196_0.png" src="_images/matplotlib_196_0.png" />
+<img alt="_images/matplotlib_193_0.png" src="_images/matplotlib_193_0.png" />
 <p>This type of flexible grid alignment has a wide range of uses. I most
 often use it when creating multi-axes histogram plots like the ones
 shown here:</p>
@@ -1472,7 +1457,7 @@ shown here:</p>
 <span class="n">y_hist</span><span class="o">.</span><span class="n">invert_xaxis</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_198_0.png" src="_images/matplotlib_198_0.png" />
+<img alt="_images/matplotlib_195_0.png" src="_images/matplotlib_195_0.png" />
 </div>
 <div class="section" id="text-and-annotation">
 <h2>Text and Annotation<a class="headerlink" href="#text-and-annotation" title="Permalink to this headline">¶</a></h2>
@@ -1516,7 +1501,7 @@ results:</p>
 <span class="n">births_by_date</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_203_0.png" src="_images/matplotlib_203_0.png" />
+<img alt="_images/matplotlib_200_0.png" src="_images/matplotlib_200_0.png" />
 <p>When we’re communicating data like this, it is often useful to annotate
 certain features of the plot to draw the reader’s attention. This can be
 done manually with the <code class="docutils literal notranslate"><span class="pre">plt.text</span></code>/<code class="docutils literal notranslate"><span class="pre">ax.text</span></code> command, which will
@@ -1544,7 +1529,7 @@ place text at a particular x/y value:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_formatter</span><span class="p">(</span><span class="n">mpl</span><span class="o">.</span><span class="n">dates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%h&#39;</span><span class="p">));</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_205_0.png" src="_images/matplotlib_205_0.png" />
+<img alt="_images/matplotlib_202_0.png" src="_images/matplotlib_202_0.png" />
 <p>The <code class="docutils literal notranslate"><span class="pre">ax.text</span></code> method takes an x position, a y position, a string, and
 then optional keywords specifying the color, size, style, alignment, and
 other properties of the text. Here we used <code class="docutils literal notranslate"><span class="pre">ha='right'</span></code> and
@@ -1585,7 +1570,7 @@ these transforms:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;. Figure: (0.2, 0.2)&quot;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">transFigure</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_209_0.png" src="_images/matplotlib_209_0.png" />
+<img alt="_images/matplotlib_206_0.png" src="_images/matplotlib_206_0.png" />
 <p>Note that by default, the text is aligned above and to the left of the
 specified coordinates: here the “.” at the beginning of each string will
 approximately mark the given coordinate location.</p>
@@ -1603,7 +1588,7 @@ stationary:</p>
 <span class="n">fig</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_212_0.png" src="_images/matplotlib_212_0.png" />
+<img alt="_images/matplotlib_209_0.png" src="_images/matplotlib_209_0.png" />
 <p>This behavior can be seen more clearly by changing the axes limits
 interactively: if you are executing this code in a notebook, you can
 make that happen by changing <code class="docutils literal notranslate"><span class="pre">%matplotlib</span> <span class="pre">inline</span></code> to
@@ -1635,7 +1620,7 @@ arrow, and the arrows can be very flexibly specified.</p>
                             <span class="n">connectionstyle</span><span class="o">=</span><span class="s2">&quot;angle3,angleA=0,angleB=-90&quot;</span><span class="p">));</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_216_0.png" src="_images/matplotlib_216_0.png" />
+<img alt="_images/matplotlib_213_0.png" src="_images/matplotlib_213_0.png" />
 <p>The arrow style is controlled through the <code class="docutils literal notranslate"><span class="pre">arrowprops</span></code> dictionary,
 which has numerous options available. These options are fairly
 well-documented in Matplotlib’s online documentation, so rather than
@@ -1694,7 +1679,7 @@ using the birthrate plot from before:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">3600</span><span class="p">,</span> <span class="mi">5400</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_218_0.png" src="_images/matplotlib_218_0.png" />
+<img alt="_images/matplotlib_215_0.png" src="_images/matplotlib_215_0.png" />
 </div>
 <div class="section" id="customizing-ticks">
 <h2>Customizing Ticks<a class="headerlink" href="#customizing-ticks" title="Permalink to this headline">¶</a></h2>
@@ -1729,7 +1714,7 @@ can see them is within logarithmic plots:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_222_0.png" src="_images/matplotlib_222_0.png" />
+<img alt="_images/matplotlib_219_0.png" src="_images/matplotlib_219_0.png" />
 <p>We see here that each major tick shows a large tickmark and a label,
 while each minor tick shows a smaller tickmark with no label.</p>
 <p>These tick properties—locations and labels—that is, can be customized by
@@ -1765,7 +1750,7 @@ hiding ticks or labels. This can be done using <code class="docutils literal not
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_229_0.png" src="_images/matplotlib_229_0.png" />
+<img alt="_images/matplotlib_226_0.png" src="_images/matplotlib_226_0.png" />
 <p>Notice that we’ve removed the labels (but kept the ticks/gridlines) from
 the x axis, and removed the ticks (and thus the labels as well) from the
 y axis. Having no ticks at all can be useful in many situations—for
@@ -1789,14 +1774,14 @@ example often used in supervised machine learning problems:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">downloading</span> <span class="n">Olivetti</span> <span class="n">faces</span> <span class="kn">from</span> <span class="nn">https</span><span class="p">:</span><span class="o">//</span><span class="n">ndownloader</span><span class="o">.</span><span class="n">figshare</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">files</span><span class="o">/</span><span class="mi">5976027</span> <span class="n">to</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mn</span><span class="o">/</span><span class="n">scikit_learn_data</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_231_1.png" src="_images/matplotlib_231_1.png" />
+<img alt="_images/matplotlib_228_1.png" src="_images/matplotlib_228_1.png" />
 <p>One common problem with the default settings is that smaller subplots
 can end up with crowded labels. We can see this in the plot grid shown
 here:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_233_0.png" src="_images/matplotlib_233_0.png" />
+<img alt="_images/matplotlib_230_0.png" src="_images/matplotlib_230_0.png" />
 <p>Particularly for the x ticks, the numbers nearly overlap and make them
 quite difficult to decipher. We can fix this with the
 <code class="docutils literal notranslate"><span class="pre">plt.MaxNLocator()</span></code>, which allows us to specify the maximum number of
@@ -1809,7 +1794,7 @@ use internal logic to choose the particular tick locations:</p>
 <span class="n">fig</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_235_0.png" src="_images/matplotlib_235_0.png" />
+<img alt="_images/matplotlib_232_0.png" src="_images/matplotlib_232_0.png" />
 <p>Matplotlib’s default tick formatting can leave a lot to be desired: it
 works well as a broad default, but sometimes you’d like do do something
 more. Consider this plot of a sine and a cosine:</p>
@@ -1826,7 +1811,7 @@ more. Consider this plot of a sine and a cosine:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_237_0.png" src="_images/matplotlib_237_0.png" />
+<img alt="_images/matplotlib_234_0.png" src="_images/matplotlib_234_0.png" />
 <p>There are a couple changes we might like to make. First, it’s more
 natural for this data to space the ticks and grid lines in multiples of
 <span class="math notranslate nohighlight">\(\pi\)</span>. We can do this by setting a <code class="docutils literal notranslate"><span class="pre">MultipleLocator</span></code>, which
@@ -1837,7 +1822,7 @@ we’ll add both major and minor ticks in multiples of <span class="math notrans
 <span class="n">fig</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_239_0.png" src="_images/matplotlib_239_0.png" />
+<img alt="_images/matplotlib_236_0.png" src="_images/matplotlib_236_0.png" />
 <p>But now these tick labels look a little bit silly: we can see that they
 are multiples of <span class="math notranslate nohighlight">\(\pi\)</span>, but the decimal representation does not
 immediately convey this. To fix this, we can change the tick formatter.
@@ -1862,7 +1847,7 @@ fine-grained control over the tick outputs:</p>
 <span class="n">fig</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_241_0.png" src="_images/matplotlib_241_0.png" />
+<img alt="_images/matplotlib_238_0.png" src="_images/matplotlib_238_0.png" />
 <p>We’ve mentioned a couple of the available formatters and locators. We’ll
 conclude this section by briefly listing all the built-in locator and
 formatter options. For more information on any of these, refer to the
@@ -1969,7 +1954,7 @@ individual plot. For example, here is a fairly drab default histogram:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_247_0.png" src="_images/matplotlib_247_0.png" />
+<img alt="_images/matplotlib_244_0.png" src="_images/matplotlib_244_0.png" />
 <p>We can adjust this by hand to make it a much more visually pleasing
 plot:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use a gray background</span>
@@ -1998,7 +1983,7 @@ plot:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;#E6E6E6&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#EE6666&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_249_0.png" src="_images/matplotlib_249_0.png" />
+<img alt="_images/matplotlib_246_0.png" src="_images/matplotlib_246_0.png" />
 <p>Each time Matplotlib loads, it defines a runtime configuration (rc)
 containing the default styles for every plot element you create. This
 configuration can be adjusted at any time using the <code class="docutils literal notranslate"><span class="pre">plt.rc</span></code>
@@ -2029,13 +2014,13 @@ settings in action:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_255_0.png" src="_images/matplotlib_255_0.png" />
+<img alt="_images/matplotlib_252_0.png" src="_images/matplotlib_252_0.png" />
 <p>Let’s see what simple line plots look like with these rc parameters:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_257_0.png" src="_images/matplotlib_257_0.png" />
+<img alt="_images/matplotlib_254_0.png" src="_images/matplotlib_254_0.png" />
 <p>The version 1.4 release of Matplotlib in August 2014 added a very
 convenient <code class="docutils literal notranslate"><span class="pre">style</span></code> module, which includes a number of new default
 stylesheets, as well as the ability to create and package your own
@@ -2088,7 +2073,7 @@ the notebook default:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hist_and_lines</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_266_0.png" src="_images/matplotlib_266_0.png" />
+<img alt="_images/matplotlib_263_0.png" src="_images/matplotlib_263_0.png" />
 </div>
 <div class="section" id="fivethiryeight-style">
 <h3>FiveThiryEight style<a class="headerlink" href="#fivethiryeight-style" title="Permalink to this headline">¶</a></h3>
@@ -2100,7 +2085,7 @@ axes:</p>
     <span class="n">hist_and_lines</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_268_0.png" src="_images/matplotlib_268_0.png" />
+<img alt="_images/matplotlib_265_0.png" src="_images/matplotlib_265_0.png" />
 </div>
 <div class="section" id="ggplot">
 <h3>ggplot<a class="headerlink" href="#ggplot" title="Permalink to this headline">¶</a></h3>
@@ -2111,7 +2096,7 @@ package:</p>
     <span class="n">hist_and_lines</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_270_0.png" src="_images/matplotlib_270_0.png" />
+<img alt="_images/matplotlib_267_0.png" src="_images/matplotlib_267_0.png" />
 </div>
 <div class="section" id="bayesian-methods-for-hackers-style">
 <h3><em>Bayesian Methods for Hackers</em> style<a class="headerlink" href="#bayesian-methods-for-hackers-style" title="Permalink to this headline">¶</a></h3>
@@ -2125,7 +2110,7 @@ throughout the book. This style is reproduced in the <code class="docutils liter
     <span class="n">hist_and_lines</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_272_0.png" src="_images/matplotlib_272_0.png" />
+<img alt="_images/matplotlib_269_0.png" src="_images/matplotlib_269_0.png" />
 </div>
 <div class="section" id="seaborn-style">
 <h3>Seaborn style<a class="headerlink" href="#seaborn-style" title="Permalink to this headline">¶</a></h3>
@@ -2137,7 +2122,7 @@ use them as defaults in my own data exploration.</p>
 <span class="n">hist_and_lines</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_274_0.png" src="_images/matplotlib_274_0.png" />
+<img alt="_images/matplotlib_271_0.png" src="_images/matplotlib_271_0.png" />
 </div>
 </div>
 <div class="section" id="three-dimensional-plotting-in-matplotlib">
@@ -2164,7 +2149,7 @@ creation routines:</p>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_279_0.png" src="_images/matplotlib_279_0.png" />
+<img alt="_images/matplotlib_276_0.png" src="_images/matplotlib_276_0.png" />
 <p>With this three-dimensional axes enabled, we can now plot a variety of
 three-dimensional plot types. Three-dimensional plotting is one of the
 functionalities that benefits immensely from viewing figures
@@ -2197,7 +2182,7 @@ randomly near the line:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter3D</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">zdata</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">zdata</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_283_0.png" src="_images/matplotlib_283_0.png" />
+<img alt="_images/matplotlib_280_0.png" src="_images/matplotlib_280_0.png" />
 <p>Analogous to the contour plots contains tools to create
 three-dimensional relief plots using the same inputs. Like
 two-dimensional <code class="docutils literal notranslate"><span class="pre">ax.contour</span></code> plots, <code class="docutils literal notranslate"><span class="pre">ax.contour3D</span></code> requires all the
@@ -2222,7 +2207,7 @@ contour diagram of a three-dimensional sinusoidal function:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_286_0.png" src="_images/matplotlib_286_0.png" />
+<img alt="_images/matplotlib_283_0.png" src="_images/matplotlib_283_0.png" />
 <p>Sometimes the default viewing angle is not optimal, in which case we can
 use the <code class="docutils literal notranslate"><span class="pre">view_init</span></code> method to set the elevation and azimuthal angles.
 In the following example, we’ll use an elevation of 60 degrees (that is,
@@ -2232,7 +2217,7 @@ rotated 35 degrees counter-clockwise about the z-axis):</p>
 <span class="n">fig</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_288_0.png" src="_images/matplotlib_288_0.png" />
+<img alt="_images/matplotlib_285_0.png" src="_images/matplotlib_285_0.png" />
 <p>Two other types of three-dimensional plots that work on gridded data are
 wireframes and surface plots. These take a grid of values and project it
 onto the specified three-dimensional surface, and can make the resulting
@@ -2244,7 +2229,7 @@ using a wireframe:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;wireframe&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_290_0.png" src="_images/matplotlib_290_0.png" />
+<img alt="_images/matplotlib_287_0.png" src="_images/matplotlib_287_0.png" />
 <p>A surface plot is like a wireframe plot, but each face of the wireframe
 is a filled polygon. Adding a colormap to the filled polygons can aid
 perception of the topology of the surface being visualized:</p>
@@ -2254,7 +2239,7 @@ perception of the topology of the surface being visualized:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;surface&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_292_0.png" src="_images/matplotlib_292_0.png" />
+<img alt="_images/matplotlib_289_0.png" src="_images/matplotlib_289_0.png" />
 <p>Note that though the grid of values for a surface plot needs to be
 two-dimensional, it need not be rectilinear. Here is an example of
 creating a partial polar grid, which when used with the <code class="docutils literal notranslate"><span class="pre">surface3D</span></code>
@@ -2272,7 +2257,7 @@ plot can give us a slice into the function we’re visualizing:</p>
                 <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_294_0.png" src="_images/matplotlib_294_0.png" />
+<img alt="_images/matplotlib_291_0.png" src="_images/matplotlib_291_0.png" />
 <p>For some applications, the evenly sampled grids required by the above
 routines is overly restrictive and inconvenient. In these situations,
 the triangulation-based plots can be very useful. What if rather than an
@@ -2291,7 +2276,7 @@ surface we’re sampling from:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_298_0.png" src="_images/matplotlib_298_0.png" />
+<img alt="_images/matplotlib_295_0.png" src="_images/matplotlib_295_0.png" />
 <p>This leaves a lot to be desired. The function that will help us in this
 case is <code class="docutils literal notranslate"><span class="pre">ax.plot_trisurf</span></code>, which creates a surface by first finding a
 set of triangles formed between adjacent points (remember that x, y, and
@@ -2301,7 +2286,7 @@ z here are one-dimensional arrays):</p>
                 <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_300_0.png" src="_images/matplotlib_300_0.png" />
+<img alt="_images/matplotlib_297_0.png" src="_images/matplotlib_297_0.png" />
 <div class="section" id="example-visualizing-a-mobius-strip">
 <h3>Example: Visualizing a Möbius strip<a class="headerlink" href="#example-visualizing-a-mobius-strip" title="Permalink to this headline">¶</a></h3>
 <p>A Möbius strip is similar to a strip of paper glued into a loop with a
@@ -2357,7 +2342,7 @@ can be accomplished as follows:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_zlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_308_0.png" src="_images/matplotlib_308_0.png" />
+<img alt="_images/matplotlib_305_0.png" src="_images/matplotlib_305_0.png" />
 </div>
 </div>
 <div class="section" id="visualization-with-seaborn">
@@ -2412,7 +2397,7 @@ classic plot formatting and colors. We start with the typical imports:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="s1">&#39;ABCDEF&#39;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_316_0.png" src="_images/matplotlib_316_0.png" />
+<img alt="_images/matplotlib_313_0.png" src="_images/matplotlib_313_0.png" />
 <p>Although the result contains all the information we’d like it to convey,
 it does so in a way that is not all that aesthetically pleasing, and
 even looks a bit old-fashioned in the context of 21st-century data
@@ -2433,7 +2418,7 @@ is imported as <code class="docutils literal notranslate"><span class="pre">sns<
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="s1">&#39;ABCDEF&#39;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_320_0.png" src="_images/matplotlib_320_0.png" />
+<img alt="_images/matplotlib_317_0.png" src="_images/matplotlib_317_0.png" />
 <p>The main idea of Seaborn is that it provides high-level commands to
 create a variety of plot types useful for statistical data exploration,
 and even some statistical model fitting.</p>
@@ -2453,7 +2438,7 @@ is relatively straightforward in Matplotlib:</p>
     <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_323_0.png" src="_images/matplotlib_323_0.png" />
+<img alt="_images/matplotlib_320_0.png" src="_images/matplotlib_320_0.png" />
 <p>Rather than a histogram, we can get a smooth estimate of the
 distribution using a kernel density estimation, which Seaborn does with
 <code class="docutils literal notranslate"><span class="pre">sns.kdeplot</span></code>:</p>
@@ -2461,13 +2446,13 @@ distribution using a kernel density estimation, which Seaborn does with
     <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">shade</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_325_0.png" src="_images/matplotlib_325_0.png" />
+<img alt="_images/matplotlib_322_0.png" src="_images/matplotlib_322_0.png" />
 <p>Histograms and KDE can be combined using <code class="docutils literal notranslate"><span class="pre">distplot</span></code>:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_327_0.png" src="_images/matplotlib_327_0.png" />
+<img alt="_images/matplotlib_324_0.png" src="_images/matplotlib_324_0.png" />
 <p>If we pass the full two-dimensional dataset to <code class="docutils literal notranslate"><span class="pre">kdeplot</span></code>, we will get
 a two-dimensional visualization of the data:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
@@ -2477,7 +2462,7 @@ a two-dimensional visualization of the data:</p>
   <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">warn_msg</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_329_1.png" src="_images/matplotlib_329_1.png" />
+<img alt="_images/matplotlib_326_1.png" src="_images/matplotlib_326_1.png" />
 <p>We can see the joint distribution and the marginal distributions
 together using <code class="docutils literal notranslate"><span class="pre">sns.jointplot</span></code>. For this plot, we’ll set the style to
 a white background:</p>
@@ -2485,14 +2470,14 @@ a white background:</p>
     <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;kde&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_331_0.png" src="_images/matplotlib_331_0.png" />
+<img alt="_images/matplotlib_328_0.png" src="_images/matplotlib_328_0.png" />
 <p>There are other parameters that can be passed to <code class="docutils literal notranslate"><span class="pre">jointplot</span></code>—for
 example, we can use a hexagonally based histogram instead:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">axes_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">):</span>
     <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;hex&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_333_0.png" src="_images/matplotlib_333_0.png" />
+<img alt="_images/matplotlib_330_0.png" src="_images/matplotlib_330_0.png" />
 </div>
 <div class="section" id="pair-plots">
 <h3>Pair plots<a class="headerlink" href="#pair-plots" title="Permalink to this headline">¶</a></h3>
@@ -2579,7 +2564,7 @@ easy as calling <code class="docutils literal notranslate"><span class="pre">sns
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_337_0.png" src="_images/matplotlib_337_0.png" />
+<img alt="_images/matplotlib_334_0.png" src="_images/matplotlib_334_0.png" />
 </div>
 <div class="section" id="faceted-histograms">
 <h3>Faceted histograms<a class="headerlink" href="#faceted-histograms" title="Permalink to this headline">¶</a></h3>
@@ -2677,7 +2662,7 @@ based on various indicator data:</p>
 <span class="n">grid</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">,</span> <span class="s2">&quot;tip_pct&quot;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">15</span><span class="p">));</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_340_0.png" src="_images/matplotlib_340_0.png" />
+<img alt="_images/matplotlib_337_0.png" src="_images/matplotlib_337_0.png" />
 </div>
 <div class="section" id="factor-plots">
 <h3>Factor plots<a class="headerlink" href="#factor-plots" title="Permalink to this headline">¶</a></h3>
@@ -2689,7 +2674,7 @@ by any other parameter:</p>
     <span class="n">g</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="s2">&quot;Day&quot;</span><span class="p">,</span> <span class="s2">&quot;Total Bill&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_342_0.png" src="_images/matplotlib_342_0.png" />
+<img alt="_images/matplotlib_339_0.png" src="_images/matplotlib_339_0.png" />
 </div>
 <div class="section" id="joint-distributions">
 <h3>Joint distributions<a class="headerlink" href="#joint-distributions" title="Permalink to this headline">¶</a></h3>
@@ -2700,13 +2685,13 @@ associated marginal distributions:</p>
     <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="s2">&quot;tip&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tips</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;hex&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_344_0.png" src="_images/matplotlib_344_0.png" />
+<img alt="_images/matplotlib_341_0.png" src="_images/matplotlib_341_0.png" />
 <p>The joint plot can even do some automatic kernel density estimation and
 regression:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="s2">&quot;tip&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tips</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;reg&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_346_0.png" src="_images/matplotlib_346_0.png" />
+<img alt="_images/matplotlib_343_0.png" src="_images/matplotlib_343_0.png" />
 </div>
 <div class="section" id="bar-plots">
 <h3>Bar plots<a class="headerlink" href="#bar-plots" title="Permalink to this headline">¶</a></h3>
@@ -2796,7 +2781,7 @@ example, we’ll use the Planets data:</p>
     <span class="n">g</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">step</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_349_0.png" src="_images/matplotlib_349_0.png" />
+<img alt="_images/matplotlib_346_0.png" src="_images/matplotlib_346_0.png" />
 <p>We can learn more by looking at the <em>method</em> of discovery of each of
 these planets:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">sns</span><span class="o">.</span><span class="n">axes_style</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">):</span>
@@ -2805,7 +2790,7 @@ these planets:</p>
     <span class="n">g</span><span class="o">.</span><span class="n">set_ylabels</span><span class="p">(</span><span class="s1">&#39;Number of Planets Discovered&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_351_0.png" src="_images/matplotlib_351_0.png" />
+<img alt="_images/matplotlib_348_0.png" src="_images/matplotlib_348_0.png" />
 <div class="section" id="example-exploring-marathon-finishing-times">
 <h4>Example: Exploring Marathon Finishing Times<a class="headerlink" href="#example-exploring-marathon-finishing-times" title="Permalink to this headline">¶</a></h4>
 <p>Here we’ll look at using Seaborn to help visualize and understand
@@ -3076,7 +3061,7 @@ over the data:</p>
                     <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">8000</span><span class="p">,</span> <span class="mi">32000</span><span class="p">),</span> <span class="s1">&#39;:k&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_363_0.png" src="_images/matplotlib_363_0.png" />
+<img alt="_images/matplotlib_360_0.png" src="_images/matplotlib_360_0.png" />
 <p>The dotted line shows where someone’s time would lie if they ran the
 marathon at a perfectly steady pace. The fact that the distribution lies
 above this indicates (as you might expect) that most people slow down
@@ -3177,7 +3162,7 @@ fraction:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_367_0.png" src="_images/matplotlib_367_0.png" />
+<img alt="_images/matplotlib_364_0.png" src="_images/matplotlib_364_0.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">split_frac</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -3195,7 +3180,7 @@ plots of all these correlations:</p>
 <span class="n">g</span><span class="o">.</span><span class="n">add_legend</span><span class="p">();</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_370_0.png" src="_images/matplotlib_370_0.png" />
+<img alt="_images/matplotlib_367_0.png" src="_images/matplotlib_367_0.png" />
 <p>It looks like the split fraction does not correlate particularly with
 age, but does correlate with the final time: faster runners tend to have
 closer to even splits on their marathon time. (We see here that Seaborn
@@ -3210,7 +3195,7 @@ the histogram of split fractions for these two groups:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;split_frac&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_373_0.png" src="_images/matplotlib_373_0.png" />
+<img alt="_images/matplotlib_370_0.png" src="_images/matplotlib_370_0.png" />
 <p>The interesting thing here is that there are many more men than women
 who are running close to an even split! This almost looks like some kind
 of bimodal distribution among the men and women. Let’s see if we can
@@ -3220,7 +3205,7 @@ of age.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="s2">&quot;gender&quot;</span><span class="p">,</span> <span class="s2">&quot;split_frac&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightpink&quot;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_375_0.png" src="_images/matplotlib_375_0.png" />
+<img alt="_images/matplotlib_372_0.png" src="_images/matplotlib_372_0.png" />
 <p>This is yet another way to compare the distributions between men and
 women.</p>
 <p>Let’s look a little deeper, and compare these violin plots as a function
@@ -3325,7 +3310,7 @@ the decade of age that each person is in:</p>
                    <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="s2">&quot;lightpink&quot;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_379_0.png" src="_images/matplotlib_379_0.png" />
+<img alt="_images/matplotlib_376_0.png" src="_images/matplotlib_376_0.png" />
 <p>Looking at this, we can see where the distributions of men and women
 differ: the split distributions of men in their 20s to 50s show a
 pronounced over-density toward lower splits when compared to women of
@@ -3349,7 +3334,7 @@ regression to the data:</p>
 <span class="n">g</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/matplotlib_384_0.png" src="_images/matplotlib_384_0.png" />
+<img alt="_images/matplotlib_381_0.png" src="_images/matplotlib_381_0.png" />
 </div>
 </div>
 </div>

@@ -2,40 +2,6 @@ Tips an' Tricks
 ###############
 
 
-.. raw:: html
-
-   <p>
-
-.. container::
-
-   Massimo Nocentini, PhD. May 27, 2020: init
-
-.. raw:: html
-
-   </p>
-
-.. container::
-
-   Abstract Some tips, tricks and gotchas, in particular.
-
-.. code:: ipython3
-
-    __AUTHORS__ = {'am': ("Andrea Marino", 
-                          "andrea.marino@unifi.it",),
-                   'mn': ("Massimo Nocentini", 
-                          "massimo.nocentini@unifi.it", 
-                          "https://github.com/massimo-nocentini/",)}
-    
-    __KEYWORDS__ = ['Python', 'Jupyter', 'gotchas', 'keynote',]
-
-.. raw:: html
-
-   <center>
-
-.. raw:: html
-
-   </center>
-
 Tips, tricks and gotchas
 ========================
 
@@ -816,7 +782,7 @@ Hetland, pag 85:
 
 
 
-.. image:: gotchas_files/gotchas_75_0.png
+.. image:: gotchas_files/gotchas_72_0.png
 
 
 .. code:: ipython3
@@ -852,7 +818,7 @@ Hetland, pag 85:
 
 
 
-.. image:: gotchas_files/gotchas_79_0.png
+.. image:: gotchas_files/gotchas_76_0.png
 
 
 .. code:: ipython3

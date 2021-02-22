@@ -2,41 +2,6 @@ numpy module
 ################
 
 
-.. raw:: html
-
-   <p>
-
-.. container::
-
-   Massimo Nocentini, PhD. February 26, 2020: init
-
-.. raw:: html
-
-   </p>
-
-.. container::
-
-   Abstract These slides outline techniques for effectively loading,
-   storing, and manipulating in-memory data in Python.
-
-.. code:: ipython3
-
-    __AUTHORS__ = {'am': ("Andrea Marino", 
-                          "andrea.marino@unifi.it",),
-                   'mn': ("Massimo Nocentini", 
-                          "massimo.nocentini@unifi.it", 
-                          "https://github.com/massimo-nocentini/",)}
-    
-    __KEYWORDS__ = ['Python', 'numpy', 'numerical', 'data',]
-
-.. raw:: html
-
-   <center>
-
-.. raw:: html
-
-   </center>
-
 Introduction to NumPy
 =====================
 
@@ -1796,7 +1761,7 @@ across the grid:
 
 
 
-.. image:: numpy_files/numpy_155_0.png
+.. image:: numpy_files/numpy_152_0.png
 
 
 Comparisons, Masks, and Boolean Logic
@@ -2302,7 +2267,7 @@ drawn from a two-dimensional normal distribution:
 
 
 
-.. image:: numpy_files/numpy_202_0.png
+.. image:: numpy_files/numpy_199_0.png
 
 
 Let’s use fancy indexing to select 20 random points. We’ll do this by
@@ -2347,7 +2312,7 @@ the locations of the selected points:
 
 
 
-.. image:: numpy_files/numpy_207_0.png
+.. image:: numpy_files/numpy_204_0.png
 
 
 Modifying Values with Fancy Indexing
@@ -2486,7 +2451,7 @@ it using ``ufunc.at`` like this:
 
 
 
-.. image:: numpy_files/numpy_220_0.png
+.. image:: numpy_files/numpy_217_0.png
 
 
 .. code:: ipython3
@@ -2754,7 +2719,7 @@ plane:
 
 
 
-.. image:: numpy_files/numpy_246_0.png
+.. image:: numpy_files/numpy_243_0.png
 
 
 .. code:: ipython3
@@ -2817,7 +2782,7 @@ positions of the array:
 
 
 
-.. image:: numpy_files/numpy_253_0.png
+.. image:: numpy_files/numpy_250_0.png
 
 
 At first glance, it might seem strange that some of the points have more

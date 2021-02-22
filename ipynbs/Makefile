@@ -37,5 +37,7 @@ move:
 	rm -rf ../booklet/source/*_files
 	mv -f *_files ../booklet/source
 	cp -r images ../booklet/source
+	cp -r images ../booklet/source/_static
+	cp *.slides.html ../booklet/source/_static
 
 all: introduction notebook numpy pandas matplotlib networkx gotchas generators move
