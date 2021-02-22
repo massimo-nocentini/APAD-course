@@ -64,6 +64,6 @@ html_theme_options = {
     'show_relbars': True,
     'fixed_sidebar':True,
     'page_width':'80%',
-    'pre_bg':'white transparent',
+    #'pre_bg':'white transparent',
     'note_bg':'white',
 }

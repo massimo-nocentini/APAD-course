@@ -14,23 +14,24 @@ It is based on https://jakevdp.github.io/PythonDataScienceHandbook/ and the
 content taken from there, both text and code, is reported unchanged to respect
 the original author's license and I deserve no merits for it. The other stuff
 (mainly the introduction and the last two chapters) are of mine, so blame me
-for errors occurring there.
+for errors occurring there. Here is the TOC:
 
-On one hand, a set of slides can be used for presenting
-
-.. hlist::
-   :columns: 3
-
-   * `Introduction <../../../ipynbs/introduction.slides.html>`_
-   * `Jupyter notebooks <../../../ipynbs/jupyter-notebooks.slides.html>`_
-   * `numpy <../../../ipynbs/numpy.slides.html>`_
-   * `pandas <../../../ipynbs/pandas.slides.html>`_
-   * `matplotlib <../../../ipynbs/matplotlib.slides.html>`_
-   * `networkx <../../../ipynbs/networkx.slides.html>`_
-   * `Gotchas <../../../ipynbs/gotchas.slides.html>`_
-   * `Generators <../../../ipynbs/generators.slides.html>`_
-
-On the other hand, the content can be read according to the TOC
+.. 
+  On one hand, a set of slides can be used for presenting
+  
+  .. hlist::
+     :columns: 3
+  
+     * `Introduction <../../../ipynbs/introduction.slides.html>`_
+     * `Jupyter notebooks <../../../ipynbs/jupyter-notebooks.slides.html>`_
+     * `numpy <../../../ipynbs/numpy.slides.html>`_
+     * `pandas <../../../ipynbs/pandas.slides.html>`_
+     * `matplotlib <../../../ipynbs/matplotlib.slides.html>`_
+     * `networkx <../../../ipynbs/networkx.slides.html>`_
+     * `Gotchas <../../../ipynbs/gotchas.slides.html>`_
+     * `Generators <../../../ipynbs/generators.slides.html>`_
+  
+  On the other hand, the content can be read according to the TOC
 
 .. toctree::
    :maxdepth: 3

@@ -439,7 +439,7 @@ ul, ol {
 }
 
 pre {
-    background: white transparent;
+    background: #EEE;
     padding: 7px 30px;
     margin: 15px 0px;
     line-height: 1.3em;
