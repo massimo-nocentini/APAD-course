@@ -21,8 +21,7 @@ div.sphinxsidebar {
 }
 
 
-
-div.highlight-ipython3.notranslate {
-    background-color: white;
+div.highlight-ipython3 pre {
+    background-color: transparent;
 }
 
