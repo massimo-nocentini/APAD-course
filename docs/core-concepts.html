@@ -15,7 +15,7 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="numpy module" href="numpy.html" />
+    <link rel="next" title="Exercises" href="exercises.html" />
     <link rel="prev" title="Jupyter notebooks" href="jupyter-notebooks.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -59,6 +59,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#help-about-help">Help about <code class="docutils literal notranslate"><span class="pre">help</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="exercises.html">Exercises</a></li>
 <li class="toctree-l1"><a class="reference internal" href="numpy.html">numpy module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pandas.html">pandas module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="matplotlib.html">matplotlib module</a></li>
@@ -72,7 +73,7 @@
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="jupyter-notebooks.html" title="previous chapter">Jupyter notebooks</a></li>
-      <li>Next: <a href="numpy.html" title="next chapter">numpy module</a></li>
+      <li>Next: <a href="exercises.html" title="next chapter">Exercises</a></li>
   </ul></li>
 </ul>
 </div>
@@ -107,7 +108,7 @@
           <a href="jupyter-notebooks.html" title="Previous document">Jupyter notebooks</a>
         </li>
         <li>
-          <a href="numpy.html" title="Next document">numpy module</a>
+          <a href="exercises.html" title="Next document">Exercises</a>
           &rarr;
         </li>
     </ul>
@@ -1562,7 +1563,7 @@ SUBSCRIPTS, SLICINGS, CALLS, TUPLES, LISTS, DICTIONARIES</pre>
 <span class="n">singletons</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span> <span class="n">at</span> <span class="mh">0x7fa8b4be7400</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span> <span class="n">at</span> <span class="mh">0x7f999f257a00</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">singletons</span><span class="p">)</span>
@@ -1576,7 +1577,7 @@ SUBSCRIPTS, SLICINGS, CALLS, TUPLES, LISTS, DICTIONARIES</pre>
 <span class="n">pairs</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span> <span class="n">at</span> <span class="mh">0x7fa8b4be7280</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span> <span class="n">at</span> <span class="mh">0x7f999f2606c0</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
@@ -1621,6 +1622,15 @@ SUBSCRIPTS, SLICINGS, CALLS, TUPLES, LISTS, DICTIONARIES</pre>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triples_a</span><span class="p">,</span> <span class="n">triples_b</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">tee</span><span class="p">(</span><span class="n">tuples</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">)))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">tee</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="n">tee</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">itertools</span><span class="p">:</span>
+
+<span class="n">tee</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+    <span class="n">Returns</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">of</span> <span class="n">n</span> <span class="n">independent</span> <span class="n">iterators</span><span class="o">.</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">triples_a</span><span class="p">)</span>
@@ -1923,13 +1933,41 @@ SUBSCRIPTS, SLICINGS, CALLS, TUPLES, LISTS, DICTIONARIES</pre>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_pythagorean</span><span class="p">(</span><span class="n">tup</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A Pythagorean triple consists of three positive integers a, b, and c, such that a^2 + b^2 = c^2.</span>
+
+<span class="sd">    Such a triple is commonly written (a, b, c), and a well-known example is (3, 4, 5).</span>
+<span class="sd">    If (a, b, c) is a Pythagorean triple, then so is (ka, kb, kc) for any positive integer k.</span>
+
+<span class="sd">    A primitive Pythagorean triple is one in which a, b and c are coprime (that is,</span>
+<span class="sd">    they have no common divisor larger than 1).</span>
+
+<span class="sd">    See also https://en.wikipedia.org/wiki/Pythagorean_triple.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">tup</span>
     <span class="k">return</span> <span class="n">tup</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="n">n</span> <span class="o">+</span> <span class="n">tup</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="n">n</span> <span class="o">==</span> <span class="n">tup</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="n">n</span>
-
-<span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">is_pythagorean</span><span class="p">,</span> <span class="n">triples_b</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">is_pythagorean</span><span class="p">,</span> <span class="n">triples_b</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">is_pythagorean</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">function</span> <span class="n">is_pythagorean</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">__main__</span><span class="p">:</span>
+
+<span class="n">is_pythagorean</span><span class="p">(</span><span class="n">tup</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">A</span> <span class="n">Pythagorean</span> <span class="n">triple</span> <span class="n">consists</span> <span class="n">of</span> <span class="n">three</span> <span class="n">positive</span> <span class="n">integers</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="ow">and</span> <span class="n">c</span><span class="p">,</span> <span class="n">such</span> <span class="n">that</span> <span class="n">a</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">^</span><span class="mi">2</span> <span class="o">=</span> <span class="n">c</span><span class="o">^</span><span class="mf">2.</span>
+
+    <span class="n">Such</span> <span class="n">a</span> <span class="n">triple</span> <span class="ow">is</span> <span class="n">commonly</span> <span class="n">written</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">well</span><span class="o">-</span><span class="n">known</span> <span class="n">example</span> <span class="ow">is</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span>
+    <span class="n">If</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">Pythagorean</span> <span class="n">triple</span><span class="p">,</span> <span class="n">then</span> <span class="n">so</span> <span class="ow">is</span> <span class="p">(</span><span class="n">ka</span><span class="p">,</span> <span class="n">kb</span><span class="p">,</span> <span class="n">kc</span><span class="p">)</span> <span class="k">for</span> <span class="nb">any</span> <span class="n">positive</span> <span class="n">integer</span> <span class="n">k</span><span class="o">.</span>
+
+    <span class="n">A</span> <span class="n">primitive</span> <span class="n">Pythagorean</span> <span class="n">triple</span> <span class="ow">is</span> <span class="n">one</span> <span class="ow">in</span> <span class="n">which</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="ow">and</span> <span class="n">c</span> <span class="n">are</span> <span class="n">coprime</span> <span class="p">(</span><span class="n">that</span> <span class="ow">is</span><span class="p">,</span>
+    <span class="n">they</span> <span class="n">have</span> <span class="n">no</span> <span class="n">common</span> <span class="n">divisor</span> <span class="n">larger</span> <span class="n">than</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span>
+
+    <span class="n">See</span> <span class="n">also</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">en</span><span class="o">.</span><span class="n">wikipedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">wiki</span><span class="o">/</span><span class="n">Pythagorean_triple</span><span class="o">.</span>
 </pre></div>
 </div>
 </div>
@@ -2223,7 +2261,7 @@ has the same effect as typing a particular string at the help&gt; prompt.</pre>
           <a href="jupyter-notebooks.html" title="Previous document">Jupyter notebooks</a>
         </li>
         <li>
-          <a href="numpy.html" title="Next document">numpy module</a>
+          <a href="exercises.html" title="Next document">Exercises</a>
           &rarr;
         </li>
     </ul>

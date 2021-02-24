@@ -1592,7 +1592,7 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 
 .. parsed-literal::
 
-    <itertools.product at 0x7fa8b4be7400>
+    <itertools.product at 0x7f999f257a00>
 
 
 
@@ -1620,7 +1620,7 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 
 .. parsed-literal::
 
-    <itertools.product at 0x7fa8b4be7280>
+    <itertools.product at 0x7f999f2606c0>
 
 
 
@@ -1675,6 +1675,20 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 .. code:: ipython3
 
     triples_a, triples_b = itertools.tee(tuples(slice(5, 11), slice(6, 13), slice(7, 14)))
+
+.. code:: ipython3
+
+    help(itertools.tee)
+
+
+.. parsed-literal::
+
+    Help on built-in function tee in module itertools:
+    
+    tee(iterable, n=2, /)
+        Returns a tuple of n independent iterators.
+    
+
 
 .. code:: ipython3
 
@@ -1985,9 +1999,21 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 .. code:: ipython3
 
     def is_pythagorean(tup, n=2):
+        '''A Pythagorean triple consists of three positive integers a, b, and c, such that a^2 + b^2 = c^2. 
+        
+        Such a triple is commonly written (a, b, c), and a well-known example is (3, 4, 5). 
+        If (a, b, c) is a Pythagorean triple, then so is (ka, kb, kc) for any positive integer k. 
+        
+        A primitive Pythagorean triple is one in which a, b and c are coprime (that is, 
+        they have no common divisor larger than 1).
+        
+        See also https://en.wikipedia.org/wiki/Pythagorean_triple.
+        '''
         a, b, c = tup
         return tup[0]**n + tup[1]**n == tup[2]**n
-        
+
+.. code:: ipython3
+
     list(filter(is_pythagorean, triples_b))
 
 
@@ -1997,6 +2023,28 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 
     [(5, 12, 13), (6, 8, 10), (8, 6, 10)]
 
+
+
+.. code:: ipython3
+
+    help(is_pythagorean)
+
+
+.. parsed-literal::
+
+    Help on function is_pythagorean in module __main__:
+    
+    is_pythagorean(tup, n=2)
+        A Pythagorean triple consists of three positive integers a, b, and c, such that a^2 + b^2 = c^2. 
+        
+        Such a triple is commonly written (a, b, c), and a well-known example is (3, 4, 5). 
+        If (a, b, c) is a Pythagorean triple, then so is (ka, kb, kc) for any positive integer k. 
+        
+        A primitive Pythagorean triple is one in which a, b and c are coprime (that is, 
+        they have no common divisor larger than 1).
+        
+        See also https://en.wikipedia.org/wiki/Pythagorean_triple.
+    
 
 
 ``Slice``\ s

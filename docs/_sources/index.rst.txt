@@ -38,6 +38,7 @@ On the other hand, the content can be read according to the TOC
    introduction.rst
    jupyter-notebooks.rst
    core-concepts.rst
+   exercises.rst
    numpy.rst
    pandas.rst
    matplotlib.rst
