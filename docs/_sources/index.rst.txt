@@ -16,7 +16,9 @@ the original author's license and I deserve no merits for it. The other stuff
 (mainly the introduction and the last two chapters) are of mine, so blame me
 for errors occurring there.
 
-On one hand, a set of slides can be used for presenting
+The content that we will present is versioned at
+https://github.com/massimo-nocentini/APAD-course; moreover, it can be read
+either on slides
 
 .. hlist::
    :columns: 3
@@ -30,7 +32,23 @@ On one hand, a set of slides can be used for presenting
    * `Gotchas <_static/gotchas.slides.html>`_
    * `Generators <_static/generators.slides.html>`_
 
-On the other hand, the content can be read according to the TOC
+or on notebooks
+
+.. hlist::
+   :columns: 3
+
+   * `Introduction <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/introduction.ipynb>`_
+   * `Jupyter notebooks <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/jupyter-notebooks.ipynb>`_
+   * `Core concepts <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/core-concepts.ipynb>`_
+   * `Exercises <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/exercises.ipynb>`_
+   * `numpy <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/numpy.ipynb>`_
+   * `pandas <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/pandas.ipynb>`_
+   * `matplotlib <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/matplotlib.ipynb>`_
+   * `networkx <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/networkx.ipynb>`_
+   * `Gotchas <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/gotchas.ipynb>`_
+   * `Generators <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/generators.ipynb>`_
+
+or, eventually, on this booklet according to the TOC
 
 .. toctree::
    :maxdepth: 3
