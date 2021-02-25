@@ -1,6 +1,9 @@
 Core concepts
 =============
 
+This chapter deepens our understanding of some concepts seen in
+http://www.andreamarino.it/python/thinkcspy/.
+
 .. code:: ipython3
 
     help('OBJECTS')

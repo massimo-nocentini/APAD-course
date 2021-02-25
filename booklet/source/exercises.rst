@@ -1,25 +1,37 @@
 Exercises
 =========
 
+This chapter is an intermezzo that allows us to check and have a deeper
+understanding of the concepts seen so far by means of exercises. We will
+see how the code shown can be rewritten to take advantage of
+battle-tested solutions and idioms that emerges from daily practice.
+
+First of all, we import some modules
+
 .. code:: ipython3
 
     import functools, operator, math, itertools
 
---------------
+that contains useful definitions for the code that we are going to
+write.
+
+``sum_upto``
+------------
 
 Let
 
 .. code:: ipython3
 
-    def sumUpto(n):
+    def sum_upto(n):
         return functools.reduce(operator.add, range(n+1))
 
-in
+and test according to Euler’s quicker formula
 
 .. code:: ipython3
 
-    n = 10
-    assert sumUpto(n) == (n*(n+1)/2)
+    n = 100
+    v = sum_upto(n)
+    assert v == (n*(n+1)/2) == 5050
 
 where
 
@@ -60,7 +72,8 @@ and
     
 
 
---------------
+``sqrt``
+--------
 
 Let
 
@@ -70,22 +83,16 @@ Let
         
         yield n
         refined = n/2
-        d = n - refined
-        while d:
+        while True:
             yield refined
-            d = refined
             refined = (n/refined + refined)/2
-            d = refined - d
 
-in, by ensuring at most :math:`30` refinements,
+to enumerate 15 approximation of the square root of 37
 
 .. code:: ipython3
 
     n = 37
-
-.. code:: ipython3
-
-    list(zip(range(30), sqrt(37)))
+    list(zip(range(15), sqrt(37)))
 
 
 
@@ -99,11 +106,18 @@ in, by ensuring at most :math:`30` refinements,
      (4, 6.134538672432479),
      (5, 6.082981028300877),
      (6, 6.082762534222396),
-     (7, 6.08276253029822)]
+     (7, 6.08276253029822),
+     (8, 6.08276253029822),
+     (9, 6.08276253029822),
+     (10, 6.08276253029822),
+     (11, 6.08276253029822),
+     (12, 6.08276253029822),
+     (13, 6.08276253029822),
+     (14, 6.08276253029822)]
 
 
 
-but it stops before. Check with respect to
+and check with respect to
 
 .. code:: ipython3
 
@@ -117,6 +131,8 @@ but it stops before. Check with respect to
     6.082762530298219
 
 
+
+where
 
 .. code:: ipython3
 
@@ -132,17 +148,22 @@ but it stops before. Check with respect to
     
 
 
---------------
+:math:`\pi`
+-----------
+
+According to https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80,
+let
 
 .. code:: ipython3
 
     def pi_Leibniz():
-        '''https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80'''
         
         d = 0
         for i, coeff in enumerate(itertools.count(1, step=2)):
             yield 4*d
             d += (-1)**i/coeff
+
+in
 
 .. code:: ipython3
 
@@ -166,6 +187,8 @@ but it stops before. Check with respect to
 
 
 
+and check against the
+
 .. code:: ipython3
 
     math.pi
@@ -178,6 +201,8 @@ but it stops before. Check with respect to
     3.141592653589793
 
 
+
+where
 
 .. code:: ipython3
 
@@ -225,24 +250,29 @@ but it stops before. Check with respect to
     
 
 
---------------
+The Collatz’s conjecture
+------------------------
+
+Consider the following operation on an arbitrary positive integer:
+
+::
+
+   If the number is even, divide it by two.
+   If the number is odd, triple it and add one.
+
+See also https://en.wikipedia.org/wiki/Collatz_conjecture. Let
 
 .. code:: ipython3
 
     def collatz(n):
-        '''The Collatz conjecture.
-        
-        Consider the following operation on an arbitrary positive integer:
-        If the number is even, divide it by two.
-        If the number is odd, triple it and add one.
-        
-        See also https://en.wikipedia.org/wiki/Collatz_conjecture.'''
         
         yield n
         
         while True:
             n = 3*n + 1 if n % 2 else n // 2
             yield n
+
+in
 
 .. code:: ipython3
 
@@ -275,22 +305,59 @@ but it stops before. Check with respect to
 
 
 
+Fibonacci numbers
+-----------------
+
+Directly from
+https://docs.python.org/3/library/functools.html#functools.cache:
+
 .. code:: ipython3
 
-    help(collatz)
+    @functools.cache
+    def factorial(n):
+        return n * factorial(n-1) if n else 1
+
+no previously cached result, makes 11 recursive calls
+
+.. code:: ipython3
+
+    factorial(10)
+
+
 
 
 .. parsed-literal::
 
-    Help on function collatz in module __main__:
-    
-    collatz(n)
-        The Collatz conjecture.
-        
-        Consider the following operation on an arbitrary positive integer:
-        If the number is even, divide it by two.
-        If the number is odd, triple it and add one.
-        
-        See also https://en.wikipedia.org/wiki/Collatz_conjecture.
-    
+    3628800
+
+
+
+just looks up cached value result
+
+.. code:: ipython3
+
+    factorial(5)
+
+
+
+
+.. parsed-literal::
+
+    120
+
+
+
+makes two new recursive calls, the other 10 are cached
+
+.. code:: ipython3
+
+    factorial(12)
+
+
+
+
+.. parsed-literal::
+
+    479001600
+
 
