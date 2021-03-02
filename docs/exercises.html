@@ -55,6 +55,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#pi"><span class="math notranslate nohighlight">\(\pi\)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-collatzs-conjecture">The Collatz’s conjecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fibonacci-numbers">Fibonacci numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uniform-random-on-segmented-interval">Uniform <code class="docutils literal notranslate"><span class="pre">random</span></code> on segmented interval</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="numpy.html">numpy module</a></li>
@@ -122,11 +123,15 @@ understanding of the concepts seen so far by means of exercises. We will
 see how the code shown can be rewritten to take advantage of
 battle-tested solutions and idioms that emerges from daily practice.</p>
 <p>First of all, we import some modules</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">functools</span><span class="o">,</span> <span class="nn">operator</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">itertools</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">functools</span><span class="o">,</span> <span class="nn">operator</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">itertools</span><span class="o">,</span> <span class="nn">random</span><span class="o">,</span> <span class="nn">collections</span><span class="o">,</span> <span class="nn">statistics</span>
 </pre></div>
 </div>
 <p>that contains useful definitions for the code that we are going to
-write.</p>
+write. Moreover, an utility for generators:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">take</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">yield from</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">iterable</span><span class="p">))</span>
+</pre></div>
+</div>
 <div class="section" id="sum-upto">
 <h2><code class="docutils literal notranslate"><span class="pre">sum_upto</span></code><a class="headerlink" href="#sum-upto" title="Permalink to this headline">¶</a></h2>
 <p>Let</p>
@@ -371,6 +376,271 @@ let</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">479001600</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="uniform-random-on-segmented-interval">
+<h2>Uniform <code class="docutils literal notranslate"><span class="pre">random</span></code> on segmented interval<a class="headerlink" href="#uniform-random-on-segmented-interval" title="Permalink to this headline">¶</a></h2>
+<p>The problem here reads as follow:</p>
+<blockquote>
+<div><p>Sample uniformly from <span class="math notranslate nohighlight">\([a, b)\)</span> and <span class="math notranslate nohighlight">\([c, d)\)</span> where
+<span class="math notranslate nohighlight">\(b &lt;= c\)</span>.</p>
+</div></blockquote>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="n">random</span><span class="p">:</span>
+
+<span class="n">random</span><span class="p">()</span> <span class="n">method</span> <span class="n">of</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span> <span class="n">instance</span>
+    <span class="n">random</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">interval</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">samples</span><span class="p">(</span><span class="n">firstSlice</span><span class="p">,</span> <span class="n">secondSlice</span><span class="p">):</span>
+    <span class="n">secondLength</span> <span class="o">=</span> <span class="n">secondSlice</span><span class="o">.</span><span class="n">stop</span> <span class="o">-</span> <span class="n">secondSlice</span><span class="o">.</span><span class="n">start</span>
+    <span class="n">ratio</span> <span class="o">=</span> <span class="n">secondLength</span><span class="o">/</span><span class="n">firstSlice</span><span class="o">.</span><span class="n">start</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="n">firstSlice</span><span class="o">.</span><span class="n">stop</span>
+        <span class="k">yield</span> <span class="p">(</span><span class="n">sample</span><span class="o">*</span><span class="n">ratio</span> <span class="o">+</span> <span class="n">secondSlice</span><span class="o">.</span><span class="n">start</span><span class="p">)</span> <span class="k">if</span> <span class="n">sample</span> <span class="o">&lt;</span> <span class="n">firstSlice</span><span class="o">.</span><span class="n">start</span> <span class="k">else</span> <span class="n">sample</span>
+</pre></div>
+</div>
+<p>Then define the generator with respect to <span class="math notranslate nohighlight">\([10, 20)\)</span> and
+<span class="math notranslate nohighlight">\([35, 40)\)</span></p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">observations</span> <span class="o">=</span> <span class="n">take</span><span class="p">(</span><span class="n">samples</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">)),</span> <span class="mi">1000000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>have a look at some observations</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">observations</span><span class="p">)])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">10.156825461245422</span><span class="p">,</span>
+ <span class="mf">10.23817278083611</span><span class="p">,</span>
+ <span class="mf">10.382482295281534</span><span class="p">,</span>
+ <span class="mf">10.567625323409576</span><span class="p">,</span>
+ <span class="mf">11.185902832207898</span><span class="p">,</span>
+ <span class="mf">11.19544772160992</span><span class="p">,</span>
+ <span class="mf">11.65469596335104</span><span class="p">,</span>
+ <span class="mf">11.747696576997939</span><span class="p">,</span>
+ <span class="mf">12.025676871638776</span><span class="p">,</span>
+ <span class="mf">12.311254091571415</span><span class="p">,</span>
+ <span class="mf">12.589098244680484</span><span class="p">,</span>
+ <span class="mf">12.597654404336039</span><span class="p">,</span>
+ <span class="mf">12.805834158383542</span><span class="p">,</span>
+ <span class="mf">12.83671313180921</span><span class="p">,</span>
+ <span class="mf">12.874302474223342</span><span class="p">,</span>
+ <span class="mf">13.078450670676808</span><span class="p">,</span>
+ <span class="mf">13.248990637807363</span><span class="p">,</span>
+ <span class="mf">13.868769650824781</span><span class="p">,</span>
+ <span class="mf">14.156192429958988</span><span class="p">,</span>
+ <span class="mf">14.637884314287007</span><span class="p">,</span>
+ <span class="mf">15.160810339875177</span><span class="p">,</span>
+ <span class="mf">15.32575772820814</span><span class="p">,</span>
+ <span class="mf">15.453793795456463</span><span class="p">,</span>
+ <span class="mf">15.570217173533017</span><span class="p">,</span>
+ <span class="mf">15.859537450399053</span><span class="p">,</span>
+ <span class="mf">15.940430236879482</span><span class="p">,</span>
+ <span class="mf">16.06823006164143</span><span class="p">,</span>
+ <span class="mf">16.19289068734355</span><span class="p">,</span>
+ <span class="mf">16.804310989857235</span><span class="p">,</span>
+ <span class="mf">16.84854257037064</span><span class="p">,</span>
+ <span class="mf">16.931672437623572</span><span class="p">,</span>
+ <span class="mf">16.94619546605609</span><span class="p">,</span>
+ <span class="mf">17.08753803402461</span><span class="p">,</span>
+ <span class="mf">17.697302254979416</span><span class="p">,</span>
+ <span class="mf">18.20543856208363</span><span class="p">,</span>
+ <span class="mf">18.484211680474587</span><span class="p">,</span>
+ <span class="mf">19.160847666396272</span><span class="p">,</span>
+ <span class="mf">19.281524331875282</span><span class="p">,</span>
+ <span class="mf">19.295155622511334</span><span class="p">,</span>
+ <span class="mf">19.41858112437383</span><span class="p">,</span>
+ <span class="mf">19.607178823485842</span><span class="p">,</span>
+ <span class="mf">19.643868415975565</span><span class="p">,</span>
+ <span class="mf">19.786033950203446</span><span class="p">,</span>
+ <span class="mf">19.913832833123983</span><span class="p">,</span>
+ <span class="mf">19.953124009261686</span><span class="p">,</span>
+ <span class="mf">35.0054493705557</span><span class="p">,</span>
+ <span class="mf">35.15000736949605</span><span class="p">,</span>
+ <span class="mf">35.300825892247886</span><span class="p">,</span>
+ <span class="mf">35.41880336369846</span><span class="p">,</span>
+ <span class="mf">35.59551105168855</span><span class="p">,</span>
+ <span class="mf">35.59893402941077</span><span class="p">,</span>
+ <span class="mf">35.70223499559926</span><span class="p">,</span>
+ <span class="mf">35.73038343833698</span><span class="p">,</span>
+ <span class="mf">35.733985533884244</span><span class="p">,</span>
+ <span class="mf">35.8714419835217</span><span class="p">,</span>
+ <span class="mf">35.9011717296193</span><span class="p">,</span>
+ <span class="mf">35.906705374918396</span><span class="p">,</span>
+ <span class="mf">35.94123456229219</span><span class="p">,</span>
+ <span class="mf">36.00332752183883</span><span class="p">,</span>
+ <span class="mf">36.010463089567054</span><span class="p">,</span>
+ <span class="mf">36.16507987639706</span><span class="p">,</span>
+ <span class="mf">36.179916794195506</span><span class="p">,</span>
+ <span class="mf">36.309670837166195</span><span class="p">,</span>
+ <span class="mf">36.57494095140162</span><span class="p">,</span>
+ <span class="mf">36.77678128198366</span><span class="p">,</span>
+ <span class="mf">36.84660343854877</span><span class="p">,</span>
+ <span class="mf">36.90208262797929</span><span class="p">,</span>
+ <span class="mf">36.90684415290366</span><span class="p">,</span>
+ <span class="mf">37.09717414729611</span><span class="p">,</span>
+ <span class="mf">37.107102214344394</span><span class="p">,</span>
+ <span class="mf">37.128656730090896</span><span class="p">,</span>
+ <span class="mf">37.132433685775226</span><span class="p">,</span>
+ <span class="mf">37.296659016079055</span><span class="p">,</span>
+ <span class="mf">37.419430136652146</span><span class="p">,</span>
+ <span class="mf">37.43012920137562</span><span class="p">,</span>
+ <span class="mf">37.4638794889313</span><span class="p">,</span>
+ <span class="mf">37.58277557861621</span><span class="p">,</span>
+ <span class="mf">37.697755868501424</span><span class="p">,</span>
+ <span class="mf">37.69794977190598</span><span class="p">,</span>
+ <span class="mf">37.78162899663886</span><span class="p">,</span>
+ <span class="mf">37.89039947314202</span><span class="p">,</span>
+ <span class="mf">37.96324762598947</span><span class="p">,</span>
+ <span class="mf">38.03401262624526</span><span class="p">,</span>
+ <span class="mf">38.0414514987099</span><span class="p">,</span>
+ <span class="mf">38.1527721701555</span><span class="p">,</span>
+ <span class="mf">38.2895542554773</span><span class="p">,</span>
+ <span class="mf">38.32585625463348</span><span class="p">,</span>
+ <span class="mf">38.86513531705935</span><span class="p">,</span>
+ <span class="mf">38.94274637072054</span><span class="p">,</span>
+ <span class="mf">38.97424388079281</span><span class="p">,</span>
+ <span class="mf">39.00399804918491</span><span class="p">,</span>
+ <span class="mf">39.20755617246421</span><span class="p">,</span>
+ <span class="mf">39.40531116656657</span><span class="p">,</span>
+ <span class="mf">39.47424877501022</span><span class="p">,</span>
+ <span class="mf">39.52379553509819</span><span class="p">,</span>
+ <span class="mf">39.57329881599558</span><span class="p">,</span>
+ <span class="mf">39.63934461223285</span><span class="p">,</span>
+ <span class="mf">39.65650070099773</span><span class="p">,</span>
+ <span class="mf">39.699872760136664</span><span class="p">,</span>
+ <span class="mf">39.997731522067916</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>then observe the quantiles:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span><span class="o">.</span><span class="n">quantiles</span><span class="p">(</span><span class="n">observations</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">15.006802680976536</span><span class="p">,</span> <span class="mf">35.007462054114015</span><span class="p">,</span> <span class="mf">37.49996307800869</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>it looks uniform. By the way, use different intervals, <span class="math notranslate nohighlight">\([14, 20)\)</span>
+and <span class="math notranslate nohighlight">\([35,40)\)</span>,</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">observations</span> <span class="o">=</span> <span class="n">take</span><span class="p">(</span><span class="n">samples</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">)),</span> <span class="mi">1000000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>look again at some observations,</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">observations</span><span class="p">)])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">14.283075034128789</span><span class="p">,</span>
+ <span class="mf">14.344642981348786</span><span class="p">,</span>
+ <span class="mf">14.688865709760112</span><span class="p">,</span>
+ <span class="mf">14.759034017699605</span><span class="p">,</span>
+ <span class="mf">14.778980951740772</span><span class="p">,</span>
+ <span class="mf">14.793336761503678</span><span class="p">,</span>
+ <span class="mf">15.137587805213371</span><span class="p">,</span>
+ <span class="mf">15.25173408596455</span><span class="p">,</span>
+ <span class="mf">15.317456657632407</span><span class="p">,</span>
+ <span class="mf">15.341221318874577</span><span class="p">,</span>
+ <span class="mf">15.366608784584269</span><span class="p">,</span>
+ <span class="mf">15.75644829436862</span><span class="p">,</span>
+ <span class="mf">16.245383093079482</span><span class="p">,</span>
+ <span class="mf">16.298216975457503</span><span class="p">,</span>
+ <span class="mf">17.20207768834477</span><span class="p">,</span>
+ <span class="mf">17.456016745025092</span><span class="p">,</span>
+ <span class="mf">17.509371560552218</span><span class="p">,</span>
+ <span class="mf">17.705594468497303</span><span class="p">,</span>
+ <span class="mf">17.731899026048854</span><span class="p">,</span>
+ <span class="mf">17.78843669826197</span><span class="p">,</span>
+ <span class="mf">18.0521470430377</span><span class="p">,</span>
+ <span class="mf">18.177426018715767</span><span class="p">,</span>
+ <span class="mf">18.73689014147333</span><span class="p">,</span>
+ <span class="mf">19.189272936744505</span><span class="p">,</span>
+ <span class="mf">19.593241906411937</span><span class="p">,</span>
+ <span class="mf">19.703938383770225</span><span class="p">,</span>
+ <span class="mf">19.8507928528412</span><span class="p">,</span>
+ <span class="mf">19.887969110474742</span><span class="p">,</span>
+ <span class="mf">35.008702180712774</span><span class="p">,</span>
+ <span class="mf">35.031213404638414</span><span class="p">,</span>
+ <span class="mf">35.07897380159041</span><span class="p">,</span>
+ <span class="mf">35.21760289840942</span><span class="p">,</span>
+ <span class="mf">35.223380744668454</span><span class="p">,</span>
+ <span class="mf">35.26193861838462</span><span class="p">,</span>
+ <span class="mf">35.294145330270894</span><span class="p">,</span>
+ <span class="mf">35.31170199505849</span><span class="p">,</span>
+ <span class="mf">35.449376551236426</span><span class="p">,</span>
+ <span class="mf">35.60144001605446</span><span class="p">,</span>
+ <span class="mf">35.64760723966421</span><span class="p">,</span>
+ <span class="mf">35.68577876398881</span><span class="p">,</span>
+ <span class="mf">35.91400870547509</span><span class="p">,</span>
+ <span class="mf">35.929374327392374</span><span class="p">,</span>
+ <span class="mf">35.932498216020036</span><span class="p">,</span>
+ <span class="mf">36.13186191840736</span><span class="p">,</span>
+ <span class="mf">36.134474531367275</span><span class="p">,</span>
+ <span class="mf">36.18535713925314</span><span class="p">,</span>
+ <span class="mf">36.25646869520796</span><span class="p">,</span>
+ <span class="mf">36.303542756492355</span><span class="p">,</span>
+ <span class="mf">36.40246365192152</span><span class="p">,</span>
+ <span class="mf">36.41034136482392</span><span class="p">,</span>
+ <span class="mf">36.45668027028991</span><span class="p">,</span>
+ <span class="mf">36.460897463798574</span><span class="p">,</span>
+ <span class="mf">36.59670352660416</span><span class="p">,</span>
+ <span class="mf">36.81583242104361</span><span class="p">,</span>
+ <span class="mf">36.92723359120805</span><span class="p">,</span>
+ <span class="mf">36.99290510212475</span><span class="p">,</span>
+ <span class="mf">37.048300531609044</span><span class="p">,</span>
+ <span class="mf">37.0592163372416</span><span class="p">,</span>
+ <span class="mf">37.10366397950206</span><span class="p">,</span>
+ <span class="mf">37.18007684151863</span><span class="p">,</span>
+ <span class="mf">37.33372859458535</span><span class="p">,</span>
+ <span class="mf">37.33945749070277</span><span class="p">,</span>
+ <span class="mf">37.49028201577179</span><span class="p">,</span>
+ <span class="mf">37.58480891368881</span><span class="p">,</span>
+ <span class="mf">37.644628469866184</span><span class="p">,</span>
+ <span class="mf">37.652988942869214</span><span class="p">,</span>
+ <span class="mf">37.761856125620014</span><span class="p">,</span>
+ <span class="mf">37.93886042643186</span><span class="p">,</span>
+ <span class="mf">38.051323784670906</span><span class="p">,</span>
+ <span class="mf">38.12518302320556</span><span class="p">,</span>
+ <span class="mf">38.175634454937644</span><span class="p">,</span>
+ <span class="mf">38.17747324721339</span><span class="p">,</span>
+ <span class="mf">38.240341489144406</span><span class="p">,</span>
+ <span class="mf">38.30600639027821</span><span class="p">,</span>
+ <span class="mf">38.3470597325234</span><span class="p">,</span>
+ <span class="mf">38.4043709943189</span><span class="p">,</span>
+ <span class="mf">38.58627660256967</span><span class="p">,</span>
+ <span class="mf">38.73974841472965</span><span class="p">,</span>
+ <span class="mf">38.75550750411811</span><span class="p">,</span>
+ <span class="mf">38.772494369032756</span><span class="p">,</span>
+ <span class="mf">38.874746439594524</span><span class="p">,</span>
+ <span class="mf">38.88212438125607</span><span class="p">,</span>
+ <span class="mf">38.992503274233236</span><span class="p">,</span>
+ <span class="mf">39.099681803499095</span><span class="p">,</span>
+ <span class="mf">39.19450496377118</span><span class="p">,</span>
+ <span class="mf">39.26942730030338</span><span class="p">,</span>
+ <span class="mf">39.27131074779202</span><span class="p">,</span>
+ <span class="mf">39.314045810968814</span><span class="p">,</span>
+ <span class="mf">39.376495789397254</span><span class="p">,</span>
+ <span class="mf">39.46029988689277</span><span class="p">,</span>
+ <span class="mf">39.60975806003205</span><span class="p">,</span>
+ <span class="mf">39.614262421948176</span><span class="p">,</span>
+ <span class="mf">39.63613277517809</span><span class="p">,</span>
+ <span class="mf">39.659650884019506</span><span class="p">,</span>
+ <span class="mf">39.807355479464334</span><span class="p">,</span>
+ <span class="mf">39.845120013649435</span><span class="p">,</span>
+ <span class="mf">39.87445190085072</span><span class="p">,</span>
+ <span class="mf">39.893502719517286</span><span class="p">,</span>
+ <span class="mf">39.905428805740264</span><span class="p">,</span>
+ <span class="mf">39.97724585792723</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>and check the corresponding quantiles</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span><span class="o">.</span><span class="n">quantiles</span><span class="p">(</span><span class="n">observations</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">19.00663637522749</span><span class="p">,</span> <span class="mf">36.4308193958336</span><span class="p">,</span> <span class="mf">38.21339522407641</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>it should be uniform too.</p>
 </div>
 </div>
 
