@@ -4,103 +4,105 @@ Core concepts
 This chapter deepens our understanding of some concepts seen in
 http://www.andreamarino.it/python/thinkcspy/.
 
+We quote from the official help system.
+
+| First,
+| >\ *Objects* are Python’s abstraction for data. All data in a Python
+  program is represented by objects or by relations between objects. (In
+  a sense, and in conformance to Von Neumann’s model of a “stored
+  program computer”, code is also represented by objects.)
+
+Second, >Every object has an identity, a type and a value. An object’s
+*identity* never changes once it has been created; you may think of it
+as the object’s address in memory. The ‘“is”’ operator compares the
+identity of two objects; the “id()” function returns an integer
+representing its identity.
+
+where
+
 .. code:: ipython3
 
-    help('OBJECTS')
+    help(id)
 
 
 .. parsed-literal::
 
-    Objects, values and types
-    *************************
+    Help on built-in function id in module builtins:
     
-    *Objects* are Python’s abstraction for data.  All data in a Python
-    program is represented by objects or by relations between objects. (In
-    a sense, and in conformance to Von Neumann’s model of a “stored
-    program computer”, code is also represented by objects.)
-    
-    Every object has an identity, a type and a value.  An object’s
-    *identity* never changes once it has been created; you may think of it
-    as the object’s address in memory.  The ‘"is"’ operator compares the
-    identity of two objects; the "id()" function returns an integer
-    representing its identity.
-    
-    **CPython implementation detail:** For CPython, "id(x)" is the memory
-    address where "x" is stored.
-    
-    An object’s type determines the operations that the object supports
-    (e.g., “does it have a length?”) and also defines the possible values
-    for objects of that type.  The "type()" function returns an object’s
-    type (which is an object itself).  Like its identity, an object’s
-    *type* is also unchangeable. [1]
-    
-    The *value* of some objects can change.  Objects whose value can
-    change are said to be *mutable*; objects whose value is unchangeable
-    once they are created are called *immutable*. (The value of an
-    immutable container object that contains a reference to a mutable
-    object can change when the latter’s value is changed; however the
-    container is still considered immutable, because the collection of
-    objects it contains cannot be changed.  So, immutability is not
-    strictly the same as having an unchangeable value, it is more subtle.)
-    An object’s mutability is determined by its type; for instance,
-    numbers, strings and tuples are immutable, while dictionaries and
-    lists are mutable.
-    
-    Objects are never explicitly destroyed; however, when they become
-    unreachable they may be garbage-collected.  An implementation is
-    allowed to postpone garbage collection or omit it altogether — it is a
-    matter of implementation quality how garbage collection is
-    implemented, as long as no objects are collected that are still
-    reachable.
-    
-    **CPython implementation detail:** CPython currently uses a reference-
-    counting scheme with (optional) delayed detection of cyclically linked
-    garbage, which collects most objects as soon as they become
-    unreachable, but is not guaranteed to collect garbage containing
-    circular references.  See the documentation of the "gc" module for
-    information on controlling the collection of cyclic garbage. Other
-    implementations act differently and CPython may change. Do not depend
-    on immediate finalization of objects when they become unreachable (so
-    you should always close files explicitly).
-    
-    Note that the use of the implementation’s tracing or debugging
-    facilities may keep objects alive that would normally be collectable.
-    Also note that catching an exception with a ‘"try"…"except"’ statement
-    may keep objects alive.
-    
-    Some objects contain references to “external” resources such as open
-    files or windows.  It is understood that these resources are freed
-    when the object is garbage-collected, but since garbage collection is
-    not guaranteed to happen, such objects also provide an explicit way to
-    release the external resource, usually a "close()" method. Programs
-    are strongly recommended to explicitly close such objects.  The
-    ‘"try"…"finally"’ statement and the ‘"with"’ statement provide
-    convenient ways to do this.
-    
-    Some objects contain references to other objects; these are called
-    *containers*. Examples of containers are tuples, lists and
-    dictionaries.  The references are part of a container’s value.  In
-    most cases, when we talk about the value of a container, we imply the
-    values, not the identities of the contained objects; however, when we
-    talk about the mutability of a container, only the identities of the
-    immediately contained objects are implied.  So, if an immutable
-    container (like a tuple) contains a reference to a mutable object, its
-    value changes if that mutable object is changed.
-    
-    Types affect almost all aspects of object behavior.  Even the
-    importance of object identity is affected in some sense: for immutable
-    types, operations that compute new values may actually return a
-    reference to any existing object with the same type and value, while
-    for mutable objects this is not allowed.  E.g., after "a = 1; b = 1",
-    "a" and "b" may or may not refer to the same object with the value
-    one, depending on the implementation, but after "c = []; d = []", "c"
-    and "d" are guaranteed to refer to two different, unique, newly
-    created empty lists. (Note that "c = d = []" assigns the same object
-    to both "c" and "d".)
-    
-    Related help topics: TYPES
+    id(obj, /)
+        Return the identity of an object.
+        
+        This is guaranteed to be unique among simultaneously existing objects.
+        (CPython uses the object's memory address.)
     
 
+
+Third, >An object’s type determines the operations that the object
+supports (e.g., “does it have a length?”) and also defines the possible
+values for objects of that type. The “type()” function returns an
+object’s type (which is an object itself). Like its identity, an
+object’s *type* is also unchangeable.
+
+Fourth, >The *value* of some objects can change. Objects whose value can
+change are said to be *mutable*; objects whose value is unchangeable
+once they are created are called *immutable*. (The value of an immutable
+container object that contains a reference to a mutable object can
+change when the latter’s value is changed; however the container is
+still considered immutable, because the collection of objects it
+contains cannot be changed. So, immutability is not strictly the same as
+having an unchangeable value, it is more subtle.) An object’s mutability
+is determined by its type; for instance, numbers, strings and tuples are
+immutable, while dictionaries and lists are mutable.
+
+Fifth, >Some objects contain references to other objects; these are
+called *containers*. Examples of containers are tuples, lists and
+dictionaries. The references are part of a container’s value. In most
+cases, when we talk about the value of a container, we imply the values,
+not the identities of the contained objects; however, when we talk about
+the mutability of a container, only the identities of the immediately
+contained objects are implied. So, if an immutable container (like a
+tuple) contains a reference to a mutable object, its value changes if
+that mutable object is changed.
+
+Sixth, >Types affect almost all aspects of object behavior. Even the
+importance of object identity is affected in some sense: for immutable
+types, operations that compute new values may actually return a
+reference to any existing object with the same type and value, while for
+mutable objects this is not allowed.
+
+.. code:: ipython3
+
+    a = 1; b = 1 # "a" and "b" may or may not refer to the same object with the value one,
+    id(a), id(b) # depending on the implementation
+
+
+
+
+.. parsed-literal::
+
+    (139857074039088, 139857074039088)
+
+
+
+.. code:: ipython3
+
+    c = []; d = []
+    id(c), id(d) # "c" and "d" are guaranteed to refer to two different, unique, newly created empty lists.
+
+
+
+
+.. parsed-literal::
+
+    (139856721784704, 139856722422272)
+
+
+
+A full description can be read by evaluating the following,
+
+.. code:: ipython3
+
+    help('OBJECTS')
 
 Values and their types
 ----------------------
@@ -135,99 +137,17 @@ Some playground:
 
 .. code:: ipython3
 
-    help(tuple)
+    print(tuple.__doc__)
 
 
 .. parsed-literal::
 
-    Help on class tuple in module builtins:
+    Built-in immutable sequence.
     
-    class tuple(object)
-     |  tuple(iterable=(), /)
-     |  
-     |  Built-in immutable sequence.
-     |  
-     |  If no argument is given, the constructor returns an empty tuple.
-     |  If iterable is specified the tuple is initialized from iterable's items.
-     |  
-     |  If the argument is a tuple, the return value is the same object.
-     |  
-     |  Built-in subclasses:
-     |      asyncgen_hooks
-     |      UnraisableHookArgs
-     |  
-     |  Methods defined here:
-     |  
-     |  __add__(self, value, /)
-     |      Return self+value.
-     |  
-     |  __contains__(self, key, /)
-     |      Return key in self.
-     |  
-     |  __eq__(self, value, /)
-     |      Return self==value.
-     |  
-     |  __ge__(self, value, /)
-     |      Return self>=value.
-     |  
-     |  __getattribute__(self, name, /)
-     |      Return getattr(self, name).
-     |  
-     |  __getitem__(self, key, /)
-     |      Return self[key].
-     |  
-     |  __getnewargs__(self, /)
-     |  
-     |  __gt__(self, value, /)
-     |      Return self>value.
-     |  
-     |  __hash__(self, /)
-     |      Return hash(self).
-     |  
-     |  __iter__(self, /)
-     |      Implement iter(self).
-     |  
-     |  __le__(self, value, /)
-     |      Return self<=value.
-     |  
-     |  __len__(self, /)
-     |      Return len(self).
-     |  
-     |  __lt__(self, value, /)
-     |      Return self<value.
-     |  
-     |  __mul__(self, value, /)
-     |      Return self*value.
-     |  
-     |  __ne__(self, value, /)
-     |      Return self!=value.
-     |  
-     |  __repr__(self, /)
-     |      Return repr(self).
-     |  
-     |  __rmul__(self, value, /)
-     |      Return value*self.
-     |  
-     |  count(self, value, /)
-     |      Return number of occurrences of value.
-     |  
-     |  index(self, value, start=0, stop=9223372036854775807, /)
-     |      Return first index of value.
-     |      
-     |      Raises ValueError if the value is not present.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Class methods defined here:
-     |  
-     |  __class_getitem__(...) from builtins.type
-     |      See PEP 585
-     |  
-     |  ----------------------------------------------------------------------
-     |  Static methods defined here:
-     |  
-     |  __new__(*args, **kwargs) from builtins.type
-     |      Create and return a new object.  See help(type) for accurate signature.
+    If no argument is given, the constructor returns an empty tuple.
+    If iterable is specified the tuple is initialized from iterable's items.
     
+    If the argument is a tuple, the return value is the same object.
 
 
 .. code:: ipython3
@@ -1098,7 +1018,7 @@ Variables
 
 .. code:: ipython3
 
-    b, a = a, b
+    b, a = a, b # aka, TUPLE UNPACKING
     a, b
 
 
@@ -1375,6 +1295,46 @@ https://docs.python.org/3/library/functions.html#built-in-funcs.
 
 .. code:: ipython3
 
+    ''.join(reversed('prova')) # `string`s are collections too
+
+
+
+
+.. parsed-literal::
+
+    'avorp'
+
+
+
+.. code:: ipython3
+
+    a = 1; b = 2
+    '{} < {} is actually true.'.format(a, b)
+
+
+
+
+.. parsed-literal::
+
+    '1 < 2 is actually true.'
+
+
+
+.. code:: ipython3
+
+    f'{a} < {b} is actually true.'
+
+
+
+
+.. parsed-literal::
+
+    '1 < 2 is actually true.'
+
+
+
+.. code:: ipython3
+
     total_secs = 43943
     hours = total_secs // 3600
     secs_still_remaining = total_secs % 3600
@@ -1516,537 +1476,6 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
     Related help topics: lambda, or, and, not, in, is, BOOLEAN, COMPARISON,
     BITWISE, SHIFTING, BINARY, FORMATTING, POWER, UNARY, ATTRIBUTES,
     SUBSCRIPTS, SLICINGS, CALLS, TUPLES, LISTS, DICTIONARIES
-    
-
-
-``tuple``\ s
-------------
-
-.. code:: ipython3
-
-    import itertools
-
-.. code:: ipython3
-
-    def tuples(*slices):
-        return itertools.product(*map(lambda s: range(s.start, s.stop), slices))
-
-.. code:: ipython3
-
-    help(itertools.product)
-
-
-.. parsed-literal::
-
-    Help on class product in module itertools:
-    
-    class product(builtins.object)
-     |  product(*iterables, repeat=1) --> product object
-     |  
-     |  Cartesian product of input iterables.  Equivalent to nested for-loops.
-     |  
-     |  For example, product(A, B) returns the same as:  ((x,y) for x in A for y in B).
-     |  The leftmost iterators are in the outermost for-loop, so the output tuples
-     |  cycle in a manner similar to an odometer (with the rightmost element changing
-     |  on every iteration).
-     |  
-     |  To compute the product of an iterable with itself, specify the number
-     |  of repetitions with the optional repeat keyword argument. For example,
-     |  product(A, repeat=4) means the same as product(A, A, A, A).
-     |  
-     |  product('ab', range(3)) --> ('a',0) ('a',1) ('a',2) ('b',0) ('b',1) ('b',2)
-     |  product((0,1), (0,1), (0,1)) --> (0,0,0) (0,0,1) (0,1,0) (0,1,1) (1,0,0) ...
-     |  
-     |  Methods defined here:
-     |  
-     |  __getattribute__(self, name, /)
-     |      Return getattr(self, name).
-     |  
-     |  __iter__(self, /)
-     |      Implement iter(self).
-     |  
-     |  __next__(self, /)
-     |      Implement next(self).
-     |  
-     |  __reduce__(...)
-     |      Return state information for pickling.
-     |  
-     |  __setstate__(...)
-     |      Set state information for unpickling.
-     |  
-     |  __sizeof__(...)
-     |      Returns size in memory, in bytes.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Static methods defined here:
-     |  
-     |  __new__(*args, **kwargs) from builtins.type
-     |      Create and return a new object.  See help(type) for accurate signature.
-    
-
-
-.. code:: ipython3
-
-    singletons = tuples(slice(5, 11))
-    singletons
-
-
-
-
-.. parsed-literal::
-
-    <itertools.product at 0x7f999f257a00>
-
-
-
-.. code:: ipython3
-
-    list(singletons)
-
-
-
-
-.. parsed-literal::
-
-    [(5,), (6,), (7,), (8,), (9,), (10,)]
-
-
-
-.. code:: ipython3
-
-    s = slice(5, 11)
-    pairs = tuples(s, s)
-    pairs
-
-
-
-
-.. parsed-literal::
-
-    <itertools.product at 0x7f999f2606c0>
-
-
-
-.. code:: ipython3
-
-    list(pairs)
-
-
-
-
-.. parsed-literal::
-
-    [(5, 5),
-     (5, 6),
-     (5, 7),
-     (5, 8),
-     (5, 9),
-     (5, 10),
-     (6, 5),
-     (6, 6),
-     (6, 7),
-     (6, 8),
-     (6, 9),
-     (6, 10),
-     (7, 5),
-     (7, 6),
-     (7, 7),
-     (7, 8),
-     (7, 9),
-     (7, 10),
-     (8, 5),
-     (8, 6),
-     (8, 7),
-     (8, 8),
-     (8, 9),
-     (8, 10),
-     (9, 5),
-     (9, 6),
-     (9, 7),
-     (9, 8),
-     (9, 9),
-     (9, 10),
-     (10, 5),
-     (10, 6),
-     (10, 7),
-     (10, 8),
-     (10, 9),
-     (10, 10)]
-
-
-
-.. code:: ipython3
-
-    triples_a, triples_b = itertools.tee(tuples(slice(5, 11), slice(6, 13), slice(7, 14)))
-
-.. code:: ipython3
-
-    help(itertools.tee)
-
-
-.. parsed-literal::
-
-    Help on built-in function tee in module itertools:
-    
-    tee(iterable, n=2, /)
-        Returns a tuple of n independent iterators.
-    
-
-
-.. code:: ipython3
-
-    list(triples_a)
-
-
-
-
-.. parsed-literal::
-
-    [(5, 6, 7),
-     (5, 6, 8),
-     (5, 6, 9),
-     (5, 6, 10),
-     (5, 6, 11),
-     (5, 6, 12),
-     (5, 6, 13),
-     (5, 7, 7),
-     (5, 7, 8),
-     (5, 7, 9),
-     (5, 7, 10),
-     (5, 7, 11),
-     (5, 7, 12),
-     (5, 7, 13),
-     (5, 8, 7),
-     (5, 8, 8),
-     (5, 8, 9),
-     (5, 8, 10),
-     (5, 8, 11),
-     (5, 8, 12),
-     (5, 8, 13),
-     (5, 9, 7),
-     (5, 9, 8),
-     (5, 9, 9),
-     (5, 9, 10),
-     (5, 9, 11),
-     (5, 9, 12),
-     (5, 9, 13),
-     (5, 10, 7),
-     (5, 10, 8),
-     (5, 10, 9),
-     (5, 10, 10),
-     (5, 10, 11),
-     (5, 10, 12),
-     (5, 10, 13),
-     (5, 11, 7),
-     (5, 11, 8),
-     (5, 11, 9),
-     (5, 11, 10),
-     (5, 11, 11),
-     (5, 11, 12),
-     (5, 11, 13),
-     (5, 12, 7),
-     (5, 12, 8),
-     (5, 12, 9),
-     (5, 12, 10),
-     (5, 12, 11),
-     (5, 12, 12),
-     (5, 12, 13),
-     (6, 6, 7),
-     (6, 6, 8),
-     (6, 6, 9),
-     (6, 6, 10),
-     (6, 6, 11),
-     (6, 6, 12),
-     (6, 6, 13),
-     (6, 7, 7),
-     (6, 7, 8),
-     (6, 7, 9),
-     (6, 7, 10),
-     (6, 7, 11),
-     (6, 7, 12),
-     (6, 7, 13),
-     (6, 8, 7),
-     (6, 8, 8),
-     (6, 8, 9),
-     (6, 8, 10),
-     (6, 8, 11),
-     (6, 8, 12),
-     (6, 8, 13),
-     (6, 9, 7),
-     (6, 9, 8),
-     (6, 9, 9),
-     (6, 9, 10),
-     (6, 9, 11),
-     (6, 9, 12),
-     (6, 9, 13),
-     (6, 10, 7),
-     (6, 10, 8),
-     (6, 10, 9),
-     (6, 10, 10),
-     (6, 10, 11),
-     (6, 10, 12),
-     (6, 10, 13),
-     (6, 11, 7),
-     (6, 11, 8),
-     (6, 11, 9),
-     (6, 11, 10),
-     (6, 11, 11),
-     (6, 11, 12),
-     (6, 11, 13),
-     (6, 12, 7),
-     (6, 12, 8),
-     (6, 12, 9),
-     (6, 12, 10),
-     (6, 12, 11),
-     (6, 12, 12),
-     (6, 12, 13),
-     (7, 6, 7),
-     (7, 6, 8),
-     (7, 6, 9),
-     (7, 6, 10),
-     (7, 6, 11),
-     (7, 6, 12),
-     (7, 6, 13),
-     (7, 7, 7),
-     (7, 7, 8),
-     (7, 7, 9),
-     (7, 7, 10),
-     (7, 7, 11),
-     (7, 7, 12),
-     (7, 7, 13),
-     (7, 8, 7),
-     (7, 8, 8),
-     (7, 8, 9),
-     (7, 8, 10),
-     (7, 8, 11),
-     (7, 8, 12),
-     (7, 8, 13),
-     (7, 9, 7),
-     (7, 9, 8),
-     (7, 9, 9),
-     (7, 9, 10),
-     (7, 9, 11),
-     (7, 9, 12),
-     (7, 9, 13),
-     (7, 10, 7),
-     (7, 10, 8),
-     (7, 10, 9),
-     (7, 10, 10),
-     (7, 10, 11),
-     (7, 10, 12),
-     (7, 10, 13),
-     (7, 11, 7),
-     (7, 11, 8),
-     (7, 11, 9),
-     (7, 11, 10),
-     (7, 11, 11),
-     (7, 11, 12),
-     (7, 11, 13),
-     (7, 12, 7),
-     (7, 12, 8),
-     (7, 12, 9),
-     (7, 12, 10),
-     (7, 12, 11),
-     (7, 12, 12),
-     (7, 12, 13),
-     (8, 6, 7),
-     (8, 6, 8),
-     (8, 6, 9),
-     (8, 6, 10),
-     (8, 6, 11),
-     (8, 6, 12),
-     (8, 6, 13),
-     (8, 7, 7),
-     (8, 7, 8),
-     (8, 7, 9),
-     (8, 7, 10),
-     (8, 7, 11),
-     (8, 7, 12),
-     (8, 7, 13),
-     (8, 8, 7),
-     (8, 8, 8),
-     (8, 8, 9),
-     (8, 8, 10),
-     (8, 8, 11),
-     (8, 8, 12),
-     (8, 8, 13),
-     (8, 9, 7),
-     (8, 9, 8),
-     (8, 9, 9),
-     (8, 9, 10),
-     (8, 9, 11),
-     (8, 9, 12),
-     (8, 9, 13),
-     (8, 10, 7),
-     (8, 10, 8),
-     (8, 10, 9),
-     (8, 10, 10),
-     (8, 10, 11),
-     (8, 10, 12),
-     (8, 10, 13),
-     (8, 11, 7),
-     (8, 11, 8),
-     (8, 11, 9),
-     (8, 11, 10),
-     (8, 11, 11),
-     (8, 11, 12),
-     (8, 11, 13),
-     (8, 12, 7),
-     (8, 12, 8),
-     (8, 12, 9),
-     (8, 12, 10),
-     (8, 12, 11),
-     (8, 12, 12),
-     (8, 12, 13),
-     (9, 6, 7),
-     (9, 6, 8),
-     (9, 6, 9),
-     (9, 6, 10),
-     (9, 6, 11),
-     (9, 6, 12),
-     (9, 6, 13),
-     (9, 7, 7),
-     (9, 7, 8),
-     (9, 7, 9),
-     (9, 7, 10),
-     (9, 7, 11),
-     (9, 7, 12),
-     (9, 7, 13),
-     (9, 8, 7),
-     (9, 8, 8),
-     (9, 8, 9),
-     (9, 8, 10),
-     (9, 8, 11),
-     (9, 8, 12),
-     (9, 8, 13),
-     (9, 9, 7),
-     (9, 9, 8),
-     (9, 9, 9),
-     (9, 9, 10),
-     (9, 9, 11),
-     (9, 9, 12),
-     (9, 9, 13),
-     (9, 10, 7),
-     (9, 10, 8),
-     (9, 10, 9),
-     (9, 10, 10),
-     (9, 10, 11),
-     (9, 10, 12),
-     (9, 10, 13),
-     (9, 11, 7),
-     (9, 11, 8),
-     (9, 11, 9),
-     (9, 11, 10),
-     (9, 11, 11),
-     (9, 11, 12),
-     (9, 11, 13),
-     (9, 12, 7),
-     (9, 12, 8),
-     (9, 12, 9),
-     (9, 12, 10),
-     (9, 12, 11),
-     (9, 12, 12),
-     (9, 12, 13),
-     (10, 6, 7),
-     (10, 6, 8),
-     (10, 6, 9),
-     (10, 6, 10),
-     (10, 6, 11),
-     (10, 6, 12),
-     (10, 6, 13),
-     (10, 7, 7),
-     (10, 7, 8),
-     (10, 7, 9),
-     (10, 7, 10),
-     (10, 7, 11),
-     (10, 7, 12),
-     (10, 7, 13),
-     (10, 8, 7),
-     (10, 8, 8),
-     (10, 8, 9),
-     (10, 8, 10),
-     (10, 8, 11),
-     (10, 8, 12),
-     (10, 8, 13),
-     (10, 9, 7),
-     (10, 9, 8),
-     (10, 9, 9),
-     (10, 9, 10),
-     (10, 9, 11),
-     (10, 9, 12),
-     (10, 9, 13),
-     (10, 10, 7),
-     (10, 10, 8),
-     (10, 10, 9),
-     (10, 10, 10),
-     (10, 10, 11),
-     (10, 10, 12),
-     (10, 10, 13),
-     (10, 11, 7),
-     (10, 11, 8),
-     (10, 11, 9),
-     (10, 11, 10),
-     (10, 11, 11),
-     (10, 11, 12),
-     (10, 11, 13),
-     (10, 12, 7),
-     (10, 12, 8),
-     (10, 12, 9),
-     (10, 12, 10),
-     (10, 12, 11),
-     (10, 12, 12),
-     (10, 12, 13)]
-
-
-
-.. code:: ipython3
-
-    def is_pythagorean(tup, n=2):
-        '''A Pythagorean triple consists of three positive integers a, b, and c, such that a^2 + b^2 = c^2. 
-        
-        Such a triple is commonly written (a, b, c), and a well-known example is (3, 4, 5). 
-        If (a, b, c) is a Pythagorean triple, then so is (ka, kb, kc) for any positive integer k. 
-        
-        A primitive Pythagorean triple is one in which a, b and c are coprime (that is, 
-        they have no common divisor larger than 1).
-        
-        See also https://en.wikipedia.org/wiki/Pythagorean_triple.
-        '''
-        a, b, c = tup
-        return tup[0]**n + tup[1]**n == tup[2]**n
-
-.. code:: ipython3
-
-    list(filter(is_pythagorean, triples_b))
-
-
-
-
-.. parsed-literal::
-
-    [(5, 12, 13), (6, 8, 10), (8, 6, 10)]
-
-
-
-.. code:: ipython3
-
-    help(is_pythagorean)
-
-
-.. parsed-literal::
-
-    Help on function is_pythagorean in module __main__:
-    
-    is_pythagorean(tup, n=2)
-        A Pythagorean triple consists of three positive integers a, b, and c, such that a^2 + b^2 = c^2. 
-        
-        Such a triple is commonly written (a, b, c), and a well-known example is (3, 4, 5). 
-        If (a, b, c) is a Pythagorean triple, then so is (ka, kb, kc) for any positive integer k. 
-        
-        A primitive Pythagorean triple is one in which a, b and c are coprime (that is, 
-        they have no common divisor larger than 1).
-        
-        See also https://en.wikipedia.org/wiki/Pythagorean_triple.
     
 
 
@@ -2290,6 +1719,162 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 .. code:: ipython3
 
     assert add(1, 2) == add_l(1, 2)
+
+``yield``\ s
+------------
+
+.. code:: ipython3
+
+    L = range(5)
+    M = map(lambda i: i + 1, L)
+    M
+
+
+
+
+.. parsed-literal::
+
+    <map at 0x7f32ed59dd30>
+
+
+
+.. code:: ipython3
+
+    next(M)
+
+
+
+
+.. parsed-literal::
+
+    1
+
+
+
+.. code:: ipython3
+
+    help(next)
+
+
+.. parsed-literal::
+
+    Help on built-in function next in module builtins:
+    
+    next(...)
+        next(iterator[, default])
+        
+        Return the next item from the iterator. If default is given and the iterator
+        is exhausted, it is returned instead of raising StopIteration.
+    
+
+
+.. code:: ipython3
+
+    next(M)
+
+
+
+
+.. parsed-literal::
+
+    2
+
+
+
+.. code:: ipython3
+
+    next(M)
+
+
+
+
+.. parsed-literal::
+
+    3
+
+
+
+.. code:: ipython3
+
+    next(M)
+
+
+
+
+.. parsed-literal::
+
+    4
+
+
+
+.. code:: ipython3
+
+    next(M)
+
+
+
+
+.. parsed-literal::
+
+    5
+
+
+
+.. code:: ipython3
+
+    next(M)
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    StopIteration                             Traceback (most recent call last)
+
+    <ipython-input-64-0666361e9047> in <module>
+    ----> 1 next(M)
+    
+
+    StopIteration: 
+
+
+.. code:: ipython3
+
+    N = (i for i in range(1, 10))
+    N
+
+
+
+
+.. parsed-literal::
+
+    <generator object <genexpr> at 0x7f32ee175740>
+
+
+
+.. code:: ipython3
+
+    def saturate(g, L=[]):
+        while True:
+            try:
+                L.append(next(g))
+            except StopIteration:
+                break
+        return L
+
+.. code:: ipython3
+
+    saturate(N, [0])
+
+
+
+
+.. parsed-literal::
+
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
 
 Help about ``help``
 -------------------

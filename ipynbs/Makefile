@@ -7,10 +7,6 @@ core-concepts:
 	#jupyter-nbconvert generators.ipynb --to slides
 	jupyter-nbconvert core-concepts.ipynb --to rst
 	#echo "Generators\n##########\n\n" | cat - generators.rst > temp && mv temp generators.rst
-generators:
-	jupyter-nbconvert generators.ipynb --to slides
-	jupyter-nbconvert generators.ipynb --to rst
-	echo "Generators\n##########\n\n" | cat - generators.rst > temp && mv temp generators.rst
 gotchas:
 	jupyter-nbconvert gotchas.ipynb --to slides
 	jupyter-nbconvert gotchas.ipynb --to rst
@@ -48,4 +44,4 @@ move:
 	cp -r images ../booklet/source/_static
 	cp *.slides.html ../booklet/source/_static
 
-all: introduction notebook numpy pandas matplotlib networkx gotchas generators core-concepts exercises move
+all: introduction notebook numpy pandas matplotlib networkx gotchas core-concepts exercises move

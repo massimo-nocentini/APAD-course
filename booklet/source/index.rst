@@ -30,7 +30,6 @@ either on slides
    * `matplotlib <_static/matplotlib.slides.html>`_
    * `networkx <_static/networkx.slides.html>`_
    * `Gotchas <_static/gotchas.slides.html>`_
-   * `Generators <_static/generators.slides.html>`_
 
 or on notebooks
 
@@ -46,7 +45,6 @@ or on notebooks
    * `matplotlib <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/matplotlib.ipynb>`_
    * `networkx <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/networkx.ipynb>`_
    * `Gotchas <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/gotchas.ipynb>`_
-   * `Generators <https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/generators.ipynb>`_
 
 or, eventually, on this booklet according to the TOC
 
@@ -62,7 +60,6 @@ or, eventually, on this booklet according to the TOC
    matplotlib.rst
    networkx.rst
    gotchas.rst
-   generators.rst
 
 .. 
    Indices and tables
