@@ -10180,7 +10180,9 @@ Split, apply, combine
 A canonical example of this split-apply-combine operation, where the
 “apply” is a summation aggregation, is illustrated in this figure:
 
-.. image:: images/03.08-split-apply-combine.png
+|image0|
+
+.. |image0| image:: images/03.08-split-apply-combine.png
 
 This makes clear what the ``groupby`` accomplishes:
 
@@ -13709,16 +13711,16 @@ frequency spacing:
 Code  Description  Code   Description
 ===== ============ ====== ====================
 ``D`` Calendar day ``B``  Business day
-``W`` Weekly              
+``W`` Weekly             
 ``M`` Month end    ``BM`` Business month end
 ``Q`` Quarter end  ``BQ`` Business quarter end
 ``A`` Year end     ``BA`` Business year end
 ``H`` Hours        ``BH`` Business hours
-``T`` Minutes             
-``S`` Seconds             
-``L`` Milliseonds         
-``U`` Microseconds        
-``N`` nanoseconds         
+``T`` Minutes            
+``S`` Seconds            
+``L`` Milliseonds        
+``U`` Microseconds       
+``N`` nanoseconds        
 ===== ============ ====== ====================
 
 The monthly, quarterly, and annual frequencies are all marked at the end

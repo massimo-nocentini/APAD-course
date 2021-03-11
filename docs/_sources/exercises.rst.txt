@@ -33,7 +33,7 @@ that consumes an iterable and return a generator that will yield
 
 .. parsed-literal::
 
-    <generator object take at 0x7fc40bf47e40>
+    <generator object take at 0x7feb34e879e0>
 
 
 
@@ -42,6 +42,610 @@ is a actually generator and its content equals
 .. code:: ipython3
 
     assert list(taken) == list(range(50))
+
+(Pythagorean) tuples
+--------------------
+
+Let
+
+.. code:: ipython3
+
+    def tuples(*slices):
+        return itertools.product(*map(lambda s: range(s.start, s.stop), slices))
+
+where
+
+.. code:: ipython3
+
+    help(itertools.product)
+
+
+.. parsed-literal::
+
+    Help on class product in module itertools:
+    
+    class product(builtins.object)
+     |  product(*iterables, repeat=1) --> product object
+     |  
+     |  Cartesian product of input iterables.  Equivalent to nested for-loops.
+     |  
+     |  For example, product(A, B) returns the same as:  ((x,y) for x in A for y in B).
+     |  The leftmost iterators are in the outermost for-loop, so the output tuples
+     |  cycle in a manner similar to an odometer (with the rightmost element changing
+     |  on every iteration).
+     |  
+     |  To compute the product of an iterable with itself, specify the number
+     |  of repetitions with the optional repeat keyword argument. For example,
+     |  product(A, repeat=4) means the same as product(A, A, A, A).
+     |  
+     |  product('ab', range(3)) --> ('a',0) ('a',1) ('a',2) ('b',0) ('b',1) ('b',2)
+     |  product((0,1), (0,1), (0,1)) --> (0,0,0) (0,0,1) (0,1,0) (0,1,1) (1,0,0) ...
+     |  
+     |  Methods defined here:
+     |  
+     |  __getattribute__(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  __iter__(self, /)
+     |      Implement iter(self).
+     |  
+     |  __next__(self, /)
+     |      Implement next(self).
+     |  
+     |  __reduce__(...)
+     |      Return state information for pickling.
+     |  
+     |  __setstate__(...)
+     |      Set state information for unpickling.
+     |  
+     |  __sizeof__(...)
+     |      Returns size in memory, in bytes.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Static methods defined here:
+     |  
+     |  __new__(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
+    
+
+
+Consider the application to an empty sequence of ``slide``\ s,
+
+.. code:: ipython3
+
+    units = tuples()
+    units
+
+
+
+
+.. parsed-literal::
+
+    <itertools.product at 0x7feb34e6fe80>
+
+
+
+then saturate it
+
+.. code:: ipython3
+
+    list(units)
+
+
+
+
+.. parsed-literal::
+
+    [()]
+
+
+
+Now, build tuples using just a ``slide`` object,
+
+.. code:: ipython3
+
+    singletons = tuples(slice(5, 11))
+    singletons
+
+
+
+
+.. parsed-literal::
+
+    <itertools.product at 0x7feb34e66540>
+
+
+
+then saturate it
+
+.. code:: ipython3
+
+    list(singletons)
+
+
+
+
+.. parsed-literal::
+
+    [(5,), (6,), (7,), (8,), (9,), (10,)]
+
+
+
+Now, build tuples using a twin ``slide`` object,
+
+.. code:: ipython3
+
+    s = slice(5, 11)
+    pairs = tuples(s, s)
+    pairs
+
+
+
+
+.. parsed-literal::
+
+    <itertools.product at 0x7feb34e7a180>
+
+
+
+then saturate it
+
+.. code:: ipython3
+
+    list(pairs)
+
+
+
+
+.. parsed-literal::
+
+    [(5, 5),
+     (5, 6),
+     (5, 7),
+     (5, 8),
+     (5, 9),
+     (5, 10),
+     (6, 5),
+     (6, 6),
+     (6, 7),
+     (6, 8),
+     (6, 9),
+     (6, 10),
+     (7, 5),
+     (7, 6),
+     (7, 7),
+     (7, 8),
+     (7, 9),
+     (7, 10),
+     (8, 5),
+     (8, 6),
+     (8, 7),
+     (8, 8),
+     (8, 9),
+     (8, 10),
+     (9, 5),
+     (9, 6),
+     (9, 7),
+     (9, 8),
+     (9, 9),
+     (9, 10),
+     (10, 5),
+     (10, 6),
+     (10, 7),
+     (10, 8),
+     (10, 9),
+     (10, 10)]
+
+
+
+Now, build tuples using a three different ``slide`` objects (taking into
+account of splitting the returned generator),
+
+.. code:: ipython3
+
+    triples_a, triples_b = itertools.tee(tuples(slice(5, 11), slice(6, 13), slice(7, 14)))
+
+where
+
+.. code:: ipython3
+
+    help(itertools.tee)
+
+
+.. parsed-literal::
+
+    Help on built-in function tee in module itertools:
+    
+    tee(iterable, n=2, /)
+        Returns a tuple of n independent iterators.
+    
+
+
+then saturate it
+
+.. code:: ipython3
+
+    list(triples_a)
+
+
+
+
+.. parsed-literal::
+
+    [(5, 6, 7),
+     (5, 6, 8),
+     (5, 6, 9),
+     (5, 6, 10),
+     (5, 6, 11),
+     (5, 6, 12),
+     (5, 6, 13),
+     (5, 7, 7),
+     (5, 7, 8),
+     (5, 7, 9),
+     (5, 7, 10),
+     (5, 7, 11),
+     (5, 7, 12),
+     (5, 7, 13),
+     (5, 8, 7),
+     (5, 8, 8),
+     (5, 8, 9),
+     (5, 8, 10),
+     (5, 8, 11),
+     (5, 8, 12),
+     (5, 8, 13),
+     (5, 9, 7),
+     (5, 9, 8),
+     (5, 9, 9),
+     (5, 9, 10),
+     (5, 9, 11),
+     (5, 9, 12),
+     (5, 9, 13),
+     (5, 10, 7),
+     (5, 10, 8),
+     (5, 10, 9),
+     (5, 10, 10),
+     (5, 10, 11),
+     (5, 10, 12),
+     (5, 10, 13),
+     (5, 11, 7),
+     (5, 11, 8),
+     (5, 11, 9),
+     (5, 11, 10),
+     (5, 11, 11),
+     (5, 11, 12),
+     (5, 11, 13),
+     (5, 12, 7),
+     (5, 12, 8),
+     (5, 12, 9),
+     (5, 12, 10),
+     (5, 12, 11),
+     (5, 12, 12),
+     (5, 12, 13),
+     (6, 6, 7),
+     (6, 6, 8),
+     (6, 6, 9),
+     (6, 6, 10),
+     (6, 6, 11),
+     (6, 6, 12),
+     (6, 6, 13),
+     (6, 7, 7),
+     (6, 7, 8),
+     (6, 7, 9),
+     (6, 7, 10),
+     (6, 7, 11),
+     (6, 7, 12),
+     (6, 7, 13),
+     (6, 8, 7),
+     (6, 8, 8),
+     (6, 8, 9),
+     (6, 8, 10),
+     (6, 8, 11),
+     (6, 8, 12),
+     (6, 8, 13),
+     (6, 9, 7),
+     (6, 9, 8),
+     (6, 9, 9),
+     (6, 9, 10),
+     (6, 9, 11),
+     (6, 9, 12),
+     (6, 9, 13),
+     (6, 10, 7),
+     (6, 10, 8),
+     (6, 10, 9),
+     (6, 10, 10),
+     (6, 10, 11),
+     (6, 10, 12),
+     (6, 10, 13),
+     (6, 11, 7),
+     (6, 11, 8),
+     (6, 11, 9),
+     (6, 11, 10),
+     (6, 11, 11),
+     (6, 11, 12),
+     (6, 11, 13),
+     (6, 12, 7),
+     (6, 12, 8),
+     (6, 12, 9),
+     (6, 12, 10),
+     (6, 12, 11),
+     (6, 12, 12),
+     (6, 12, 13),
+     (7, 6, 7),
+     (7, 6, 8),
+     (7, 6, 9),
+     (7, 6, 10),
+     (7, 6, 11),
+     (7, 6, 12),
+     (7, 6, 13),
+     (7, 7, 7),
+     (7, 7, 8),
+     (7, 7, 9),
+     (7, 7, 10),
+     (7, 7, 11),
+     (7, 7, 12),
+     (7, 7, 13),
+     (7, 8, 7),
+     (7, 8, 8),
+     (7, 8, 9),
+     (7, 8, 10),
+     (7, 8, 11),
+     (7, 8, 12),
+     (7, 8, 13),
+     (7, 9, 7),
+     (7, 9, 8),
+     (7, 9, 9),
+     (7, 9, 10),
+     (7, 9, 11),
+     (7, 9, 12),
+     (7, 9, 13),
+     (7, 10, 7),
+     (7, 10, 8),
+     (7, 10, 9),
+     (7, 10, 10),
+     (7, 10, 11),
+     (7, 10, 12),
+     (7, 10, 13),
+     (7, 11, 7),
+     (7, 11, 8),
+     (7, 11, 9),
+     (7, 11, 10),
+     (7, 11, 11),
+     (7, 11, 12),
+     (7, 11, 13),
+     (7, 12, 7),
+     (7, 12, 8),
+     (7, 12, 9),
+     (7, 12, 10),
+     (7, 12, 11),
+     (7, 12, 12),
+     (7, 12, 13),
+     (8, 6, 7),
+     (8, 6, 8),
+     (8, 6, 9),
+     (8, 6, 10),
+     (8, 6, 11),
+     (8, 6, 12),
+     (8, 6, 13),
+     (8, 7, 7),
+     (8, 7, 8),
+     (8, 7, 9),
+     (8, 7, 10),
+     (8, 7, 11),
+     (8, 7, 12),
+     (8, 7, 13),
+     (8, 8, 7),
+     (8, 8, 8),
+     (8, 8, 9),
+     (8, 8, 10),
+     (8, 8, 11),
+     (8, 8, 12),
+     (8, 8, 13),
+     (8, 9, 7),
+     (8, 9, 8),
+     (8, 9, 9),
+     (8, 9, 10),
+     (8, 9, 11),
+     (8, 9, 12),
+     (8, 9, 13),
+     (8, 10, 7),
+     (8, 10, 8),
+     (8, 10, 9),
+     (8, 10, 10),
+     (8, 10, 11),
+     (8, 10, 12),
+     (8, 10, 13),
+     (8, 11, 7),
+     (8, 11, 8),
+     (8, 11, 9),
+     (8, 11, 10),
+     (8, 11, 11),
+     (8, 11, 12),
+     (8, 11, 13),
+     (8, 12, 7),
+     (8, 12, 8),
+     (8, 12, 9),
+     (8, 12, 10),
+     (8, 12, 11),
+     (8, 12, 12),
+     (8, 12, 13),
+     (9, 6, 7),
+     (9, 6, 8),
+     (9, 6, 9),
+     (9, 6, 10),
+     (9, 6, 11),
+     (9, 6, 12),
+     (9, 6, 13),
+     (9, 7, 7),
+     (9, 7, 8),
+     (9, 7, 9),
+     (9, 7, 10),
+     (9, 7, 11),
+     (9, 7, 12),
+     (9, 7, 13),
+     (9, 8, 7),
+     (9, 8, 8),
+     (9, 8, 9),
+     (9, 8, 10),
+     (9, 8, 11),
+     (9, 8, 12),
+     (9, 8, 13),
+     (9, 9, 7),
+     (9, 9, 8),
+     (9, 9, 9),
+     (9, 9, 10),
+     (9, 9, 11),
+     (9, 9, 12),
+     (9, 9, 13),
+     (9, 10, 7),
+     (9, 10, 8),
+     (9, 10, 9),
+     (9, 10, 10),
+     (9, 10, 11),
+     (9, 10, 12),
+     (9, 10, 13),
+     (9, 11, 7),
+     (9, 11, 8),
+     (9, 11, 9),
+     (9, 11, 10),
+     (9, 11, 11),
+     (9, 11, 12),
+     (9, 11, 13),
+     (9, 12, 7),
+     (9, 12, 8),
+     (9, 12, 9),
+     (9, 12, 10),
+     (9, 12, 11),
+     (9, 12, 12),
+     (9, 12, 13),
+     (10, 6, 7),
+     (10, 6, 8),
+     (10, 6, 9),
+     (10, 6, 10),
+     (10, 6, 11),
+     (10, 6, 12),
+     (10, 6, 13),
+     (10, 7, 7),
+     (10, 7, 8),
+     (10, 7, 9),
+     (10, 7, 10),
+     (10, 7, 11),
+     (10, 7, 12),
+     (10, 7, 13),
+     (10, 8, 7),
+     (10, 8, 8),
+     (10, 8, 9),
+     (10, 8, 10),
+     (10, 8, 11),
+     (10, 8, 12),
+     (10, 8, 13),
+     (10, 9, 7),
+     (10, 9, 8),
+     (10, 9, 9),
+     (10, 9, 10),
+     (10, 9, 11),
+     (10, 9, 12),
+     (10, 9, 13),
+     (10, 10, 7),
+     (10, 10, 8),
+     (10, 10, 9),
+     (10, 10, 10),
+     (10, 10, 11),
+     (10, 10, 12),
+     (10, 10, 13),
+     (10, 11, 7),
+     (10, 11, 8),
+     (10, 11, 9),
+     (10, 11, 10),
+     (10, 11, 11),
+     (10, 11, 12),
+     (10, 11, 13),
+     (10, 12, 7),
+     (10, 12, 8),
+     (10, 12, 9),
+     (10, 12, 10),
+     (10, 12, 11),
+     (10, 12, 12),
+     (10, 12, 13)]
+
+
+
+Now a corner case, but still interesting for ensuring a sound behavior,
+
+.. code:: ipython3
+
+    triples = tuples(slice(5, 11), slice(6, 6), slice(7, 14)) # ouch!
+
+then saturate it
+
+.. code:: ipython3
+
+    list(triples) # who we have to blame?
+
+
+
+
+.. parsed-literal::
+
+    []
+
+
+
+Finally, let
+
+.. code:: ipython3
+
+    def is_pythagorean(tup, n=2):
+        '''A Pythagorean triple consists of three positive integers a, b, and c, such that a^2 + b^2 = c^2. 
+        
+        Such a triple is commonly written (a, b, c), and a well-known example is (3, 4, 5). 
+        If (a, b, c) is a Pythagorean triple, then so is (ka, kb, kc) for any positive integer k. 
+        
+        A primitive Pythagorean triple is one in which a, b and c are coprime (that is, 
+        they have no common divisor larger than 1).
+        
+        See also https://en.wikipedia.org/wiki/Pythagorean_triple.
+        '''
+        a, b, c = tup
+        return (tup[0]**n + tup[1]**n == tup[2]**n) if a <= b <= c else False
+
+in
+
+.. code:: ipython3
+
+    list(filter(is_pythagorean, triples_b))
+
+
+
+
+.. parsed-literal::
+
+    [(5, 12, 13), (6, 8, 10)]
+
+
+
+and
+
+.. code:: ipython3
+
+    help(is_pythagorean) # just to show that writing docstrings is cool and useful.
+
+
+.. parsed-literal::
+
+    Help on function is_pythagorean in module __main__:
+    
+    is_pythagorean(tup, n=2)
+        A Pythagorean triple consists of three positive integers a, b, and c, such that a^2 + b^2 = c^2. 
+        
+        Such a triple is commonly written (a, b, c), and a well-known example is (3, 4, 5). 
+        If (a, b, c) is a Pythagorean triple, then so is (ka, kb, kc) for any positive integer k. 
+        
+        A primitive Pythagorean triple is one in which a, b and c are coprime (that is, 
+        they have no common divisor larger than 1).
+        
+        See also https://en.wikipedia.org/wiki/Pythagorean_triple.
+    
+
 
 ``sum_upto``
 ------------
@@ -999,3 +1603,188 @@ and check the corresponding quantiles
 
 
 it should be uniform either.
+
+Bernoulli random variable
+-------------------------
+
+.. code:: ipython3
+
+    int(True) # this is a very quick check to see if a Boolean can be used as integer
+
+
+
+
+.. parsed-literal::
+
+    1
+
+
+
+.. code:: ipython3
+
+    def Bernoulli(p):
+        'This is a generator for a Bernoulli random variable of parameter `p` for success.'
+        
+        while True:              # forever we loop
+            r = random.random()         # get a sample
+            yield int(r <= p)    # if that sample denotes a success or a failure we *yield* that outcome
+
+.. code:: ipython3
+
+    B = Bernoulli(p=0.6) # B is our random variable
+    B
+
+
+
+
+.. parsed-literal::
+
+    <generator object Bernoulli at 0x7feb34db7970>
+
+
+
+.. code:: ipython3
+
+    next(B)
+
+
+
+
+.. parsed-literal::
+
+    0
+
+
+
+.. code:: ipython3
+
+    next(B)
+
+
+
+
+.. parsed-literal::
+
+    1
+
+
+
+.. code:: ipython3
+
+    next(B)
+
+
+
+
+.. parsed-literal::
+
+    1
+
+
+
+.. code:: ipython3
+
+    next(B)
+
+
+
+
+.. parsed-literal::
+
+    1
+
+
+
+.. code:: ipython3
+
+    list(take(B, 20))
+
+
+
+
+.. parsed-literal::
+
+    [0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0]
+
+
+
+.. code:: ipython3
+
+    C = collections.Counter(take(B, 1_000_000))
+    C
+
+
+
+
+.. parsed-literal::
+
+    Counter({1: 600385, 0: 399615})
+
+
+
+.. code:: ipython3
+
+    C[1]/(C[0]+C[1])
+
+
+
+
+.. parsed-literal::
+
+    0.600385
+
+
+
+where
+
+.. code:: ipython3
+
+    print(collections.Counter.__doc__)
+
+
+.. parsed-literal::
+
+    Dict subclass for counting hashable items.  Sometimes called a bag
+        or multiset.  Elements are stored as dictionary keys and their counts
+        are stored as dictionary values.
+    
+        >>> c = Counter('abcdeabcdabcaba')  # count elements from a string
+    
+        >>> c.most_common(3)                # three most common elements
+        [('a', 5), ('b', 4), ('c', 3)]
+        >>> sorted(c)                       # list all unique elements
+        ['a', 'b', 'c', 'd', 'e']
+        >>> ''.join(sorted(c.elements()))   # list elements with repetitions
+        'aaaaabbbbcccdde'
+        >>> sum(c.values())                 # total of all counts
+        15
+    
+        >>> c['a']                          # count of letter 'a'
+        5
+        >>> for elem in 'shazam':           # update counts from an iterable
+        ...     c[elem] += 1                # by adding 1 to each element's count
+        >>> c['a']                          # now there are seven 'a'
+        7
+        >>> del c['b']                      # remove all 'b'
+        >>> c['b']                          # now there are zero 'b'
+        0
+    
+        >>> d = Counter('simsalabim')       # make another counter
+        >>> c.update(d)                     # add in the second counter
+        >>> c['a']                          # now there are nine 'a'
+        9
+    
+        >>> c.clear()                       # empty the counter
+        >>> c
+        Counter()
+    
+        Note:  If a count is set to zero or reduced to zero, it will remain
+        in the counter until the entry is deleted or the counter is cleared:
+    
+        >>> c = Counter('aaabbc')
+        >>> c['b'] -= 2                     # reduce the count of 'b' by two
+        >>> c.most_common()                 # 'b' is still in, but its count is zero
+        [('a', 3), ('c', 1), ('b', 0)]
+    
+        
+

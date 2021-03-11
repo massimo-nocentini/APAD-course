@@ -12,7 +12,6 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Introduction" href="introduction.html" />
@@ -54,7 +53,6 @@
 <li class="toctree-l1"><a class="reference internal" href="matplotlib.html">matplotlib module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="networkx.html">networkx module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gotchas.html">Tips an’ Tricks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a></li>
 </ul>
 
 <div class="relations">
@@ -123,11 +121,10 @@ either on slides</p>
 </td><td><ul class="simple">
 <li><p><a class="reference external" href="_static/pandas.slides.html">pandas</a></p></li>
 <li><p><a class="reference external" href="_static/matplotlib.slides.html">matplotlib</a></p></li>
-<li><p><a class="reference external" href="_static/networkx.slides.html">networkx</a></p></li>
 </ul>
 </td><td><ul class="simple">
+<li><p><a class="reference external" href="_static/networkx.slides.html">networkx</a></p></li>
 <li><p><a class="reference external" href="_static/gotchas.slides.html">Gotchas</a></p></li>
-<li><p><a class="reference external" href="_static/generators.slides.html">Generators</a></p></li>
 </ul>
 </td></tr></table>
 <p>or on notebooks</p>
@@ -135,17 +132,16 @@ either on slides</p>
 <li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/introduction.ipynb">Introduction</a></p></li>
 <li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/jupyter-notebooks.ipynb">Jupyter notebooks</a></p></li>
 <li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/core-concepts.ipynb">Core concepts</a></p></li>
-<li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/exercises.ipynb">Exercises</a></p></li>
 </ul>
 </td><td><ul class="simple">
+<li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/exercises.ipynb">Exercises</a></p></li>
 <li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/numpy.ipynb">numpy</a></p></li>
 <li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/pandas.ipynb">pandas</a></p></li>
-<li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/matplotlib.ipynb">matplotlib</a></p></li>
 </ul>
 </td><td><ul class="simple">
+<li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/matplotlib.ipynb">matplotlib</a></p></li>
 <li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/networkx.ipynb">networkx</a></p></li>
 <li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/gotchas.ipynb">Gotchas</a></p></li>
-<li><p><a class="reference external" href="https://nbviewer.jupyter.org/github/massimo-nocentini/APAD-course/blob/master/ipynbs/generators.ipynb">Generators</a></p></li>
 </ul>
 </td></tr></table>
 <p>or, eventually, on this booklet according to the TOC</p>
@@ -193,6 +189,7 @@ either on slides</p>
 <li class="toctree-l3"><a class="reference internal" href="jupyter-notebooks.html#debugging-when-reading-tracebacks-is-not-enough">Debugging: When Reading Tracebacks Is Not Enough</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="jupyter-notebooks.html#command-description">Command        Description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jupyter-notebooks.html#profiling-and-timing-code">Profiling and Timing Code</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="jupyter-notebooks.html#timing-code-snippets-timeit-and-time">Timing Code Snippets: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> and <code class="docutils literal notranslate"><span class="pre">%time</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="jupyter-notebooks.html#profiling-full-scripts-prun">Profiling Full Scripts: <code class="docutils literal notranslate"><span class="pre">%prun</span></code></a></li>
@@ -210,20 +207,22 @@ either on slides</p>
 <li class="toctree-l2"><a class="reference internal" href="core-concepts.html#values-and-their-types">Values and their types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core-concepts.html#variables">Variables</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core-concepts.html#operators-and-operands">Operators and operands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="core-concepts.html#tuples"><code class="docutils literal notranslate"><span class="pre">tuple</span></code>s</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core-concepts.html#slices"><code class="docutils literal notranslate"><span class="pre">Slice</span></code>s</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core-concepts.html#ranges"><code class="docutils literal notranslate"><span class="pre">range</span></code>s</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core-concepts.html#lambdas"><code class="docutils literal notranslate"><span class="pre">lambda</span></code>s</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core-concepts.html#yields"><code class="docutils literal notranslate"><span class="pre">yield</span></code>s</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core-concepts.html#help-about-help">Help about <code class="docutils literal notranslate"><span class="pre">help</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="exercises.html">Exercises</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="exercises.html#pythagorean-tuples">(Pythagorean) tuples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises.html#sum-upto"><code class="docutils literal notranslate"><span class="pre">sum_upto</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises.html#sqrt"><code class="docutils literal notranslate"><span class="pre">sqrt</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises.html#pi"><span class="math notranslate nohighlight">\(\pi\)</span></a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises.html#the-collatzs-conjecture">The Collatz’s conjecture</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises.html#fibonacci-numbers">Fibonacci numbers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises.html#uniform-random-on-segmented-interval">Uniform <code class="docutils literal notranslate"><span class="pre">random</span></code> on segmented interval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises.html#bernoulli-random-variable">Bernoulli random variable</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="numpy.html">numpy module</a><ul>
@@ -372,6 +371,7 @@ either on slides</p>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib.html#multiple-subplots">Multiple Subplots</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib.html#text-and-annotation">Text and Annotation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib.html#customizing-ticks">Customizing Ticks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="matplotlib.html#locator-class-description">Locator class        Description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="matplotlib.html#customizing-matplotlib-configurations-and-stylesheets">Customizing Matplotlib: Configurations and Stylesheets</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="matplotlib.html#default-style">Default style</a></li>
 <li class="toctree-l3"><a class="reference internal" href="matplotlib.html#fivethiryeight-style">FiveThiryEight style</a></li>
@@ -418,10 +418,6 @@ either on slides</p>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="generators.html">Generators</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="generators.html#the-python-language-documentation">The Python language documentation</a></li>
-</ul>
-</li>
 </ul>
 </div>
 </div>
@@ -448,7 +444,7 @@ either on slides</p>
       &copy;2021, Massimo Nocentini.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
