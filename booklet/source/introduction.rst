@@ -79,9 +79,7 @@ Some supporting quotes `here <https://www.python.org/about/quotes/>`__.
 
 From https://docs.python.org/3/
 
-|image0|
-
-.. |image0| image:: images/Python-doc-page.png
+.. image:: images/Python-doc-page.png
 
 beware of shadows
 =================
@@ -101,9 +99,7 @@ Therefore, go head and install the Python interpreter.
 
 https://www.python.org/downloads/
 
-|image0|
-
-.. |image0| image:: images/Python-download.png
+.. image:: images/Python-download.png
 
 welcome to the carousel
 =======================

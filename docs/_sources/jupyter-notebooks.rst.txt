@@ -1495,22 +1495,28 @@ There are many more available commands for interactive debugging than
 we’ve listed here; the following table contains a description of some of
 the more common and useful ones:
 
-==============
-===========================================================
-Command        Description
-==============
-===========================================================
-``list``       Show the current location in the file
-``h(elp)``     Show a list of commands, or find help on a specific command
-``q(uit)``     Quit the debugger and the program
-``c(ontinue)`` Quit the debugger, continue in the program
-``n(ext)``     Go to the next step of the program
-``<enter>``    Repeat the previous command
-``p(rint)``    Print variables
-``s(tep)``     Step into a subroutine
-``r(eturn)``   Return out of a subroutine
-==============
-===========================================================
++----------------+----------------------------------------------------+
+| Command        | Description                                        |
++================+====================================================+
+| ``list``       | Show the current location in the file              |
++----------------+----------------------------------------------------+
+| ``h(elp)``     | Show a list of commands, or find help on a         |
+|                | specific command                                   |
++----------------+----------------------------------------------------+
+| ``q(uit)``     | Quit the debugger and the program                  |
++----------------+----------------------------------------------------+
+| ``c(ontinue)`` | Quit the debugger, continue in the program         |
++----------------+----------------------------------------------------+
+| ``n(ext)``     | Go to the next step of the program                 |
++----------------+----------------------------------------------------+
+| ``<enter>``    | Repeat the previous command                        |
++----------------+----------------------------------------------------+
+| ``p(rint)``    | Print variables                                    |
++----------------+----------------------------------------------------+
+| ``s(tep)``     | Step into a subroutine                             |
++----------------+----------------------------------------------------+
+| ``r(eturn)``   | Return out of a subroutine                         |
++----------------+----------------------------------------------------+
 
 For more information, use the ``help`` command in the debugger, or take
 a look at ``ipdb``\ ’s `online

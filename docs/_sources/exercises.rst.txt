@@ -33,7 +33,7 @@ that consumes an iterable and return a generator that will yield
 
 .. parsed-literal::
 
-    <generator object take at 0x7feb34e879e0>
+    <generator object take at 0x7fde72786660>
 
 
 
@@ -42,6 +42,12 @@ is a actually generator and its content equals
 .. code:: ipython3
 
     assert list(taken) == list(range(50))
+
+Before starting, we initialize the random generator with a nice prime
+
+.. code:: ipython3
+
+    random.seed(11)
 
 (Pythagorean) tuples
 --------------------
@@ -945,7 +951,7 @@ https://docs.python.org/3/library/functools.html#functools.cache:
 
 .. code:: ipython3
 
-    @functools.cache
+    @functools.lru_cache()
     def factorial(n):
         print('•', end='')
         return n * factorial(n-1) if n else 1
@@ -1011,10 +1017,6 @@ The problem here reads as follow: sample uniformly from :math:`[a, b)`
 and :math:`[c, d)` where :math:`b <= c`. Eventually, try to generate to
 an arbitrary sequence of ``slice``\ s, assuming they are fed in sorted
 order with respect to ``<``.
-
-.. code:: ipython3
-
-    random.seed(11)
 
 .. code:: ipython3
 
@@ -1627,7 +1629,7 @@ Bernoulli random variable
         
         while True:              # forever we loop
             r = random.random()         # get a sample
-            yield int(r <= p)    # if that sample denotes a success or a failure we *yield* that outcome
+            yield int(r < p)    # if that sample denotes a success or a failure we *yield* that outcome
 
 .. code:: ipython3
 
@@ -1639,7 +1641,20 @@ Bernoulli random variable
 
 .. parsed-literal::
 
-    <generator object Bernoulli at 0x7feb34db7970>
+    <generator object Bernoulli at 0x7f332bed2900>
+
+
+
+.. code:: ipython3
+
+    next(B)
+
+
+
+
+.. parsed-literal::
+
+    1
 
 
 
@@ -1678,20 +1693,7 @@ Bernoulli random variable
 
 .. parsed-literal::
 
-    1
-
-
-
-.. code:: ipython3
-
-    next(B)
-
-
-
-
-.. parsed-literal::
-
-    1
+    0
 
 
 
@@ -1704,7 +1706,7 @@ Bernoulli random variable
 
 .. parsed-literal::
 
-    [0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0]
+    [1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1]
 
 
 
@@ -1718,7 +1720,7 @@ Bernoulli random variable
 
 .. parsed-literal::
 
-    Counter({1: 600385, 0: 399615})
+    Counter({0: 399494, 1: 600506})
 
 
 
@@ -1731,7 +1733,7 @@ Bernoulli random variable
 
 .. parsed-literal::
 
-    0.600385
+    0.600506
 
 
 
@@ -1787,4 +1789,420 @@ where
         [('a', 3), ('c', 1), ('b', 0)]
     
         
+
+
+Russian Peasant Multiplication
+------------------------------
+
+Let
+
+.. code:: ipython3
+
+    def halves_doubles(n, m):
+        halving = n
+        doubling = m
+        acc = 0
+        while halving:
+            digit = halving % 2 
+            acc = acc + digit * doubling
+            yield (digit, halving, doubling, acc)
+            halving = halving >> 1
+            doubling = doubling << 1
+
+in
+
+.. code:: ipython3
+
+    list(halves_doubles(89, 18))
+
+
+
+
+.. parsed-literal::
+
+    [(1, 89, 18, 18),
+     (0, 44, 36, 18),
+     (0, 22, 72, 18),
+     (1, 11, 144, 162),
+     (1, 5, 288, 450),
+     (0, 2, 576, 450),
+     (1, 1, 1152, 1602)]
+
+
+
+see https://en.wikipedia.org/wiki/Ancient_Egyptian_multiplication and
+also
+https://www.cut-the-knot.org/Curriculum/Algebra/PeasantMultiplication.shtml.
+Then,
+
+.. code:: ipython3
+
+    def rpm(n, m):
+        *prefix, (b, h, d, s) = halves_doubles(n, m)
+        return s
+
+so the check passes,
+
+.. code:: ipython3
+
+    assert rpm(89, 18) == 89 * 18 == 1602
+
+because
+
+.. code:: ipython3
+
+    bin(89)
+
+
+
+
+.. parsed-literal::
+
+    '0b1011001'
+
+
+
+Of course, it works too when the first number is even,
+
+.. code:: ipython3
+
+    rpm(6, 100)
+
+
+
+
+.. parsed-literal::
+
+    600
+
+
+
+Of course our implementation
+
+.. code:: ipython3
+
+    %timeit rpm(293819385789379687596845, 921038209831568476843584365)
+
+
+.. parsed-literal::
+
+    29.3 µs ± 805 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+
+
+is *slower* than the primitive one
+
+.. code:: ipython3
+
+    %timeit 293819385789379687596845 * 921038209831568476843584365
+
+
+.. parsed-literal::
+
+    101 ns ± 0.0308 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+
+
+because arithmetic is performed in the virtual machine.
+
+Let us give a strict version also,
+
+.. code:: ipython3
+
+    def rpm_strict(n, m):
+        halving = n
+        doubling = m
+        acc = 0
+        while halving:
+            digit = halving % 2 
+            acc = acc + digit * doubling
+            halving = halving >> 1
+            doubling = doubling << 1
+        return acc
+
+check that it is correct,
+
+.. code:: ipython3
+
+    rpm_strict(89, 18)
+
+
+
+
+.. parsed-literal::
+
+    1602
+
+
+
+and observe that it is a little bit *faster* than our former
+implementation
+
+.. code:: ipython3
+
+    %timeit rpm_strict(293819385789379687596845, 921038209831568476843584365)
+
+
+.. parsed-literal::
+
+    22.2 µs ± 52.8 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+
+
+Fixed sum
+---------
+
+.. code:: ipython3
+
+    def subarrays(L):
+       return (L[i:j] for i in range(len(L)) for j in range(i, len(L)+1))
+
+.. code:: ipython3
+
+    L = [-1, 5, 8, -9, 4, 1]
+
+.. code:: ipython3
+
+    list(subarrays(L))
+
+
+
+
+.. parsed-literal::
+
+    [[],
+     [-1],
+     [-1, 5],
+     [-1, 5, 8],
+     [-1, 5, 8, -9],
+     [-1, 5, 8, -9, 4],
+     [-1, 5, 8, -9, 4, 1],
+     [],
+     [5],
+     [5, 8],
+     [5, 8, -9],
+     [5, 8, -9, 4],
+     [5, 8, -9, 4, 1],
+     [],
+     [8],
+     [8, -9],
+     [8, -9, 4],
+     [8, -9, 4, 1],
+     [],
+     [-9],
+     [-9, 4],
+     [-9, 4, 1],
+     [],
+     [4],
+     [4, 1],
+     [],
+     [1]]
+
+
+
+.. code:: ipython3
+
+    def fixed_sum(L, n):
+        return filter(lambda s: sum(s)==n, subarrays(L))
+
+.. code:: ipython3
+
+    list(fixed_sum(L, 10))
+
+
+
+
+.. parsed-literal::
+
+    []
+
+
+
+.. code:: ipython3
+
+    def partial_sums(L):
+        g = itertools.accumulate(subarrays(L), lambda s, each: s + each[-1] if each else 0, initial=0)
+        next(g) # to ignore the initial 0 given above
+        return g
+
+.. code:: ipython3
+
+    list(partial_sums(L))
+
+
+
+
+.. parsed-literal::
+
+    [0,
+     -1,
+     4,
+     12,
+     3,
+     7,
+     8,
+     0,
+     5,
+     13,
+     4,
+     8,
+     9,
+     0,
+     8,
+     -1,
+     3,
+     4,
+     0,
+     -9,
+     -5,
+     -4,
+     0,
+     4,
+     5,
+     0,
+     1]
+
+
+
+Toward an optimization…
+
+.. code:: ipython3
+
+    def subarrays_rev(L):
+       return (tuple(L[i:j]) for i in range(len(L)-1, -1, -1) for j in range(i+1, len(L)+1))
+
+.. code:: ipython3
+
+    list(subarrays_rev(L))
+
+
+
+
+.. parsed-literal::
+
+    [(1,),
+     (4,),
+     (4, 1),
+     (-9,),
+     (-9, 4),
+     (-9, 4, 1),
+     (8,),
+     (8, -9),
+     (8, -9, 4),
+     (8, -9, 4, 1),
+     (5,),
+     (5, 8),
+     (5, 8, -9),
+     (5, 8, -9, 4),
+     (5, 8, -9, 4, 1),
+     (-1,),
+     (-1, 5),
+     (-1, 5, 8),
+     (-1, 5, 8, -9),
+     (-1, 5, 8, -9, 4),
+     (-1, 5, 8, -9, 4, 1)]
+
+
+
+.. code:: ipython3
+
+    def fixed_sum_rev(L, n, cache={}):
+        for tup in subarrays_rev(L):
+            rest = tup[1:]
+            s = tup[0] + cache.get(rest, 0)
+            cache[tup] = s
+            if s == n: yield tup
+
+.. code:: ipython3
+
+    cache = {}
+    list(fixed_sum_rev(L, 10, cache))
+
+
+
+
+.. parsed-literal::
+
+    []
+
+
+
+.. code:: ipython3
+
+    cache # have a look at the collected values
+
+
+
+
+.. parsed-literal::
+
+    {(1,): 1,
+     (4,): 4,
+     (4, 1): 5,
+     (-9,): -9,
+     (-9, 4): -5,
+     (-9, 4, 1): -4,
+     (8,): 8,
+     (8, -9): -1,
+     (8, -9, 4): 3,
+     (8, -9, 4, 1): 4,
+     (5,): 5,
+     (5, 8): 13,
+     (5, 8, -9): 4,
+     (5, 8, -9, 4): 8,
+     (5, 8, -9, 4, 1): 9,
+     (-1,): -1,
+     (-1, 5): 4,
+     (-1, 5, 8): 12,
+     (-1, 5, 8, -9): 3,
+     (-1, 5, 8, -9, 4): 7,
+     (-1, 5, 8, -9, 4, 1): 8}
+
+
+
+.. code:: ipython3
+
+    def sample(n):
+        O, b, *rest = bin(random.getrandbits(n)) # because `string`s are iterable objects indeed.
+        return list(map(int, rest))
+
+where
+
+.. code:: ipython3
+
+    help(random.getrandbits)
+
+
+.. parsed-literal::
+
+    Help on built-in function getrandbits:
+    
+    getrandbits(k, /) method of random.Random instance
+        getrandbits(k) -> x.  Generates an int with k random bits.
+    
+
+
+.. code:: ipython3
+
+    LL = sample(1000)
+
+.. code:: ipython3
+
+    assert set(map(tuple, fixed_sum(LL, 10))) == set(fixed_sum_rev(LL, 10))
+
+.. code:: ipython3
+
+    %timeit list(fixed_sum(LL, 10))
+
+
+.. parsed-literal::
+
+    2.38 s ± 46.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+
+.. code:: ipython3
+
+    %timeit list(fixed_sum_rev(LL, 10))
+
+
+.. parsed-literal::
+
+    5.91 s ± 3.82 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 

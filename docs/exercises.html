@@ -58,6 +58,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#fibonacci-numbers">Fibonacci numbers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#uniform-random-on-segmented-interval">Uniform <code class="docutils literal notranslate"><span class="pre">random</span></code> on segmented interval</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bernoulli-random-variable">Bernoulli random variable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#russian-peasant-multiplication">Russian Peasant Multiplication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fixed-sum">Fixed sum</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="numpy.html">numpy module</a></li>
@@ -139,11 +141,15 @@ write. Moreover, an utility for generators,</p>
 <span class="n">taken</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">take</span> <span class="n">at</span> <span class="mh">0x7feb34e879e0</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">take</span> <span class="n">at</span> <span class="mh">0x7fde72786660</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>is a actually generator and its content equals</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">list</span><span class="p">(</span><span class="n">taken</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Before starting, we initialize the random generator with a nice prime</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="section" id="pythagorean-tuples">
@@ -870,7 +876,7 @@ let</p>
 <h2>Fibonacci numbers<a class="headerlink" href="#fibonacci-numbers" title="Permalink to this headline">¶</a></h2>
 <p>Directly from
 <a class="reference external" href="https://docs.python.org/3/library/functools.html#functools.cache">https://docs.python.org/3/library/functools.html#functools.cache</a>:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@functools</span><span class="o">.</span><span class="n">cache</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;•&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="k">else</span> <span class="mi">1</span>
@@ -911,9 +917,6 @@ symbols)</p>
 and <span class="math notranslate nohighlight">\([c, d)\)</span> where <span class="math notranslate nohighlight">\(b &lt;= c\)</span>. Eventually, try to generate to
 an arbitrary sequence of <code class="docutils literal notranslate"><span class="pre">slice</span></code>s, assuming they are fed in sorted
 order with respect to <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
-</pre></div>
-</div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1430,14 +1433,20 @@ slices,</p>
 
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>              <span class="c1"># forever we loop</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>         <span class="c1"># get a sample</span>
-        <span class="k">yield</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;=</span> <span class="n">p</span><span class="p">)</span>    <span class="c1"># if that sample denotes a success or a failure we *yield* that outcome</span>
+        <span class="k">yield</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">)</span>    <span class="c1"># if that sample denotes a success or a failure we *yield* that outcome</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">Bernoulli</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span> <span class="c1"># B is our random variable</span>
 <span class="n">B</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">Bernoulli</span> <span class="n">at</span> <span class="mh">0x7feb34db7970</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">Bernoulli</span> <span class="n">at</span> <span class="mh">0x7f332bed2900</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
@@ -1455,32 +1464,26 @@ slices,</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
-</pre></div>
-</div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">1_000_000</span><span class="p">))</span>
 <span class="n">C</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Counter</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span> <span class="mi">600385</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="mi">399615</span><span class="p">})</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Counter</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="mi">399494</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">600506</span><span class="p">})</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.600385</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.600506</span>
 </pre></div>
 </div>
 <p>where</p>
@@ -1531,6 +1534,300 @@ slices,</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="russian-peasant-multiplication">
+<h2>Russian Peasant Multiplication<a class="headerlink" href="#russian-peasant-multiplication" title="Permalink to this headline">¶</a></h2>
+<p>Let</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">halves_doubles</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">halving</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="n">doubling</span> <span class="o">=</span> <span class="n">m</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">halving</span><span class="p">:</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">halving</span> <span class="o">%</span> <span class="mi">2</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">digit</span> <span class="o">*</span> <span class="n">doubling</span>
+        <span class="k">yield</span> <span class="p">(</span><span class="n">digit</span><span class="p">,</span> <span class="n">halving</span><span class="p">,</span> <span class="n">doubling</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
+        <span class="n">halving</span> <span class="o">=</span> <span class="n">halving</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+        <span class="n">doubling</span> <span class="o">=</span> <span class="n">doubling</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>in</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">halves_doubles</span><span class="p">(</span><span class="mi">89</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">162</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">288</span><span class="p">,</span> <span class="mi">450</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">576</span><span class="p">,</span> <span class="mi">450</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1152</span><span class="p">,</span> <span class="mi">1602</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>see <a class="reference external" href="https://en.wikipedia.org/wiki/Ancient_Egyptian_multiplication">https://en.wikipedia.org/wiki/Ancient_Egyptian_multiplication</a> and
+also
+<a class="reference external" href="https://www.cut-the-knot.org/Curriculum/Algebra/PeasantMultiplication.shtml">https://www.cut-the-knot.org/Curriculum/Algebra/PeasantMultiplication.shtml</a>.
+Then,</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rpm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="o">*</span><span class="n">prefix</span><span class="p">,</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="n">halves_doubles</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span>
+</pre></div>
+</div>
+<p>so the check passes,</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">rpm</span><span class="p">(</span><span class="mi">89</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span> <span class="o">==</span> <span class="mi">89</span> <span class="o">*</span> <span class="mi">18</span> <span class="o">==</span> <span class="mi">1602</span>
+</pre></div>
+</div>
+<p>because</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="p">(</span><span class="mi">89</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;0b1011001&#39;</span>
+</pre></div>
+</div>
+<p>Of course, it works too when the first number is even,</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rpm</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">600</span>
+</pre></div>
+</div>
+<p>Of course our implementation</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> rpm(293819385789379687596845, 921038209831568476843584365)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>29.3 µs ± 805 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+</pre></div>
+</div>
+<p>is <em>slower</em> than the primitive one</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> 293819385789379687596845 * 921038209831568476843584365
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>101 ns ± 0.0308 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+</pre></div>
+</div>
+<p>because arithmetic is performed in the virtual machine.</p>
+<p>Let us give a strict version also,</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rpm_strict</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">halving</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="n">doubling</span> <span class="o">=</span> <span class="n">m</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">halving</span><span class="p">:</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">halving</span> <span class="o">%</span> <span class="mi">2</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">digit</span> <span class="o">*</span> <span class="n">doubling</span>
+        <span class="n">halving</span> <span class="o">=</span> <span class="n">halving</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+        <span class="n">doubling</span> <span class="o">=</span> <span class="n">doubling</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">acc</span>
+</pre></div>
+</div>
+<p>check that it is correct,</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rpm_strict</span><span class="p">(</span><span class="mi">89</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1602</span>
+</pre></div>
+</div>
+<p>and observe that it is a little bit <em>faster</em> than our former
+implementation</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> rpm_strict(293819385789379687596845, 921038209831568476843584365)
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>22.2 µs ± 52.8 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+</pre></div>
+</div>
+</div>
+<div class="section" id="fixed-sum">
+<h2>Fixed sum<a class="headerlink" href="#fixed-sum" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">subarrays</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+   <span class="k">return</span> <span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">))</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">subarrays</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[],</span>
+ <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+ <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+ <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">],</span>
+ <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+ <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[],</span>
+ <span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[],</span>
+ <span class="p">[</span><span class="mi">8</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[],</span>
+ <span class="p">[</span><span class="o">-</span><span class="mi">9</span><span class="p">],</span>
+ <span class="p">[</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+ <span class="p">[</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[],</span>
+ <span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fixed_sum</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">==</span><span class="n">n</span><span class="p">,</span> <span class="n">subarrays</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">fixed_sum</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">partial_sums</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">subarrays</span><span class="p">(</span><span class="n">L</span><span class="p">),</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">each</span><span class="p">:</span> <span class="n">s</span> <span class="o">+</span> <span class="n">each</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">each</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="c1"># to ignore the initial 0 given above</span>
+    <span class="k">return</span> <span class="n">g</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">partial_sums</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">,</span>
+ <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+ <span class="mi">4</span><span class="p">,</span>
+ <span class="mi">12</span><span class="p">,</span>
+ <span class="mi">3</span><span class="p">,</span>
+ <span class="mi">7</span><span class="p">,</span>
+ <span class="mi">8</span><span class="p">,</span>
+ <span class="mi">0</span><span class="p">,</span>
+ <span class="mi">5</span><span class="p">,</span>
+ <span class="mi">13</span><span class="p">,</span>
+ <span class="mi">4</span><span class="p">,</span>
+ <span class="mi">8</span><span class="p">,</span>
+ <span class="mi">9</span><span class="p">,</span>
+ <span class="mi">0</span><span class="p">,</span>
+ <span class="mi">8</span><span class="p">,</span>
+ <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+ <span class="mi">3</span><span class="p">,</span>
+ <span class="mi">4</span><span class="p">,</span>
+ <span class="mi">0</span><span class="p">,</span>
+ <span class="o">-</span><span class="mi">9</span><span class="p">,</span>
+ <span class="o">-</span><span class="mi">5</span><span class="p">,</span>
+ <span class="o">-</span><span class="mi">4</span><span class="p">,</span>
+ <span class="mi">0</span><span class="p">,</span>
+ <span class="mi">4</span><span class="p">,</span>
+ <span class="mi">5</span><span class="p">,</span>
+ <span class="mi">0</span><span class="p">,</span>
+ <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Toward an optimization…</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">subarrays_rev</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+   <span class="k">return</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">subarrays_rev</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="mi">1</span><span class="p">,),</span>
+ <span class="p">(</span><span class="mi">4</span><span class="p">,),</span>
+ <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,),</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">8</span><span class="p">,),</span>
+ <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">5</span><span class="p">,),</span>
+ <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+ <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,),</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">),</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fixed_sum_rev</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="k">for</span> <span class="n">tup</span> <span class="ow">in</span> <span class="n">subarrays_rev</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+        <span class="n">rest</span> <span class="o">=</span> <span class="n">tup</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">tup</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rest</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">cache</span><span class="p">[</span><span class="n">tup</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span> <span class="k">yield</span> <span class="n">tup</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">fixed_sum_rev</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">cache</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cache</span> <span class="c1"># have a look at the collected values</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{(</span><span class="mi">1</span><span class="p">,):</span> <span class="mi">1</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">4</span><span class="p">,):</span> <span class="mi">4</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">5</span><span class="p">,</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,):</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">8</span><span class="p">,):</span> <span class="mi">8</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">):</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">5</span><span class="p">,):</span> <span class="mi">5</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span> <span class="mi">13</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span> <span class="mi">8</span><span class="p">,</span>
+ <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">9</span><span class="p">,</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,):</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span> <span class="mi">4</span><span class="p">,</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span> <span class="mi">12</span><span class="p">,</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">):</span> <span class="mi">3</span><span class="p">,</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span> <span class="mi">7</span><span class="p">,</span>
+ <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span> <span class="mi">8</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">O</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">getrandbits</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="c1"># because `string`s are iterable objects indeed.</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">rest</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>where</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">getrandbits</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="n">getrandbits</span><span class="p">:</span>
+
+<span class="n">getrandbits</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="n">method</span> <span class="n">of</span> <span class="n">random</span><span class="o">.</span><span class="n">Random</span> <span class="n">instance</span>
+    <span class="n">getrandbits</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">.</span>  <span class="n">Generates</span> <span class="n">an</span> <span class="nb">int</span> <span class="k">with</span> <span class="n">k</span> <span class="n">random</span> <span class="n">bits</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LL</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">fixed_sum</span><span class="p">(</span><span class="n">LL</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">fixed_sum_rev</span><span class="p">(</span><span class="n">LL</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> list(fixed_sum(LL, 10))
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2.38 s ± 46.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> list(fixed_sum_rev(LL, 10))
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>5.91 s ± 3.82 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -1559,7 +1856,7 @@ slices,</p>
       &copy;2021, Massimo Nocentini.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

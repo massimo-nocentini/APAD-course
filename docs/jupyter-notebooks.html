@@ -81,7 +81,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#debugging-when-reading-tracebacks-is-not-enough">Debugging: When Reading Tracebacks Is Not Enough</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#command-description">Command        Description</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#profiling-and-timing-code">Profiling and Timing Code</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#timing-code-snippets-timeit-and-time">Timing Code Snippets: <code class="docutils literal notranslate"><span class="pre">%timeit</span></code> and <code class="docutils literal notranslate"><span class="pre">%time</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#profiling-full-scripts-prun">Profiling Full Scripts: <code class="docutils literal notranslate"><span class="pre">%prun</span></code></a></li>
@@ -1335,23 +1334,52 @@ interactively.</p>
 <p>There are many more available commands for interactive debugging than
 we’ve listed here; the following table contains a description of some of
 the more common and useful ones:</p>
-</div>
-</div>
-</div>
-<div class="section" id="command-description">
-<h2>Command        Description<a class="headerlink" href="#command-description" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">q(uit)</span></code>     Quit the debugger and the program
-<code class="docutils literal notranslate"><span class="pre">c(ontinue)</span></code> Quit the debugger, continue in the program
-<code class="docutils literal notranslate"><span class="pre">n(ext)</span></code>     Go to the next step of the program
-<code class="docutils literal notranslate"><span class="pre">&lt;enter&gt;</span></code>    Repeat the previous command
-<code class="docutils literal notranslate"><span class="pre">p(rint)</span></code>    Print variables
-<code class="docutils literal notranslate"><span class="pre">s(tep)</span></code>     Step into a subroutine
-<code class="docutils literal notranslate"><span class="pre">r(eturn)</span></code>   Return out of a subroutine
-==============
-===========================================================</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+<td><p>Show the current location in the file</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">h(elp)</span></code></p></td>
+<td><p>Show a list of commands, or find help on a
+specific command</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">q(uit)</span></code></p></td>
+<td><p>Quit the debugger and the program</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">c(ontinue)</span></code></p></td>
+<td><p>Quit the debugger, continue in the program</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">n(ext)</span></code></p></td>
+<td><p>Go to the next step of the program</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;enter&gt;</span></code></p></td>
+<td><p>Repeat the previous command</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">p(rint)</span></code></p></td>
+<td><p>Print variables</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">s(tep)</span></code></p></td>
+<td><p>Step into a subroutine</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">r(eturn)</span></code></p></td>
+<td><p>Return out of a subroutine</p></td>
+</tr>
+</tbody>
+</table>
 <p>For more information, use the <code class="docutils literal notranslate"><span class="pre">help</span></code> command in the debugger, or take
 a look at <code class="docutils literal notranslate"><span class="pre">ipdb</span></code>’s <a class="reference external" href="https://github.com/gotcha/ipdb">online
 documentation</a>.</p>
+</div>
+</div>
 </div>
 <div class="section" id="profiling-and-timing-code">
 <h2>Profiling and Timing Code<a class="headerlink" href="#profiling-and-timing-code" title="Permalink to this headline">¶</a></h2>
@@ -1661,7 +1689,7 @@ available options, use the IPython help functionality (i.e., type
       &copy;2021, Massimo Nocentini.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
