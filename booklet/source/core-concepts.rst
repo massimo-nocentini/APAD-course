@@ -22,6 +22,19 @@ where
 
 .. code:: ipython3
 
+    id
+
+
+
+
+.. parsed-literal::
+
+    <function id(obj, /)>
+
+
+
+.. code:: ipython3
+
     help(id)
 
 
@@ -38,10 +51,10 @@ where
 
 
 Third, >An object’s type determines the operations that the object
-supports (e.g., “does it have a length?”) and also defines the possible
-values for objects of that type. The “type()” function returns an
-object’s type (which is an object itself). Like its identity, an
-object’s *type* is also unchangeable.
+supports >(e.g., “does it have a length?”) and also defines the possible
+values >for objects of that type. The “type()” function returns an
+object’s >type (which is an object itself). Like its identity, an
+object’s >\ *type* is also unchangeable.
 
 Fourth, >The *value* of some objects can change. Objects whose value can
 change are said to be *mutable*; objects whose value is unchangeable
@@ -80,7 +93,7 @@ mutable objects this is not allowed.
 
 .. parsed-literal::
 
-    (139857074039088, 139857074039088)
+    (94869411972864, 94869411972864)
 
 
 
@@ -94,7 +107,20 @@ mutable objects this is not allowed.
 
 .. parsed-literal::
 
-    (139856721784704, 139856722422272)
+    (140325921500736, 140325921500224)
+
+
+
+.. code:: ipython3
+
+    type(c), type(d)
+
+
+
+
+.. parsed-literal::
+
+    (list, list)
 
 
 
@@ -104,6 +130,100 @@ A full description can be read by evaluating the following,
 
     help('OBJECTS')
 
+
+.. parsed-literal::
+
+    Objects, values and types
+    *************************
+    
+    *Objects* are Python’s abstraction for data.  All data in a Python
+    program is represented by objects or by relations between objects. (In
+    a sense, and in conformance to Von Neumann’s model of a “stored
+    program computer”, code is also represented by objects.)
+    
+    Every object has an identity, a type and a value.  An object’s
+    *identity* never changes once it has been created; you may think of it
+    as the object’s address in memory.  The ‘"is"’ operator compares the
+    identity of two objects; the "id()" function returns an integer
+    representing its identity.
+    
+    **CPython implementation detail:** For CPython, "id(x)" is the memory
+    address where "x" is stored.
+    
+    An object’s type determines the operations that the object supports
+    (e.g., “does it have a length?”) and also defines the possible values
+    for objects of that type.  The "type()" function returns an object’s
+    type (which is an object itself).  Like its identity, an object’s
+    *type* is also unchangeable. [1]
+    
+    The *value* of some objects can change.  Objects whose value can
+    change are said to be *mutable*; objects whose value is unchangeable
+    once they are created are called *immutable*. (The value of an
+    immutable container object that contains a reference to a mutable
+    object can change when the latter’s value is changed; however the
+    container is still considered immutable, because the collection of
+    objects it contains cannot be changed.  So, immutability is not
+    strictly the same as having an unchangeable value, it is more subtle.)
+    An object’s mutability is determined by its type; for instance,
+    numbers, strings and tuples are immutable, while dictionaries and
+    lists are mutable.
+    
+    Objects are never explicitly destroyed; however, when they become
+    unreachable they may be garbage-collected.  An implementation is
+    allowed to postpone garbage collection or omit it altogether — it is a
+    matter of implementation quality how garbage collection is
+    implemented, as long as no objects are collected that are still
+    reachable.
+    
+    **CPython implementation detail:** CPython currently uses a reference-
+    counting scheme with (optional) delayed detection of cyclically linked
+    garbage, which collects most objects as soon as they become
+    unreachable, but is not guaranteed to collect garbage containing
+    circular references.  See the documentation of the "gc" module for
+    information on controlling the collection of cyclic garbage. Other
+    implementations act differently and CPython may change. Do not depend
+    on immediate finalization of objects when they become unreachable (so
+    you should always close files explicitly).
+    
+    Note that the use of the implementation’s tracing or debugging
+    facilities may keep objects alive that would normally be collectable.
+    Also note that catching an exception with a ‘"try"…"except"’ statement
+    may keep objects alive.
+    
+    Some objects contain references to “external” resources such as open
+    files or windows.  It is understood that these resources are freed
+    when the object is garbage-collected, but since garbage collection is
+    not guaranteed to happen, such objects also provide an explicit way to
+    release the external resource, usually a "close()" method. Programs
+    are strongly recommended to explicitly close such objects.  The
+    ‘"try"…"finally"’ statement and the ‘"with"’ statement provide
+    convenient ways to do this.
+    
+    Some objects contain references to other objects; these are called
+    *containers*. Examples of containers are tuples, lists and
+    dictionaries.  The references are part of a container’s value.  In
+    most cases, when we talk about the value of a container, we imply the
+    values, not the identities of the contained objects; however, when we
+    talk about the mutability of a container, only the identities of the
+    immediately contained objects are implied.  So, if an immutable
+    container (like a tuple) contains a reference to a mutable object, its
+    value changes if that mutable object is changed.
+    
+    Types affect almost all aspects of object behavior.  Even the
+    importance of object identity is affected in some sense: for immutable
+    types, operations that compute new values may actually return a
+    reference to any existing object with the same type and value, while
+    for mutable objects this is not allowed.  E.g., after "a = 1; b = 1",
+    "a" and "b" may or may not refer to the same object with the value
+    one, depending on the implementation, but after "c = []; d = []", "c"
+    and "d" are guaranteed to refer to two different, unique, newly
+    created empty lists. (Note that "c = d = []" assigns the same object
+    to both "c" and "d".)
+    
+    Related help topics: TYPES
+    
+
+
 Values and their types
 ----------------------
 
@@ -112,6 +232,45 @@ Some playground:
 .. code:: ipython3
 
     "Hello, World!", type("Hello, World!")
+
+
+
+
+.. parsed-literal::
+
+    ('Hello, World!', str)
+
+
+
+.. code:: ipython3
+
+    _
+
+
+
+
+.. parsed-literal::
+
+    ('Hello, World!', str)
+
+
+
+.. code:: ipython3
+
+    _[1]
+
+
+
+
+.. parsed-literal::
+
+    str
+
+
+
+.. code:: ipython3
+
+    __
 
 
 
@@ -137,6 +296,19 @@ Some playground:
 
 .. code:: ipython3
 
+    tuple.__doc__
+
+
+
+
+.. parsed-literal::
+
+    "Built-in immutable sequence.\n\nIf no argument is given, the constructor returns an empty tuple.\nIf iterable is specified the tuple is initialized from iterable's items.\n\nIf the argument is a tuple, the return value is the same object."
+
+
+
+.. code:: ipython3
+
     print(tuple.__doc__)
 
 
@@ -152,14 +324,27 @@ Some playground:
 
 .. code:: ipython3
 
-    3.2, type(3.2)
+    3.2, type(3.2), 3 + 9J, type(3 + 9j)
 
 
 
 
 .. parsed-literal::
 
-    (3.2, float)
+    (3.2, float, (3+9j), complex)
+
+
+
+.. code:: ipython3
+
+    'I''m a string'
+
+
+
+
+.. parsed-literal::
+
+    'Im a string'
 
 
 
@@ -173,6 +358,83 @@ Some playground:
 .. parsed-literal::
 
     '"Oh no", she exclaimed, "Ben\'s bike is broken!"'
+
+
+
+.. code:: ipython3
+
+    def a(b):
+        '''A short summary here.
+        
+        Some more description here.
+        '''
+        ...
+
+.. code:: ipython3
+
+    def b(c):
+        '''A short summary here.
+        
+        Some more description here.
+        '''
+        pass
+
+.. code:: ipython3
+
+    help(a)
+
+
+.. parsed-literal::
+
+    Help on function a in module __main__:
+    
+    a(b)
+        A short summary here.
+        
+        Some more description here.
+    
+
+
+.. code:: ipython3
+
+    print(a.__doc__)
+
+
+.. parsed-literal::
+
+    A short summary here.
+        
+        Some more description here.
+        
+
+
+.. code:: ipython3
+
+    assert a(4) == b(3) == None
+
+.. code:: ipython3
+
+    id(None), id(None), id(None)
+
+
+
+
+.. parsed-literal::
+
+    (94869411793504, 94869411793504, 94869411793504)
+
+
+
+.. code:: ipython3
+
+    ((3 < 4) < 10) < 7
+
+
+
+
+.. parsed-literal::
+
+    True
 
 
 
@@ -201,41 +463,6 @@ Some playground:
     str
 
 
-
-however, have a look at
-https://docs.python.org/3/reference/datamodel.html#data-model. From
-there:
-
-   Objects are Python’s abstraction for data. All data in a Python
-   program is represented by objects or by relations between objects.
-   (In a sense, and in conformance to Von Neumann’s model of a “stored
-   program computer”, code is also represented by objects.)
-
-and
-
-   Every object has an identity, a type and a value. An object’s
-   identity never changes once it has been created; you may think of it
-   as the object’s address in memory. The ‘is’ operator compares the
-   identity of two objects; the id() function returns an integer
-   representing its identity.
-
-For types,
-
-   The principal built-in types are numerics, sequences, mappings,
-   classes, instances and exceptions.
-
-   Some collection classes are mutable. The methods that add, subtract,
-   or rearrange their members in place, and don’t return a specific
-   item, never return the collection instance itself but None.
-
-   Some operations are supported by several object types; in particular,
-   practically all objects can be compared for equality, tested for
-   truth value, and converted to a string (with the repr() function or
-   the slightly different str() function). The latter function is
-   implicitly used when an object is written by the print() function.
-
-also see
-https://docs.python.org/3/library/stdtypes.html?highlight=built%20ins.
 
 .. code:: ipython3
 
@@ -998,6 +1225,36 @@ https://docs.python.org/3/library/stdtypes.html?highlight=built%20ins.
     
 
 
+.. code:: ipython3
+
+    min, next, object, open, property
+
+
+
+
+.. parsed-literal::
+
+    (<function min>,
+     <function next>,
+     object,
+     <function io.open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)>,
+     property)
+
+
+
+.. code:: ipython3
+
+    True, False, None
+
+
+
+
+.. parsed-literal::
+
+    (True, False, None)
+
+
+
 Variables
 ---------
 
@@ -1018,7 +1275,40 @@ Variables
 
 .. code:: ipython3
 
-    b, a = a, b # aka, TUPLE UNPACKING
+    3 + (a := 4)
+
+
+
+
+.. parsed-literal::
+
+    7
+
+
+
+.. code:: ipython3
+
+    a
+
+
+
+
+.. parsed-literal::
+
+    4
+
+
+
+.. code:: ipython3
+
+    # the usual way...
+    c = a
+    a = b
+    b = c
+
+.. code:: ipython3
+
+    b, a = a, b # swap
     a, b
 
 
@@ -1027,6 +1317,49 @@ Variables
 .. parsed-literal::
 
     (3, 2)
+
+
+
+.. code:: ipython3
+
+    a, (b, *c, d), e, *f = (1, [2, 3, 4, 5, 6], 7, 8, 9) # unpacking of iterables.
+
+.. code:: ipython3
+
+    a, b, c, d, e, f
+
+
+
+
+.. parsed-literal::
+
+    (1, 2, [3, 4, 5], 6, 7, [8, 9])
+
+
+
+.. code:: ipython3
+
+    (1, [2, 3, 4, 5, 6], 7, 8, 9)[1][-1]
+
+
+
+
+.. parsed-literal::
+
+    6
+
+
+
+.. code:: ipython3
+
+    d
+
+
+
+
+.. parsed-literal::
+
+    6
 
 
 
@@ -1308,7 +1641,7 @@ https://docs.python.org/3/library/functions.html#built-in-funcs.
 
 .. code:: ipython3
 
-    a = 1; b = 2
+    a = 1; b = 2 # string interpolation
     '{} < {} is actually true.'.format(a, b)
 
 
@@ -1484,15 +1817,41 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 
 .. code:: ipython3
 
-    s = slice(5, 11)
-    s.start, s.stop
+    'hello'[1:-2]
 
 
 
 
 .. parsed-literal::
 
-    (5, 11)
+    'el'
+
+
+
+.. code:: ipython3
+
+    s = slice(5, 11, 2)
+    s.start, s.stop, s.step
+
+
+
+
+.. parsed-literal::
+
+    (5, 11, 2)
+
+
+
+.. code:: ipython3
+
+    'hello'[slice(1, 3)]
+
+
+
+
+.. parsed-literal::
+
+    'el'
 
 
 
@@ -1560,95 +1919,58 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 
 .. code:: ipython3
 
-    help(range)
+    print(range.__doc__)
 
 
 .. parsed-literal::
 
-    Help on class range in module builtins:
+    range(stop) -> range object
+    range(start, stop[, step]) -> range object
     
-    class range(object)
-     |  range(stop) -> range object
-     |  range(start, stop[, step]) -> range object
-     |  
-     |  Return an object that produces a sequence of integers from start (inclusive)
-     |  to stop (exclusive) by step.  range(i, j) produces i, i+1, i+2, ..., j-1.
-     |  start defaults to 0, and stop is omitted!  range(4) produces 0, 1, 2, 3.
-     |  These are exactly the valid indices for a list of 4 elements.
-     |  When step is given, it specifies the increment (or decrement).
-     |  
-     |  Methods defined here:
-     |  
-     |  __bool__(self, /)
-     |      self != 0
-     |  
-     |  __contains__(self, key, /)
-     |      Return key in self.
-     |  
-     |  __eq__(self, value, /)
-     |      Return self==value.
-     |  
-     |  __ge__(self, value, /)
-     |      Return self>=value.
-     |  
-     |  __getattribute__(self, name, /)
-     |      Return getattr(self, name).
-     |  
-     |  __getitem__(self, key, /)
-     |      Return self[key].
-     |  
-     |  __gt__(self, value, /)
-     |      Return self>value.
-     |  
-     |  __hash__(self, /)
-     |      Return hash(self).
-     |  
-     |  __iter__(self, /)
-     |      Implement iter(self).
-     |  
-     |  __le__(self, value, /)
-     |      Return self<=value.
-     |  
-     |  __len__(self, /)
-     |      Return len(self).
-     |  
-     |  __lt__(self, value, /)
-     |      Return self<value.
-     |  
-     |  __ne__(self, value, /)
-     |      Return self!=value.
-     |  
-     |  __reduce__(...)
-     |      Helper for pickle.
-     |  
-     |  __repr__(self, /)
-     |      Return repr(self).
-     |  
-     |  __reversed__(...)
-     |      Return a reverse iterator.
-     |  
-     |  count(...)
-     |      rangeobject.count(value) -> integer -- return number of occurrences of value
-     |  
-     |  index(...)
-     |      rangeobject.index(value) -> integer -- return index of value.
-     |      Raise ValueError if the value is not present.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Static methods defined here:
-     |  
-     |  __new__(*args, **kwargs) from builtins.type
-     |      Create and return a new object.  See help(type) for accurate signature.
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data descriptors defined here:
-     |  
-     |  start
-     |  
-     |  step
-     |  
-     |  stop
-    
+    Return an object that produces a sequence of integers from start (inclusive)
+    to stop (exclusive) by step.  range(i, j) produces i, i+1, i+2, ..., j-1.
+    start defaults to 0, and stop is omitted!  range(4) produces 0, 1, 2, 3.
+    These are exactly the valid indices for a list of 4 elements.
+    When step is given, it specifies the increment (or decrement).
+
+
+.. code:: ipython3
+
+    range(1_000_000_000_000_000)
+
+
+
+
+.. parsed-literal::
+
+    range(0, 1000000000000000)
+
+
+
+.. code:: ipython3
+
+    range(1_000000000_000_000)
+
+
+
+
+.. parsed-literal::
+
+    range(0, 1000000000000000)
+
+
+
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    range
+
 
 
 ``lambda``\ s
@@ -1658,6 +1980,45 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 
     def add(a, b):
         return a + b
+
+.. code:: ipython3
+
+    type(add)
+
+
+
+
+.. parsed-literal::
+
+    function
+
+
+
+.. code:: ipython3
+
+    callable(add)
+
+
+
+
+.. parsed-literal::
+
+    True
+
+
+
+.. code:: ipython3
+
+    add(3, 4)
+
+
+
+
+.. parsed-literal::
+
+    7
+
+
 
 .. code:: ipython3
 
@@ -1685,7 +2046,33 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 
 .. code:: ipython3
 
-    add_l = lambda a, b: a + b
+    add_l = lambda a, b: a + b # is a lambda expression
+
+.. code:: ipython3
+
+    type(add_l)
+
+
+
+
+.. parsed-literal::
+
+    function
+
+
+
+.. code:: ipython3
+
+    callable(add_l)
+
+
+
+
+.. parsed-literal::
+
+    True
+
+
 
 .. code:: ipython3
 
@@ -1726,6 +2113,19 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 .. code:: ipython3
 
     L = range(5)
+    L
+
+
+
+
+.. parsed-literal::
+
+    range(0, 5)
+
+
+
+.. code:: ipython3
+
     M = map(lambda i: i + 1, L)
     M
 
@@ -1734,7 +2134,20 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 
 .. parsed-literal::
 
-    <map at 0x7f32ed59dd30>
+    <map at 0x7fb7c6626880>
+
+
+
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    map
 
 
 
@@ -1832,7 +2245,7 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 
     StopIteration                             Traceback (most recent call last)
 
-    <ipython-input-64-0666361e9047> in <module>
+    <ipython-input-10-0666361e9047> in <module>
     ----> 1 next(M)
     
 
@@ -1841,7 +2254,46 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 
 .. code:: ipython3
 
-    N = (i for i in range(1, 10))
+    help(StopIterationx)
+
+**INTERMEZZO**
+
+.. code:: ipython3
+
+    1/0
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    ZeroDivisionError                         Traceback (most recent call last)
+
+    <ipython-input-11-9e1622b385b6> in <module>
+    ----> 1 1/0
+    
+
+    ZeroDivisionError: division by zero
+
+
+.. code:: ipython3
+
+    try:
+        1/0
+    except ZeroDivisionError:
+        pass
+
+--------------
+
+.. math::
+
+
+       \mathcal{B} = \lbrace x\in\mathbb{R} : \sqrt{x + 1} > 4 \rbrace
+
+.. code:: ipython3
+
+    N = ( i for i in range(1, 10) ) # another way to build a generator
     N
 
 
@@ -1849,7 +2301,33 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 
 .. parsed-literal::
 
-    <generator object <genexpr> at 0x7f32ee175740>
+    <generator object <genexpr> at 0x7fb7c687c120>
+
+
+
+.. code:: ipython3
+
+    type(N)
+
+
+
+
+.. parsed-literal::
+
+    generator
+
+
+
+.. code:: ipython3
+
+    list(N)
+
+
+
+
+.. parsed-literal::
+
+    [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
 
@@ -1887,10 +2365,10 @@ Help about ``help``
 .. parsed-literal::
 
     
-    Welcome to Python 3.9's help utility!
+    Welcome to Python 3.8's help utility!
     
     If this is your first time using Python, you should definitely check out
-    the tutorial on the Internet at https://docs.python.org/3.9/tutorial/.
+    the tutorial on the Internet at https://docs.python.org/3.8/tutorial/.
     
     Enter the name of any module, keyword, or topic to get help on writing
     Python programs and using Python modules.  To quit this help utility and
@@ -1901,59 +2379,34 @@ Help about ``help``
     with a one-line summary of what it does; to list the modules whose name
     or summary contain a given string such as "spam", type "modules spam".
     
-    help> topics
+    help> map
+    Help on class map in module builtins:
     
-    Here is a list of available topics.  Enter any topic name to get more help.
-    
-    ASSERTION           DELETION            LOOPING             SHIFTING
-    ASSIGNMENT          DICTIONARIES        MAPPINGMETHODS      SLICINGS
-    ATTRIBUTEMETHODS    DICTIONARYLITERALS  MAPPINGS            SPECIALATTRIBUTES
-    ATTRIBUTES          DYNAMICFEATURES     METHODS             SPECIALIDENTIFIERS
-    AUGMENTEDASSIGNMENT ELLIPSIS            MODULES             SPECIALMETHODS
-    BASICMETHODS        EXCEPTIONS          NAMESPACES          STRINGMETHODS
-    BINARY              EXECUTION           NONE                STRINGS
-    BITWISE             EXPRESSIONS         NUMBERMETHODS       SUBSCRIPTS
-    BOOLEAN             FLOAT               NUMBERS             TRACEBACKS
-    CALLABLEMETHODS     FORMATTING          OBJECTS             TRUTHVALUE
-    CALLS               FRAMEOBJECTS        OPERATORS           TUPLELITERALS
-    CLASSES             FRAMES              PACKAGES            TUPLES
-    CODEOBJECTS         FUNCTIONS           POWER               TYPEOBJECTS
-    COMPARISON          IDENTIFIERS         PRECEDENCE          TYPES
-    COMPLEX             IMPORTING           PRIVATENAMES        UNARY
-    CONDITIONAL         INTEGER             RETURNING           UNICODE
-    CONTEXTMANAGERS     LISTLITERALS        SCOPING             
-    CONVERSIONS         LISTS               SEQUENCEMETHODS     
-    DEBUGGING           LITERALS            SEQUENCES           
-    
-    help> POWER
-    The power operator
-    ******************
-    
-    The power operator binds more tightly than unary operators on its
-    left; it binds less tightly than unary operators on its right.  The
-    syntax is:
-    
-       power ::= (await_expr | primary) ["**" u_expr]
-    
-    Thus, in an unparenthesized sequence of power and unary operators, the
-    operators are evaluated from right to left (this does not constrain
-    the evaluation order for the operands): "-1**2" results in "-1".
-    
-    The power operator has the same semantics as the built-in "pow()"
-    function, when called with two arguments: it yields its left argument
-    raised to the power of its right argument.  The numeric arguments are
-    first converted to a common type, and the result is of that type.
-    
-    For int operands, the result has the same type as the operands unless
-    the second argument is negative; in that case, all arguments are
-    converted to float and a float result is delivered. For example,
-    "10**2" returns "100", but "10**-2" returns "0.01".
-    
-    Raising "0.0" to a negative power results in a "ZeroDivisionError".
-    Raising a negative number to a fractional power results in a "complex"
-    number. (In earlier versions it raised a "ValueError".)
-    
-    Related help topics: EXPRESSIONS
+    class map(object)
+     |  map(func, *iterables) --> map object
+     |  
+     |  Make an iterator that computes the function using arguments from
+     |  each of the iterables.  Stops when the shortest iterable is exhausted.
+     |  
+     |  Methods defined here:
+     |  
+     |  __getattribute__(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  __iter__(self, /)
+     |      Implement iter(self).
+     |  
+     |  __next__(self, /)
+     |      Implement next(self).
+     |  
+     |  __reduce__(...)
+     |      Return state information for pickling.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Static methods defined here:
+     |  
+     |  __new__(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
     
     
     You are now leaving help and returning to the Python interpreter.

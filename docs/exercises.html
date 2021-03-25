@@ -125,7 +125,8 @@
 understanding of the concepts seen so far by means of exercises. We will
 see how the code shown can be rewritten to take advantage of
 battle-tested solutions and idioms that emerges from daily practice.</p>
-<p>First of all, we import some modules</p>
+<p>First of all, we import some modules (be free to skim the corresponding
+documentation for each one of them),</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">functools</span><span class="o">,</span> <span class="nn">operator</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">itertools</span><span class="o">,</span> <span class="nn">random</span><span class="o">,</span> <span class="nn">collections</span><span class="o">,</span> <span class="nn">statistics</span><span class="o">,</span> <span class="nn">bisect</span>
 </pre></div>
 </div>
@@ -141,7 +142,7 @@ write. Moreover, an utility for generators,</p>
 <span class="n">taken</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">take</span> <span class="n">at</span> <span class="mh">0x7fde72786660</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">take</span> <span class="n">at</span> <span class="mh">0x7f88a402d120</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>is a actually generator and its content equals</p>
@@ -159,54 +160,113 @@ write. Moreover, an utility for generators,</p>
     <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">stop</span><span class="p">),</span> <span class="n">slices</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>where</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">)</span>
+<p><strong>INTERMEZZO</strong></p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">A</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="k">class</span> <span class="nc">product</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">itertools</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">A</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">AA</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">B</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
 
-<span class="k">class</span> <span class="nc">product</span><span class="p">(</span><span class="n">builtins</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
- <span class="o">|</span>  <span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="n">iterables</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">--&gt;</span> <span class="n">product</span> <span class="nb">object</span>
- <span class="o">|</span>
- <span class="o">|</span>  <span class="n">Cartesian</span> <span class="n">product</span> <span class="n">of</span> <span class="nb">input</span> <span class="n">iterables</span><span class="o">.</span>  <span class="n">Equivalent</span> <span class="n">to</span> <span class="n">nested</span> <span class="k">for</span><span class="o">-</span><span class="n">loops</span><span class="o">.</span>
- <span class="o">|</span>
- <span class="o">|</span>  <span class="n">For</span> <span class="n">example</span><span class="p">,</span> <span class="n">product</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">same</span> <span class="k">as</span><span class="p">:</span>  <span class="p">((</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">B</span><span class="p">)</span><span class="o">.</span>
- <span class="o">|</span>  <span class="n">The</span> <span class="n">leftmost</span> <span class="n">iterators</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">outermost</span> <span class="k">for</span><span class="o">-</span><span class="n">loop</span><span class="p">,</span> <span class="n">so</span> <span class="n">the</span> <span class="n">output</span> <span class="n">tuples</span>
- <span class="o">|</span>  <span class="n">cycle</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">manner</span> <span class="n">similar</span> <span class="n">to</span> <span class="n">an</span> <span class="n">odometer</span> <span class="p">(</span><span class="k">with</span> <span class="n">the</span> <span class="n">rightmost</span> <span class="n">element</span> <span class="n">changing</span>
- <span class="o">|</span>  <span class="n">on</span> <span class="n">every</span> <span class="n">iteration</span><span class="p">)</span><span class="o">.</span>
- <span class="o">|</span>
- <span class="o">|</span>  <span class="n">To</span> <span class="n">compute</span> <span class="n">the</span> <span class="n">product</span> <span class="n">of</span> <span class="n">an</span> <span class="n">iterable</span> <span class="k">with</span> <span class="n">itself</span><span class="p">,</span> <span class="n">specify</span> <span class="n">the</span> <span class="n">number</span>
- <span class="o">|</span>  <span class="n">of</span> <span class="n">repetitions</span> <span class="k">with</span> <span class="n">the</span> <span class="n">optional</span> <span class="n">repeat</span> <span class="n">keyword</span> <span class="n">argument</span><span class="o">.</span> <span class="n">For</span> <span class="n">example</span><span class="p">,</span>
- <span class="o">|</span>  <span class="n">product</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="n">means</span> <span class="n">the</span> <span class="n">same</span> <span class="k">as</span> <span class="n">product</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">A</span><span class="p">)</span><span class="o">.</span>
- <span class="o">|</span>
- <span class="o">|</span>  <span class="n">product</span><span class="p">(</span><span class="s1">&#39;ab&#39;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="o">--&gt;</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
- <span class="o">|</span>  <span class="n">product</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">--&gt;</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">...</span>
- <span class="o">|</span>
- <span class="o">|</span>  <span class="n">Methods</span> <span class="n">defined</span> <span class="n">here</span><span class="p">:</span>
- <span class="o">|</span>
- <span class="o">|</span>  <span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
- <span class="o">|</span>      <span class="n">Return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="o">.</span>
- <span class="o">|</span>
- <span class="o">|</span>  <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
- <span class="o">|</span>      <span class="n">Implement</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span>
- <span class="o">|</span>
- <span class="o">|</span>  <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
- <span class="o">|</span>      <span class="n">Implement</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span>
- <span class="o">|</span>
- <span class="o">|</span>  <span class="n">__reduce__</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
- <span class="o">|</span>      <span class="n">Return</span> <span class="n">state</span> <span class="n">information</span> <span class="k">for</span> <span class="n">pickling</span><span class="o">.</span>
- <span class="o">|</span>
- <span class="o">|</span>  <span class="n">__setstate__</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
- <span class="o">|</span>      <span class="n">Set</span> <span class="n">state</span> <span class="n">information</span> <span class="k">for</span> <span class="n">unpickling</span><span class="o">.</span>
- <span class="o">|</span>
- <span class="o">|</span>  <span class="n">__sizeof__</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
- <span class="o">|</span>      <span class="n">Returns</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">memory</span><span class="p">,</span> <span class="ow">in</span> <span class="nb">bytes</span><span class="o">.</span>
- <span class="o">|</span>
- <span class="o">|</span>  <span class="o">----------------------------------------------------------------------</span>
- <span class="o">|</span>  <span class="n">Static</span> <span class="n">methods</span> <span class="n">defined</span> <span class="n">here</span><span class="p">:</span>
- <span class="o">|</span>
- <span class="o">|</span>  <span class="fm">__new__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">builtins.type</span>
- <span class="o">|</span>      <span class="n">Create</span> <span class="ow">and</span> <span class="k">return</span> <span class="n">a</span> <span class="n">new</span> <span class="nb">object</span><span class="o">.</span>  <span class="n">See</span> <span class="n">help</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span> <span class="k">for</span> <span class="n">accurate</span> <span class="n">signature</span><span class="o">.</span>
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="n">ff414da197ec</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">A</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="mi">224</span><span class="n">bcd67b941</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="n">A</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+      <span class="mi">1</span> <span class="k">def</span> <span class="nf">A</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="o">----&gt;</span> <span class="mi">2</span>     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
+
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="mi">224</span><span class="n">bcd67b941</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="k">lambda</span><span class="o">&gt;</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+      <span class="mi">1</span> <span class="k">def</span> <span class="nf">A</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="o">----&gt;</span> <span class="mi">2</span>     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
+
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">can</span> <span class="n">only</span> <span class="n">concatenate</span> <span class="nb">list</span> <span class="p">(</span><span class="ow">not</span> <span class="s2">&quot;int&quot;</span><span class="p">)</span> <span class="n">to</span> <span class="nb">list</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AA</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="p">(</span><span class="mi">1</span><span class="p">,)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">14</span><span class="o">-</span><span class="n">e0b11ae7ec43</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">B</span><span class="p">(</span><span class="mi">1</span><span class="p">,)</span>
+
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">B</span><span class="p">()</span> <span class="n">missing</span> <span class="mi">1</span> <span class="n">required</span> <span class="n">positional</span> <span class="n">argument</span><span class="p">:</span> <span class="s1">&#39;b&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">container</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">A</span><span class="p">(</span> <span class="o">*</span><span class="n">container</span>  <span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>where</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Consider the application to an empty sequence of <code class="docutils literal notranslate"><span class="pre">slide</span></code>s,</p>
@@ -214,7 +274,7 @@ write. Moreover, an utility for generators,</p>
 <span class="n">units</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span> <span class="n">at</span> <span class="mh">0x7feb34e6fe80</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span> <span class="n">at</span> <span class="mh">0x7f888f745600</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>then saturate it</p>
@@ -229,7 +289,7 @@ write. Moreover, an utility for generators,</p>
 <span class="n">singletons</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span> <span class="n">at</span> <span class="mh">0x7feb34e66540</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span> <span class="n">at</span> <span class="mh">0x7f888f747580</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>then saturate it</p>
@@ -245,7 +305,7 @@ write. Moreover, an utility for generators,</p>
 <span class="n">pairs</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span> <span class="n">at</span> <span class="mh">0x7feb34e7a180</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span> <span class="n">at</span> <span class="mh">0x7f888f745500</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>then saturate it</p>
@@ -609,6 +669,19 @@ account of splitting the returned generator),</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triples</span> <span class="o">=</span> <span class="n">tuples</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span> <span class="c1"># ouch!</span>
 </pre></div>
 </div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">L</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
+</pre></div>
+</div>
 <p>then saturate it</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">triples</span><span class="p">)</span> <span class="c1"># who we have to blame?</span>
 </pre></div>
@@ -617,7 +690,13 @@ account of splitting the returned generator),</p>
 </pre></div>
 </div>
 <p>Finally, let</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_pythagorean</span><span class="p">(</span><span class="n">tup</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">bool</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_pythagorean</span><span class="p">(</span><span class="n">tup</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span> <span class="c1"># is_pythagorean is a *predicate*</span>
     <span class="sd">&#39;&#39;&#39;A Pythagorean triple consists of three positive integers a, b, and c, such that a^2 + b^2 = c^2.</span>
 
 <span class="sd">    Such a triple is commonly written (a, b, c), and a well-known example is (3, 4, 5).</span>
@@ -628,12 +707,18 @@ account of splitting the returned generator),</p>
 
 <span class="sd">    See also https://en.wikipedia.org/wiki/Pythagorean_triple.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">tup</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">tup</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="n">n</span> <span class="o">+</span> <span class="n">tup</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="n">n</span> <span class="o">==</span> <span class="n">tup</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">tup</span> <span class="c1"># tuple unpacking</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="n">n</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="n">n</span> <span class="o">==</span> <span class="n">c</span><span class="o">**</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="k">else</span> <span class="kc">False</span>
 </pre></div>
 </div>
 <p>in</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">is_pythagorean</span><span class="p">,</span> <span class="n">triples_b</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">filter</span><span class="p">(</span><span class="n">is_pythagorean</span><span class="p">,</span> <span class="n">triples_b</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nb">filter</span> <span class="n">at</span> <span class="mh">0x7f888f7bc370</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">is_pythagorean</span><span class="p">,</span> <span class="n">triples_b</span><span class="p">))</span> <span class="c1"># do a selection</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
@@ -645,7 +730,7 @@ account of splitting the returned generator),</p>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">function</span> <span class="n">is_pythagorean</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">__main__</span><span class="p">:</span>
 
-<span class="n">is_pythagorean</span><span class="p">(</span><span class="n">tup</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">is_pythagorean</span><span class="p">(</span><span class="n">tup</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
     <span class="n">A</span> <span class="n">Pythagorean</span> <span class="n">triple</span> <span class="n">consists</span> <span class="n">of</span> <span class="n">three</span> <span class="n">positive</span> <span class="n">integers</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="ow">and</span> <span class="n">c</span><span class="p">,</span> <span class="n">such</span> <span class="n">that</span> <span class="n">a</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">b</span><span class="o">^</span><span class="mi">2</span> <span class="o">=</span> <span class="n">c</span><span class="o">^</span><span class="mf">2.</span>
 
     <span class="n">Such</span> <span class="n">a</span> <span class="n">triple</span> <span class="ow">is</span> <span class="n">commonly</span> <span class="n">written</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">well</span><span class="o">-</span><span class="n">known</span> <span class="n">example</span> <span class="ow">is</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span>
@@ -668,7 +753,8 @@ account of splitting the returned generator),</p>
 <p>and test according to Euler’s quicker formula</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">sum_upto</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">v</span> <span class="o">==</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5050</span>
+<span class="n">gauss</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">v</span> <span class="o">==</span> <span class="n">gauss</span> <span class="o">==</span> <span class="mi">5050</span>
 </pre></div>
 </div>
 <p>where</p>
@@ -704,8 +790,7 @@ account of splitting the returned generator),</p>
 <p>Let</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
 
-    <span class="k">yield</span> <span class="n">n</span>
-    <span class="n">refined</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">refined</span> <span class="o">=</span> <span class="n">n</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="k">yield</span> <span class="n">refined</span>
         <span class="n">refined</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">refined</span> <span class="o">+</span> <span class="n">refined</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
@@ -717,12 +802,12 @@ account of splitting the returned generator),</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">37</span><span class="p">,</span>
- <span class="mf">18.5</span><span class="p">,</span>
- <span class="mf">10.25</span><span class="p">,</span>
- <span class="mf">6.929878048780488</span><span class="p">,</span>
- <span class="mf">6.134538672432479</span><span class="p">,</span>
- <span class="mf">6.082981028300877</span><span class="p">,</span>
- <span class="mf">6.082762534222396</span><span class="p">,</span>
+ <span class="mf">19.0</span><span class="p">,</span>
+ <span class="mf">10.473684210526315</span><span class="p">,</span>
+ <span class="mf">7.003173763554615</span><span class="p">,</span>
+ <span class="mf">6.143246310003449</span><span class="p">,</span>
+ <span class="mf">6.08306027903096</span><span class="p">,</span>
+ <span class="mf">6.082762537585202</span><span class="p">,</span>
  <span class="mf">6.08276253029822</span><span class="p">,</span>
  <span class="mf">6.08276253029822</span><span class="p">,</span>
  <span class="mf">6.08276253029822</span><span class="p">,</span>
@@ -839,11 +924,10 @@ let</p>
 <p>See also <a class="reference external" href="https://en.wikipedia.org/wiki/Collatz_conjecture">https://en.wikipedia.org/wiki/Collatz_conjecture</a>. Let</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">collatz</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
 
-    <span class="k">yield</span> <span class="n">n</span>
-
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">2</span>
+
         <span class="k">yield</span> <span class="n">n</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">2</span> <span class="c1"># be aware that we lose track of the original `n`!</span>
 </pre></div>
 </div>
 <p>in</p>
@@ -943,7 +1027,7 @@ order with respect to <code class="docutils literal notranslate"><span class="pr
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">samples</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">samples</span> <span class="n">at</span> <span class="mh">0x7fafff38cdd0</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">samples</span> <span class="n">at</span> <span class="mh">0x7f888f74ceb0</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Then define the generator with respect to <span class="math notranslate nohighlight">\([10, 20)\)</span> and
@@ -955,113 +1039,113 @@ order with respect to <code class="docutils literal notranslate"><span class="pr
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">observations</span><span class="p">)])</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">10.065881461992102</span><span class="p">,</span>
- <span class="mf">10.330509017333556</span><span class="p">,</span>
- <span class="mf">10.441575839089332</span><span class="p">,</span>
- <span class="mf">10.604719759225034</span><span class="p">,</span>
- <span class="mf">10.858605175592535</span><span class="p">,</span>
- <span class="mf">11.236798187996238</span><span class="p">,</span>
- <span class="mf">11.641011443860833</span><span class="p">,</span>
- <span class="mf">11.871518103236177</span><span class="p">,</span>
- <span class="mf">11.986890460958296</span><span class="p">,</span>
- <span class="mf">12.075267775426607</span><span class="p">,</span>
- <span class="mf">12.608099325319147</span><span class="p">,</span>
- <span class="mf">12.798363472905239</span><span class="p">,</span>
- <span class="mf">12.856743881488764</span><span class="p">,</span>
- <span class="mf">13.08154257522419</span><span class="p">,</span>
- <span class="mf">13.362210892491294</span><span class="p">,</span>
- <span class="mf">14.128168241443795</span><span class="p">,</span>
- <span class="mf">14.315705968961579</span><span class="p">,</span>
- <span class="mf">14.37896297484304</span><span class="p">,</span>
- <span class="mf">14.450627795676287</span><span class="p">,</span>
- <span class="mf">14.61079891522304</span><span class="p">,</span>
- <span class="mf">14.760075813291877</span><span class="p">,</span>
- <span class="mf">14.902951957145492</span><span class="p">,</span>
- <span class="mf">15.08834694399302</span><span class="p">,</span>
- <span class="mf">15.371167906444871</span><span class="p">,</span>
- <span class="mf">15.3899538387929</span><span class="p">,</span>
- <span class="mf">15.610563670725771</span><span class="p">,</span>
- <span class="mf">16.09503987209427</span><span class="p">,</span>
- <span class="mf">16.46130759991724</span><span class="p">,</span>
- <span class="mf">16.481315583169696</span><span class="p">,</span>
- <span class="mf">16.6389393148966</span><span class="p">,</span>
- <span class="mf">16.763965750086612</span><span class="p">,</span>
- <span class="mf">17.161534614964296</span><span class="p">,</span>
- <span class="mf">17.64373100766722</span><span class="p">,</span>
- <span class="mf">17.6864448329581</span><span class="p">,</span>
- <span class="mf">17.8612019835546</span><span class="p">,</span>
- <span class="mf">18.07524974261635</span><span class="p">,</span>
- <span class="mf">18.122155188589808</span><span class="p">,</span>
- <span class="mf">18.19965345762347</span><span class="p">,</span>
- <span class="mf">18.441417169832395</span><span class="p">,</span>
- <span class="mf">18.549634661008042</span><span class="p">,</span>
- <span class="mf">18.721268695280955</span><span class="p">,</span>
- <span class="mf">18.74098994120328</span><span class="p">,</span>
- <span class="mf">18.860144417322793</span><span class="p">,</span>
- <span class="mf">19.39519055306905</span><span class="p">,</span>
- <span class="mf">19.586777618471984</span><span class="p">,</span>
- <span class="mf">19.81315603849211</span><span class="p">,</span>
- <span class="mf">19.872737404498217</span><span class="p">,</span>
- <span class="mf">35.208497374763105</span><span class="p">,</span>
- <span class="mf">35.2716370564889</span><span class="p">,</span>
- <span class="mf">35.37839974752564</span><span class="p">,</span>
- <span class="mf">35.515220220228784</span><span class="p">,</span>
- <span class="mf">35.54564539798049</span><span class="p">,</span>
- <span class="mf">35.601439633620295</span><span class="p">,</span>
- <span class="mf">35.61978555506285</span><span class="p">,</span>
- <span class="mf">35.71956553656463</span><span class="p">,</span>
- <span class="mf">35.875789991904966</span><span class="p">,</span>
- <span class="mf">35.99354136611884</span><span class="p">,</span>
- <span class="mf">36.03831329597236</span><span class="p">,</span>
- <span class="mf">36.30504845696931</span><span class="p">,</span>
- <span class="mf">36.40586779191911</span><span class="p">,</span>
- <span class="mf">36.453695545741105</span><span class="p">,</span>
- <span class="mf">36.55320010711284</span><span class="p">,</span>
- <span class="mf">36.565632598338325</span><span class="p">,</span>
- <span class="mf">36.57181860190921</span><span class="p">,</span>
- <span class="mf">36.611399976317614</span><span class="p">,</span>
- <span class="mf">36.64091434197609</span><span class="p">,</span>
- <span class="mf">36.8497199427049</span><span class="p">,</span>
- <span class="mf">37.008698108611824</span><span class="p">,</span>
- <span class="mf">37.26189280583681</span><span class="p">,</span>
- <span class="mf">37.2968682945781</span><span class="p">,</span>
- <span class="mf">37.31188336629809</span><span class="p">,</span>
- <span class="mf">37.407519263139065</span><span class="p">,</span>
- <span class="mf">37.50022259557803</span><span class="p">,</span>
- <span class="mf">37.59782524171885</span><span class="p">,</span>
- <span class="mf">37.6433676336202</span><span class="p">,</span>
- <span class="mf">37.78749072008687</span><span class="p">,</span>
- <span class="mf">37.89417335165471</span><span class="p">,</span>
- <span class="mf">37.907818486628635</span><span class="p">,</span>
- <span class="mf">38.00838189076956</span><span class="p">,</span>
- <span class="mf">38.20612732931414</span><span class="p">,</span>
- <span class="mf">38.28062748521115</span><span class="p">,</span>
- <span class="mf">38.316249792537675</span><span class="p">,</span>
- <span class="mf">38.43330376572454</span><span class="p">,</span>
- <span class="mf">38.504717212958525</span><span class="p">,</span>
- <span class="mf">38.58303485698609</span><span class="p">,</span>
- <span class="mf">38.59711217550104</span><span class="p">,</span>
- <span class="mf">38.713565537601234</span><span class="p">,</span>
- <span class="mf">38.73938020735429</span><span class="p">,</span>
- <span class="mf">38.80049218866173</span><span class="p">,</span>
- <span class="mf">38.880968853368245</span><span class="p">,</span>
- <span class="mf">38.94168997915732</span><span class="p">,</span>
- <span class="mf">39.00044528747109</span><span class="p">,</span>
- <span class="mf">39.09218444693862</span><span class="p">,</span>
- <span class="mf">39.31381532329558</span><span class="p">,</span>
- <span class="mf">39.38104134484665</span><span class="p">,</span>
- <span class="mf">39.382106599952536</span><span class="p">,</span>
- <span class="mf">39.45089464453682</span><span class="p">,</span>
- <span class="mf">39.5383639149662</span><span class="p">,</span>
- <span class="mf">39.66637351444338</span><span class="p">,</span>
- <span class="mf">39.71730205629479</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">10.01089874111141</span><span class="p">,</span>
+ <span class="mf">10.300014738992099</span><span class="p">,</span>
+ <span class="mf">10.601651784495772</span><span class="p">,</span>
+ <span class="mf">10.83760672739692</span><span class="p">,</span>
+ <span class="mf">11.1910221033771</span><span class="p">,</span>
+ <span class="mf">11.197868058821534</span><span class="p">,</span>
+ <span class="mf">11.404469991198518</span><span class="p">,</span>
+ <span class="mf">11.460766876673958</span><span class="p">,</span>
+ <span class="mf">11.467971067768483</span><span class="p">,</span>
+ <span class="mf">11.742883967043403</span><span class="p">,</span>
+ <span class="mf">11.802343459238605</span><span class="p">,</span>
+ <span class="mf">11.813410749836788</span><span class="p">,</span>
+ <span class="mf">11.88246912458437</span><span class="p">,</span>
+ <span class="mf">12.00665504367766</span><span class="p">,</span>
+ <span class="mf">12.0209261791341</span><span class="p">,</span>
+ <span class="mf">12.330159752794112</span><span class="p">,</span>
+ <span class="mf">12.359833588391016</span><span class="p">,</span>
+ <span class="mf">12.619341674332393</span><span class="p">,</span>
+ <span class="mf">13.149881902803248</span><span class="p">,</span>
+ <span class="mf">13.553562563967322</span><span class="p">,</span>
+ <span class="mf">13.693206877097532</span><span class="p">,</span>
+ <span class="mf">13.804165255958583</span><span class="p">,</span>
+ <span class="mf">13.813688305807322</span><span class="p">,</span>
+ <span class="mf">14.194348294592222</span><span class="p">,</span>
+ <span class="mf">14.214204428688788</span><span class="p">,</span>
+ <span class="mf">14.257313460181788</span><span class="p">,</span>
+ <span class="mf">14.264867371550451</span><span class="p">,</span>
+ <span class="mf">14.59331803215811</span><span class="p">,</span>
+ <span class="mf">14.838860273304295</span><span class="p">,</span>
+ <span class="mf">14.860258402751247</span><span class="p">,</span>
+ <span class="mf">14.927758977862599</span><span class="p">,</span>
+ <span class="mf">15.165551157232409</span><span class="p">,</span>
+ <span class="mf">15.395511737002854</span><span class="p">,</span>
+ <span class="mf">15.395899543811966</span><span class="p">,</span>
+ <span class="mf">15.563257993277716</span><span class="p">,</span>
+ <span class="mf">15.780798946284042</span><span class="p">,</span>
+ <span class="mf">15.926495251978928</span><span class="p">,</span>
+ <span class="mf">16.06802525249051</span><span class="p">,</span>
+ <span class="mf">16.08290299741979</span><span class="p">,</span>
+ <span class="mf">16.305544340311</span><span class="p">,</span>
+ <span class="mf">16.579108510954597</span><span class="p">,</span>
+ <span class="mf">16.651712509266957</span><span class="p">,</span>
+ <span class="mf">17.73027063411869</span><span class="p">,</span>
+ <span class="mf">17.885492741441087</span><span class="p">,</span>
+ <span class="mf">17.948487761585625</span><span class="p">,</span>
+ <span class="mf">18.007996098369823</span><span class="p">,</span>
+ <span class="mf">18.415112344928417</span><span class="p">,</span>
+ <span class="mf">18.810622333133136</span><span class="p">,</span>
+ <span class="mf">18.94849755002043</span><span class="p">,</span>
+ <span class="mf">19.047591070196372</span><span class="p">,</span>
+ <span class="mf">19.146597631991153</span><span class="p">,</span>
+ <span class="mf">19.27868922446569</span><span class="p">,</span>
+ <span class="mf">19.313001401995464</span><span class="p">,</span>
+ <span class="mf">19.399745520273328</span><span class="p">,</span>
+ <span class="mf">19.995463044135832</span><span class="p">,</span>
+ <span class="mf">35.07841273062271</span><span class="p">,</span>
+ <span class="mf">35.119086390418055</span><span class="p">,</span>
+ <span class="mf">35.19124114764077</span><span class="p">,</span>
+ <span class="mf">35.283812661704786</span><span class="p">,</span>
+ <span class="mf">35.59295141610395</span><span class="p">,</span>
+ <span class="mf">35.59772386080496</span><span class="p">,</span>
+ <span class="mf">35.82734798167552</span><span class="p">,</span>
+ <span class="mf">35.87384828849897</span><span class="p">,</span>
+ <span class="mf">36.01283843581939</span><span class="p">,</span>
+ <span class="mf">36.15562704578571</span><span class="p">,</span>
+ <span class="mf">36.29454912234024</span><span class="p">,</span>
+ <span class="mf">36.29882720216802</span><span class="p">,</span>
+ <span class="mf">36.402917079191774</span><span class="p">,</span>
+ <span class="mf">36.4183565659046</span><span class="p">,</span>
+ <span class="mf">36.43715123711167</span><span class="p">,</span>
+ <span class="mf">36.53922533533841</span><span class="p">,</span>
+ <span class="mf">36.62449531890368</span><span class="p">,</span>
+ <span class="mf">36.934384825412394</span><span class="p">,</span>
+ <span class="mf">37.078096214979496</span><span class="p">,</span>
+ <span class="mf">37.3189421571435</span><span class="p">,</span>
+ <span class="mf">37.58040516993759</span><span class="p">,</span>
+ <span class="mf">37.66287886410407</span><span class="p">,</span>
+ <span class="mf">37.72689689772823</span><span class="p">,</span>
+ <span class="mf">37.78510858676651</span><span class="p">,</span>
+ <span class="mf">37.92976872519952</span><span class="p">,</span>
+ <span class="mf">37.97021511843974</span><span class="p">,</span>
+ <span class="mf">38.034115030820715</span><span class="p">,</span>
+ <span class="mf">38.096445343671775</span><span class="p">,</span>
+ <span class="mf">38.40215549492862</span><span class="p">,</span>
+ <span class="mf">38.42427128518532</span><span class="p">,</span>
+ <span class="mf">38.46583621881179</span><span class="p">,</span>
+ <span class="mf">38.47309773302804</span><span class="p">,</span>
+ <span class="mf">38.5437690170123</span><span class="p">,</span>
+ <span class="mf">38.84865112748971</span><span class="p">,</span>
+ <span class="mf">39.102719281041814</span><span class="p">,</span>
+ <span class="mf">39.24210584023729</span><span class="p">,</span>
+ <span class="mf">39.58042383319813</span><span class="p">,</span>
+ <span class="mf">39.640762165937645</span><span class="p">,</span>
+ <span class="mf">39.647577811255665</span><span class="p">,</span>
+ <span class="mf">39.709290562186915</span><span class="p">,</span>
+ <span class="mf">39.80358941174292</span><span class="p">,</span>
+ <span class="mf">39.82193420798778</span><span class="p">,</span>
+ <span class="mf">39.89301697510172</span><span class="p">,</span>
+ <span class="mf">39.956916416561995</span><span class="p">,</span>
+ <span class="mf">39.97656200463084</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>then observe the quantiles:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span><span class="o">.</span><span class="n">quantiles</span><span class="p">(</span><span class="n">observations</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">15.020211187738782</span><span class="p">,</span> <span class="mf">35.009163151922635</span><span class="p">,</span> <span class="mf">37.50463277093116</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">14.985642471160405</span><span class="p">,</span> <span class="mf">19.985354416460936</span><span class="p">,</span> <span class="mf">37.49597915696282</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>it looks uniform. By the way, use different intervals, <span class="math notranslate nohighlight">\([14, 20)\)</span>
@@ -1073,113 +1157,113 @@ and <span class="math notranslate nohighlight">\([35,40)\)</span>,</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">observations</span><span class="p">)])</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">14.2894744307065</span><span class="p">,</span>
- <span class="mf">14.567855525427795</span><span class="p">,</span>
- <span class="mf">14.614501321625536</span><span class="p">,</span>
- <span class="mf">14.852171677145659</span><span class="p">,</span>
- <span class="mf">14.907211181252041</span><span class="p">,</span>
- <span class="mf">14.968285918761719</span><span class="p">,</span>
- <span class="mf">15.12747212461315</span><span class="p">,</span>
- <span class="mf">15.256758785197473</span><span class="p">,</span>
- <span class="mf">15.319819952616513</span><span class="p">,</span>
- <span class="mf">15.44896101893795</span><span class="p">,</span>
- <span class="mf">15.46949182637184</span><span class="p">,</span>
- <span class="mf">15.525693468769717</span><span class="p">,</span>
- <span class="mf">15.529163152061802</span><span class="p">,</span>
- <span class="mf">15.564301242054672</span><span class="p">,</span>
- <span class="mf">15.669988205033237</span><span class="p">,</span>
- <span class="mf">15.91439408404592</span><span class="p">,</span>
- <span class="mf">15.97406682761393</span><span class="p">,</span>
- <span class="mf">16.054197676349123</span><span class="p">,</span>
- <span class="mf">16.07790148761498</span><span class="p">,</span>
- <span class="mf">16.182666101173634</span><span class="p">,</span>
- <span class="mf">16.19499475043846</span><span class="p">,</span>
- <span class="mf">16.54359355182931</span><span class="p">,</span>
- <span class="mf">16.554672845276883</span><span class="p">,</span>
- <span class="mf">16.63735733131587</span><span class="p">,</span>
- <span class="mf">16.90013210927373</span><span class="p">,</span>
- <span class="mf">16.91040518268221</span><span class="p">,</span>
- <span class="mf">17.14407920870184</span><span class="p">,</span>
- <span class="mf">17.19439573863112</span><span class="p">,</span>
- <span class="mf">17.20656960159678</span><span class="p">,</span>
- <span class="mf">17.21169406763174</span><span class="p">,</span>
- <span class="mf">17.266377968321734</span><span class="p">,</span>
- <span class="mf">17.449317097232196</span><span class="p">,</span>
- <span class="mf">17.50499488355765</span><span class="p">,</span>
- <span class="mf">17.50874192896787</span><span class="p">,</span>
- <span class="mf">17.519388933926933</span><span class="p">,</span>
- <span class="mf">17.73526944538669</span><span class="p">,</span>
- <span class="mf">17.795135494880203</span><span class="p">,</span>
- <span class="mf">17.96784338955439</span><span class="p">,</span>
- <span class="mf">18.01182702858506</span><span class="p">,</span>
- <span class="mf">18.27125028419525</span><span class="p">,</span>
- <span class="mf">18.782276887216405</span><span class="p">,</span>
- <span class="mf">18.845361033130622</span><span class="p">,</span>
- <span class="mf">18.90887123130714</span><span class="p">,</span>
- <span class="mf">19.006137495735132</span><span class="p">,</span>
- <span class="mf">19.149765544089583</span><span class="p">,</span>
- <span class="mf">19.225553556099744</span><span class="p">,</span>
- <span class="mf">19.326002868087613</span><span class="p">,</span>
- <span class="mf">19.351687271024076</span><span class="p">,</span>
- <span class="mf">19.49275684134995</span><span class="p">,</span>
- <span class="mf">19.529506644760723</span><span class="p">,</span>
- <span class="mf">19.543141154311517</span><span class="p">,</span>
- <span class="mf">19.80679305871736</span><span class="p">,</span>
- <span class="mf">19.818909959896757</span><span class="p">,</span>
- <span class="mf">19.960761485115178</span><span class="p">,</span>
- <span class="mf">35.2264429158269</span><span class="p">,</span>
- <span class="mf">35.26316134160675</span><span class="p">,</span>
- <span class="mf">35.39717789685274</span><span class="p">,</span>
- <span class="mf">35.413270769481564</span><span class="p">,</span>
- <span class="mf">35.61631140963445</span><span class="p">,</span>
- <span class="mf">35.710258422050224</span><span class="p">,</span>
- <span class="mf">35.71078259443684</span><span class="p">,</span>
- <span class="mf">35.73964330872067</span><span class="p">,</span>
- <span class="mf">36.361266985148426</span><span class="p">,</span>
- <span class="mf">36.4220113449107</span><span class="p">,</span>
- <span class="mf">36.533993761996705</span><span class="p">,</span>
- <span class="mf">36.588136576654655</span><span class="p">,</span>
- <span class="mf">36.70500446716608</span><span class="p">,</span>
- <span class="mf">36.82761734963019</span><span class="p">,</span>
- <span class="mf">36.88363712134305</span><span class="p">,</span>
- <span class="mf">37.230062120983305</span><span class="p">,</span>
- <span class="mf">37.23497490455708</span><span class="p">,</span>
- <span class="mf">37.39078349992419</span><span class="p">,</span>
- <span class="mf">37.451982805632326</span><span class="p">,</span>
- <span class="mf">37.481621559867875</span><span class="p">,</span>
- <span class="mf">37.48253856912495</span><span class="p">,</span>
- <span class="mf">37.532357563267674</span><span class="p">,</span>
- <span class="mf">37.68122554965463</span><span class="p">,</span>
- <span class="mf">37.81658550477775</span><span class="p">,</span>
- <span class="mf">37.846704164294735</span><span class="p">,</span>
- <span class="mf">37.85993954384434</span><span class="p">,</span>
- <span class="mf">37.93646175001616</span><span class="p">,</span>
- <span class="mf">37.98371066447644</span><span class="p">,</span>
- <span class="mf">38.02974643570607</span><span class="p">,</span>
- <span class="mf">38.193978067218744</span><span class="p">,</span>
- <span class="mf">38.496944350120096</span><span class="p">,</span>
- <span class="mf">38.505911198634664</span><span class="p">,</span>
- <span class="mf">38.58921207458006</span><span class="p">,</span>
- <span class="mf">38.661575759662924</span><span class="p">,</span>
- <span class="mf">38.723735852937985</span><span class="p">,</span>
- <span class="mf">38.959886136067254</span><span class="p">,</span>
- <span class="mf">39.08005250872501</span><span class="p">,</span>
- <span class="mf">39.09641170421992</span><span class="p">,</span>
- <span class="mf">39.26899396917356</span><span class="p">,</span>
- <span class="mf">39.27978890748443</span><span class="p">,</span>
- <span class="mf">39.316603621630925</span><span class="p">,</span>
- <span class="mf">39.319574830618784</span><span class="p">,</span>
- <span class="mf">39.32744441668071</span><span class="p">,</span>
- <span class="mf">39.39013442125252</span><span class="p">,</span>
- <span class="mf">39.65058001626882</span><span class="p">,</span>
- <span class="mf">39.918848103357355</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">14.014619663597463</span><span class="p">,</span>
+ <span class="mf">14.052438519792538</span><span class="p">,</span>
+ <span class="mf">14.132675986671885</span><span class="p">,</span>
+ <span class="mf">14.365572869327819</span><span class="p">,</span>
+ <span class="mf">14.375279651043002</span><span class="p">,</span>
+ <span class="mf">14.44005687888616</span><span class="p">,</span>
+ <span class="mf">14.494164154855097</span><span class="p">,</span>
+ <span class="mf">14.52365935169827</span><span class="p">,</span>
+ <span class="mf">14.75495260607719</span><span class="p">,</span>
+ <span class="mf">15.010419226971491</span><span class="p">,</span>
+ <span class="mf">15.087980162635876</span><span class="p">,</span>
+ <span class="mf">15.1521083235012</span><span class="p">,</span>
+ <span class="mf">15.535534625198157</span><span class="p">,</span>
+ <span class="mf">15.561348870019186</span><span class="p">,</span>
+ <span class="mf">15.566597002913658</span><span class="p">,</span>
+ <span class="mf">15.901528022924364</span><span class="p">,</span>
+ <span class="mf">15.905917212697016</span><span class="p">,</span>
+ <span class="mf">15.991399993945283</span><span class="p">,</span>
+ <span class="mf">16.110867407949364</span><span class="p">,</span>
+ <span class="mf">16.18995183090716</span><span class="p">,</span>
+ <span class="mf">16.35613893522816</span><span class="p">,</span>
+ <span class="mf">16.36937349290418</span><span class="p">,</span>
+ <span class="mf">16.447222854087045</span><span class="p">,</span>
+ <span class="mf">16.4543077391816</span><span class="p">,</span>
+ <span class="mf">16.682461924694984</span><span class="p">,</span>
+ <span class="mf">17.05059846735326</span><span class="p">,</span>
+ <span class="mf">17.237752433229527</span><span class="p">,</span>
+ <span class="mf">17.34808057156958</span><span class="p">,</span>
+ <span class="mf">17.441144893103193</span><span class="p">,</span>
+ <span class="mf">17.459483446565894</span><span class="p">,</span>
+ <span class="mf">17.53415548556346</span><span class="p">,</span>
+ <span class="mf">17.662529093751296</span><span class="p">,</span>
+ <span class="mf">17.920664038903396</span><span class="p">,</span>
+ <span class="mf">17.930288584380648</span><span class="p">,</span>
+ <span class="mf">18.183673786496605</span><span class="p">,</span>
+ <span class="mf">18.342478974997196</span><span class="p">,</span>
+ <span class="mf">18.44297582937519</span><span class="p">,</span>
+ <span class="mf">18.457021424020276</span><span class="p">,</span>
+ <span class="mf">18.63991829104162</span><span class="p">,</span>
+ <span class="mf">18.93728551640552</span><span class="p">,</span>
+ <span class="mf">19.126223958247124</span><span class="p">,</span>
+ <span class="mf">19.25030747898533</span><span class="p">,</span>
+ <span class="mf">19.33506588429524</span><span class="p">,</span>
+ <span class="mf">19.338155055318495</span><span class="p">,</span>
+ <span class="mf">19.4437737017626</span><span class="p">,</span>
+ <span class="mf">19.5540907356674</span><span class="p">,</span>
+ <span class="mf">19.623060350639307</span><span class="p">,</span>
+ <span class="mf">19.719343270455752</span><span class="p">,</span>
+ <span class="mf">35.02078724359754</span><span class="p">,</span>
+ <span class="mf">35.235647780621505</span><span class="p">,</span>
+ <span class="mf">35.257710505765345</span><span class="p">,</span>
+ <span class="mf">35.28149211664586</span><span class="p">,</span>
+ <span class="mf">35.42464501543233</span><span class="p">,</span>
+ <span class="mf">35.434974133758494</span><span class="p">,</span>
+ <span class="mf">35.58950458392653</span><span class="p">,</span>
+ <span class="mf">35.73955452489873</span><span class="p">,</span>
+ <span class="mf">35.87230694927965</span><span class="p">,</span>
+ <span class="mf">35.977198220424725</span><span class="p">,</span>
+ <span class="mf">35.97983504690883</span><span class="p">,</span>
+ <span class="mf">36.03966413535634</span><span class="p">,</span>
+ <span class="mf">36.127094105156154</span><span class="p">,</span>
+ <span class="mf">36.24441984164987</span><span class="p">,</span>
+ <span class="mf">36.45366128404488</span><span class="p">,</span>
+ <span class="mf">36.45996739072744</span><span class="p">,</span>
+ <span class="mf">36.490585885249324</span><span class="p">,</span>
+ <span class="mf">36.52351123762731</span><span class="p">,</span>
+ <span class="mf">36.73029767125007</span><span class="p">,</span>
+ <span class="mf">36.78316801910921</span><span class="p">,</span>
+ <span class="mf">36.824232661191004</span><span class="p">,</span>
+ <span class="mf">36.850903807324194</span><span class="p">,</span>
+ <span class="mf">36.86760032803637</span><span class="p">,</span>
+ <span class="mf">36.96814420109811</span><span class="p">,</span>
+ <span class="mf">37.14153751706439</span><span class="p">,</span>
+ <span class="mf">37.17232149067439</span><span class="p">,</span>
+ <span class="mf">37.344432854880054</span><span class="p">,</span>
+ <span class="mf">37.3795170088498</span><span class="p">,</span>
+ <span class="mf">37.38949047587039</span><span class="p">,</span>
+ <span class="mf">37.39666838075184</span><span class="p">,</span>
+ <span class="mf">37.568793902606686</span><span class="p">,</span>
+ <span class="mf">37.62586704298228</span><span class="p">,</span>
+ <span class="mf">37.6587283288162</span><span class="p">,</span>
+ <span class="mf">37.67061065943729</span><span class="p">,</span>
+ <span class="mf">37.683304392292136</span><span class="p">,</span>
+ <span class="mf">37.87822414718431</span><span class="p">,</span>
+ <span class="mf">38.12269154653974</span><span class="p">,</span>
+ <span class="mf">38.14910848772875</span><span class="p">,</span>
+ <span class="mf">38.601038844172386</span><span class="p">,</span>
+ <span class="mf">38.72800837251255</span><span class="p">,</span>
+ <span class="mf">38.754685780276105</span><span class="p">,</span>
+ <span class="mf">38.852797234248655</span><span class="p">,</span>
+ <span class="mf">38.865949513024425</span><span class="p">,</span>
+ <span class="mf">38.89421834913099</span><span class="p">,</span>
+ <span class="mf">39.02607352151885</span><span class="p">,</span>
+ <span class="mf">39.08871300935788</span><span class="p">,</span>
+ <span class="mf">39.36844507073667</span><span class="p">,</span>
+ <span class="mf">39.59463646837225</span><span class="p">,</span>
+ <span class="mf">39.79662095320597</span><span class="p">,</span>
+ <span class="mf">39.85196919188511</span><span class="p">,</span>
+ <span class="mf">39.9253964264206</span><span class="p">,</span>
+ <span class="mf">39.94398455523737</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>and check the corresponding quantiles</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span><span class="o">.</span><span class="n">quantiles</span><span class="p">(</span><span class="n">observations</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">17.001128260345325</span><span class="p">,</span> <span class="mf">35.00061212444177</span><span class="p">,</span> <span class="mf">37.50551249443724</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">16.99686785974616</span><span class="p">,</span> <span class="mf">19.995166578121935</span><span class="p">,</span> <span class="mf">37.49720072901549</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>it should be uniform too. Finally, we test the corner case where
@@ -1191,113 +1275,113 @@ and <span class="math notranslate nohighlight">\([35,40)\)</span>,</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">observations</span><span class="p">)])</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">10.035161524701131</span><span class="p">,</span>
- <span class="mf">10.40308438308476</span><span class="p">,</span>
- <span class="mf">10.453627899958564</span><span class="p">,</span>
- <span class="mf">10.894287941852813</span><span class="p">,</span>
- <span class="mf">11.137389035252255</span><span class="p">,</span>
- <span class="mf">11.271567923695416</span><span class="p">,</span>
- <span class="mf">11.30608699829178</span><span class="p">,</span>
- <span class="mf">11.544522349021864</span><span class="p">,</span>
- <span class="mf">11.74277921905845</span><span class="p">,</span>
- <span class="mf">12.012069938519831</span><span class="p">,</span>
- <span class="mf">12.136974751909504</span><span class="p">,</span>
- <span class="mf">12.324266350252092</span><span class="p">,</span>
- <span class="mf">12.49959389354197</span><span class="p">,</span>
- <span class="mf">12.61010885615925</span><span class="p">,</span>
- <span class="mf">13.019606869537146</span><span class="p">,</span>
- <span class="mf">13.288054541218981</span><span class="p">,</span>
- <span class="mf">13.423939916930628</span><span class="p">,</span>
- <span class="mf">13.511568813631374</span><span class="p">,</span>
- <span class="mf">13.737441129061065</span><span class="p">,</span>
- <span class="mf">13.861306291643</span><span class="p">,</span>
- <span class="mf">14.258184740155516</span><span class="p">,</span>
- <span class="mf">14.474335346483734</span><span class="p">,</span>
- <span class="mf">14.593693889035517</span><span class="p">,</span>
- <span class="mf">14.60801038570705</span><span class="p">,</span>
- <span class="mf">14.749833724505542</span><span class="p">,</span>
- <span class="mf">14.870016930190468</span><span class="p">,</span>
- <span class="mf">14.876891369223362</span><span class="p">,</span>
- <span class="mf">15.093252763369293</span><span class="p">,</span>
- <span class="mf">15.135157633206049</span><span class="p">,</span>
- <span class="mf">15.519619396036088</span><span class="p">,</span>
- <span class="mf">15.672097842350068</span><span class="p">,</span>
- <span class="mf">15.750183667118385</span><span class="p">,</span>
- <span class="mf">16.047501759768053</span><span class="p">,</span>
- <span class="mf">16.76510885338166</span><span class="p">,</span>
- <span class="mf">17.065174770528312</span><span class="p">,</span>
- <span class="mf">17.187341077888263</span><span class="p">,</span>
- <span class="mf">17.533837405071807</span><span class="p">,</span>
- <span class="mf">17.943968436070566</span><span class="p">,</span>
- <span class="mf">18.580525687521288</span><span class="p">,</span>
- <span class="mf">18.602115267373318</span><span class="p">,</span>
- <span class="mf">18.741597072479713</span><span class="p">,</span>
- <span class="mf">18.755126014685075</span><span class="p">,</span>
- <span class="mf">19.430709547193594</span><span class="p">,</span>
- <span class="mf">20.328030011433228</span><span class="p">,</span>
- <span class="mf">21.065457638872587</span><span class="p">,</span>
- <span class="mf">21.150029497917092</span><span class="p">,</span>
- <span class="mf">21.64331235554475</span><span class="p">,</span>
- <span class="mf">21.675688011896533</span><span class="p">,</span>
- <span class="mf">21.80487140703719</span><span class="p">,</span>
- <span class="mf">22.125989788171488</span><span class="p">,</span>
- <span class="mf">22.17115789998934</span><span class="p">,</span>
- <span class="mf">22.54764493635133</span><span class="p">,</span>
- <span class="mf">22.548382726885393</span><span class="p">,</span>
- <span class="mf">22.954332733511635</span><span class="p">,</span>
- <span class="mf">24.01713576294756</span><span class="p">,</span>
- <span class="mf">24.12811486601295</span><span class="p">,</span>
- <span class="mf">24.322417996460175</span><span class="p">,</span>
- <span class="mf">24.86966422112255</span><span class="p">,</span>
- <span class="mf">25.175480248086217</span><span class="p">,</span>
- <span class="mf">26.129652584544694</span><span class="p">,</span>
- <span class="mf">26.200480003591192</span><span class="p">,</span>
- <span class="mf">26.24826818412849</span><span class="p">,</span>
- <span class="mf">27.306135759910415</span><span class="p">,</span>
- <span class="mf">27.562416029763554</span><span class="p">,</span>
- <span class="mf">28.47232080819992</span><span class="p">,</span>
- <span class="mf">28.598240284545177</span><span class="p">,</span>
- <span class="mf">28.707267102509274</span><span class="p">,</span>
- <span class="mf">28.787179394128973</span><span class="p">,</span>
- <span class="mf">28.794166965621116</span><span class="p">,</span>
- <span class="mf">29.027213662092024</span><span class="p">,</span>
- <span class="mf">30.03125474152972</span><span class="p">,</span>
- <span class="mf">30.066841406703922</span><span class="p">,</span>
- <span class="mf">30.62979241143689</span><span class="p">,</span>
- <span class="mf">30.707624576632504</span><span class="p">,</span>
- <span class="mf">30.98329013071671</span><span class="p">,</span>
- <span class="mf">31.795902901342885</span><span class="p">,</span>
- <span class="mf">33.21427078869403</span><span class="p">,</span>
- <span class="mf">33.314753399381374</span><span class="p">,</span>
- <span class="mf">33.317976586713286</span><span class="p">,</span>
- <span class="mf">33.34406810249045</span><span class="p">,</span>
- <span class="mf">33.55936812683325</span><span class="p">,</span>
- <span class="mf">33.730632511361236</span><span class="p">,</span>
- <span class="mf">33.80904945274633</span><span class="p">,</span>
- <span class="mf">34.531591720999316</span><span class="p">,</span>
- <span class="mf">34.81812280038163</span><span class="p">,</span>
- <span class="mf">35.26864270173962</span><span class="p">,</span>
- <span class="mf">35.306192053740496</span><span class="p">,</span>
- <span class="mf">35.559079274178146</span><span class="p">,</span>
- <span class="mf">35.66801886022802</span><span class="p">,</span>
- <span class="mf">35.906444779733995</span><span class="p">,</span>
- <span class="mf">36.97931930984736</span><span class="p">,</span>
- <span class="mf">37.063335579459235</span><span class="p">,</span>
- <span class="mf">37.710685335336294</span><span class="p">,</span>
- <span class="mf">38.33042629574662</span><span class="p">,</span>
- <span class="mf">38.649173590761734</span><span class="p">,</span>
- <span class="mf">38.889346630611854</span><span class="p">,</span>
- <span class="mf">39.19937308645714</span><span class="p">,</span>
- <span class="mf">39.3384049281577</span><span class="p">,</span>
- <span class="mf">39.61681208427888</span><span class="p">,</span>
- <span class="mf">39.72508342159965</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">10.220506993337498</span><span class="p">,</span>
+ <span class="mf">10.260587558652016</span><span class="p">,</span>
+ <span class="mf">10.484692070122366</span><span class="p">,</span>
+ <span class="mf">10.62014082107819</span><span class="p">,</span>
+ <span class="mf">10.716907216811817</span><span class="p">,</span>
+ <span class="mf">11.059578641204899</span><span class="p">,</span>
+ <span class="mf">11.32138100417417</span><span class="p">,</span>
+ <span class="mf">11.593818846366288</span><span class="p">,</span>
+ <span class="mf">11.642898373028407</span><span class="p">,</span>
+ <span class="mf">11.835380635908852</span><span class="p">,</span>
+ <span class="mf">12.07497873143257</span><span class="p">,</span>
+ <span class="mf">12.311092872785627</span><span class="p">,</span>
+ <span class="mf">12.372471556874899</span><span class="p">,</span>
+ <span class="mf">12.528741487909699</span><span class="p">,</span>
+ <span class="mf">12.533954399994427</span><span class="p">,</span>
+ <span class="mf">12.698873438533695</span><span class="p">,</span>
+ <span class="mf">13.176279836528684</span><span class="p">,</span>
+ <span class="mf">13.586525086627985</span><span class="p">,</span>
+ <span class="mf">13.944379662183836</span><span class="p">,</span>
+ <span class="mf">13.959184739901707</span><span class="p">,</span>
+ <span class="mf">13.981153287065515</span><span class="p">,</span>
+ <span class="mf">14.000895353339368</span><span class="p">,</span>
+ <span class="mf">14.058731861028168</span><span class="p">,</span>
+ <span class="mf">14.06078869093613</span><span class="p">,</span>
+ <span class="mf">14.32800749089486</span><span class="p">,</span>
+ <span class="mf">14.588117887042511</span><span class="p">,</span>
+ <span class="mf">14.875747659228065</span><span class="p">,</span>
+ <span class="mf">15.257663006055465</span><span class="p">,</span>
+ <span class="mf">15.650659914540373</span><span class="p">,</span>
+ <span class="mf">15.847275824883377</span><span class="p">,</span>
+ <span class="mf">15.870874283684405</span><span class="p">,</span>
+ <span class="mf">15.88897040706754</span><span class="p">,</span>
+ <span class="mf">16.036639838802042</span><span class="p">,</span>
+ <span class="mf">16.05278288507251</span><span class="p">,</span>
+ <span class="mf">16.07164428762117</span><span class="p">,</span>
+ <span class="mf">16.289567316081033</span><span class="p">,</span>
+ <span class="mf">16.683463413688443</span><span class="p">,</span>
+ <span class="mf">16.888605068446786</span><span class="p">,</span>
+ <span class="mf">16.972846407265372</span><span class="p">,</span>
+ <span class="mf">17.050176440112484</span><span class="p">,</span>
+ <span class="mf">17.258915139395995</span><span class="p">,</span>
+ <span class="mf">17.371893542101574</span><span class="p">,</span>
+ <span class="mf">17.43299587297839</span><span class="p">,</span>
+ <span class="mf">17.51624465788484</span><span class="p">,</span>
+ <span class="mf">17.735319262220383</span><span class="p">,</span>
+ <span class="mf">17.84305048818223</span><span class="p">,</span>
+ <span class="mf">18.350336100137756</span><span class="p">,</span>
+ <span class="mf">18.64892714276403</span><span class="p">,</span>
+ <span class="mf">18.66760390953786</span><span class="p">,</span>
+ <span class="mf">18.94398065178452</span><span class="p">,</span>
+ <span class="mf">19.300495933227964</span><span class="p">,</span>
+ <span class="mf">20.12528469847449</span><span class="p">,</span>
+ <span class="mf">20.46142735180286</span><span class="p">,</span>
+ <span class="mf">20.86206580281022</span><span class="p">,</span>
+ <span class="mf">20.874500574482518</span><span class="p">,</span>
+ <span class="mf">21.750626829185087</span><span class="p">,</span>
+ <span class="mf">22.14390267598317</span><span class="p">,</span>
+ <span class="mf">22.75002173984211</span><span class="p">,</span>
+ <span class="mf">23.03725623526333</span><span class="p">,</span>
+ <span class="mf">23.041720287639468</span><span class="p">,</span>
+ <span class="mf">23.429201186117467</span><span class="p">,</span>
+ <span class="mf">23.585585621517072</span><span class="p">,</span>
+ <span class="mf">23.86788816158681</span><span class="p">,</span>
+ <span class="mf">24.39871179038679</span><span class="p">,</span>
+ <span class="mf">24.795985333846097</span><span class="p">,</span>
+ <span class="mf">25.279989200242422</span><span class="p">,</span>
+ <span class="mf">26.191697703699198</span><span class="p">,</span>
+ <span class="mf">26.44319296558182</span><span class="p">,</span>
+ <span class="mf">26.64426643575196</span><span class="p">,</span>
+ <span class="mf">27.479813164813667</span><span class="p">,</span>
+ <span class="mf">28.05941553643912</span><span class="p">,</span>
+ <span class="mf">28.26350413240277</span><span class="p">,</span>
+ <span class="mf">29.581648917089623</span><span class="p">,</span>
+ <span class="mf">29.61444785911453</span><span class="p">,</span>
+ <span class="mf">30.570688568364677</span><span class="p">,</span>
+ <span class="mf">31.140643196178605</span><span class="p">,</span>
+ <span class="mf">31.25175270850296</span><span class="p">,</span>
+ <span class="mf">31.343246396675582</span><span class="p">,</span>
+ <span class="mf">31.465988526059693</span><span class="p">,</span>
+ <span class="mf">31.977260863350544</span><span class="p">,</span>
+ <span class="mf">32.04815155247824</span><span class="p">,</span>
+ <span class="mf">32.68910230586178</span><span class="p">,</span>
+ <span class="mf">33.079261228352046</span><span class="p">,</span>
+ <span class="mf">34.016272659494696</span><span class="p">,</span>
+ <span class="mf">34.1427648058461</span><span class="p">,</span>
+ <span class="mf">34.389409078180506</span><span class="p">,</span>
+ <span class="mf">36.75237185013329</span><span class="p">,</span>
+ <span class="mf">37.10573818453108</span><span class="p">,</span>
+ <span class="mf">37.12639843651299</span><span class="p">,</span>
+ <span class="mf">37.181866718717146</span><span class="p">,</span>
+ <span class="mf">37.51981144842088</span><span class="p">,</span>
+ <span class="mf">37.70913241796731</span><span class="p">,</span>
+ <span class="mf">37.717163298513995</span><span class="p">,</span>
+ <span class="mf">37.97101359549681</span><span class="p">,</span>
+ <span class="mf">38.06407228243324</span><span class="p">,</span>
+ <span class="mf">38.76122108931287</span><span class="p">,</span>
+ <span class="mf">39.000838867618455</span><span class="p">,</span>
+ <span class="mf">39.65637566563923</span><span class="p">,</span>
+ <span class="mf">39.74648436772389</span><span class="p">,</span>
+ <span class="mf">39.894486209722814</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>and check the corresponding quantiles</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span><span class="o">.</span><span class="n">quantiles</span><span class="p">(</span><span class="n">observations</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">15.008642335636235</span><span class="p">,</span> <span class="mf">20.01690595801498</span><span class="p">,</span> <span class="mf">30.01472494058433</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">15.020045145603692</span><span class="p">,</span> <span class="mf">20.03656438037431</span><span class="p">,</span> <span class="mf">30.019022307929152</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>it should be uniform either. Finally, attempt a sampling from <code class="docutils literal notranslate"><span class="pre">4</span></code>
@@ -1309,113 +1393,113 @@ slices,</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">observations</span><span class="p">)])</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">0.11923026607978837</span><span class="p">,</span>
- <span class="mf">0.20622452924056178</span><span class="p">,</span>
- <span class="mf">0.6427695574235814</span><span class="p">,</span>
- <span class="mf">0.6931050064070732</span><span class="p">,</span>
- <span class="mf">0.7782212305433633</span><span class="p">,</span>
- <span class="mf">0.9047274444387332</span><span class="p">,</span>
- <span class="mf">1.0822218428878982</span><span class="p">,</span>
- <span class="mf">1.3726146723625865</span><span class="p">,</span>
- <span class="mf">1.618923732998998</span><span class="p">,</span>
- <span class="mf">1.8385208349809212</span><span class="p">,</span>
- <span class="mf">1.947641224796055</span><span class="p">,</span>
- <span class="mf">2.3410522857775073</span><span class="p">,</span>
- <span class="mf">2.4413920911374265</span><span class="p">,</span>
- <span class="mf">2.671911366387516</span><span class="p">,</span>
- <span class="mf">2.814955074658434</span><span class="p">,</span>
- <span class="mf">3.092914489684082</span><span class="p">,</span>
- <span class="mf">3.5020880409413224</span><span class="p">,</span>
- <span class="mf">3.592949885528516</span><span class="p">,</span>
- <span class="mf">4.246285417360472</span><span class="p">,</span>
- <span class="mf">4.559865356341081</span><span class="p">,</span>
- <span class="mf">4.579226492320392</span><span class="p">,</span>
- <span class="mf">4.767941092068093</span><span class="p">,</span>
- <span class="mf">10.044642533351421</span><span class="p">,</span>
- <span class="mf">10.08020363010737</span><span class="p">,</span>
- <span class="mf">10.21446040236147</span><span class="p">,</span>
- <span class="mf">10.248407701391995</span><span class="p">,</span>
- <span class="mf">10.347838101020972</span><span class="p">,</span>
- <span class="mf">10.463062241451</span><span class="p">,</span>
- <span class="mf">10.496132827744978</span><span class="p">,</span>
- <span class="mf">10.523422077785238</span><span class="p">,</span>
- <span class="mf">10.566932540109637</span><span class="p">,</span>
- <span class="mf">10.59104497781158</span><span class="p">,</span>
- <span class="mf">10.85364531530621</span><span class="p">,</span>
- <span class="mf">10.947077934382033</span><span class="p">,</span>
- <span class="mf">11.204845397741996</span><span class="p">,</span>
- <span class="mf">11.279279126164397</span><span class="p">,</span>
- <span class="mf">11.43030370617164</span><span class="p">,</span>
- <span class="mf">11.538631149765106</span><span class="p">,</span>
- <span class="mf">11.640385607920683</span><span class="p">,</span>
- <span class="mf">11.688425359613321</span><span class="p">,</span>
- <span class="mf">11.96166099423535</span><span class="p">,</span>
- <span class="mf">11.983792454792932</span><span class="p">,</span>
- <span class="mf">12.17860887400474</span><span class="p">,</span>
- <span class="mf">12.614946135952351</span><span class="p">,</span>
- <span class="mf">12.756170091509397</span><span class="p">,</span>
- <span class="mf">13.028057221653018</span><span class="p">,</span>
- <span class="mf">13.166899825688429</span><span class="p">,</span>
- <span class="mf">13.316065559382116</span><span class="p">,</span>
- <span class="mf">13.428823087943842</span><span class="p">,</span>
- <span class="mf">13.514662599651013</span><span class="p">,</span>
- <span class="mf">13.551691062794223</span><span class="p">,</span>
- <span class="mf">13.747270713216999</span><span class="p">,</span>
- <span class="mf">13.815685285706383</span><span class="p">,</span>
- <span class="mf">14.996054887560593</span><span class="p">,</span>
- <span class="mf">20.037346049071566</span><span class="p">,</span>
- <span class="mf">20.091942199419293</span><span class="p">,</span>
- <span class="mf">20.100425729725625</span><span class="p">,</span>
- <span class="mf">20.36815544969909</span><span class="p">,</span>
- <span class="mf">20.99704408429071</span><span class="p">,</span>
- <span class="mf">21.391432825963722</span><span class="p">,</span>
- <span class="mf">21.530646833486205</span><span class="p">,</span>
- <span class="mf">21.71999529101945</span><span class="p">,</span>
- <span class="mf">21.757565069058362</span><span class="p">,</span>
- <span class="mf">21.775545596682772</span><span class="p">,</span>
- <span class="mf">21.99540772118588</span><span class="p">,</span>
- <span class="mf">22.016378465189284</span><span class="p">,</span>
- <span class="mf">22.032364481742768</span><span class="p">,</span>
- <span class="mf">22.676534848811414</span><span class="p">,</span>
- <span class="mf">22.71439964846263</span><span class="p">,</span>
- <span class="mf">22.910516341080204</span><span class="p">,</span>
- <span class="mf">22.965985343136843</span><span class="p">,</span>
- <span class="mf">22.98277899475418</span><span class="p">,</span>
- <span class="mf">23.157785815015348</span><span class="p">,</span>
- <span class="mf">23.446981121415423</span><span class="p">,</span>
- <span class="mf">24.56634224541175</span><span class="p">,</span>
- <span class="mf">24.577255309494504</span><span class="p">,</span>
- <span class="mf">24.63408067498932</span><span class="p">,</span>
- <span class="mf">24.69115607963368</span><span class="p">,</span>
- <span class="mf">24.79324917427499</span><span class="p">,</span>
- <span class="mf">24.855393479827413</span><span class="p">,</span>
- <span class="mf">30.26976515728243</span><span class="p">,</span>
- <span class="mf">30.335775525783216</span><span class="p">,</span>
- <span class="mf">30.432092088269027</span><span class="p">,</span>
- <span class="mf">30.734904305546827</span><span class="p">,</span>
- <span class="mf">30.884700861618093</span><span class="p">,</span>
- <span class="mf">31.058427345902192</span><span class="p">,</span>
- <span class="mf">31.06339521360841</span><span class="p">,</span>
- <span class="mf">31.092998268532966</span><span class="p">,</span>
- <span class="mf">31.649996202110536</span><span class="p">,</span>
- <span class="mf">32.071258272297186</span><span class="p">,</span>
- <span class="mf">32.46482608354354</span><span class="p">,</span>
- <span class="mf">33.21858345263357</span><span class="p">,</span>
- <span class="mf">33.32071681501621</span><span class="p">,</span>
- <span class="mf">33.59112941584716</span><span class="p">,</span>
- <span class="mf">33.651825164261474</span><span class="p">,</span>
- <span class="mf">33.70124047645148</span><span class="p">,</span>
- <span class="mf">33.81505139831141</span><span class="p">,</span>
- <span class="mf">33.9157171998315</span><span class="p">,</span>
- <span class="mf">34.028172038278875</span><span class="p">,</span>
- <span class="mf">34.05409261039254</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">0.31380424920689043</span><span class="p">,</span>
+ <span class="mf">0.46171329548710505</span><span class="p">,</span>
+ <span class="mf">0.5809908902109329</span><span class="p">,</span>
+ <span class="mf">0.6010442620481715</span><span class="p">,</span>
+ <span class="mf">0.6887497588823455</span><span class="p">,</span>
+ <span class="mf">1.7254181853171602</span><span class="p">,</span>
+ <span class="mf">1.8271470660681088</span><span class="p">,</span>
+ <span class="mf">2.0481029382989546</span><span class="p">,</span>
+ <span class="mf">2.2471391668540175</span><span class="p">,</span>
+ <span class="mf">2.2549353500678992</span><span class="p">,</span>
+ <span class="mf">3.291409198290818</span><span class="p">,</span>
+ <span class="mf">3.4459073192196366</span><span class="p">,</span>
+ <span class="mf">3.647656459473969</span><span class="p">,</span>
+ <span class="mf">3.691047155812428</span><span class="p">,</span>
+ <span class="mf">4.123566779005962</span><span class="p">,</span>
+ <span class="mf">4.25518948312511</span><span class="p">,</span>
+ <span class="mf">4.593942703385368</span><span class="p">,</span>
+ <span class="mf">4.623470344617491</span><span class="p">,</span>
+ <span class="mf">4.927910999580658</span><span class="p">,</span>
+ <span class="mf">4.997354137841135</span><span class="p">,</span>
+ <span class="mf">10.07911660703169</span><span class="p">,</span>
+ <span class="mf">10.254978796163634</span><span class="p">,</span>
+ <span class="mf">10.490485665792912</span><span class="p">,</span>
+ <span class="mf">11.054516405276523</span><span class="p">,</span>
+ <span class="mf">11.211737952532603</span><span class="p">,</span>
+ <span class="mf">11.45623976041808</span><span class="p">,</span>
+ <span class="mf">11.60260157794309</span><span class="p">,</span>
+ <span class="mf">11.708890288498583</span><span class="p">,</span>
+ <span class="mf">11.710077039622028</span><span class="p">,</span>
+ <span class="mf">11.799231504229418</span><span class="p">,</span>
+ <span class="mf">12.03219517748649</span><span class="p">,</span>
+ <span class="mf">12.035293496546648</span><span class="p">,</span>
+ <span class="mf">12.105031263186536</span><span class="p">,</span>
+ <span class="mf">12.15323736571159</span><span class="p">,</span>
+ <span class="mf">12.268230511881487</span><span class="p">,</span>
+ <span class="mf">12.65993734676487</span><span class="p">,</span>
+ <span class="mf">12.737092627327328</span><span class="p">,</span>
+ <span class="mf">12.923510931274123</span><span class="p">,</span>
+ <span class="mf">13.008737081309608</span><span class="p">,</span>
+ <span class="mf">13.327399174343233</span><span class="p">,</span>
+ <span class="mf">13.453592676932015</span><span class="p">,</span>
+ <span class="mf">13.866526144133722</span><span class="p">,</span>
+ <span class="mf">14.123455082492187</span><span class="p">,</span>
+ <span class="mf">14.208087607316337</span><span class="p">,</span>
+ <span class="mf">14.577220917544247</span><span class="p">,</span>
+ <span class="mf">14.668265482140114</span><span class="p">,</span>
+ <span class="mf">20.16622603379456</span><span class="p">,</span>
+ <span class="mf">20.196788986994257</span><span class="p">,</span>
+ <span class="mf">20.42486357873761</span><span class="p">,</span>
+ <span class="mf">20.56683377208248</span><span class="p">,</span>
+ <span class="mf">21.22079055657177</span><span class="p">,</span>
+ <span class="mf">21.69996805446689</span><span class="p">,</span>
+ <span class="mf">21.88577771911336</span><span class="p">,</span>
+ <span class="mf">21.962891601792883</span><span class="p">,</span>
+ <span class="mf">22.03882568164739</span><span class="p">,</span>
+ <span class="mf">22.099486163058046</span><span class="p">,</span>
+ <span class="mf">22.198700736742005</span><span class="p">,</span>
+ <span class="mf">22.35490569770986</span><span class="p">,</span>
+ <span class="mf">22.408535739641955</span><span class="p">,</span>
+ <span class="mf">22.464447861807745</span><span class="p">,</span>
+ <span class="mf">23.11407434829636</span><span class="p">,</span>
+ <span class="mf">23.20443932438646</span><span class="p">,</span>
+ <span class="mf">23.360841985036092</span><span class="p">,</span>
+ <span class="mf">23.416465699558955</span><span class="p">,</span>
+ <span class="mf">23.426707076092853</span><span class="p">,</span>
+ <span class="mf">23.460607292367335</span><span class="p">,</span>
+ <span class="mf">23.536825387311424</span><span class="p">,</span>
+ <span class="mf">23.682155329333984</span><span class="p">,</span>
+ <span class="mf">23.789000983997582</span><span class="p">,</span>
+ <span class="mf">23.80205677267765</span><span class="p">,</span>
+ <span class="mf">24.33462907704822</span><span class="p">,</span>
+ <span class="mf">24.61305134877459</span><span class="p">,</span>
+ <span class="mf">24.947139080703636</span><span class="p">,</span>
+ <span class="mf">24.971709988499857</span><span class="p">,</span>
+ <span class="mf">30.276125897672962</span><span class="p">,</span>
+ <span class="mf">30.281484376382416</span><span class="p">,</span>
+ <span class="mf">30.306901588912826</span><span class="p">,</span>
+ <span class="mf">30.817452469116336</span><span class="p">,</span>
+ <span class="mf">31.013070224830447</span><span class="p">,</span>
+ <span class="mf">31.184367702548442</span><span class="p">,</span>
+ <span class="mf">31.759194550093298</span><span class="p">,</span>
+ <span class="mf">31.834065783582197</span><span class="p">,</span>
+ <span class="mf">31.873836952359216</span><span class="p">,</span>
+ <span class="mf">32.01770532574806</span><span class="p">,</span>
+ <span class="mf">32.06845448192055</span><span class="p">,</span>
+ <span class="mf">32.41331640659681</span><span class="p">,</span>
+ <span class="mf">32.446910237066085</span><span class="p">,</span>
+ <span class="mf">32.52552975176491</span><span class="p">,</span>
+ <span class="mf">32.64456279830529</span><span class="p">,</span>
+ <span class="mf">32.653192173300894</span><span class="p">,</span>
+ <span class="mf">32.80044163780898</span><span class="p">,</span>
+ <span class="mf">33.308853046448334</span><span class="p">,</span>
+ <span class="mf">33.4209022620311</span><span class="p">,</span>
+ <span class="mf">33.6355041822751</span><span class="p">,</span>
+ <span class="mf">33.911075150737</span><span class="p">,</span>
+ <span class="mf">34.0701398671635</span><span class="p">,</span>
+ <span class="mf">34.294102899388164</span><span class="p">,</span>
+ <span class="mf">34.41537711418714</span><span class="p">,</span>
+ <span class="mf">34.91263601614765</span><span class="p">,</span>
+ <span class="mf">34.96005689510007</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>and check the corresponding quantiles</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span><span class="o">.</span><span class="n">quantiles</span><span class="p">(</span><span class="n">observations</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">4.997958378071746</span><span class="p">,</span> <span class="mf">14.989752400547736</span><span class="p">,</span> <span class="mf">24.992706341887065</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">10.001575037417881</span><span class="p">,</span> <span class="mf">20.000883532976324</span><span class="p">,</span> <span class="mf">30.010509834567223</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>it should be uniform either.</p>
@@ -1432,15 +1516,15 @@ slices,</p>
     <span class="s1">&#39;This is a generator for a Bernoulli random variable of parameter `p` for success.&#39;</span>
 
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>              <span class="c1"># forever we loop</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>         <span class="c1"># get a sample</span>
-        <span class="k">yield</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">)</span>    <span class="c1"># if that sample denotes a success or a failure we *yield* that outcome</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>  <span class="c1"># get a sample</span>
+        <span class="k">yield</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">)</span>     <span class="c1"># if that sample denotes a success or a failure we *yield* that outcome</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">Bernoulli</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span> <span class="c1"># B is our random variable</span>
 <span class="n">B</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">Bernoulli</span> <span class="n">at</span> <span class="mh">0x7f332bed2900</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">Bernoulli</span> <span class="n">at</span> <span class="mh">0x7f888f769660</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
@@ -1470,20 +1554,20 @@ slices,</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">1_000_000</span><span class="p">))</span>
 <span class="n">C</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Counter</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="mi">399494</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">600506</span><span class="p">})</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Counter</span><span class="p">({</span><span class="mi">1</span><span class="p">:</span> <span class="mi">599560</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="mi">400440</span><span class="p">})</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.600506</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.59956</span>
 </pre></div>
 </div>
 <p>where</p>
@@ -1593,14 +1677,14 @@ Then,</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> rpm(293819385789379687596845, 921038209831568476843584365)
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>29.3 µs ± 805 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>30 µs ± 178 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 </pre></div>
 </div>
 <p>is <em>slower</em> than the primitive one</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> 293819385789379687596845 * 921038209831568476843584365
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>101 ns ± 0.0308 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>96.9 ns ± 0.415 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
 </pre></div>
 </div>
 <p>because arithmetic is performed in the virtual machine.</p>
@@ -1629,7 +1713,7 @@ implementation</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> rpm_strict(293819385789379687596845, 921038209831568476843584365)
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>22.2 µs ± 52.8 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>22.9 µs ± 62.6 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 </pre></div>
 </div>
 </div>
@@ -1818,13 +1902,52 @@ implementation</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> list(fixed_sum(LL, 10))
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2.38 s ± 46.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2.64 s ± 4.93 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> list(fixed_sum_rev(LL, 10))
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>5.91 s ± 3.82 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>5.14 s ± 4.72 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+</pre></div>
+</div>
+<p><strong>INTERMEZZO</strong></p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">4</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="k">if</span> <span class="mi">4</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+       <span class="sd">&#39;&#39;&#39;</span>
+
+
+<span class="sd">       lots of code</span>
+
+
+
+
+<span class="sd">       &#39;&#39;&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+       <span class="mi">6</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">File</span> <span class="s2">&quot;&lt;tokenize&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">11</span>
+    <span class="k">else</span><span class="p">:</span>
+    <span class="o">^</span>
+<span class="ne">IndentationError</span><span class="p">:</span> <span class="n">unindent</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">match</span> <span class="nb">any</span> <span class="n">outer</span> <span class="n">indentation</span> <span class="n">level</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">5</span> <span class="k">if</span> <span class="mi">4</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="k">else</span> <span class="mi">6</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span>
 </pre></div>
 </div>
 </div>
@@ -1856,7 +1979,7 @@ implementation</p>
       &copy;2021, Massimo Nocentini.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
