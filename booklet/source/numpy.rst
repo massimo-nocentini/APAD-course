@@ -33,7 +33,7 @@ will be valuable no matter what aspect of data science interests you.
 
 .. parsed-literal::
 
-    '1.18.1'
+    '1.19.5'
 
 
 
@@ -73,6 +73,45 @@ Python 3.3) can be used to create dense arrays of a uniform type:
 .. parsed-literal::
 
     array('i', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+
+
+.. code:: ipython3
+
+    type(A)
+
+
+
+
+.. parsed-literal::
+
+    array.array
+
+
+
+.. code:: ipython3
+
+    [x ** 2 for x in range(10)]
+
+
+
+
+.. parsed-literal::
+
+    [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+
+
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    list
 
 
 
@@ -794,7 +833,20 @@ If you want to put the numbers 1 through 9 in a :math:`3 \times 3` grid:
 
 .. code:: ipython3
 
-    np.arange(1, 10).reshape((3, 3))
+    np.arange(1, 10)
+
+
+
+
+.. parsed-literal::
+
+    array([1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+
+
+.. code:: ipython3
+
+    _.reshape((3, 3))
 
 
 
@@ -810,6 +862,19 @@ If you want to put the numbers 1 through 9 in a :math:`3 \times 3` grid:
 .. code:: ipython3
 
     x = np.array([1, 2, 3])
+    x
+
+
+
+
+.. parsed-literal::
+
+    array([1, 2, 3])
+
+
+
+.. code:: ipython3
+
     x.reshape((1, 3)) # row vector via reshape
 
 
@@ -1761,7 +1826,7 @@ across the grid:
 
 
 
-.. image:: numpy_files/numpy_152_0.png
+.. image:: numpy_files/numpy_157_0.png
 
 
 Comparisons, Masks, and Boolean Logic
@@ -2267,7 +2332,7 @@ drawn from a two-dimensional normal distribution:
 
 
 
-.. image:: numpy_files/numpy_199_0.png
+.. image:: numpy_files/numpy_204_0.png
 
 
 Let’s use fancy indexing to select 20 random points. We’ll do this by
@@ -2312,7 +2377,7 @@ the locations of the selected points:
 
 
 
-.. image:: numpy_files/numpy_204_0.png
+.. image:: numpy_files/numpy_209_0.png
 
 
 Modifying Values with Fancy Indexing
@@ -2451,7 +2516,7 @@ it using ``ufunc.at`` like this:
 
 
 
-.. image:: numpy_files/numpy_217_0.png
+.. image:: numpy_files/numpy_222_0.png
 
 
 .. code:: ipython3
@@ -2713,13 +2778,38 @@ plane:
 
     X = rand.rand(50, 2)
 
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-8-ffd1d8c0b963> in <module>
+    ----> 1 X = rand.rand(50, 2)
+    
+
+    NameError: name 'rand' is not defined
+
+
 .. code:: ipython3
 
     plt.scatter(X[:, 0], X[:, 1], s=100);
 
 
+::
 
-.. image:: numpy_files/numpy_243_0.png
+
+    ---------------------------------------------------------------------------
+
+    NameError                                 Traceback (most recent call last)
+
+    <ipython-input-9-68a4fcce3c3f> in <module>
+    ----> 1 plt.scatter(X[:, 0], X[:, 1], s=100);
+    
+
+    NameError: name 'plt' is not defined
 
 
 .. code:: ipython3
@@ -2782,7 +2872,7 @@ positions of the array:
 
 
 
-.. image:: numpy_files/numpy_250_0.png
+.. image:: numpy_files/numpy_255_0.png
 
 
 At first glance, it might seem strange that some of the points have more
