@@ -11,7 +11,7 @@ documentation for each one of them),
 
 .. code:: ipython3
 
-    import functools, operator, math, itertools, random, collections, statistics, bisect, operator
+    import functools, operator, math, itertools, random, collections, statistics, bisect, operator, heapq
 
 that contains useful definitions for the code that we are going to
 write. Moreover, an utility for generators,
@@ -1016,8 +1016,6 @@ where
 .. code:: ipython3
 
     b
-
---------------
 
 Some strange uses of recursion
 ------------------------------
