@@ -361,6 +361,302 @@ types and their bounds:
 |                                     | two 64-bit floats              |
 +-------------------------------------+--------------------------------+
 
+INTERMEZZO
+----------
+
+.. code:: ipython3
+
+    [x**4 for i, x in enumerate(range(10, 0, -1))]
+
+
+
+
+.. parsed-literal::
+
+    [10000, 6561, 4096, 2401, 1296, 625, 256, 81, 16, 1]
+
+
+
+.. code:: ipython3
+
+    _
+
+
+
+
+.. parsed-literal::
+
+    [10000, 6561, 4096, 2401, 1296, 625, 256, 81, 16, 1]
+
+
+
+.. code:: ipython3
+
+    [ _**4 for (x, _, _) in [(1, 2, 3), (2, 3, 4)]]
+
+
+
+
+.. parsed-literal::
+
+    [81, 256]
+
+
+
+.. code:: ipython3
+
+    [ tuple([x**4, y**3]) for (x, y, _) in [(1, 2, 3), (2, 3, 4)]]
+
+
+
+
+.. parsed-literal::
+
+    [(1, 8), (16, 27)]
+
+
+
+.. code:: ipython3
+
+    a = (2, 3, 4)
+
+.. code:: ipython3
+
+    a.append(5)
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    AttributeError                            Traceback (most recent call last)
+
+    <ipython-input-18-80c7c94d949c> in <module>
+    ----> 1 a.append(5)
+    
+
+    AttributeError: 'tuple' object has no attribute 'append'
+
+
+.. code:: ipython3
+
+    b = a + (5,)
+    b
+
+
+
+
+.. parsed-literal::
+
+    (2, 3, 4, 5)
+
+
+
+.. code:: ipython3
+
+    assert a != b
+
+.. code:: ipython3
+
+    (1,2,3), [1, 2, 3]
+
+
+
+
+.. parsed-literal::
+
+    ((1, 2, 3), [1, 2, 3])
+
+
+
+.. code:: ipython3
+
+    tuple(range(100))
+
+
+
+
+.. parsed-literal::
+
+    (0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25,
+     26,
+     27,
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36,
+     37,
+     38,
+     39,
+     40,
+     41,
+     42,
+     43,
+     44,
+     45,
+     46,
+     47,
+     48,
+     49,
+     50,
+     51,
+     52,
+     53,
+     54,
+     55,
+     56,
+     57,
+     58,
+     59,
+     60,
+     61,
+     62,
+     63,
+     64,
+     65,
+     66,
+     67,
+     68,
+     69,
+     70,
+     71,
+     72,
+     73,
+     74,
+     75,
+     76,
+     77,
+     78,
+     79,
+     80,
+     81,
+     82,
+     83,
+     84,
+     85,
+     86,
+     87,
+     88,
+     89,
+     90,
+     91,
+     92,
+     93,
+     94,
+     95,
+     96,
+     97,
+     98,
+     99)
+
+
+
+.. code:: ipython3
+
+    def A(a, b=0, c=1):
+        return a+b+c
+
+.. code:: ipython3
+
+    A(1, 2,)
+
+
+
+
+.. parsed-literal::
+
+    4
+
+
+
+.. code:: ipython3
+
+    {1, 2, 23,}
+
+
+
+
+.. parsed-literal::
+
+    {1, 2, 23}
+
+
+
+.. code:: ipython3
+
+    L = [
+        '/my/path/to/an/interesting/file0',
+        '/my/path/to/an/interesting/file1',
+        '/my/path/to/an/interesting/file2',
+        '/my/path/to/an/interesting/file3',
+        '/my/path/to/an/interesting/file4',
+        '/my/path/to/an/interesting/file5',
+    ]
+
+.. code:: ipython3
+
+    L
+
+
+
+
+.. parsed-literal::
+
+    ['/my/path/to/an/interesting/file0',
+     '/my/path/to/an/interesting/file1',
+     '/my/path/to/an/interesting/file2',
+     '/my/path/to/an/interesting/file3',
+     '/my/path/to/an/interesting/file4',
+     '/my/path/to/an/interesting/file5']
+
+
+
+.. code:: ipython3
+
+    [object(), 3, 3.14, 'hello world']
+
+
+
+
+.. parsed-literal::
+
+    [<object at 0x7fd9f964d760>, 3, 3.14, 'hello world']
+
+
+
+--------------
+
 The Basics of NumPy Arrays
 ==========================
 
@@ -377,6 +673,7 @@ array.
 -  *Reshaping of arrays*: Changing the shape of a given array
 -  *Joining and splitting of arrays*: Combining multiple arrays into
    one, and splitting one array into many
+-  *Universal functions and broadcasting*
 
 NumPy Array Attributes
 ----------------------
@@ -846,7 +1143,20 @@ If you want to put the numbers 1 through 9 in a :math:`3 \times 3` grid:
 
 .. code:: ipython3
 
-    _.reshape((3, 3))
+    _.shape
+
+
+
+
+.. parsed-literal::
+
+    (9,)
+
+
+
+.. code:: ipython3
+
+    __.reshape((3, 3))
 
 
 
@@ -875,6 +1185,19 @@ If you want to put the numbers 1 through 9 in a :math:`3 \times 3` grid:
 
 .. code:: ipython3
 
+    x.shape
+
+
+
+
+.. parsed-literal::
+
+    (3,)
+
+
+
+.. code:: ipython3
+
     x.reshape((1, 3)) # row vector via reshape
 
 
@@ -888,6 +1211,32 @@ If you want to put the numbers 1 through 9 in a :math:`3 \times 3` grid:
 
 .. code:: ipython3
 
+    _.shape
+
+
+
+
+.. parsed-literal::
+
+    (1, 3)
+
+
+
+.. code:: ipython3
+
+    x.shape # therefore `reshape` doesn't modify in place the array we are working on
+
+
+
+
+.. parsed-literal::
+
+    (3,)
+
+
+
+.. code:: ipython3
+
     x[np.newaxis, :] # row vector via newaxis
 
 
@@ -896,6 +1245,32 @@ If you want to put the numbers 1 through 9 in a :math:`3 \times 3` grid:
 .. parsed-literal::
 
     array([[1, 2, 3]])
+
+
+
+.. code:: ipython3
+
+    _.shape
+
+
+
+
+.. parsed-literal::
+
+    (1, 3)
+
+
+
+.. code:: ipython3
+
+    x.shape
+
+
+
+
+.. parsed-literal::
+
+    (3,)
 
 
 
@@ -916,6 +1291,32 @@ If you want to put the numbers 1 through 9 in a :math:`3 \times 3` grid:
 
 .. code:: ipython3
 
+    _.shape
+
+
+
+
+.. parsed-literal::
+
+    (3, 1)
+
+
+
+.. code:: ipython3
+
+    x.shape
+
+
+
+
+.. parsed-literal::
+
+    (3,)
+
+
+
+.. code:: ipython3
+
     x[:, np.newaxis] # column vector via newaxis
 
 
@@ -926,6 +1327,32 @@ If you want to put the numbers 1 through 9 in a :math:`3 \times 3` grid:
     array([[1],
            [2],
            [3]])
+
+
+
+.. code:: ipython3
+
+    _.shape
+
+
+
+
+.. parsed-literal::
+
+    (3, 1)
+
+
+
+.. code:: ipython3
+
+    x.shape
+
+
+
+
+.. parsed-literal::
+
+    (3,)
 
 
 
@@ -1428,7 +1855,7 @@ array. Python itself can do this using the built-in ``sum`` function:
 
 .. parsed-literal::
 
-    50.461758453195614
+    54.43983466916921
 
 
 
@@ -1441,21 +1868,21 @@ array. Python itself can do this using the built-in ``sum`` function:
 
 .. parsed-literal::
 
-    50.46175845319564
+    54.439834669169194
 
 
 
 .. code:: ipython3
 
-    big_array = np.random.rand(1000000)
+    big_array = np.random.rand(1_000_000)
     %timeit sum(big_array)
     %timeit np.sum(big_array)
 
 
 .. parsed-literal::
 
-    191 ms ± 5.67 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
-    554 µs ± 7.02 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+    222 ms ± 6.88 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+    791 µs ± 7.3 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 
 
 Minimum and Maximum
@@ -1826,7 +2253,7 @@ across the grid:
 
 
 
-.. image:: numpy_files/numpy_157_0.png
+.. image:: numpy_files/numpy_185_0.png
 
 
 Comparisons, Masks, and Boolean Logic
@@ -2332,7 +2759,7 @@ drawn from a two-dimensional normal distribution:
 
 
 
-.. image:: numpy_files/numpy_204_0.png
+.. image:: numpy_files/numpy_232_0.png
 
 
 Let’s use fancy indexing to select 20 random points. We’ll do this by
@@ -2377,7 +2804,7 @@ the locations of the selected points:
 
 
 
-.. image:: numpy_files/numpy_209_0.png
+.. image:: numpy_files/numpy_237_0.png
 
 
 Modifying Values with Fancy Indexing
@@ -2516,7 +2943,7 @@ it using ``ufunc.at`` like this:
 
 
 
-.. image:: numpy_files/numpy_222_0.png
+.. image:: numpy_files/numpy_250_0.png
 
 
 .. code:: ipython3
@@ -2872,7 +3299,7 @@ positions of the array:
 
 
 
-.. image:: numpy_files/numpy_255_0.png
+.. image:: numpy_files/numpy_283_0.png
 
 
 At first glance, it might seem strange that some of the points have more
@@ -2887,3 +3314,63 @@ The beauty of our approach is that *it’s written in a way that’s
 agnostic to the size of the input data*: we could just as easily compute
 the neighbors among 100 or 1,000,000 points in any number of dimensions,
 and the code would look the same.
+
+.. code:: ipython3
+
+    def A(a: int) -> (3 if 0 else 4):
+        return 4
+
+.. code:: ipython3
+
+    A(3)
+
+
+
+
+.. parsed-literal::
+
+    4
+
+
+
+.. code:: ipython3
+
+    A.__annotations__
+
+
+
+
+.. parsed-literal::
+
+    {'a': int, 'return': 4}
+
+
+
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    dict
+
+
+
+.. code:: ipython3
+
+    def B(f):
+        print(f.__annotations__)
+
+.. code:: ipython3
+
+    B(A)
+
+
+.. parsed-literal::
+
+    {'a': <class 'int'>, 'return': <object object at 0x7fd9be16ccc0>}
+
+
