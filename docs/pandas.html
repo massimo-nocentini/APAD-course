@@ -235,6 +235,12 @@ via the familiar Python square-bracket notation:</p>
 <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
 </pre></div>
 </div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">Series</span>
+</pre></div>
+</div>
 <div class="section" id="series-as-generalized-numpy-array">
 <h4><code class="docutils literal notranslate"><span class="pre">Series</span></code> as generalized NumPy array<a class="headerlink" href="#series-as-generalized-numpy-array" title="Permalink to this headline">¶</a></h4>
 <p>It may look like the <code class="docutils literal notranslate"><span class="pre">Series</span></code> object is basically interchangeable with
@@ -242,8 +248,7 @@ a one-dimensional NumPy array. The essential difference is the presence
 of the index: while the Numpy Array has an <em>implicitly defined</em> integer
 index used to access the values, the Pandas <code class="docutils literal notranslate"><span class="pre">Series</span></code> has an
 <em>explicitly defined</em> index associated with the values.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
-                 <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">])</span>
 <span class="n">data</span>
 </pre></div>
 </div>
@@ -261,8 +266,7 @@ index used to access the values, the Pandas <code class="docutils literal notran
 </pre></div>
 </div>
 <p>We can even use non-contiguous or non-sequential indices:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
-                 <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
 <span class="n">data</span>
 </pre></div>
 </div>
@@ -301,6 +305,12 @@ typed keys to a set of typed values:</p>
 <span class="n">Florida</span>       <span class="mi">19552860</span>
 <span class="n">Illinois</span>      <span class="mi">12882135</span>
 <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;California&#39;</span><span class="p">,</span> <span class="s1">&#39;Texas&#39;</span><span class="p">,</span> <span class="s1">&#39;New York&#39;</span><span class="p">,</span> <span class="s1">&#39;Florida&#39;</span><span class="p">,</span> <span class="s1">&#39;Illinois&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population</span><span class="p">[</span><span class="s1">&#39;California&#39;</span><span class="p">]</span> <span class="c1"># typical dictionary-style item access</span>
@@ -348,8 +358,7 @@ objects. Here, by <em>aligned</em> we mean that they share the same index:</p>
 <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;population&#39;</span><span class="p">:</span> <span class="n">population</span><span class="p">,</span>
-                       <span class="s1">&#39;area&#39;</span><span class="p">:</span> <span class="n">area</span><span class="p">})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;population&#39;</span><span class="p">:</span> <span class="n">population</span><span class="p">,</span> <span class="s1">&#39;area&#39;</span><span class="p">:</span> <span class="n">area</span><span class="p">})</span>
 <span class="n">states</span>
 </pre></div>
 </div>
@@ -495,8 +504,7 @@ single-column <code class="docutils literal notranslate"><span class="pre">DataF
 </div></div>
 <div class="section" id="from-a-list-of-dicts">
 <h5>From a list of dicts<a class="headerlink" href="#from-a-list-of-dicts" title="Permalink to this headline">¶</a></h5>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">}</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -616,18 +624,18 @@ with any specified column and index names:</p>
   <tbody>
     <tr>
       <th>a</th>
-      <td>0.187477</td>
-      <td>0.661156</td>
+      <td>0.146592</td>
+      <td>0.513407</td>
     </tr>
     <tr>
       <th>b</th>
-      <td>0.743879</td>
-      <td>0.815803</td>
+      <td>0.106042</td>
+      <td>0.602525</td>
     </tr>
     <tr>
       <th>c</th>
-      <td>0.925166</td>
-      <td>0.630165</td>
+      <td>0.927734</td>
+      <td>0.483650</td>
     </tr>
   </tbody>
 </table>
@@ -717,10 +725,10 @@ values).</p>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Index</span></code> objects also have many of the attributes familiar from NumPy
 arrays:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ind</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">ind</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">ind</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">ind</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ind</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">ind</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">ind</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">ind</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span> <span class="p">(</span><span class="mi">5</span><span class="p">,)</span> <span class="mi">1</span> <span class="n">int64</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>One difference is that indices are immutable–that is, they cannot be
@@ -732,16 +740,16 @@ modified via the normal means:</p>
 
 <span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
 
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">35</span><span class="o">-</span><span class="mi">906</span><span class="n">a9fa1424c</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">34</span><span class="o">-</span><span class="mi">906</span><span class="n">a9fa1424c</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">ind</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
 
-<span class="o">~/</span><span class="n">Developer</span><span class="o">/</span><span class="n">working</span><span class="o">-</span><span class="n">copies</span><span class="o">/</span><span class="n">pythons</span><span class="o">/</span><span class="n">venv</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">indexes</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-   <span class="mi">3908</span>
-   <span class="mi">3909</span>     <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-<span class="o">-&gt;</span> <span class="mi">3910</span>         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Index does not support mutable operations&quot;</span><span class="p">)</span>
-   <span class="mi">3911</span>
-   <span class="mi">3912</span>     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<span class="o">~/</span><span class="n">Developer</span><span class="o">/</span><span class="n">venvs</span><span class="o">/</span><span class="n">py</span><span class="o">-</span><span class="n">ml</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">indexes</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+   <span class="mi">4275</span>     <span class="nd">@final</span>
+   <span class="mi">4276</span>     <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="o">-&gt;</span> <span class="mi">4277</span>         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Index does not support mutable operations&quot;</span><span class="p">)</span>
+   <span class="mi">4278</span>
+   <span class="mi">4279</span>     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
 
 
 <span class="ne">TypeError</span><span class="p">:</span> <span class="n">Index</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">mutable</span> <span class="n">operations</span>
@@ -757,19 +765,19 @@ differences, and other combinations can be computed in a familiar way:</p>
 <span class="n">indB</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indA</span> <span class="o">&amp;</span> <span class="n">indB</span>  <span class="c1"># intersection</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indA</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">indB</span><span class="p">)</span>  <span class="c1"># intersection</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Int64Index</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indA</span> <span class="o">|</span> <span class="n">indB</span>  <span class="c1"># union</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indA</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">indB</span><span class="p">)</span>  <span class="c1"># union</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Int64Index</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indA</span> <span class="o">^</span> <span class="n">indB</span>  <span class="c1"># symmetric difference</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indA</span><span class="o">.</span><span class="n">symmetric_difference</span><span class="p">(</span><span class="n">indB</span><span class="p">)</span>  <span class="c1"># symmetric difference</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Int64Index</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
@@ -796,8 +804,7 @@ array, and in many ways like a standard Python dictionary.</p>
 <h4>Series as dictionary<a class="headerlink" href="#series-as-dictionary" title="Permalink to this headline">¶</a></h4>
 <p>Like a dictionary, the <code class="docutils literal notranslate"><span class="pre">Series</span></code> object provides a mapping from a
 collection of keys to a collection of values:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
-                 <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">])</span>
 <span class="n">data</span>
 </pre></div>
 </div>
@@ -1514,8 +1521,7 @@ on Pandas <code class="docutils literal notranslate"><span class="pre">Series</s
 <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span>
-                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">])</span>
 <span class="n">df</span>
 </pre></div>
 </div>
@@ -1630,7 +1636,13 @@ another Pandas object <em>with the indices preserved:</em></p>
     </tr>
   </tbody>
 </table>
-</div></div>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="ufuncs-index-alignment">
 <h3>UFuncs: Index Alignment<a class="headerlink" href="#ufuncs-index-alignment" title="Permalink to this headline">¶</a></h3>
 <p>For binary operations on two <code class="docutils literal notranslate"><span class="pre">Series</span></code> or <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> objects, Pandas
@@ -1659,7 +1671,7 @@ top three US states by <em>area</em> and the top three US states by
 <p>The resulting array contains the <em>union</em> of indices of the two input
 arrays, which could be determined using standard Python set arithmetic
 on these indices:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span><span class="o">.</span><span class="n">index</span> <span class="o">|</span> <span class="n">population</span><span class="o">.</span><span class="n">index</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;Alaska&#39;</span><span class="p">,</span> <span class="s1">&#39;California&#39;</span><span class="p">,</span> <span class="s1">&#39;New York&#39;</span><span class="p">,</span> <span class="s1">&#39;Texas&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
@@ -1699,8 +1711,7 @@ modified using appropriate object methods in place of the operators:</p>
 <h4>Index alignment in DataFrame<a class="headerlink" href="#index-alignment-in-dataframe" title="Permalink to this headline">¶</a></h4>
 <p>A similar type of alignment takes place for <em>both</em> columns and indices
 when performing operations on <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span>
-                 <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;AB&#39;</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;AB&#39;</span><span class="p">))</span>
 <span class="n">A</span>
 </pre></div>
 </div>
@@ -1739,8 +1750,7 @@ when performing operations on <code class="docutils literal notranslate"><span c
     </tr>
   </tbody>
 </table>
-</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span>
-                 <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;BAC&#39;</span><span class="p">))</span>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;BAC&#39;</span><span class="p">))</span>
 <span class="n">B</span>
 </pre></div>
 </div>
@@ -1936,6 +1946,12 @@ two-dimensional and one-dimensional NumPy array.</p>
        <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
 </pre></div>
 </div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>
+</pre></div>
+</div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">-</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -2117,10 +2133,10 @@ native types:</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>dtype = object
-77.8 ms ± 133 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+81.8 ms ± 125 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
 
 dtype = int
-2 ms ± 42.1 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+1.87 ms ± 34.1 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre></div>
 </div>
 <p>The use of Python objects in an array also means that if you perform
@@ -2133,16 +2149,16 @@ value, you will generally get an error:</p>
 
 <span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
 
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">109</span><span class="o">-</span><span class="mi">30</span><span class="n">a3fc8c6726</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">94</span><span class="o">-</span><span class="mi">30</span><span class="n">a3fc8c6726</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">vals1</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
 
-<span class="o">~/</span><span class="n">Developer</span><span class="o">/</span><span class="n">working</span><span class="o">-</span><span class="n">copies</span><span class="o">/</span><span class="n">pythons</span><span class="o">/</span><span class="n">venv</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">numpy</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">_methods</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">where</span><span class="p">)</span>
-     <span class="mi">36</span> <span class="k">def</span> <span class="nf">_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-     <span class="mi">37</span>          <span class="n">initial</span><span class="o">=</span><span class="n">_NoValue</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="o">---&gt;</span> <span class="mi">38</span>     <span class="k">return</span> <span class="n">umr_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">where</span><span class="p">)</span>
-     <span class="mi">39</span>
-     <span class="mi">40</span> <span class="k">def</span> <span class="nf">_prod</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="o">~/</span><span class="n">Developer</span><span class="o">/</span><span class="n">venvs</span><span class="o">/</span><span class="n">py</span><span class="o">-</span><span class="n">ml</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">numpy</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">_methods</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">where</span><span class="p">)</span>
+     <span class="mi">45</span> <span class="k">def</span> <span class="nf">_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+     <span class="mi">46</span>          <span class="n">initial</span><span class="o">=</span><span class="n">_NoValue</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="o">---&gt;</span> <span class="mi">47</span>     <span class="k">return</span> <span class="n">umr_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">keepdims</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">where</span><span class="p">)</span>
+     <span class="mi">48</span>
+     <span class="mi">49</span> <span class="k">def</span> <span class="nf">_prod</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 
 
 <span class="ne">TypeError</span><span class="p">:</span> <span class="n">unsupported</span> <span class="n">operand</span> <span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="o">+</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span> <span class="ow">and</span> <span class="s1">&#39;NoneType&#39;</span>
@@ -3042,24 +3058,24 @@ the constructor:</p>
     <tr>
       <th rowspan="2" valign="top">a</th>
       <th>1</th>
-      <td>0.815709</td>
-      <td>0.590718</td>
+      <td>0.482545</td>
+      <td>0.352967</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.373124</td>
-      <td>0.688444</td>
+      <td>0.574280</td>
+      <td>0.063582</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">b</th>
       <th>1</th>
-      <td>0.482064</td>
-      <td>0.362575</td>
+      <td>0.102271</td>
+      <td>0.569372</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.881879</td>
-      <td>0.346904</td>
+      <td>0.753026</td>
+      <td>0.194597</td>
     </tr>
   </tbody>
 </table>
@@ -3201,40 +3217,40 @@ have multiple levels as well:</p>
     <tr>
       <th rowspan="2" valign="top">2013</th>
       <th>1</th>
-      <td>45.0</td>
-      <td>37.2</td>
-      <td>33.0</td>
+      <td>48.0</td>
+      <td>38.1</td>
+      <td>19.0</td>
+      <td>38.4</td>
+      <td>52.0</td>
       <td>38.8</td>
-      <td>37.0</td>
-      <td>37.8</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>41.0</td>
+      <td>34.0</td>
+      <td>38.0</td>
+      <td>37.0</td>
+      <td>36.9</td>
+      <td>31.0</td>
       <td>37.6</td>
-      <td>36.0</td>
-      <td>37.4</td>
-      <td>51.0</td>
-      <td>37.4</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">2014</th>
       <th>1</th>
-      <td>27.0</td>
+      <td>41.0</td>
       <td>37.0</td>
-      <td>56.0</td>
-      <td>37.5</td>
-      <td>47.0</td>
+      <td>52.0</td>
       <td>38.9</td>
+      <td>38.0</td>
+      <td>37.4</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>31.0</td>
-      <td>36.8</td>
-      <td>39.0</td>
+      <td>47.0</td>
+      <td>36.9</td>
+      <td>46.0</td>
       <td>36.4</td>
-      <td>27.0</td>
-      <td>35.2</td>
+      <td>42.0</td>
+      <td>36.6</td>
     </tr>
   </tbody>
 </table>
@@ -3278,23 +3294,23 @@ can index the top-level column by the person’s name and get a full
     <tr>
       <th rowspan="2" valign="top">2013</th>
       <th>1</th>
-      <td>33.0</td>
-      <td>38.8</td>
+      <td>19.0</td>
+      <td>38.4</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>36.0</td>
-      <td>37.4</td>
+      <td>37.0</td>
+      <td>36.9</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">2014</th>
       <th>1</th>
-      <td>56.0</td>
-      <td>37.5</td>
+      <td>52.0</td>
+      <td>38.9</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>39.0</td>
+      <td>46.0</td>
       <td>36.4</td>
     </tr>
   </tbody>
@@ -3423,40 +3439,40 @@ masks:</p>
     <tr>
       <th rowspan="2" valign="top">2013</th>
       <th>1</th>
-      <td>45.0</td>
-      <td>37.2</td>
-      <td>33.0</td>
+      <td>48.0</td>
+      <td>38.1</td>
+      <td>19.0</td>
+      <td>38.4</td>
+      <td>52.0</td>
       <td>38.8</td>
-      <td>37.0</td>
-      <td>37.8</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>41.0</td>
+      <td>34.0</td>
+      <td>38.0</td>
+      <td>37.0</td>
+      <td>36.9</td>
+      <td>31.0</td>
       <td>37.6</td>
-      <td>36.0</td>
-      <td>37.4</td>
-      <td>51.0</td>
-      <td>37.4</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">2014</th>
       <th>1</th>
-      <td>27.0</td>
+      <td>41.0</td>
       <td>37.0</td>
-      <td>56.0</td>
-      <td>37.5</td>
-      <td>47.0</td>
+      <td>52.0</td>
       <td>38.9</td>
+      <td>38.0</td>
+      <td>37.4</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>31.0</td>
-      <td>36.8</td>
-      <td>39.0</td>
+      <td>47.0</td>
+      <td>36.9</td>
+      <td>46.0</td>
       <td>36.4</td>
-      <td>27.0</td>
-      <td>35.2</td>
+      <td>42.0</td>
+      <td>36.6</td>
     </tr>
   </tbody>
 </table>
@@ -3467,10 +3483,10 @@ used for multiply indexed <code class="docutils literal notranslate"><span class
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">year</span>  <span class="n">visit</span>
-<span class="mi">2013</span>  <span class="mi">1</span>        <span class="mf">33.0</span>
-      <span class="mi">2</span>        <span class="mf">36.0</span>
-<span class="mi">2014</span>  <span class="mi">1</span>        <span class="mf">56.0</span>
-      <span class="mi">2</span>        <span class="mf">39.0</span>
+<span class="mi">2013</span>  <span class="mi">1</span>        <span class="mf">19.0</span>
+      <span class="mi">2</span>        <span class="mf">37.0</span>
+<span class="mi">2014</span>  <span class="mi">1</span>        <span class="mf">52.0</span>
+      <span class="mi">2</span>        <span class="mf">46.0</span>
 <span class="n">Name</span><span class="p">:</span> <span class="p">(</span><span class="n">Guido</span><span class="p">,</span> <span class="n">HR</span><span class="p">),</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
 </pre></div>
 </div>
@@ -3521,13 +3537,13 @@ and <code class="docutils literal notranslate"><span class="pre">ix</span></code
     <tr>
       <th rowspan="2" valign="top">2013</th>
       <th>1</th>
-      <td>45.0</td>
-      <td>37.2</td>
+      <td>48.0</td>
+      <td>38.1</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>41.0</td>
-      <td>37.6</td>
+      <td>34.0</td>
+      <td>38.0</td>
     </tr>
   </tbody>
 </table>
@@ -3538,10 +3554,10 @@ can be passed a tuple of multiple indices:</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">year</span>  <span class="n">visit</span>
-<span class="mi">2013</span>  <span class="mi">1</span>        <span class="mf">45.0</span>
-      <span class="mi">2</span>        <span class="mf">41.0</span>
-<span class="mi">2014</span>  <span class="mi">1</span>        <span class="mf">27.0</span>
-      <span class="mi">2</span>        <span class="mf">31.0</span>
+<span class="mi">2013</span>  <span class="mi">1</span>        <span class="mf">48.0</span>
+      <span class="mi">2</span>        <span class="mf">34.0</span>
+<span class="mi">2014</span>  <span class="mi">1</span>        <span class="mf">41.0</span>
+      <span class="mi">2</span>        <span class="mf">47.0</span>
 <span class="n">Name</span><span class="p">:</span> <span class="p">(</span><span class="n">Bob</span><span class="p">,</span> <span class="n">HR</span><span class="p">),</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
 </pre></div>
 </div>
@@ -3572,12 +3588,12 @@ indices are <em>not lexographically sorted</em>:</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">char</span>  <span class="nb">int</span>
-<span class="n">a</span>     <span class="mi">1</span>      <span class="mf">0.416187</span>
-      <span class="mi">2</span>      <span class="mf">0.523686</span>
-<span class="n">c</span>     <span class="mi">1</span>      <span class="mf">0.678899</span>
-      <span class="mi">2</span>      <span class="mf">0.990513</span>
-<span class="n">b</span>     <span class="mi">1</span>      <span class="mf">0.048998</span>
-      <span class="mi">2</span>      <span class="mf">0.149826</span>
+<span class="n">a</span>     <span class="mi">1</span>      <span class="mf">0.002105</span>
+      <span class="mi">2</span>      <span class="mf">0.280923</span>
+<span class="n">c</span>     <span class="mi">1</span>      <span class="mf">0.008604</span>
+      <span class="mi">2</span>      <span class="mf">0.631968</span>
+<span class="n">b</span>     <span class="mi">1</span>      <span class="mf">0.072270</span>
+      <span class="mi">2</span>      <span class="mf">0.273800</span>
 <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
 </pre></div>
 </div>
@@ -3603,12 +3619,12 @@ of the <code class="docutils literal notranslate"><span class="pre">DataFrame</s
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">char</span>  <span class="nb">int</span>
-<span class="n">a</span>     <span class="mi">1</span>      <span class="mf">0.416187</span>
-      <span class="mi">2</span>      <span class="mf">0.523686</span>
-<span class="n">b</span>     <span class="mi">1</span>      <span class="mf">0.048998</span>
-      <span class="mi">2</span>      <span class="mf">0.149826</span>
-<span class="n">c</span>     <span class="mi">1</span>      <span class="mf">0.678899</span>
-      <span class="mi">2</span>      <span class="mf">0.990513</span>
+<span class="n">a</span>     <span class="mi">1</span>      <span class="mf">0.002105</span>
+      <span class="mi">2</span>      <span class="mf">0.280923</span>
+<span class="n">b</span>     <span class="mi">1</span>      <span class="mf">0.072270</span>
+      <span class="mi">2</span>      <span class="mf">0.273800</span>
+<span class="n">c</span>     <span class="mi">1</span>      <span class="mf">0.008604</span>
+      <span class="mi">2</span>      <span class="mf">0.631968</span>
 <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
 </pre></div>
 </div>
@@ -3618,10 +3634,10 @@ expected:</p>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">char</span>  <span class="nb">int</span>
-<span class="n">a</span>     <span class="mi">1</span>      <span class="mf">0.416187</span>
-      <span class="mi">2</span>      <span class="mf">0.523686</span>
-<span class="n">b</span>     <span class="mi">1</span>      <span class="mf">0.048998</span>
-      <span class="mi">2</span>      <span class="mf">0.149826</span>
+<span class="n">a</span>     <span class="mi">1</span>      <span class="mf">0.002105</span>
+      <span class="mi">2</span>      <span class="mf">0.280923</span>
+<span class="n">b</span>     <span class="mi">1</span>      <span class="mf">0.072270</span>
+      <span class="mi">2</span>      <span class="mf">0.273800</span>
 <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
 </pre></div>
 </div>
@@ -3942,40 +3958,40 @@ subset of the data the aggregate is computed on.</p>
     <tr>
       <th rowspan="2" valign="top">2013</th>
       <th>1</th>
-      <td>45.0</td>
-      <td>37.2</td>
-      <td>33.0</td>
+      <td>48.0</td>
+      <td>38.1</td>
+      <td>19.0</td>
+      <td>38.4</td>
+      <td>52.0</td>
       <td>38.8</td>
-      <td>37.0</td>
-      <td>37.8</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>41.0</td>
+      <td>34.0</td>
+      <td>38.0</td>
+      <td>37.0</td>
+      <td>36.9</td>
+      <td>31.0</td>
       <td>37.6</td>
-      <td>36.0</td>
-      <td>37.4</td>
-      <td>51.0</td>
-      <td>37.4</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">2014</th>
       <th>1</th>
-      <td>27.0</td>
+      <td>41.0</td>
       <td>37.0</td>
-      <td>56.0</td>
-      <td>37.5</td>
-      <td>47.0</td>
+      <td>52.0</td>
       <td>38.9</td>
+      <td>38.0</td>
+      <td>37.4</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>31.0</td>
-      <td>36.8</td>
-      <td>39.0</td>
+      <td>47.0</td>
+      <td>36.9</td>
+      <td>46.0</td>
       <td>36.4</td>
-      <td>27.0</td>
-      <td>35.2</td>
+      <td>42.0</td>
+      <td>36.6</td>
     </tr>
   </tbody>
 </table>
@@ -4034,21 +4050,21 @@ this case the year:</p>
   <tbody>
     <tr>
       <th>2013</th>
-      <td>43.0</td>
-      <td>37.4</td>
-      <td>34.5</td>
-      <td>38.10</td>
-      <td>44.0</td>
-      <td>37.60</td>
+      <td>41.0</td>
+      <td>38.05</td>
+      <td>28.0</td>
+      <td>37.65</td>
+      <td>41.5</td>
+      <td>38.2</td>
     </tr>
     <tr>
       <th>2014</th>
-      <td>29.0</td>
-      <td>36.9</td>
-      <td>47.5</td>
+      <td>44.0</td>
       <td>36.95</td>
+      <td>49.0</td>
+      <td>37.65</td>
+      <td>40.0</td>
       <td>37.0</td>
-      <td>37.05</td>
     </tr>
   </tbody>
 </table>
@@ -4087,13 +4103,13 @@ among levels on the columns as well:</p>
   <tbody>
     <tr>
       <th>2013</th>
-      <td>40.500000</td>
-      <td>37.700000</td>
+      <td>36.833333</td>
+      <td>37.966667</td>
     </tr>
     <tr>
       <th>2014</th>
-      <td>37.833333</td>
-      <td>36.966667</td>
+      <td>44.333333</td>
+      <td>37.200000</td>
     </tr>
   </tbody>
 </table>
@@ -11138,7 +11154,7 @@ year:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;total births per year&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_448_0.png" src="_images/pandas_448_0.png" />
+<img alt="_images/pandas_452_0.png" src="_images/pandas_452_0.png" />
 <p>With a simple pivot table and <code class="docutils literal notranslate"><span class="pre">plot()</span></code> method, we can immediately see
 the annual trend in births by gender. By eye, it appears that over the
 past 50 years male births have outnumbered female births by around 5%.</p>
@@ -11189,7 +11205,7 @@ This allows us to quickly compute the weekday corresponding to each row:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;mean births by day&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_459_0.png" src="_images/pandas_459_0.png" />
+<img alt="_images/pandas_463_0.png" src="_images/pandas_463_0.png" />
 <p>Apparently births are slightly less common on weekends than on weekdays!
 Note that the 1990s and 2000s are missing because the CDC data contains
 only the month of birth starting in 1989.</p>
@@ -11307,7 +11323,7 @@ trends:</p>
 <span class="n">births_by_date</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_467_0.png" src="_images/pandas_467_0.png" />
+<img alt="_images/pandas_471_0.png" src="_images/pandas_471_0.png" />
 <p>In particular, the striking feature of this graph is the dip in
 birthrate on US holidays (e.g., Independence Day, Labor Day,
 Thanksgiving, Christmas, New Year’s Day) although this likely reflects
@@ -11896,7 +11912,7 @@ Finance, and others.</p>
 <span class="n">goog</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_519_0.png" src="_images/pandas_519_0.png" />
+<img alt="_images/pandas_523_0.png" src="_images/pandas_523_0.png" />
 <div class="section" id="resampling-and-converting-frequencies">
 <h4>Resampling and converting frequencies<a class="headerlink" href="#resampling-and-converting-frequencies" title="Permalink to this headline">¶</a></h4>
 <p>One common need for time series data is resampling at a higher or lower
@@ -11912,7 +11928,7 @@ resample the data at the end of business year:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="s1">&#39;resample&#39;</span><span class="p">,</span> <span class="s1">&#39;asfreq&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_522_0.png" src="_images/pandas_522_0.png" />
+<img alt="_images/pandas_526_0.png" src="_images/pandas_526_0.png" />
 <p>Notice the difference: at each point, <code class="docutils literal notranslate"><span class="pre">resample</span></code> reports the <em>average
 of the previous year</em>, while <code class="docutils literal notranslate"><span class="pre">asfreq</span></code> reports the <em>value at the end of
 the year</em>.</p>
@@ -11934,7 +11950,7 @@ weekends):</p>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;back-fill&quot;</span><span class="p">,</span> <span class="s2">&quot;forward-fill&quot;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_526_0.png" src="_images/pandas_526_0.png" />
+<img alt="_images/pandas_530_0.png" src="_images/pandas_530_0.png" />
 <p>The top panel is the default: non-business days are left as NA values
 and do not appear on the plot. The bottom panel shows the differences
 between two strategies for filling the gaps: forward-filling and
@@ -11975,7 +11991,7 @@ frequency.</p>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">local_max</span> <span class="o">+</span> <span class="n">offset</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_529_0.png" src="_images/pandas_529_0.png" />
+<img alt="_images/pandas_533_0.png" src="_images/pandas_533_0.png" />
 <p>We see here that <code class="docutils literal notranslate"><span class="pre">shift(900)</span></code> shifts the <em>data</em> by 900 days, pushing
 some of it off the end of the graph (and leaving NA values at the other
 end), while <code class="docutils literal notranslate"><span class="pre">tshift(900)</span></code> shifts the <em>index values</em> by 900 days.</p>
@@ -11987,7 +12003,7 @@ on investment for Google stock over the course of the dataset:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;% Return on Investment&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_531_0.png" src="_images/pandas_531_0.png" />
+<img alt="_images/pandas_535_0.png" src="_images/pandas_535_0.png" />
 <p>This helps us to see the overall trend in Google stock: thus far, the
 most profitable times to invest in Google have been (unsurprisingly, in
 retrospect) shortly after its IPO, and in the middle of the 2009
@@ -12012,7 +12028,7 @@ deviation of the Google stock prices:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_535_0.png" src="_images/pandas_535_0.png" />
+<img alt="_images/pandas_539_0.png" src="_images/pandas_539_0.png" />
 <p>As with group-by operations, the <code class="docutils literal notranslate"><span class="pre">aggregate()</span></code> and <code class="docutils literal notranslate"><span class="pre">apply()</span></code> methods
 can be used for custom rolling computations.</p>
 </div>
@@ -12205,7 +12221,7 @@ adding a “Total” column:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Hourly Bicycle Count&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_545_0.png" src="_images/pandas_545_0.png" />
+<img alt="_images/pandas_549_0.png" src="_images/pandas_549_0.png" />
 <p>The ~25,000 hourly samples are far too dense for us to make much sense
 of. We can gain more insight by resampling the data to a coarser grid:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weekly</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -12213,7 +12229,7 @@ of. We can gain more insight by resampling the data to a coarser grid:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Weekly bicycle count&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_547_0.png" src="_images/pandas_547_0.png" />
+<img alt="_images/pandas_551_0.png" src="_images/pandas_551_0.png" />
 <p>This shows us some interesting seasonal trends: as you might expect,
 people bicycle more in the summer than in the winter, and even within a
 particular season the bicycle use varies from week to week (likely
@@ -12226,7 +12242,7 @@ do a 30 day rolling mean of our data, making sure to center the window:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;mean hourly count&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_550_0.png" src="_images/pandas_550_0.png" />
+<img alt="_images/pandas_554_0.png" src="_images/pandas_554_0.png" />
 <p>The jaggedness of the result is due to the hard cutoff of the window. We
 can get a smoother version of a rolling mean using a window function–for
 example, a Gaussian window.</p>
@@ -12237,7 +12253,7 @@ days):</p>
               <span class="n">win_type</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_553_0.png" src="_images/pandas_553_0.png" />
+<img alt="_images/pandas_557_0.png" src="_images/pandas_557_0.png" />
 </div>
 <div class="section" id="digging-into-the-data">
 <h4>Digging into the data<a class="headerlink" href="#digging-into-the-data" title="Permalink to this headline">¶</a></h4>
@@ -12250,7 +12266,7 @@ the time of day; we do this by grouping:</p>
 <span class="n">by_time</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="n">hourly_ticks</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_555_0.png" src="_images/pandas_555_0.png" />
+<img alt="_images/pandas_559_0.png" src="_images/pandas_559_0.png" />
 <p>The hourly traffic is a strongly bimodal distribution, with peaks around
 8:00 in the morning and 5:00 in the evening. This is likely evidence of
 a strong component of commuter traffic crossing the bridge. This is
@@ -12265,7 +12281,7 @@ week. Again, we can do this with a simple groupby:</p>
 <span class="n">by_weekday</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_558_0.png" src="_images/pandas_558_0.png" />
+<img alt="_images/pandas_562_0.png" src="_images/pandas_562_0.png" />
 <p>This shows a strong distinction between weekday and weekend totals, with
 around twice as many average riders crossing the bridge on Monday
 through Friday than on Saturday and Sunday.</p>
@@ -12284,7 +12300,7 @@ flag marking the weekend, and the time of day:</p>
                            <span class="n">xticks</span><span class="o">=</span><span class="n">hourly_ticks</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_562_0.png" src="_images/pandas_562_0.png" />
+<img alt="_images/pandas_566_0.png" src="_images/pandas_566_0.png" />
 <p>The result is very interesting: we see a bimodal commute pattern during
 the work week, and a unimodal recreational pattern during the weekends.</p>
 </div>

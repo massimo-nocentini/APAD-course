@@ -19,7 +19,7 @@ write. Moreover, an utility for generators,
 .. code:: ipython3
 
     def take(iterable, n):
-        yield from map(lambda p: p[1], zip(range(n), iterable))
+        return map(lambda p: p[1], zip(range(n), iterable))
 
 that consumes an iterable and return a generator that will yield
 :math:`n` objects at most. For the sake of clarity,
@@ -34,7 +34,7 @@ that consumes an iterable and return a generator that will yield
 
 .. parsed-literal::
 
-    <generator object take at 0x7f94b2884f90>
+    <generator object take at 0x7f9dbe3b65f0>
 
 
 
@@ -49,6 +49,75 @@ Before starting, we initialize the random generator with a nice prime
 .. code:: ipython3
 
     random.seed(11)
+
+Intersection
+------------
+
+.. code:: ipython3
+
+    A = list(range(10000))
+    B = list(range(10000))
+    
+    random.shuffle(A)
+    random.shuffle(B)
+
+.. code:: ipython3
+
+    def intersection(A, B):
+        
+        B = set(B)
+        return (a for a in A if a in B)
+
+.. code:: ipython3
+
+    %timeit list(intersection(A, B))
+
+
+.. parsed-literal::
+
+    1.73 ms ± 48.7 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
+
+.. code:: ipython3
+
+    %timeit list(zip(A, set(B)))
+
+
+.. parsed-literal::
+
+    1.44 ms ± 206 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+
+
+.. code:: ipython3
+
+    def intersection(A, B):
+        
+        A, B = iter(sorted(A)), iter(sorted(B))
+        
+        a, b = next(A), next(B)
+        
+        while True:
+            
+            try:
+                if a == b:
+                    yield a
+                    a, b = next(A), next(B)
+                elif a < b:
+                    a = next(A)
+                else:
+                    b = next(B)
+            except StopIteration:
+                break
+
+.. code:: ipython3
+
+    %timeit list(intersection(A, B))
+
+
+.. parsed-literal::
+
+    6.47 ms ± 1.09 ms per loop (mean ± std. dev. of 7 runs, 100 loops each)
+
 
 (Pythagorean) tuples
 --------------------

@@ -105,6 +105,19 @@ via the familiar Python square-bracket notation:
 
 
 
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    pandas.core.series.Series
+
+
+
 ``Series`` as generalized NumPy array
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -116,8 +129,7 @@ index used to access the values, the Pandas ``Series`` has an
 
 .. code:: ipython3
 
-    data = pd.Series([0.25, 0.5, 0.75, 1.0],
-                     index=['a', 'b', 'c', 'd'])
+    data = pd.Series([0.25, 0.5, 0.75, 1.0], index=['a', 'b', 'c', 'd'])
     data
 
 
@@ -150,8 +162,7 @@ We can even use non-contiguous or non-sequential indices:
 
 .. code:: ipython3
 
-    data = pd.Series([0.25, 0.5, 0.75, 1.0],
-                     index=[2, 5, 3, 7])
+    data = pd.Series([0.25, 0.5, 0.75, 1.0], index=[2, 5, 3, 7])
     data
 
 
@@ -209,6 +220,19 @@ typed keys to a set of typed values:
     Florida       19552860
     Illinois      12882135
     dtype: int64
+
+
+
+.. code:: ipython3
+
+    population.index
+
+
+
+
+.. parsed-literal::
+
+    Index(['California', 'Texas', 'New York', 'Florida', 'Illinois'], dtype='object')
 
 
 
@@ -283,8 +307,7 @@ objects. Here, by *aligned* we mean that they share the same index:
 
 .. code:: ipython3
 
-    states = pd.DataFrame({'population': population,
-                           'area': area})
+    states = pd.DataFrame({'population': population, 'area': area})
     states
 
 
@@ -477,8 +500,7 @@ From a list of dicts
 
 .. code:: ipython3
 
-    data = [{'a': i, 'b': 2 * i}
-            for i in range(3)]
+    data = [{'a': i, 'b': 2 * i} for i in range(3)]
     pd.DataFrame(data)
 
 
@@ -623,18 +645,18 @@ with any specified column and index names:
       <tbody>
         <tr>
           <th>a</th>
-          <td>0.187477</td>
-          <td>0.661156</td>
+          <td>0.146592</td>
+          <td>0.513407</td>
         </tr>
         <tr>
           <th>b</th>
-          <td>0.743879</td>
-          <td>0.815803</td>
+          <td>0.106042</td>
+          <td>0.602525</td>
         </tr>
         <tr>
           <th>c</th>
-          <td>0.925166</td>
-          <td>0.630165</td>
+          <td>0.927734</td>
+          <td>0.483650</td>
         </tr>
       </tbody>
     </table>
@@ -770,12 +792,15 @@ arrays:
 
 .. code:: ipython3
 
-    print(ind.size, ind.shape, ind.ndim, ind.dtype)
+    ind.size, ind.shape, ind.ndim, ind.dtype,
+
+
 
 
 .. parsed-literal::
 
-    5 (5,) 1 int64
+    (5, (5,), 1, dtype('int64'))
+
 
 
 One difference is that indices are immutable–that is, they cannot be
@@ -793,16 +818,16 @@ modified via the normal means:
 
     TypeError                                 Traceback (most recent call last)
 
-    <ipython-input-35-906a9fa1424c> in <module>
+    <ipython-input-34-906a9fa1424c> in <module>
     ----> 1 ind[1] = 0
     
 
-    ~/Developer/working-copies/pythons/venv/lib/python3.7/site-packages/pandas/core/indexes/base.py in __setitem__(self, key, value)
-       3908 
-       3909     def __setitem__(self, key, value):
-    -> 3910         raise TypeError("Index does not support mutable operations")
-       3911 
-       3912     def __getitem__(self, key):
+    ~/Developer/venvs/py-ml/lib/python3.8/site-packages/pandas/core/indexes/base.py in __setitem__(self, key, value)
+       4275     @final
+       4276     def __setitem__(self, key, value):
+    -> 4277         raise TypeError("Index does not support mutable operations")
+       4278 
+       4279     def __getitem__(self, key):
 
 
     TypeError: Index does not support mutable operations
@@ -822,7 +847,7 @@ differences, and other combinations can be computed in a familiar way:
 
 .. code:: ipython3
 
-    indA & indB  # intersection
+    indA.intersection(indB)  # intersection
 
 
 
@@ -835,7 +860,7 @@ differences, and other combinations can be computed in a familiar way:
 
 .. code:: ipython3
 
-    indA | indB  # union
+    indA.union(indB)  # union
 
 
 
@@ -848,7 +873,7 @@ differences, and other combinations can be computed in a familiar way:
 
 .. code:: ipython3
 
-    indA ^ indB  # symmetric difference
+    indA.symmetric_difference(indB)  # symmetric difference
 
 
 
@@ -886,8 +911,7 @@ collection of keys to a collection of values:
 
 .. code:: ipython3
 
-    data = pd.Series([0.25, 0.5, 0.75, 1.0],
-                     index=['a', 'b', 'c', 'd'])
+    data = pd.Series([0.25, 0.5, 0.75, 1.0], index=['a', 'b', 'c', 'd'])
     data
 
 
@@ -1870,8 +1894,7 @@ on Pandas ``Series`` and ``DataFrame`` objects:
 
 .. code:: ipython3
 
-    df = pd.DataFrame(rng.randint(0, 10, (3, 4)),
-                      columns=['A', 'B', 'C', 'D'])
+    df = pd.DataFrame(rng.randint(0, 10, (3, 4)), columns=['A', 'B', 'C', 'D'])
     df
 
 
@@ -2012,6 +2035,19 @@ another Pandas object *with the indices preserved:*
 
 
 
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    pandas.core.frame.DataFrame
+
+
+
 UFuncs: Index Alignment
 -----------------------
 
@@ -2055,7 +2091,7 @@ on these indices:
 
 .. code:: ipython3
 
-    area.index | population.index
+    area.index.union(population.index)
 
 
 
@@ -2119,8 +2155,7 @@ when performing operations on ``DataFrame``\ s:
 
 .. code:: ipython3
 
-    A = pd.DataFrame(rng.randint(0, 20, (2, 2)),
-                     columns=list('AB'))
+    A = pd.DataFrame(rng.randint(0, 20, (2, 2)), columns=list('AB'))
     A
 
 
@@ -2169,8 +2204,7 @@ when performing operations on ``DataFrame``\ s:
 
 .. code:: ipython3
 
-    B = pd.DataFrame(rng.randint(0, 10, (3, 3)),
-                     columns=list('BAC'))
+    B = pd.DataFrame(rng.randint(0, 10, (3, 3)), columns=list('BAC'))
     B
 
 
@@ -2377,6 +2411,19 @@ two-dimensional and one-dimensional NumPy array.
     array([[3, 8, 2, 4],
            [2, 6, 4, 8],
            [6, 1, 3, 8]])
+
+
+
+.. code:: ipython3
+
+    type(A)
+
+
+
+
+.. parsed-literal::
+
+    numpy.ndarray
 
 
 
@@ -2615,10 +2662,10 @@ native types:
 .. parsed-literal::
 
     dtype = object
-    77.8 ms ± 133 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+    81.8 ms ± 125 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
     
     dtype = int
-    2 ms ± 42.1 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+    1.87 ms ± 34.1 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
     
 
 
@@ -2638,16 +2685,16 @@ value, you will generally get an error:
 
     TypeError                                 Traceback (most recent call last)
 
-    <ipython-input-109-30a3fc8c6726> in <module>
+    <ipython-input-94-30a3fc8c6726> in <module>
     ----> 1 vals1.sum()
     
 
-    ~/Developer/working-copies/pythons/venv/lib/python3.7/site-packages/numpy/core/_methods.py in _sum(a, axis, dtype, out, keepdims, initial, where)
-         36 def _sum(a, axis=None, dtype=None, out=None, keepdims=False,
-         37          initial=_NoValue, where=True):
-    ---> 38     return umr_sum(a, axis, dtype, out, keepdims, initial, where)
-         39 
-         40 def _prod(a, axis=None, dtype=None, out=None, keepdims=False,
+    ~/Developer/venvs/py-ml/lib/python3.8/site-packages/numpy/core/_methods.py in _sum(a, axis, dtype, out, keepdims, initial, where)
+         45 def _sum(a, axis=None, dtype=None, out=None, keepdims=False,
+         46          initial=_NoValue, where=True):
+    ---> 47     return umr_sum(a, axis, dtype, out, keepdims, initial, where)
+         48 
+         49 def _prod(a, axis=None, dtype=None, out=None, keepdims=False,
 
 
     TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'
@@ -3793,24 +3840,24 @@ the constructor:
         <tr>
           <th rowspan="2" valign="top">a</th>
           <th>1</th>
-          <td>0.815709</td>
-          <td>0.590718</td>
+          <td>0.482545</td>
+          <td>0.352967</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>0.373124</td>
-          <td>0.688444</td>
+          <td>0.574280</td>
+          <td>0.063582</td>
         </tr>
         <tr>
           <th rowspan="2" valign="top">b</th>
           <th>1</th>
-          <td>0.482064</td>
-          <td>0.362575</td>
+          <td>0.102271</td>
+          <td>0.569372</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>0.881879</td>
-          <td>0.346904</td>
+          <td>0.753026</td>
+          <td>0.194597</td>
         </tr>
       </tbody>
     </table>
@@ -3997,40 +4044,40 @@ have multiple levels as well:
         <tr>
           <th rowspan="2" valign="top">2013</th>
           <th>1</th>
-          <td>45.0</td>
-          <td>37.2</td>
-          <td>33.0</td>
+          <td>48.0</td>
+          <td>38.1</td>
+          <td>19.0</td>
+          <td>38.4</td>
+          <td>52.0</td>
           <td>38.8</td>
-          <td>37.0</td>
-          <td>37.8</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>41.0</td>
+          <td>34.0</td>
+          <td>38.0</td>
+          <td>37.0</td>
+          <td>36.9</td>
+          <td>31.0</td>
           <td>37.6</td>
-          <td>36.0</td>
-          <td>37.4</td>
-          <td>51.0</td>
-          <td>37.4</td>
         </tr>
         <tr>
           <th rowspan="2" valign="top">2014</th>
           <th>1</th>
-          <td>27.0</td>
+          <td>41.0</td>
           <td>37.0</td>
-          <td>56.0</td>
-          <td>37.5</td>
-          <td>47.0</td>
+          <td>52.0</td>
           <td>38.9</td>
+          <td>38.0</td>
+          <td>37.4</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>31.0</td>
-          <td>36.8</td>
-          <td>39.0</td>
+          <td>47.0</td>
+          <td>36.9</td>
+          <td>46.0</td>
           <td>36.4</td>
-          <td>27.0</td>
-          <td>35.2</td>
+          <td>42.0</td>
+          <td>36.6</td>
         </tr>
       </tbody>
     </table>
@@ -4085,23 +4132,23 @@ can index the top-level column by the person’s name and get a full
         <tr>
           <th rowspan="2" valign="top">2013</th>
           <th>1</th>
-          <td>33.0</td>
-          <td>38.8</td>
+          <td>19.0</td>
+          <td>38.4</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>36.0</td>
-          <td>37.4</td>
+          <td>37.0</td>
+          <td>36.9</td>
         </tr>
         <tr>
           <th rowspan="2" valign="top">2014</th>
           <th>1</th>
-          <td>56.0</td>
-          <td>37.5</td>
+          <td>52.0</td>
+          <td>38.9</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>39.0</td>
+          <td>46.0</td>
           <td>36.4</td>
         </tr>
       </tbody>
@@ -4281,40 +4328,40 @@ A multiply indexed ``DataFrame`` behaves in a similar manner:
         <tr>
           <th rowspan="2" valign="top">2013</th>
           <th>1</th>
-          <td>45.0</td>
-          <td>37.2</td>
-          <td>33.0</td>
+          <td>48.0</td>
+          <td>38.1</td>
+          <td>19.0</td>
+          <td>38.4</td>
+          <td>52.0</td>
           <td>38.8</td>
-          <td>37.0</td>
-          <td>37.8</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>41.0</td>
+          <td>34.0</td>
+          <td>38.0</td>
+          <td>37.0</td>
+          <td>36.9</td>
+          <td>31.0</td>
           <td>37.6</td>
-          <td>36.0</td>
-          <td>37.4</td>
-          <td>51.0</td>
-          <td>37.4</td>
         </tr>
         <tr>
           <th rowspan="2" valign="top">2014</th>
           <th>1</th>
-          <td>27.0</td>
+          <td>41.0</td>
           <td>37.0</td>
-          <td>56.0</td>
-          <td>37.5</td>
-          <td>47.0</td>
+          <td>52.0</td>
           <td>38.9</td>
+          <td>38.0</td>
+          <td>37.4</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>31.0</td>
-          <td>36.8</td>
-          <td>39.0</td>
+          <td>47.0</td>
+          <td>36.9</td>
+          <td>46.0</td>
           <td>36.4</td>
-          <td>27.0</td>
-          <td>35.2</td>
+          <td>42.0</td>
+          <td>36.6</td>
         </tr>
       </tbody>
     </table>
@@ -4337,10 +4384,10 @@ We can recover Guido’s heart rate data with a simple operation:
 .. parsed-literal::
 
     year  visit
-    2013  1        33.0
-          2        36.0
-    2014  1        56.0
-          2        39.0
+    2013  1        19.0
+          2        37.0
+    2014  1        52.0
+          2        46.0
     Name: (Guido, HR), dtype: float64
 
 
@@ -4399,13 +4446,13 @@ and ``ix`` indexers:
         <tr>
           <th rowspan="2" valign="top">2013</th>
           <th>1</th>
-          <td>45.0</td>
-          <td>37.2</td>
+          <td>48.0</td>
+          <td>38.1</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>41.0</td>
-          <td>37.6</td>
+          <td>34.0</td>
+          <td>38.0</td>
         </tr>
       </tbody>
     </table>
@@ -4427,10 +4474,10 @@ can be passed a tuple of multiple indices:
 .. parsed-literal::
 
     year  visit
-    2013  1        45.0
-          2        41.0
-    2014  1        27.0
-          2        31.0
+    2013  1        48.0
+          2        34.0
+    2014  1        41.0
+          2        47.0
     Name: (Bob, HR), dtype: float64
 
 
@@ -4474,12 +4521,12 @@ indices are *not lexographically sorted*:
 .. parsed-literal::
 
     char  int
-    a     1      0.416187
-          2      0.523686
-    c     1      0.678899
-          2      0.990513
-    b     1      0.048998
-          2      0.149826
+    a     1      0.002105
+          2      0.280923
+    c     1      0.008604
+          2      0.631968
+    b     1      0.072270
+          2      0.273800
     dtype: float64
 
 
@@ -4518,12 +4565,12 @@ of the ``DataFrame``.
 .. parsed-literal::
 
     char  int
-    a     1      0.416187
-          2      0.523686
-    b     1      0.048998
-          2      0.149826
-    c     1      0.678899
-          2      0.990513
+    a     1      0.002105
+          2      0.280923
+    b     1      0.072270
+          2      0.273800
+    c     1      0.008604
+          2      0.631968
     dtype: float64
 
 
@@ -4541,10 +4588,10 @@ expected:
 .. parsed-literal::
 
     char  int
-    a     1      0.416187
-          2      0.523686
-    b     1      0.048998
-          2      0.149826
+    a     1      0.002105
+          2      0.280923
+    b     1      0.072270
+          2      0.273800
     dtype: float64
 
 
@@ -4924,40 +4971,40 @@ subset of the data the aggregate is computed on.
         <tr>
           <th rowspan="2" valign="top">2013</th>
           <th>1</th>
-          <td>45.0</td>
-          <td>37.2</td>
-          <td>33.0</td>
+          <td>48.0</td>
+          <td>38.1</td>
+          <td>19.0</td>
+          <td>38.4</td>
+          <td>52.0</td>
           <td>38.8</td>
-          <td>37.0</td>
-          <td>37.8</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>41.0</td>
+          <td>34.0</td>
+          <td>38.0</td>
+          <td>37.0</td>
+          <td>36.9</td>
+          <td>31.0</td>
           <td>37.6</td>
-          <td>36.0</td>
-          <td>37.4</td>
-          <td>51.0</td>
-          <td>37.4</td>
         </tr>
         <tr>
           <th rowspan="2" valign="top">2014</th>
           <th>1</th>
-          <td>27.0</td>
+          <td>41.0</td>
           <td>37.0</td>
-          <td>56.0</td>
-          <td>37.5</td>
-          <td>47.0</td>
+          <td>52.0</td>
           <td>38.9</td>
+          <td>38.0</td>
+          <td>37.4</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>31.0</td>
-          <td>36.8</td>
-          <td>39.0</td>
+          <td>47.0</td>
+          <td>36.9</td>
+          <td>46.0</td>
           <td>36.4</td>
-          <td>27.0</td>
-          <td>35.2</td>
+          <td>42.0</td>
+          <td>36.6</td>
         </tr>
       </tbody>
     </table>
@@ -5027,21 +5074,21 @@ this case the year:
       <tbody>
         <tr>
           <th>2013</th>
-          <td>43.0</td>
-          <td>37.4</td>
-          <td>34.5</td>
-          <td>38.10</td>
-          <td>44.0</td>
-          <td>37.60</td>
+          <td>41.0</td>
+          <td>38.05</td>
+          <td>28.0</td>
+          <td>37.65</td>
+          <td>41.5</td>
+          <td>38.2</td>
         </tr>
         <tr>
           <th>2014</th>
-          <td>29.0</td>
-          <td>36.9</td>
-          <td>47.5</td>
+          <td>44.0</td>
           <td>36.95</td>
+          <td>49.0</td>
+          <td>37.65</td>
+          <td>40.0</td>
           <td>37.0</td>
-          <td>37.05</td>
         </tr>
       </tbody>
     </table>
@@ -5091,13 +5138,13 @@ among levels on the columns as well:
       <tbody>
         <tr>
           <th>2013</th>
-          <td>40.500000</td>
-          <td>37.700000</td>
+          <td>36.833333</td>
+          <td>37.966667</td>
         </tr>
         <tr>
           <th>2014</th>
-          <td>37.833333</td>
-          <td>36.966667</td>
+          <td>44.333333</td>
+          <td>37.200000</td>
         </tr>
       </tbody>
     </table>
@@ -12984,7 +13031,7 @@ year:
 
 
 
-.. image:: pandas_files/pandas_448_0.png
+.. image:: pandas_files/pandas_452_0.png
 
 
 With a simple pivot table and ``plot()`` method, we can immediately see
@@ -13051,7 +13098,7 @@ This allows us to quickly compute the weekday corresponding to each row:
 
 
 
-.. image:: pandas_files/pandas_459_0.png
+.. image:: pandas_files/pandas_463_0.png
 
 
 Apparently births are slightly less common on weekends than on weekdays!
@@ -13199,7 +13246,7 @@ trends:
 
 
 
-.. image:: pandas_files/pandas_467_0.png
+.. image:: pandas_files/pandas_471_0.png
 
 
 In particular, the striking feature of this graph is the dip in
@@ -13879,7 +13926,7 @@ Download some data (**ADD A DESCRIPTION FOR IT**)
 
 
 
-.. image:: pandas_files/pandas_519_0.png
+.. image:: pandas_files/pandas_523_0.png
 
 
 Resampling and converting frequencies
@@ -13903,7 +13950,7 @@ resample the data at the end of business year:
 
 
 
-.. image:: pandas_files/pandas_522_0.png
+.. image:: pandas_files/pandas_526_0.png
 
 
 Notice the difference: at each point, ``resample`` reports the *average
@@ -13933,7 +13980,7 @@ weekends):
 
 
 
-.. image:: pandas_files/pandas_526_0.png
+.. image:: pandas_files/pandas_530_0.png
 
 
 The top panel is the default: non-business days are left as NA values
@@ -13982,7 +14029,7 @@ Here we will both ``shift()`` and ``tshift()`` by 900 days;
 
 
 
-.. image:: pandas_files/pandas_529_0.png
+.. image:: pandas_files/pandas_533_0.png
 
 
 We see here that ``shift(900)`` shifts the *data* by 900 days, pushing
@@ -14001,7 +14048,7 @@ on investment for Google stock over the course of the dataset:
 
 
 
-.. image:: pandas_files/pandas_531_0.png
+.. image:: pandas_files/pandas_535_0.png
 
 
 This helps us to see the overall trend in Google stock: thus far, the
@@ -14034,7 +14081,7 @@ deviation of the Google stock prices:
 
 
 
-.. image:: pandas_files/pandas_535_0.png
+.. image:: pandas_files/pandas_539_0.png
 
 
 As with group-by operations, the ``aggregate()`` and ``apply()`` methods
@@ -14263,7 +14310,7 @@ We can gain some insight into the dataset by visualizing it:
 
 
 
-.. image:: pandas_files/pandas_545_0.png
+.. image:: pandas_files/pandas_549_0.png
 
 
 The ~25,000 hourly samples are far too dense for us to make much sense
@@ -14277,7 +14324,7 @@ of. We can gain more insight by resampling the data to a coarser grid:
 
 
 
-.. image:: pandas_files/pandas_547_0.png
+.. image:: pandas_files/pandas_551_0.png
 
 
 This shows us some interesting seasonal trends: as you might expect,
@@ -14297,7 +14344,7 @@ do a 30 day rolling mean of our data, making sure to center the window:
 
 
 
-.. image:: pandas_files/pandas_550_0.png
+.. image:: pandas_files/pandas_554_0.png
 
 
 The jaggedness of the result is due to the hard cutoff of the window. We
@@ -14315,7 +14362,7 @@ days):
 
 
 
-.. image:: pandas_files/pandas_553_0.png
+.. image:: pandas_files/pandas_557_0.png
 
 
 Digging into the data
@@ -14334,7 +14381,7 @@ the time of day; we do this by grouping:
 
 
 
-.. image:: pandas_files/pandas_555_0.png
+.. image:: pandas_files/pandas_559_0.png
 
 
 The hourly traffic is a strongly bimodal distribution, with peaks around
@@ -14356,7 +14403,7 @@ week. Again, we can do this with a simple groupby:
 
 
 
-.. image:: pandas_files/pandas_558_0.png
+.. image:: pandas_files/pandas_562_0.png
 
 
 This shows a strong distinction between weekday and weekend totals, with
@@ -14383,7 +14430,7 @@ flag marking the weekend, and the time of day:
 
 
 
-.. image:: pandas_files/pandas_562_0.png
+.. image:: pandas_files/pandas_566_0.png
 
 
 The result is very interesting: we see a bimodal commute pattern during
