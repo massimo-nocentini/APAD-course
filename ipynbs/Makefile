@@ -1,4 +1,8 @@
 
+oo:
+	#jupyter-nbconvert generators.ipynb --to slides
+	jupyter-nbconvert oo.ipynb --to rst
+	#echo "Generators\n##########\n\n" | cat - generators.rst > temp && mv temp generators.rst
 exercises:
 	#jupyter-nbconvert generators.ipynb --to slides
 	jupyter-nbconvert exercises.ipynb --to rst
@@ -44,4 +48,4 @@ move:
 	cp -r images ../booklet/source/_static
 	cp *.slides.html ../booklet/source/_static
 
-all: introduction notebook numpy pandas matplotlib networkx gotchas core-concepts exercises move
+all: introduction notebook numpy pandas matplotlib networkx gotchas core-concepts exercises oo move

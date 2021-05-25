@@ -122,11 +122,24 @@ embed a PNG image of the resulting graphic:
     
     fig = plt.figure()
     plt.plot(x, np.sin(x), '-')
-    plt.plot(x, np.cos(x), '--');
+    plt.plot(x, np.cos(x), '--'); # pay attention to the last ";" to ignore the Line2D object
 
 
 
 .. image:: matplotlib_files/matplotlib_11_0.png
+
+
+.. code:: ipython3
+
+    type(_[0])
+
+
+
+
+.. parsed-literal::
+
+    matplotlib.lines.Line2D
+
 
 
 Saving Figures to File
@@ -151,7 +164,7 @@ directory:
 
 .. parsed-literal::
 
-    -rw-r--r-- 1 mn mn 26K Apr  5 22:51 my_figure.png
+    -rw-r--r--  1 mn  staff    26K Apr  8 12:10 my_figure.png
 
 
 In ``savefig()``, the file format is inferred from the extension of the
@@ -169,15 +182,19 @@ canvas object:
 
 .. parsed-literal::
 
-    {'ps': 'Postscript',
-     'eps': 'Encapsulated Postscript',
+    {'eps': 'Encapsulated Postscript',
+     'jpg': 'Joint Photographic Experts Group',
+     'jpeg': 'Joint Photographic Experts Group',
      'pdf': 'Portable Document Format',
      'pgf': 'PGF code for LaTeX',
      'png': 'Portable Network Graphics',
+     'ps': 'Postscript',
      'raw': 'Raw RGBA bitmap',
      'rgba': 'Raw RGBA bitmap',
      'svg': 'Scalable Vector Graphics',
-     'svgz': 'Scalable Vector Graphics'}
+     'svgz': 'Scalable Vector Graphics',
+     'tif': 'Tagged Image File Format',
+     'tiff': 'Tagged Image File Format'}
 
 
 
@@ -199,7 +216,7 @@ following code will probably look quite familiar to MATLAB users:
 
 .. code:: ipython3
 
-    plt.figure()  # create a plot figure
+    fig = plt.figure()  # create a plot figure
     
     # create the first of two panels and set current axis
     plt.subplot(2, 1, 1) # (rows, columns, panel number)
@@ -207,11 +224,11 @@ following code will probably look quite familiar to MATLAB users:
     
     # create the second panel and set current axis
     plt.subplot(2, 1, 2)
-    plt.plot(x, np.cos(x));
+    plt.plot(x, np.cos(x), '--');
 
 
 
-.. image:: matplotlib_files/matplotlib_20_0.png
+.. image:: matplotlib_files/matplotlib_21_0.png
 
 
 Object-oriented interface
@@ -232,11 +249,11 @@ using this style of plotting, you might do the following:
     
     # Call plot() method on the appropriate object
     ax[0].plot(x, np.sin(x))
-    ax[1].plot(x, np.cos(x));
+    ax[1].plot(x, np.cos(x), '--');
 
 
 
-.. image:: matplotlib_files/matplotlib_22_0.png
+.. image:: matplotlib_files/matplotlib_23_0.png
 
 
 Simple Line Plots
@@ -265,7 +282,7 @@ their simplest form, a figure and axes can be created as follows:
 
 
 
-.. image:: matplotlib_files/matplotlib_26_0.png
+.. image:: matplotlib_files/matplotlib_27_0.png
 
 
 In Matplotlib, the *figure* (an instance of the class ``plt.Figure``)
@@ -290,7 +307,7 @@ plot some data. Let’s start with a simple sinusoid:
 
 
 
-.. image:: matplotlib_files/matplotlib_29_0.png
+.. image:: matplotlib_files/matplotlib_30_0.png
 
 
 Alternatively, we can use the pylab interface and let the figure and
@@ -302,7 +319,7 @@ axes be created for us in the background:
 
 
 
-.. image:: matplotlib_files/matplotlib_31_0.png
+.. image:: matplotlib_files/matplotlib_32_0.png
 
 
 If we want to create a single figure with multiple lines, we can simply
@@ -311,11 +328,11 @@ call the ``plot`` function multiple times:
 .. code:: ipython3
 
     plt.plot(x, np.sin(x))
-    plt.plot(x, np.cos(x));
+    plt.plot(x, np.cos(x), '--');
 
 
 
-.. image:: matplotlib_files/matplotlib_33_0.png
+.. image:: matplotlib_files/matplotlib_34_0.png
 
 
 Adjusting the Plot: Line Colors and Styles
@@ -333,7 +350,7 @@ colors for multiple lines):
 
 .. code:: ipython3
 
-    plt.plot(x, np.sin(x - 0), color='blue')        # specify color by name
+    plt.plot(x, np.sin(x - 0), '--', color='blue')        # specify color by name
     plt.plot(x, np.sin(x - 1), color='g')           # short color code (rgbcmyk)
     plt.plot(x, np.sin(x - 2), color='0.75')        # Grayscale between 0 and 1
     plt.plot(x, np.sin(x - 3), color='#FFDD44')     # Hex code (RRGGBB from 00 to FF)
@@ -342,7 +359,7 @@ colors for multiple lines):
 
 
 
-.. image:: matplotlib_files/matplotlib_36_0.png
+.. image:: matplotlib_files/matplotlib_37_0.png
 
 
 Similarly, the line style can be adjusted using the ``linestyle``
@@ -351,7 +368,7 @@ keyword:
 .. code:: ipython3
 
     plt.plot(x, x + 0, linestyle='solid')
-    plt.plot(x, x + 1, linestyle='dashed')
+    plt.plot(x, x + 1, linestyle='dashed') # '--'
     plt.plot(x, x + 2, linestyle='dashdot')
     plt.plot(x, x + 3, linestyle='dotted');
     
@@ -363,7 +380,7 @@ keyword:
 
 
 
-.. image:: matplotlib_files/matplotlib_38_0.png
+.. image:: matplotlib_files/matplotlib_39_0.png
 
 
 If you would like to be extremely terse, these ``linestyle`` and
@@ -379,7 +396,37 @@ the ``plt.plot()`` function:
 
 
 
-.. image:: matplotlib_files/matplotlib_40_0.png
+.. image:: matplotlib_files/matplotlib_41_0.png
+
+
+.. code:: ipython3
+
+    import this
+
+
+.. parsed-literal::
+
+    The Zen of Python, by Tim Peters
+    
+    Beautiful is better than ugly.
+    Explicit is better than implicit.
+    Simple is better than complex.
+    Complex is better than complicated.
+    Flat is better than nested.
+    Sparse is better than dense.
+    Readability counts.
+    Special cases aren't special enough to break the rules.
+    Although practicality beats purity.
+    Errors should never pass silently.
+    Unless explicitly silenced.
+    In the face of ambiguity, refuse the temptation to guess.
+    There should be one-- and preferably only one --obvious way to do it.
+    Although that way may not be obvious at first unless you're Dutch.
+    Now is better than never.
+    Although never is often better than *right* now.
+    If the implementation is hard to explain, it's a bad idea.
+    If the implementation is easy to explain, it may be a good idea.
+    Namespaces are one honking great idea -- let's do more of those!
 
 
 Adjusting the Plot: Axes Limits
@@ -399,7 +446,7 @@ methods:
 
 
 
-.. image:: matplotlib_files/matplotlib_42_0.png
+.. image:: matplotlib_files/matplotlib_44_0.png
 
 
 If for some reason you’d like either axis to be displayed in reverse,
@@ -414,7 +461,7 @@ you can simply reverse the order of the arguments:
 
 
 
-.. image:: matplotlib_files/matplotlib_44_0.png
+.. image:: matplotlib_files/matplotlib_46_0.png
 
 
 A useful related method is ``plt.axis()`` (note here the potential
@@ -430,7 +477,7 @@ a single call, by passing a list which specifies
 
 
 
-.. image:: matplotlib_files/matplotlib_46_0.png
+.. image:: matplotlib_files/matplotlib_48_0.png
 
 
 The ``plt.axis()`` method goes even beyond this, allowing you to do
@@ -443,7 +490,7 @@ things like automatically tighten the bounds around the current plot:
 
 
 
-.. image:: matplotlib_files/matplotlib_48_0.png
+.. image:: matplotlib_files/matplotlib_50_0.png
 
 
 It allows even higher-level specifications, such as ensuring an equal
@@ -457,7 +504,7 @@ unit in ``y``:
 
 
 
-.. image:: matplotlib_files/matplotlib_50_0.png
+.. image:: matplotlib_files/matplotlib_52_0.png
 
 
 Labeling Plots
@@ -478,7 +525,7 @@ that can be used to quickly set them:
 
 
 
-.. image:: matplotlib_files/matplotlib_52_0.png
+.. image:: matplotlib_files/matplotlib_54_0.png
 
 
 When multiple lines are being shown within a single axes, it can be
@@ -498,7 +545,7 @@ of each line using the ``label`` keyword of the plot function:
 
 
 
-.. image:: matplotlib_files/matplotlib_54_0.png
+.. image:: matplotlib_files/matplotlib_56_0.png
 
 
 Aside: Matplotlib Gotchas
@@ -525,11 +572,11 @@ functions individually, it is often more convenient to use the
 
     ax = plt.axes()
     ax.plot(x, np.sin(x))
-    ax.set(xlim=(0, 10), ylim=(-2, 2), xlabel='x', ylabel='sin(x)', title='A Simple Plot');
+    ax.set(xlim=(0, 10), ylim=(-2, 2), xlabel='x', ylabel='sin(x)', title='A Simple Plot'); # focus on metadata only
 
 
 
-.. image:: matplotlib_files/matplotlib_56_0.png
+.. image:: matplotlib_files/matplotlib_58_0.png
 
 
 Simple Scatter Plots
@@ -564,7 +611,7 @@ plots as well:
 
 
 
-.. image:: matplotlib_files/matplotlib_60_0.png
+.. image:: matplotlib_files/matplotlib_62_0.png
 
 
 The third argument in the function call is a character that represents
@@ -585,7 +632,7 @@ intuitive, and we’ll show a number of the more common ones here:
 
 
 
-.. image:: matplotlib_files/matplotlib_62_0.png
+.. image:: matplotlib_files/matplotlib_64_0.png
 
 
 For even more possibilities, these character codes can be used together
@@ -598,7 +645,7 @@ them:
 
 
 
-.. image:: matplotlib_files/matplotlib_64_0.png
+.. image:: matplotlib_files/matplotlib_66_0.png
 
 
 Additional keyword arguments to ``plt.plot`` specify a wide range of
@@ -615,7 +662,7 @@ properties of the lines and markers:
 
 
 
-.. image:: matplotlib_files/matplotlib_66_0.png
+.. image:: matplotlib_files/matplotlib_68_0.png
 
 
 Scatter Plots with ``plt.scatter``
@@ -631,7 +678,7 @@ A second, more powerful method of creating scatter plots is the
 
 
 
-.. image:: matplotlib_files/matplotlib_68_0.png
+.. image:: matplotlib_files/matplotlib_70_0.png
 
 
 The primary difference of ``plt.scatter`` from ``plt.plot`` is that it
@@ -652,11 +699,11 @@ also use the ``alpha`` keyword to adjust the transparency level:
     sizes = 1000 * rng.rand(100)
     
     plt.scatter(x, y, c=colors, s=sizes, alpha=0.3, cmap='viridis')
-    plt.colorbar();  # show color scale
+    plt.colorbar();  # show color scale. In parallel with `plt.legend()`
 
 
 
-.. image:: matplotlib_files/matplotlib_71_0.png
+.. image:: matplotlib_files/matplotlib_73_0.png
 
 
 Notice that the color argument is automatically mapped to a color scale
@@ -681,7 +728,7 @@ petals and sepals carefully measured:
 
 
 
-.. image:: matplotlib_files/matplotlib_74_0.png
+.. image:: matplotlib_files/matplotlib_76_0.png
 
 
 ``plot`` Versus ``scatter``: A Note on Efficiency
@@ -748,7 +795,7 @@ and points, and has the same syntax as the shorthand used in
 
 
 
-.. image:: matplotlib_files/matplotlib_80_0.png
+.. image:: matplotlib_files/matplotlib_82_0.png
 
 
 In addition to these basic options, the ``errorbar`` function has many
@@ -763,7 +810,7 @@ the points themselves:
 
 
 
-.. image:: matplotlib_files/matplotlib_82_0.png
+.. image:: matplotlib_files/matplotlib_84_0.png
 
 
 Density and Contour Plots
@@ -822,7 +869,7 @@ Now let’s look at this with a standard line-only contour plot:
 
 
 
-.. image:: matplotlib_files/matplotlib_90_0.png
+.. image:: matplotlib_files/matplotlib_92_0.png
 
 
 Notice that by default when a single color is used, negative values are
@@ -838,7 +885,7 @@ lines to be drawn—20 equally spaced intervals within the data range:
 
 
 
-.. image:: matplotlib_files/matplotlib_93_0.png
+.. image:: matplotlib_files/matplotlib_95_0.png
 
 
 Here we chose the ``RdGy`` (short for *Red-Gray*) colormap, which is a
@@ -867,7 +914,7 @@ for the plot:
 
 
 
-.. image:: matplotlib_files/matplotlib_96_0.png
+.. image:: matplotlib_files/matplotlib_98_0.png
 
 
 One potential issue with this plot is that it is a bit “splotchy.” That
@@ -887,7 +934,7 @@ code shows this:
 
 
 
-.. image:: matplotlib_files/matplotlib_98_0.png
+.. image:: matplotlib_files/matplotlib_100_0.png
 
 
 There are a few potential gotchas with ``imshow()``, however:
@@ -919,7 +966,7 @@ contours with labels on the contours themselves (using the
 
 
 
-.. image:: matplotlib_files/matplotlib_101_0.png
+.. image:: matplotlib_files/matplotlib_103_0.png
 
 
 Histograms, Binnings, and Density
@@ -945,7 +992,7 @@ histogram in one line, once the normal boiler-plate imports are done:
 
 
 
-.. image:: matplotlib_files/matplotlib_104_0.png
+.. image:: matplotlib_files/matplotlib_106_0.png
 
 
 The ``hist()`` function has many options to tune both the calculation
@@ -959,7 +1006,7 @@ and the display; here’s an example of a more customized histogram:
 
 
 
-.. image:: matplotlib_files/matplotlib_106_0.png
+.. image:: matplotlib_files/matplotlib_108_0.png
 
 
 The ``plt.hist`` docstring has more information on other customization
@@ -981,7 +1028,7 @@ histograms of several distributions:
 
 
 
-.. image:: matplotlib_files/matplotlib_108_0.png
+.. image:: matplotlib_files/matplotlib_110_0.png
 
 
 If you would like to simply compute the histogram (that is, count the
@@ -1028,7 +1075,7 @@ Matplotlib’s ``plt.hist2d`` function:
 
 
 
-.. image:: matplotlib_files/matplotlib_114_0.png
+.. image:: matplotlib_files/matplotlib_116_0.png
 
 
 Just as with ``plt.hist``, ``plt.hist2d`` has a number of extra options
@@ -1057,7 +1104,7 @@ grid of hexagons:
 
 
 
-.. image:: matplotlib_files/matplotlib_118_0.png
+.. image:: matplotlib_files/matplotlib_120_0.png
 
 
 ``plt.hexbin`` has a number of interesting options, including the
@@ -1099,7 +1146,7 @@ this data:
 
 
 
-.. image:: matplotlib_files/matplotlib_121_0.png
+.. image:: matplotlib_files/matplotlib_123_0.png
 
 
 KDE has a smoothing length that effectively slides the knob between
@@ -1142,7 +1189,7 @@ which automatically creates a legend for any labeled plot elements:
 
 
 
-.. image:: matplotlib_files/matplotlib_125_0.png
+.. image:: matplotlib_files/matplotlib_127_0.png
 
 
 But there are many ways we might want to customize such a legend. For
@@ -1156,7 +1203,7 @@ example, we can specify the location and turn off the frame:
 
 
 
-.. image:: matplotlib_files/matplotlib_127_0.png
+.. image:: matplotlib_files/matplotlib_129_0.png
 
 
 
@@ -1171,7 +1218,7 @@ legend:
 
 
 
-.. image:: matplotlib_files/matplotlib_129_0.png
+.. image:: matplotlib_files/matplotlib_131_0.png
 
 
 
@@ -1187,7 +1234,7 @@ the text:
 
 
 
-.. image:: matplotlib_files/matplotlib_131_0.png
+.. image:: matplotlib_files/matplotlib_133_0.png
 
 
 
@@ -1212,7 +1259,7 @@ labels we’d like to specify:
 
 
 
-.. image:: matplotlib_files/matplotlib_133_0.png
+.. image:: matplotlib_files/matplotlib_135_0.png
 
 
 I generally find in practice that it is clearer to use the first method,
@@ -1227,7 +1274,7 @@ applying labels to the plot elements you’d like to show on the legend:
 
 
 
-.. image:: matplotlib_files/matplotlib_135_0.png
+.. image:: matplotlib_files/matplotlib_137_0.png
 
 
 Legend for Size of Points
@@ -1268,7 +1315,7 @@ this by plotting some labeled data with no entries:
 
 
 
-.. image:: matplotlib_files/matplotlib_137_0.png
+.. image:: matplotlib_files/matplotlib_139_0.png
 
 
 The legend will always reference some object that is on the plot, so if
@@ -1319,7 +1366,7 @@ manually add the second artist to the plot:
 
 
 
-.. image:: matplotlib_files/matplotlib_140_0.png
+.. image:: matplotlib_files/matplotlib_142_0.png
 
 
 Customizing Colorbars
@@ -1358,7 +1405,7 @@ colorbar can be created with the ``plt.colorbar`` function:
 
 
 
-.. image:: matplotlib_files/matplotlib_145_0.png
+.. image:: matplotlib_files/matplotlib_147_0.png
 
 
 Customizing Colorbars
@@ -1373,7 +1420,7 @@ plotting function that is creating the visualization:
 
 
 
-.. image:: matplotlib_files/matplotlib_147_0.png
+.. image:: matplotlib_files/matplotlib_149_0.png
 
 
 Choosing the Colormap
@@ -1442,7 +1489,7 @@ We can see this by converting the ``jet`` colorbar into black and white:
 
 
 
-.. image:: matplotlib_files/matplotlib_151_0.png
+.. image:: matplotlib_files/matplotlib_153_0.png
 
 
 Notice the bright stripes in the grayscale image. Even in full color,
@@ -1461,7 +1508,7 @@ translate well to grayscale printing:
 
 
 
-.. image:: matplotlib_files/matplotlib_154_0.png
+.. image:: matplotlib_files/matplotlib_156_0.png
 
 
 If you favor rainbow schemes, another good option for continuous data is
@@ -1473,7 +1520,7 @@ the ``cubehelix`` colormap:
 
 
 
-.. image:: matplotlib_files/matplotlib_156_0.png
+.. image:: matplotlib_files/matplotlib_158_0.png
 
 
 For other situations, such as showing positive and negative deviations
@@ -1488,7 +1535,7 @@ upon translation to grayscale!
 
 
 
-.. image:: matplotlib_files/matplotlib_158_0.png
+.. image:: matplotlib_files/matplotlib_160_0.png
 
 
 Color limits and extensions
@@ -1522,7 +1569,7 @@ to noise:
 
 
 
-.. image:: matplotlib_files/matplotlib_160_0.png
+.. image:: matplotlib_files/matplotlib_162_0.png
 
 
 Notice that in the left panel, the default color limits respond to the
@@ -1548,7 +1595,7 @@ along with the number of desired bins:
 
 
 
-.. image:: matplotlib_files/matplotlib_163_0.png
+.. image:: matplotlib_files/matplotlib_165_0.png
 
 
 Example: Handwritten Digits
@@ -1575,7 +1622,7 @@ several of the example images with ``plt.imshow()``:
 
 
 
-.. image:: matplotlib_files/matplotlib_166_0.png
+.. image:: matplotlib_files/matplotlib_168_0.png
 
 
 Because each digit is defined by the hue of its 64 pixels, we can
@@ -1611,7 +1658,7 @@ colorbar:
 
 
 
-.. image:: matplotlib_files/matplotlib_171_0.png
+.. image:: matplotlib_files/matplotlib_173_0.png
 
 
 The projection also gives us some interesting insights on the
@@ -1665,7 +1712,7 @@ the width and 20% of the height of the figure):
 
 
 
-.. image:: matplotlib_files/matplotlib_177_0.png
+.. image:: matplotlib_files/matplotlib_179_0.png
 
 
 The equivalent of this command within the object-oriented interface is
@@ -1686,7 +1733,7 @@ axes:
 
 
 
-.. image:: matplotlib_files/matplotlib_179_0.png
+.. image:: matplotlib_files/matplotlib_181_0.png
 
 
 ``plt.subplot``: Simple Grids of Subplots
@@ -1709,7 +1756,7 @@ upper left to the bottom right:
 
 
 
-.. image:: matplotlib_files/matplotlib_181_0.png
+.. image:: matplotlib_files/matplotlib_183_0.png
 
 
 The command ``plt.subplots_adjust`` can be used to adjust the spacing
@@ -1727,7 +1774,7 @@ object-oriented command, ``fig.add_subplot()``:
 
 
 
-.. image:: matplotlib_files/matplotlib_183_0.png
+.. image:: matplotlib_files/matplotlib_185_0.png
 
 
 We’ve used the ``hspace`` and ``wspace`` arguments of
@@ -1758,7 +1805,7 @@ column share their x-axis scale:
 
 
 
-.. image:: matplotlib_files/matplotlib_187_0.png
+.. image:: matplotlib_files/matplotlib_189_0.png
 
 
 Note that by specifying ``sharex`` and ``sharey``, we’ve automatically
@@ -1779,7 +1826,7 @@ indexing notation:
 
 
 
-.. image:: matplotlib_files/matplotlib_189_0.png
+.. image:: matplotlib_files/matplotlib_191_0.png
 
 
 
@@ -1809,7 +1856,7 @@ familiary Python slicing syntax:
 
 
 
-.. image:: matplotlib_files/matplotlib_193_0.png
+.. image:: matplotlib_files/matplotlib_195_0.png
 
 
 This type of flexible grid alignment has a wide range of uses. I most
@@ -1838,7 +1885,7 @@ shown here:
 
 
 
-.. image:: matplotlib_files/matplotlib_195_0.png
+.. image:: matplotlib_files/matplotlib_197_0.png
 
 
 Text and Annotation
@@ -1895,7 +1942,7 @@ results:
 
 
 
-.. image:: matplotlib_files/matplotlib_200_0.png
+.. image:: matplotlib_files/matplotlib_202_0.png
 
 
 When we’re communicating data like this, it is often useful to annotate
@@ -1929,7 +1976,7 @@ place text at a particular x/y value:
 
 
 
-.. image:: matplotlib_files/matplotlib_202_0.png
+.. image:: matplotlib_files/matplotlib_204_0.png
 
 
 The ``ax.text`` method takes an x position, a y position, a string, and
@@ -1982,7 +2029,7 @@ these transforms:
 
 
 
-.. image:: matplotlib_files/matplotlib_206_0.png
+.. image:: matplotlib_files/matplotlib_208_0.png
 
 
 Note that by default, the text is aligned above and to the left of the
@@ -2009,7 +2056,7 @@ stationary:
 
 
 
-.. image:: matplotlib_files/matplotlib_209_0.png
+.. image:: matplotlib_files/matplotlib_211_0.png
 
 
 
@@ -2054,7 +2101,7 @@ Here we’ll use ``annotate`` with several of its options:
 
 
 
-.. image:: matplotlib_files/matplotlib_213_0.png
+.. image:: matplotlib_files/matplotlib_215_0.png
 
 
 The arrow style is controlled through the ``arrowprops`` dictionary,
@@ -2119,7 +2166,7 @@ using the birthrate plot from before:
 
 
 
-.. image:: matplotlib_files/matplotlib_215_0.png
+.. image:: matplotlib_files/matplotlib_217_0.png
 
 
 Customizing Ticks
@@ -2167,7 +2214,7 @@ can see them is within logarithmic plots:
 
 
 
-.. image:: matplotlib_files/matplotlib_219_0.png
+.. image:: matplotlib_files/matplotlib_221_0.png
 
 
 We see here that each major tick shows a large tickmark and a label,
@@ -2223,7 +2270,7 @@ hiding ticks or labels. This can be done using ``plt.NullLocator()`` and
 
 
 
-.. image:: matplotlib_files/matplotlib_226_0.png
+.. image:: matplotlib_files/matplotlib_228_0.png
 
 
 Notice that we’ve removed the labels (but kept the ticks/gridlines) from
@@ -2255,7 +2302,7 @@ example often used in supervised machine learning problems:
 
 
 
-.. image:: matplotlib_files/matplotlib_228_1.png
+.. image:: matplotlib_files/matplotlib_230_1.png
 
 
 Reducing or Increasing the Number of Ticks
@@ -2271,7 +2318,7 @@ here:
 
 
 
-.. image:: matplotlib_files/matplotlib_230_0.png
+.. image:: matplotlib_files/matplotlib_232_0.png
 
 
 Particularly for the x ticks, the numbers nearly overlap and make them
@@ -2291,7 +2338,7 @@ use internal logic to choose the particular tick locations:
 
 
 
-.. image:: matplotlib_files/matplotlib_232_0.png
+.. image:: matplotlib_files/matplotlib_234_0.png
 
 
 
@@ -2318,7 +2365,7 @@ more. Consider this plot of a sine and a cosine:
 
 
 
-.. image:: matplotlib_files/matplotlib_234_0.png
+.. image:: matplotlib_files/matplotlib_236_0.png
 
 
 There are a couple changes we might like to make. First, it’s more
@@ -2336,7 +2383,7 @@ we’ll add both major and minor ticks in multiples of :math:`\pi/4`:
 
 
 
-.. image:: matplotlib_files/matplotlib_236_0.png
+.. image:: matplotlib_files/matplotlib_238_0.png
 
 
 
@@ -2369,7 +2416,7 @@ fine-grained control over the tick outputs:
 
 
 
-.. image:: matplotlib_files/matplotlib_238_0.png
+.. image:: matplotlib_files/matplotlib_240_0.png
 
 
 
@@ -2453,7 +2500,7 @@ individual plot. For example, here is a fairly drab default histogram:
 
 
 
-.. image:: matplotlib_files/matplotlib_244_0.png
+.. image:: matplotlib_files/matplotlib_246_0.png
 
 
 We can adjust this by hand to make it a much more visually pleasing
@@ -2488,7 +2535,7 @@ plot:
 
 
 
-.. image:: matplotlib_files/matplotlib_246_0.png
+.. image:: matplotlib_files/matplotlib_248_0.png
 
 
 Changing the Defaults: ``rcParams``
@@ -2533,7 +2580,7 @@ settings in action:
 
 
 
-.. image:: matplotlib_files/matplotlib_252_0.png
+.. image:: matplotlib_files/matplotlib_254_0.png
 
 
 Let’s see what simple line plots look like with these rc parameters:
@@ -2545,7 +2592,7 @@ Let’s see what simple line plots look like with these rc parameters:
 
 
 
-.. image:: matplotlib_files/matplotlib_254_0.png
+.. image:: matplotlib_files/matplotlib_256_0.png
 
 
 Stylesheets
@@ -2625,7 +2672,7 @@ Now let’s see how it looks:
 
 
 
-.. image:: matplotlib_files/matplotlib_263_0.png
+.. image:: matplotlib_files/matplotlib_265_0.png
 
 
 FiveThiryEight style
@@ -2643,7 +2690,7 @@ axes:
 
 
 
-.. image:: matplotlib_files/matplotlib_265_0.png
+.. image:: matplotlib_files/matplotlib_267_0.png
 
 
 ggplot
@@ -2660,7 +2707,7 @@ package:
 
 
 
-.. image:: matplotlib_files/matplotlib_267_0.png
+.. image:: matplotlib_files/matplotlib_269_0.png
 
 
 *Bayesian Methods for Hackers* style
@@ -2680,7 +2727,7 @@ throughout the book. This style is reproduced in the ``bmh`` stylesheet:
 
 
 
-.. image:: matplotlib_files/matplotlib_269_0.png
+.. image:: matplotlib_files/matplotlib_271_0.png
 
 
 Seaborn style
@@ -2698,7 +2745,7 @@ use them as defaults in my own data exploration.
 
 
 
-.. image:: matplotlib_files/matplotlib_271_0.png
+.. image:: matplotlib_files/matplotlib_273_0.png
 
 
 Three-Dimensional Plotting in Matplotlib
@@ -2733,7 +2780,7 @@ creation routines:
 
 
 
-.. image:: matplotlib_files/matplotlib_276_0.png
+.. image:: matplotlib_files/matplotlib_278_0.png
 
 
 With this three-dimensional axes enabled, we can now plot a variety of
@@ -2777,7 +2824,7 @@ randomly near the line:
 
 
 
-.. image:: matplotlib_files/matplotlib_280_0.png
+.. image:: matplotlib_files/matplotlib_282_0.png
 
 
 Three-dimensional Contour Plots
@@ -2812,7 +2859,7 @@ contour diagram of a three-dimensional sinusoidal function:
 
 
 
-.. image:: matplotlib_files/matplotlib_283_0.png
+.. image:: matplotlib_files/matplotlib_285_0.png
 
 
 Sometimes the default viewing angle is not optimal, in which case we can
@@ -2829,7 +2876,7 @@ rotated 35 degrees counter-clockwise about the z-axis):
 
 
 
-.. image:: matplotlib_files/matplotlib_285_0.png
+.. image:: matplotlib_files/matplotlib_287_0.png
 
 
 
@@ -2851,7 +2898,7 @@ using a wireframe:
 
 
 
-.. image:: matplotlib_files/matplotlib_287_0.png
+.. image:: matplotlib_files/matplotlib_289_0.png
 
 
 A surface plot is like a wireframe plot, but each face of the wireframe
@@ -2867,7 +2914,7 @@ perception of the topology of the surface being visualized:
 
 
 
-.. image:: matplotlib_files/matplotlib_289_0.png
+.. image:: matplotlib_files/matplotlib_291_0.png
 
 
 Note that though the grid of values for a surface plot needs to be
@@ -2891,7 +2938,7 @@ plot can give us a slice into the function we’re visualizing:
 
 
 
-.. image:: matplotlib_files/matplotlib_291_0.png
+.. image:: matplotlib_files/matplotlib_293_0.png
 
 
 Surface Triangulations
@@ -2921,7 +2968,7 @@ surface we’re sampling from:
 
 
 
-.. image:: matplotlib_files/matplotlib_295_0.png
+.. image:: matplotlib_files/matplotlib_297_0.png
 
 
 This leaves a lot to be desired. The function that will help us in this
@@ -2937,7 +2984,7 @@ z here are one-dimensional arrays):
 
 
 
-.. image:: matplotlib_files/matplotlib_297_0.png
+.. image:: matplotlib_files/matplotlib_299_0.png
 
 
 Example: Visualizing a Möbius strip
@@ -3007,7 +3054,7 @@ can be accomplished as follows:
 
 
 
-.. image:: matplotlib_files/matplotlib_305_0.png
+.. image:: matplotlib_files/matplotlib_307_0.png
 
 
 Visualization with Seaborn
@@ -3076,7 +3123,7 @@ And do a simple plot:
 
 
 
-.. image:: matplotlib_files/matplotlib_313_0.png
+.. image:: matplotlib_files/matplotlib_315_0.png
 
 
 Although the result contains all the information we’d like it to convey,
@@ -3106,7 +3153,7 @@ Now let’s rerun the same two lines as before:
 
 
 
-.. image:: matplotlib_files/matplotlib_317_0.png
+.. image:: matplotlib_files/matplotlib_319_0.png
 
 
 Exploring Seaborn Plots
@@ -3138,7 +3185,7 @@ is relatively straightforward in Matplotlib:
 
 
 
-.. image:: matplotlib_files/matplotlib_320_0.png
+.. image:: matplotlib_files/matplotlib_322_0.png
 
 
 Rather than a histogram, we can get a smooth estimate of the
@@ -3152,7 +3199,7 @@ distribution using a kernel density estimation, which Seaborn does with
 
 
 
-.. image:: matplotlib_files/matplotlib_322_0.png
+.. image:: matplotlib_files/matplotlib_324_0.png
 
 
 Histograms and KDE can be combined using ``distplot``:
@@ -3164,7 +3211,7 @@ Histograms and KDE can be combined using ``distplot``:
 
 
 
-.. image:: matplotlib_files/matplotlib_324_0.png
+.. image:: matplotlib_files/matplotlib_326_0.png
 
 
 If we pass the full two-dimensional dataset to ``kdeplot``, we will get
@@ -3182,7 +3229,7 @@ a two-dimensional visualization of the data:
 
 
 
-.. image:: matplotlib_files/matplotlib_326_1.png
+.. image:: matplotlib_files/matplotlib_328_1.png
 
 
 We can see the joint distribution and the marginal distributions
@@ -3196,7 +3243,7 @@ a white background:
 
 
 
-.. image:: matplotlib_files/matplotlib_328_0.png
+.. image:: matplotlib_files/matplotlib_330_0.png
 
 
 There are other parameters that can be passed to ``jointplot``—for
@@ -3209,7 +3256,7 @@ example, we can use a hexagonally based histogram instead:
 
 
 
-.. image:: matplotlib_files/matplotlib_330_0.png
+.. image:: matplotlib_files/matplotlib_332_0.png
 
 
 Pair plots
@@ -3314,7 +3361,7 @@ easy as calling ``sns.pairplot``:
 
 
 
-.. image:: matplotlib_files/matplotlib_334_0.png
+.. image:: matplotlib_files/matplotlib_336_0.png
 
 
 Faceted histograms
@@ -3428,7 +3475,7 @@ based on various indicator data:
 
 
 
-.. image:: matplotlib_files/matplotlib_337_0.png
+.. image:: matplotlib_files/matplotlib_339_0.png
 
 
 Factor plots
@@ -3446,7 +3493,7 @@ by any other parameter:
 
 
 
-.. image:: matplotlib_files/matplotlib_339_0.png
+.. image:: matplotlib_files/matplotlib_341_0.png
 
 
 Joint distributions
@@ -3463,7 +3510,7 @@ associated marginal distributions:
 
 
 
-.. image:: matplotlib_files/matplotlib_341_0.png
+.. image:: matplotlib_files/matplotlib_343_0.png
 
 
 The joint plot can even do some automatic kernel density estimation and
@@ -3475,7 +3522,7 @@ regression:
 
 
 
-.. image:: matplotlib_files/matplotlib_343_0.png
+.. image:: matplotlib_files/matplotlib_345_0.png
 
 
 Bar plots
@@ -3581,7 +3628,7 @@ example, we’ll use the Planets data:
 
 
 
-.. image:: matplotlib_files/matplotlib_346_0.png
+.. image:: matplotlib_files/matplotlib_348_0.png
 
 
 We can learn more by looking at the *method* of discovery of each of
@@ -3596,7 +3643,7 @@ these planets:
 
 
 
-.. image:: matplotlib_files/matplotlib_348_0.png
+.. image:: matplotlib_files/matplotlib_350_0.png
 
 
 Example: Exploring Marathon Finishing Times
@@ -3926,7 +3973,7 @@ over the data:
 
 
 
-.. image:: matplotlib_files/matplotlib_360_0.png
+.. image:: matplotlib_files/matplotlib_362_0.png
 
 
 The dotted line shows where someone’s time would lie if they ran the
@@ -4045,7 +4092,7 @@ fraction:
 
 
 
-.. image:: matplotlib_files/matplotlib_364_0.png
+.. image:: matplotlib_files/matplotlib_366_0.png
 
 
 .. code:: ipython3
@@ -4077,7 +4124,7 @@ plots of all these correlations:
 
 
 
-.. image:: matplotlib_files/matplotlib_367_0.png
+.. image:: matplotlib_files/matplotlib_369_0.png
 
 
 It looks like the split fraction does not correlate particularly with
@@ -4099,7 +4146,7 @@ the histogram of split fractions for these two groups:
 
 
 
-.. image:: matplotlib_files/matplotlib_370_0.png
+.. image:: matplotlib_files/matplotlib_372_0.png
 
 
 The interesting thing here is that there are many more men than women
@@ -4116,7 +4163,7 @@ A nice way to compare distributions is to use a *violin plot*
 
 
 
-.. image:: matplotlib_files/matplotlib_372_0.png
+.. image:: matplotlib_files/matplotlib_374_0.png
 
 
 This is yet another way to compare the distributions between men and
@@ -4238,7 +4285,7 @@ the decade of age that each person is in:
 
 
 
-.. image:: matplotlib_files/matplotlib_376_0.png
+.. image:: matplotlib_files/matplotlib_378_0.png
 
 
 Looking at this, we can see where the distributions of men and women
@@ -4277,5 +4324,5 @@ regression to the data:
 
 
 
-.. image:: matplotlib_files/matplotlib_381_0.png
+.. image:: matplotlib_files/matplotlib_383_0.png
 

@@ -123,6 +123,7 @@
 <li class="toctree-l1"><a class="reference internal" href="matplotlib.html">matplotlib module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="networkx.html">networkx module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gotchas.html">Tips an’ Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oo.html">Object Orientation</a></li>
 </ul>
 
 <div class="relations">
@@ -212,11 +213,58 @@ attributes.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.5</span> <span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.</span>  <span class="p">])</span>
 </pre></div>
 </div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>
+</pre></div>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">index</span></code> is an array-like object of type <code class="docutils literal notranslate"><span class="pre">pd.Index</span></code>:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">index</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RangeIndex</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">RangeIndex</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Immutable</span> <span class="n">Index</span> <span class="n">implementing</span> <span class="n">a</span> <span class="n">monotonic</span> <span class="n">integer</span> <span class="nb">range</span><span class="o">.</span>
+
+<span class="n">RangeIndex</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">memory</span><span class="o">-</span><span class="n">saving</span> <span class="n">special</span> <span class="n">case</span> <span class="n">of</span> <span class="n">Int64Index</span> <span class="n">limited</span> <span class="n">to</span>
+<span class="n">representing</span> <span class="n">monotonic</span> <span class="n">ranges</span><span class="o">.</span> <span class="n">Using</span> <span class="n">RangeIndex</span> <span class="n">may</span> <span class="ow">in</span> <span class="n">some</span> <span class="n">instances</span>
+<span class="n">improve</span> <span class="n">computing</span> <span class="n">speed</span><span class="o">.</span>
+
+<span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">default</span> <span class="n">index</span> <span class="nb">type</span> <span class="n">used</span>
+<span class="n">by</span> <span class="n">DataFrame</span> <span class="ow">and</span> <span class="n">Series</span> <span class="n">when</span> <span class="n">no</span> <span class="n">explicit</span> <span class="n">index</span> <span class="ow">is</span> <span class="n">provided</span> <span class="n">by</span> <span class="n">the</span> <span class="n">user</span><span class="o">.</span>
+
+<span class="n">Parameters</span>
+<span class="o">----------</span>
+<span class="n">start</span> <span class="p">:</span> <span class="nb">int</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">),</span> <span class="ow">or</span> <span class="n">other</span> <span class="n">RangeIndex</span> <span class="n">instance</span>
+    <span class="n">If</span> <span class="nb">int</span> <span class="ow">and</span> <span class="s2">&quot;stop&quot;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">given</span><span class="p">,</span> <span class="n">interpreted</span> <span class="k">as</span> <span class="s2">&quot;stop&quot;</span> <span class="n">instead</span><span class="o">.</span>
+<span class="n">stop</span> <span class="p">:</span> <span class="nb">int</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">step</span> <span class="p">:</span> <span class="nb">int</span> <span class="p">(</span><span class="n">default</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">dtype</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">int64</span>
+    <span class="n">Unused</span><span class="p">,</span> <span class="n">accepted</span> <span class="k">for</span> <span class="n">homogeneity</span> <span class="k">with</span> <span class="n">other</span> <span class="n">index</span> <span class="n">types</span><span class="o">.</span>
+<span class="n">copy</span> <span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">default</span> <span class="kc">False</span>
+    <span class="n">Unused</span><span class="p">,</span> <span class="n">accepted</span> <span class="k">for</span> <span class="n">homogeneity</span> <span class="k">with</span> <span class="n">other</span> <span class="n">index</span> <span class="n">types</span><span class="o">.</span>
+<span class="n">name</span> <span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">optional</span>
+    <span class="n">Name</span> <span class="n">to</span> <span class="n">be</span> <span class="n">stored</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">index</span><span class="o">.</span>
+
+<span class="n">Attributes</span>
+<span class="o">----------</span>
+<span class="n">start</span>
+<span class="n">stop</span>
+<span class="n">step</span>
+
+<span class="n">Methods</span>
+<span class="o">-------</span>
+<span class="n">from_range</span>
+
+<span class="n">See</span> <span class="n">Also</span>
+<span class="o">--------</span>
+<span class="n">Index</span> <span class="p">:</span> <span class="n">The</span> <span class="n">base</span> <span class="n">pandas</span> <span class="n">Index</span> <span class="nb">type</span><span class="o">.</span>
+<span class="n">Int64Index</span> <span class="p">:</span> <span class="n">Index</span> <span class="n">of</span> <span class="n">int64</span> <span class="n">data</span><span class="o">.</span>
 </pre></div>
 </div>
 <p>Like with a NumPy array, data can be accessed by the associated index
@@ -305,6 +353,12 @@ typed keys to a set of typed values:</p>
 <span class="n">Florida</span>       <span class="mi">19552860</span>
 <span class="n">Illinois</span>      <span class="mi">12882135</span>
 <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">Series</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population</span><span class="o">.</span><span class="n">index</span>
@@ -412,7 +466,13 @@ objects. Here, by <em>aligned</em> we mean that they share the same index:</p>
     </tr>
   </tbody>
 </table>
-</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span><span class="o">.</span><span class="n">index</span>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span><span class="o">.</span><span class="n">index</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;California&#39;</span><span class="p">,</span> <span class="s1">&#39;Texas&#39;</span><span class="p">,</span> <span class="s1">&#39;New York&#39;</span><span class="p">,</span> <span class="s1">&#39;Florida&#39;</span><span class="p">,</span> <span class="s1">&#39;Illinois&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
@@ -426,6 +486,12 @@ objects. Here, by <em>aligned</em> we mean that they share the same index:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="s1">&#39;area&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">indexes</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">Index</span>
+</pre></div>
+</div>
 <p>Thus the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> can be thought of as a generalization of a
 two-dimensional NumPy array, where both the rows and columns have a
 generalized index for accessing the data.</p>
@@ -436,7 +502,7 @@ generalized index for accessing the data.</p>
 dictionary.</p>
 <p>Where a dictionary maps a key to a value, a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> maps a column
 name to a <code class="docutils literal notranslate"><span class="pre">Series</span></code> of column data:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">states</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">]</span> <span class="c1"># &quot;feature&quot;</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">California</span>    <span class="mi">423967</span>
@@ -505,7 +571,13 @@ single-column <code class="docutils literal notranslate"><span class="pre">DataF
 <div class="section" id="from-a-list-of-dicts">
 <h5>From a list of dicts<a class="headerlink" href="#from-a-list-of-dicts" title="Permalink to this headline">¶</a></h5>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 <div>
@@ -594,6 +666,14 @@ single-column <code class="docutils literal notranslate"><span class="pre">DataF
 <h5>From a two-dimensional NumPy array<a class="headerlink" href="#from-a-two-dimensional-numpy-array" title="Permalink to this headline">¶</a></h5>
 <p>Given a two-dimensional array of data, we can create a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>
 with any specified column and index names:</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mf">0.30282887</span><span class="p">,</span> <span class="mf">0.48376433</span><span class="p">],</span>
+       <span class="p">[</span><span class="mf">0.53588853</span><span class="p">,</span> <span class="mf">0.97428136</span><span class="p">],</span>
+       <span class="p">[</span><span class="mf">0.94756199</span><span class="p">,</span> <span class="mf">0.46766408</span><span class="p">]])</span>
+</pre></div>
+</div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
              <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">],</span>
              <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">])</span>
@@ -624,18 +704,18 @@ with any specified column and index names:</p>
   <tbody>
     <tr>
       <th>a</th>
-      <td>0.146592</td>
-      <td>0.513407</td>
+      <td>0.759907</td>
+      <td>0.458958</td>
     </tr>
     <tr>
       <th>b</th>
-      <td>0.106042</td>
-      <td>0.602525</td>
+      <td>0.776779</td>
+      <td>0.767430</td>
     </tr>
     <tr>
       <th>c</th>
-      <td>0.927734</td>
-      <td>0.483650</td>
+      <td>0.131552</td>
+      <td>0.740137</td>
     </tr>
   </tbody>
 </table>
@@ -740,11 +820,11 @@ modified via the normal means:</p>
 
 <span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
 
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">34</span><span class="o">-</span><span class="mi">906</span><span class="n">a9fa1424c</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">60</span><span class="o">-</span><span class="mi">906</span><span class="n">a9fa1424c</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">ind</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
 
-<span class="o">~/</span><span class="n">Developer</span><span class="o">/</span><span class="n">venvs</span><span class="o">/</span><span class="n">py</span><span class="o">-</span><span class="n">ml</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">8</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">indexes</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="o">~/</span><span class="n">Developer</span><span class="o">/</span><span class="n">py</span><span class="o">-</span><span class="n">venvs</span><span class="o">/</span><span class="n">sphinx</span><span class="o">-</span><span class="n">venv</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">pandas</span><span class="o">/</span><span class="n">core</span><span class="o">/</span><span class="n">indexes</span><span class="o">/</span><span class="n">base</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
    <span class="mi">4275</span>     <span class="nd">@final</span>
    <span class="mi">4276</span>     <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 <span class="o">-&gt;</span> <span class="mi">4277</span>         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Index does not support mutable operations&quot;</span><span class="p">)</span>
@@ -815,7 +895,7 @@ collection of keys to a collection of values:</p>
 <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="c1"># mnemonic indexing</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.5</span>
@@ -884,6 +964,24 @@ array-style item selection via the same basic mechanisms as NumPy arrays
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span>    <span class="mf">0.50</span>
 <span class="n">c</span>    <span class="mf">0.75</span>
 <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+<p>because</p>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">data</span> <span class="o">&gt;</span> <span class="mf">0.3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;</span> <span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span>    <span class="kc">False</span>
+<span class="n">b</span>     <span class="kc">True</span>
+<span class="n">c</span>     <span class="kc">True</span>
+<span class="n">d</span>    <span class="kc">False</span>
+<span class="n">e</span>    <span class="kc">False</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="nb">bool</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">Series</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">]]</span> <span class="c1"># fancy indexing</span>
@@ -1129,6 +1227,23 @@ this case adding a new column:</p>
        <span class="p">[</span><span class="mf">1.49995000e+05</span><span class="p">,</span> <span class="mf">1.28821350e+07</span><span class="p">,</span> <span class="mf">8.58837628e+01</span><span class="p">]])</span>
 </pre></div>
 </div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mf">4.23967000e+05</span><span class="p">,</span> <span class="mf">6.95662000e+05</span><span class="p">,</span> <span class="mf">1.41297000e+05</span><span class="p">,</span> <span class="mf">1.70312000e+05</span><span class="p">,</span>
+        <span class="mf">1.49995000e+05</span><span class="p">],</span>
+       <span class="p">[</span><span class="mf">3.83325210e+07</span><span class="p">,</span> <span class="mf">2.64481930e+07</span><span class="p">,</span> <span class="mf">1.96511270e+07</span><span class="p">,</span> <span class="mf">1.95528600e+07</span><span class="p">,</span>
+        <span class="mf">1.28821350e+07</span><span class="p">],</span>
+       <span class="p">[</span><span class="mf">9.04139261e+01</span><span class="p">,</span> <span class="mf">3.80187404e+01</span><span class="p">,</span> <span class="mf">1.39076746e+02</span><span class="p">,</span> <span class="mf">1.14806121e+02</span><span class="p">,</span>
+        <span class="mf">8.58837628e+01</span><span class="p">]])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>
+</pre></div>
+</div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">T</span> <span class="c1"># transpose the full DataFrame object</span>
 </pre></div>
 </div>
@@ -1184,7 +1299,13 @@ this case adding a new column:</p>
     </tr>
   </tbody>
 </table>
-</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># passing a single index to an array accesses a row</span>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># passing a single index to an array accesses a row</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span><span class="mf">4.23967000e+05</span><span class="p">,</span> <span class="mf">3.83325210e+07</span><span class="p">,</span> <span class="mf">9.04139261e+01</span><span class="p">])</span>
@@ -1521,6 +1642,14 @@ on Pandas <code class="docutils literal notranslate"><span class="pre">Series</s
 <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
 </pre></div>
 </div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+</pre></div>
+</div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">])</span>
 <span class="n">df</span>
 </pre></div>
@@ -1553,23 +1682,23 @@ on Pandas <code class="docutils literal notranslate"><span class="pre">Series</s
     <tr>
       <th>0</th>
       <td>6</td>
-      <td>9</td>
+      <td>3</td>
+      <td>8</td>
       <td>2</td>
-      <td>6</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>7</td>
       <td>4</td>
-      <td>3</td>
-      <td>7</td>
+      <td>2</td>
+      <td>6</td>
+      <td>4</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>7</td>
-      <td>2</td>
-      <td>5</td>
-      <td>4</td>
+      <td>8</td>
+      <td>6</td>
+      <td>1</td>
+      <td>3</td>
     </tr>
   </tbody>
 </table>
@@ -1583,6 +1712,12 @@ another Pandas object <em>with the indices preserved:</em></p>
 <span class="mi">2</span>    <span class="mf">1096.633158</span>
 <span class="mi">3</span>      <span class="mf">54.598150</span>
 <span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">series</span><span class="o">.</span><span class="n">Series</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">df</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># a slightly more complex calculation</span>
@@ -1615,24 +1750,24 @@ another Pandas object <em>with the indices preserved:</em></p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>-1.000000</td>
-      <td>7.071068e-01</td>
-      <td>1.000000</td>
       <td>-1.000000e+00</td>
+      <td>0.707107</td>
+      <td>-2.449294e-16</td>
+      <td>1.000000e+00</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-0.707107</td>
       <td>1.224647e-16</td>
-      <td>0.707107</td>
-      <td>-7.071068e-01</td>
+      <td>1.000000</td>
+      <td>-1.000000e+00</td>
+      <td>1.224647e-16</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-0.707107</td>
-      <td>1.000000e+00</td>
-      <td>-0.707107</td>
-      <td>1.224647e-16</td>
+      <td>-2.449294e-16</td>
+      <td>-1.000000</td>
+      <td>7.071068e-01</td>
+      <td>7.071068e-01</td>
     </tr>
   </tbody>
 </table>
@@ -1652,10 +1787,8 @@ will align indices in the process of performing the operation.</p>
 <p>Suppose we are combining two different data sources, and find only the
 top three US states by <em>area</em> and the top three US states by
 <em>population</em>:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;Alaska&#39;</span><span class="p">:</span> <span class="mi">1723337</span><span class="p">,</span> <span class="s1">&#39;Texas&#39;</span><span class="p">:</span> <span class="mi">695662</span><span class="p">,</span>
-                  <span class="s1">&#39;California&#39;</span><span class="p">:</span> <span class="mi">423967</span><span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;area&#39;</span><span class="p">)</span>
-<span class="n">population</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;California&#39;</span><span class="p">:</span> <span class="mi">38332521</span><span class="p">,</span> <span class="s1">&#39;Texas&#39;</span><span class="p">:</span> <span class="mi">26448193</span><span class="p">,</span>
-                        <span class="s1">&#39;New York&#39;</span><span class="p">:</span> <span class="mi">19651127</span><span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;Alaska&#39;</span><span class="p">:</span> <span class="mi">1723337</span><span class="p">,</span> <span class="s1">&#39;Texas&#39;</span><span class="p">:</span> <span class="mi">695662</span><span class="p">,</span> <span class="s1">&#39;California&#39;</span><span class="p">:</span> <span class="mi">423967</span><span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;area&#39;</span><span class="p">)</span>
+<span class="n">population</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;California&#39;</span><span class="p">:</span> <span class="mi">38332521</span><span class="p">,</span> <span class="s1">&#39;Texas&#39;</span><span class="p">:</span> <span class="mi">26448193</span><span class="p">,</span> <span class="s1">&#39;New York&#39;</span><span class="p">:</span> <span class="mi">19651127</span><span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population</span> <span class="o">/</span> <span class="n">area</span>
@@ -1671,10 +1804,16 @@ top three US states by <em>area</em> and the top three US states by
 <p>The resulting array contains the <em>union</em> of indices of the two input
 arrays, which could be determined using standard Python set arithmetic
 on these indices:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">population</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="c1"># this does create a new index and doesn&#39;t modify in place.</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;Alaska&#39;</span><span class="p">,</span> <span class="s1">&#39;California&#39;</span><span class="p">,</span> <span class="s1">&#39;New York&#39;</span><span class="p">,</span> <span class="s1">&#39;Texas&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">area</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;Alaska&#39;</span><span class="p">,</span> <span class="s1">&#39;Texas&#39;</span><span class="p">,</span> <span class="s1">&#39;California&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Any item for which one or the other does not have an entry is marked
@@ -1740,12 +1879,12 @@ when performing operations on <code class="docutils literal notranslate"><span c
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
-      <td>11</td>
+      <td>13</td>
+      <td>17</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>5</td>
+      <td>8</td>
       <td>1</td>
     </tr>
   </tbody>
@@ -1780,21 +1919,21 @@ when performing operations on <code class="docutils literal notranslate"><span c
   <tbody>
     <tr>
       <th>0</th>
-      <td>4</td>
-      <td>0</td>
-      <td>9</td>
+      <td>1</td>
+      <td>5</td>
+      <td>5</td>
     </tr>
     <tr>
       <th>1</th>
+      <td>9</td>
+      <td>3</td>
       <td>5</td>
-      <td>8</td>
-      <td>0</td>
     </tr>
     <tr>
       <th>2</th>
+      <td>1</td>
       <td>9</td>
-      <td>2</td>
-      <td>6</td>
+      <td>1</td>
     </tr>
   </tbody>
 </table>
@@ -1827,14 +1966,14 @@ when performing operations on <code class="docutils literal notranslate"><span c
   <tbody>
     <tr>
       <th>0</th>
-      <td>1.0</td>
-      <td>15.0</td>
+      <td>18.0</td>
+      <td>18.0</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>13.0</td>
-      <td>6.0</td>
+      <td>11.0</td>
+      <td>10.0</td>
       <td>NaN</td>
     </tr>
     <tr>
@@ -1846,7 +1985,13 @@ when performing operations on <code class="docutils literal notranslate"><span c
   </tbody>
 </table>
 </div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fill</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">A</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">fill</span><span class="p">)</span>
+<span class="n">fill</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">9.75</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="n">fill</span><span class="p">)</span>
 </pre></div>
 </div>
 <div>
@@ -1875,21 +2020,21 @@ when performing operations on <code class="docutils literal notranslate"><span c
   <tbody>
     <tr>
       <th>0</th>
-      <td>1.0</td>
-      <td>15.0</td>
-      <td>13.5</td>
+      <td>18.00</td>
+      <td>18.00</td>
+      <td>14.75</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>13.0</td>
-      <td>6.0</td>
-      <td>4.5</td>
+      <td>11.00</td>
+      <td>10.00</td>
+      <td>14.75</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>6.5</td>
-      <td>13.5</td>
-      <td>10.5</td>
+      <td>18.75</td>
+      <td>10.75</td>
+      <td>10.75</td>
     </tr>
   </tbody>
 </table>
@@ -2791,6 +2936,12 @@ to have:</p>
            <span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">indexes</span><span class="o">.</span><span class="n">multi</span><span class="o">.</span><span class="n">MultiIndex</span>
+</pre></div>
+</div>
 <p>A <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> contains multiple <em>levels</em> of indexing–in this case,
 the state names and the years, as well as multiple <em>labels</em> for each
 data point which encode these levels.</p>
@@ -2881,7 +3032,13 @@ in mind.</p>
     </tr>
   </tbody>
 </table>
-</div><p>Naturally, the <code class="docutils literal notranslate"><span class="pre">stack()</span></code> method provides the opposite operation:</p>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">pop_df</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span>
+</pre></div>
+</div>
+<p>Naturally, the <code class="docutils literal notranslate"><span class="pre">stack()</span></code> method provides the opposite operation:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pop_df</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -6317,7 +6474,57 @@ example, by using the <code class="docutils literal notranslate"><span class="pr
 <h4>The <code class="docutils literal notranslate"><span class="pre">left_index</span></code> and <code class="docutils literal notranslate"><span class="pre">right_index</span></code> keywords<a class="headerlink" href="#the-left-index-and-right-index-keywords" title="Permalink to this headline">¶</a></h4>
 <p>Sometimes, rather than merging on a column, you would instead like to
 merge on an index. For example, your data might look like this:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1a</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;employee&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>df1.set_index<span class="o">?</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1a</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span> <span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="s1">&#39;employee&#39;</span><span class="p">])</span>
+<span class="n">df1a</span>
+</pre></div>
+</div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>group</th>
+      <th>employee</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Accounting</th>
+      <th>Bob</th>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Engineering</th>
+      <th>Jake</th>
+    </tr>
+    <tr>
+      <th>Lisa</th>
+    </tr>
+    <tr>
+      <th>HR</th>
+      <th>Sue</th>
+    </tr>
+  </tbody>
+</table>
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1a</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;employee&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">])</span>
 <span class="n">df2a</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;employee&#39;</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="s1">&#39;df1a&#39;</span><span class="p">,</span> <span class="s1">&#39;df2a&#39;</span><span class="p">)</span>
 </pre></div>
@@ -6417,8 +6624,7 @@ merge on an index. For example, your data might look like this:</p>
 </div>
     </div><p>You can use the index as the key for merging by specifying the
 <code class="docutils literal notranslate"><span class="pre">left_index</span></code> and/or <code class="docutils literal notranslate"><span class="pre">right_index</span></code> flags in <code class="docutils literal notranslate"><span class="pre">pd.merge()</span></code>:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="s1">&#39;df1a&#39;</span><span class="p">,</span> <span class="s1">&#39;df2a&#39;</span><span class="p">,</span>
-        <span class="s2">&quot;pd.merge(df1a, df2a, left_index=True, right_index=True)&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="s1">&#39;df1a&#39;</span><span class="p">,</span> <span class="s1">&#39;df2a&#39;</span><span class="p">,</span> <span class="s2">&quot;pd.merge(df1a, df2a, left_index=True, right_index=True)&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div style="float: left; padding: 10px;">
@@ -6567,7 +6773,30 @@ merge on an index. For example, your data might look like this:</p>
   </tbody>
 </table>
 </div>
-    </div><p>For convenience, <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s implement the <code class="docutils literal notranslate"><span class="pre">join()</span></code> method, which
+    </div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1a</span><span class="p">,</span> <span class="n">df2a</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df1a</span><span class="p">,</span> <span class="n">df2a</span><span class="p">,</span> <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>                <span class="n">group</span>
+ <span class="n">employee</span>
+ <span class="n">Bob</span>        <span class="n">Accounting</span>
+ <span class="n">Jake</span>      <span class="n">Engineering</span>
+ <span class="n">Lisa</span>      <span class="n">Engineering</span>
+ <span class="n">Sue</span>                <span class="n">HR</span><span class="p">,</span>
+           <span class="n">hire_date</span>
+ <span class="n">employee</span>
+ <span class="n">Lisa</span>           <span class="mi">2004</span>
+ <span class="n">Bob</span>            <span class="mi">2008</span>
+ <span class="n">Jake</span>           <span class="mi">2012</span>
+ <span class="n">Sue</span>            <span class="mi">2014</span><span class="p">,</span>
+                 <span class="n">group</span>  <span class="n">hire_date</span>
+ <span class="n">employee</span>
+ <span class="n">Bob</span>        <span class="n">Accounting</span>       <span class="mi">2008</span>
+ <span class="n">Jake</span>      <span class="n">Engineering</span>       <span class="mi">2012</span>
+ <span class="n">Lisa</span>      <span class="n">Engineering</span>       <span class="mi">2004</span>
+ <span class="n">Sue</span>                <span class="n">HR</span>       <span class="mi">2014</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For convenience, <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s implement the <code class="docutils literal notranslate"><span class="pre">join()</span></code> method, which
 performs a merge that defaults to joining on indices:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="s1">&#39;df1a&#39;</span><span class="p">,</span> <span class="s1">&#39;df2a&#39;</span><span class="p">,</span> <span class="s1">&#39;df1a.join(df2a)&#39;</span><span class="p">)</span>
 </pre></div>
@@ -7311,7 +7540,134 @@ right entries, respectively:</p>
   </tbody>
 </table>
 </div>
-    </div></div>
+    </div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="s1">&#39;df6&#39;</span><span class="p">,</span> <span class="s1">&#39;df7&#39;</span><span class="p">,</span> <span class="s2">&quot;pd.merge(df6, df7, how=&#39;right&#39;)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div style="float: left; padding: 10px;">
+    <p style='font-family:"Courier New", Courier, monospace'>df6</p><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>food</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Peter</td>
+      <td>fish</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Paul</td>
+      <td>beans</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Mary</td>
+      <td>bread</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    </div>
+<div style="float: left; padding: 10px;">
+    <p style='font-family:"Courier New", Courier, monospace'>df7</p><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>drink</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Mary</td>
+      <td>wine</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Joseph</td>
+      <td>beer</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    </div>
+<div style="float: left; padding: 10px;">
+    <p style='font-family:"Courier New", Courier, monospace'>pd.merge(df6, df7, how='right')</p><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>food</th>
+      <th>drink</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Mary</td>
+      <td>bread</td>
+      <td>wine</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Joseph</td>
+      <td>NaN</td>
+      <td>beer</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    </div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>pd.merge<span class="o">?</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="overlapping-column-names-the-suffixes-keyword">
 <h3>Overlapping Column Names: The <code class="docutils literal notranslate"><span class="pre">suffixes</span></code> Keyword<a class="headerlink" href="#overlapping-column-names-the-suffixes-keyword" title="Permalink to this headline">¶</a></h3>
 <p>Finally, you may end up in a case where your two input <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s
@@ -8354,87 +8710,155 @@ with a simple Seaborn command:</p>
 <span class="n">planets</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># 1,000+ extrasolar planets discovered up to 2014.</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1035</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="n">SSLCertVerificationError</span>                  <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">3.9</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">urllib</span><span class="o">/</span><span class="n">request</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">do_open</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">http_class</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="o">**</span><span class="n">http_conn_args</span><span class="p">)</span>
+   <span class="mi">1341</span>             <span class="k">try</span><span class="p">:</span>
+<span class="o">-&gt;</span> <span class="mi">1342</span>                 <span class="n">h</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">get_method</span><span class="p">(),</span> <span class="n">req</span><span class="o">.</span><span class="n">selector</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span>
+   <span class="mi">1343</span>                           <span class="n">encode_chunked</span><span class="o">=</span><span class="n">req</span><span class="o">.</span><span class="n">has_header</span><span class="p">(</span><span class="s1">&#39;Transfer-encoding&#39;</span><span class="p">))</span>
+
+
+<span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">3.9</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">client</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="p">)</span>
+   <span class="mi">1254</span>         <span class="s2">&quot;&quot;&quot;Send a complete request to the server.&quot;&quot;&quot;</span>
+<span class="o">-&gt;</span> <span class="mi">1255</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_send_request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="p">)</span>
+   <span class="mi">1256</span>
+
+
+<span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">3.9</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">client</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">_send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="p">)</span>
+   <span class="mi">1300</span>             <span class="n">body</span> <span class="o">=</span> <span class="n">_encode</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">)</span>
+<span class="o">-&gt;</span> <span class="mi">1301</span>         <span class="bp">self</span><span class="o">.</span><span class="n">endheaders</span><span class="p">(</span><span class="n">body</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="o">=</span><span class="n">encode_chunked</span><span class="p">)</span>
+   <span class="mi">1302</span>
+
+
+<span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">3.9</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">client</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">endheaders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message_body</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="p">)</span>
+   <span class="mi">1249</span>             <span class="k">raise</span> <span class="n">CannotSendHeader</span><span class="p">()</span>
+<span class="o">-&gt;</span> <span class="mi">1250</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_send_output</span><span class="p">(</span><span class="n">message_body</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="o">=</span><span class="n">encode_chunked</span><span class="p">)</span>
+   <span class="mi">1251</span>
+
+
+<span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">3.9</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">client</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">_send_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message_body</span><span class="p">,</span> <span class="n">encode_chunked</span><span class="p">)</span>
+   <span class="mi">1009</span>         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer</span><span class="p">[:]</span>
+<span class="o">-&gt;</span> <span class="mi">1010</span>         <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+   <span class="mi">1011</span>
+
+
+<span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">3.9</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">client</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="mi">949</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_open</span><span class="p">:</span>
+<span class="o">--&gt;</span> <span class="mi">950</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+    <span class="mi">951</span>             <span class="k">else</span><span class="p">:</span>
+
+
+<span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">3.9</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">http</span><span class="o">/</span><span class="n">client</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+   <span class="mi">1423</span>
+<span class="o">-&gt;</span> <span class="mi">1424</span>             <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="p">,</span>
+   <span class="mi">1425</span>                                                   <span class="n">server_hostname</span><span class="o">=</span><span class="n">server_hostname</span><span class="p">)</span>
+
+
+<span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">3.9</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">ssl</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">wrap_socket</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sock</span><span class="p">,</span> <span class="n">server_side</span><span class="p">,</span> <span class="n">do_handshake_on_connect</span><span class="p">,</span> <span class="n">suppress_ragged_eofs</span><span class="p">,</span> <span class="n">server_hostname</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+    <span class="mi">499</span>         <span class="c1"># ctx._wrap_socket()</span>
+<span class="o">--&gt;</span> <span class="mi">500</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sslsocket_class</span><span class="o">.</span><span class="n">_create</span><span class="p">(</span>
+    <span class="mi">501</span>             <span class="n">sock</span><span class="o">=</span><span class="n">sock</span><span class="p">,</span>
+
+
+<span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">3.9</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">ssl</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">_create</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">sock</span><span class="p">,</span> <span class="n">server_side</span><span class="p">,</span> <span class="n">do_handshake_on_connect</span><span class="p">,</span> <span class="n">suppress_ragged_eofs</span><span class="p">,</span> <span class="n">server_hostname</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+   <span class="mi">1039</span>                         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;do_handshake_on_connect should not be specified for non-blocking sockets&quot;</span><span class="p">)</span>
+<span class="o">-&gt;</span> <span class="mi">1040</span>                     <span class="bp">self</span><span class="o">.</span><span class="n">do_handshake</span><span class="p">()</span>
+   <span class="mi">1041</span>             <span class="k">except</span> <span class="p">(</span><span class="ne">OSError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+
+
+<span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="o">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">3.9</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">ssl</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">do_handshake</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">block</span><span class="p">)</span>
+   <span class="mi">1308</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="o">-&gt;</span> <span class="mi">1309</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">do_handshake</span><span class="p">()</span>
+   <span class="mi">1310</span>         <span class="k">finally</span><span class="p">:</span>
+
+
+<span class="n">SSLCertVerificationError</span><span class="p">:</span> <span class="p">[</span><span class="n">SSL</span><span class="p">:</span> <span class="n">CERTIFICATE_VERIFY_FAILED</span><span class="p">]</span> <span class="n">certificate</span> <span class="n">verify</span> <span class="n">failed</span><span class="p">:</span> <span class="n">unable</span> <span class="n">to</span> <span class="n">get</span> <span class="n">local</span> <span class="n">issuer</span> <span class="n">certificate</span> <span class="p">(</span><span class="n">_ssl</span><span class="o">.</span><span class="n">c</span><span class="p">:</span><span class="mi">1122</span><span class="p">)</span>
+
+
+<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
+
+
+<span class="n">URLError</span>                                  <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">155</span><span class="o">-</span><span class="n">c51edcc88343</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+      <span class="mi">1</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="o">----&gt;</span> <span class="mi">2</span> <span class="n">planets</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;planets&#39;</span><span class="p">)</span>
+      <span class="mi">3</span> <span class="n">planets</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># 1,000+ extrasolar planets discovered up to 2014.</span>
+
+
+<span class="o">~/</span><span class="n">Developer</span><span class="o">/</span><span class="n">py</span><span class="o">-</span><span class="n">venvs</span><span class="o">/</span><span class="n">sphinx</span><span class="o">-</span><span class="n">venv</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">seaborn</span><span class="o">/</span><span class="n">utils</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">load_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">cache</span><span class="p">,</span> <span class="n">data_home</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">)</span>
+    <span class="mi">483</span>                                   <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">full_path</span><span class="p">))</span>
+    <span class="mi">484</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">cache_path</span><span class="p">):</span>
+<span class="o">--&gt;</span> <span class="mi">485</span>             <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">get_dataset_names</span><span class="p">():</span>
+    <span class="mi">486</span>                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39; is not one of the example datasets.&quot;</span><span class="p">)</span>
+    <span class="mi">487</span>             <span class="n">urlretrieve</span><span class="p">(</span><span class="n">full_path</span><span class="p">,</span> <span class="n">cache_path</span><span class="p">)</span>
+
+
+<span class="o">~/</span><span class="n">Developer</span><span class="o">/</span><span class="n">py</span><span class="o">-</span><span class="n">venvs</span><span class="o">/</span><span class="n">sphinx</span><span class="o">-</span><span class="n">venv</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">9</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">seaborn</span><span class="o">/</span><span class="n">utils</span><span class="o">.</span><span class="n">py</span> <span class="ow">in</span> <span class="n">get_dataset_names</span><span class="p">()</span>
+    <span class="mi">417</span>     <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    418     url = &quot;https://github.com/mwaskom/seaborn-data&quot;</span>
+<span class="s2">--&gt; 419     with urlopen(url) as resp:</span>
+<span class="s2">    420         html = resp.read()</span>
+<span class="s2">    421</span>
+
+
+<span class="s2">/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/urllib/request.py in urlopen(url, data, timeout, cafile, capath, cadefault, context)</span>
+<span class="s2">    212     else:</span>
+<span class="s2">    213         opener = _opener</span>
+<span class="s2">--&gt; 214     return opener.open(url, data, timeout)</span>
+<span class="s2">    215</span>
+<span class="s2">    216 def install_opener(opener):</span>
+
+
+<span class="s2">/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/urllib/request.py in open(self, fullurl, data, timeout)</span>
+<span class="s2">    515</span>
+<span class="s2">    516         sys.audit(&#39;urllib.Request&#39;, req.full_url, req.data, req.headers, req.get_method())</span>
+<span class="s2">--&gt; 517         response = self._open(req, data)</span>
+<span class="s2">    518</span>
+<span class="s2">    519         # post-process response</span>
+
+
+<span class="s2">/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/urllib/request.py in _open(self, req, data)</span>
+<span class="s2">    532</span>
+<span class="s2">    533         protocol = req.type</span>
+<span class="s2">--&gt; 534         result = self._call_chain(self.handle_open, protocol, protocol +</span>
+<span class="s2">    535                                   &#39;_open&#39;, req)</span>
+<span class="s2">    536         if result:</span>
+
+
+<span class="s2">/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/urllib/request.py in _call_chain(self, chain, kind, meth_name, *args)</span>
+<span class="s2">    492         for handler in handlers:</span>
+<span class="s2">    493             func = getattr(handler, meth_name)</span>
+<span class="s2">--&gt; 494             result = func(*args)</span>
+<span class="s2">    495             if result is not None:</span>
+<span class="s2">    496                 return result</span>
+
+
+<span class="s2">/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/urllib/request.py in https_open(self, req)</span>
+<span class="s2">   1383</span>
+<span class="s2">   1384         def https_open(self, req):</span>
+<span class="s2">-&gt; 1385             return self.do_open(http.client.HTTPSConnection, req,</span>
+<span class="s2">   1386                 context=self._context, check_hostname=self._check_hostname)</span>
+<span class="s2">   1387</span>
+
+
+<span class="s2">/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/urllib/request.py in do_open(self, http_class, req, **http_conn_args)</span>
+<span class="s2">   1343                           encode_chunked=req.has_header(&#39;Transfer-encoding&#39;))</span>
+<span class="s2">   1344             except OSError as err: # timeout error</span>
+<span class="s2">-&gt; 1345                 raise URLError(err)</span>
+<span class="s2">   1346             r = h.getresponse()</span>
+<span class="s2">   1347         except:</span>
+
+
+<span class="s2">URLError: &lt;urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1122)&gt;</span>
 </pre></div>
 </div>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">planets</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>method</th>
-      <th>number</th>
-      <th>orbital_period</th>
-      <th>mass</th>
-      <th>distance</th>
-      <th>year</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Radial Velocity</td>
-      <td>1</td>
-      <td>269.300</td>
-      <td>7.10</td>
-      <td>77.40</td>
-      <td>2006</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Radial Velocity</td>
-      <td>1</td>
-      <td>874.774</td>
-      <td>2.21</td>
-      <td>56.95</td>
-      <td>2008</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Radial Velocity</td>
-      <td>1</td>
-      <td>763.000</td>
-      <td>2.60</td>
-      <td>19.84</td>
-      <td>2011</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Radial Velocity</td>
-      <td>1</td>
-      <td>326.030</td>
-      <td>19.40</td>
-      <td>110.62</td>
-      <td>2007</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Radial Velocity</td>
-      <td>1</td>
-      <td>516.220</td>
-      <td>10.50</td>
-      <td>119.47</td>
-      <td>2009</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
+</div>
 <div class="section" id="simple-aggregation-in-pandas">
 <h3>Simple Aggregation in Pandas<a class="headerlink" href="#simple-aggregation-in-pandas" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
@@ -8777,7 +9201,7 @@ desired key column:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">groupby</span><span class="o">.</span><span class="n">generic</span><span class="o">.</span><span class="n">DataFrameGroupBy</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7f864d926128</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">groupby</span><span class="o">.</span><span class="n">generic</span><span class="o">.</span><span class="n">DataFrameGroupBy</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x7fbb19adca30</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Notice that what is returned is not a set of <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s, but a
@@ -8833,7 +9257,13 @@ apply/combine steps to produce the desired result:</p>
     </tr>
   </tbody>
 </table>
-</div><p>The <code class="docutils literal notranslate"><span class="pre">sum()</span></code> method is just one possibility here; you can apply
+</div><div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">sum()</span></code> method is just one possibility here; you can apply
 virtually any common Pandas or NumPy aggregation function, as well as
 virtually any valid <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> operation.</p>
 </div>
@@ -11154,7 +11584,7 @@ year:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;total births per year&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_452_0.png" src="_images/pandas_452_0.png" />
+<img alt="_images/pandas_477_0.png" src="_images/pandas_477_0.png" />
 <p>With a simple pivot table and <code class="docutils literal notranslate"><span class="pre">plot()</span></code> method, we can immediately see
 the annual trend in births by gender. By eye, it appears that over the
 past 50 years male births have outnumbered female births by around 5%.</p>
@@ -11205,7 +11635,7 @@ This allows us to quickly compute the weekday corresponding to each row:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;mean births by day&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_463_0.png" src="_images/pandas_463_0.png" />
+<img alt="_images/pandas_488_0.png" src="_images/pandas_488_0.png" />
 <p>Apparently births are slightly less common on weekends than on weekdays!
 Note that the 1990s and 2000s are missing because the CDC data contains
 only the month of birth starting in 1989.</p>
@@ -11323,7 +11753,7 @@ trends:</p>
 <span class="n">births_by_date</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_471_0.png" src="_images/pandas_471_0.png" />
+<img alt="_images/pandas_496_0.png" src="_images/pandas_496_0.png" />
 <p>In particular, the striking feature of this graph is the dip in
 birthrate on US holidays (e.g., Independence Day, Labor Day,
 Thanksgiving, Christmas, New Year’s Day) although this likely reflects
@@ -11912,7 +12342,7 @@ Finance, and others.</p>
 <span class="n">goog</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_523_0.png" src="_images/pandas_523_0.png" />
+<img alt="_images/pandas_548_0.png" src="_images/pandas_548_0.png" />
 <div class="section" id="resampling-and-converting-frequencies">
 <h4>Resampling and converting frequencies<a class="headerlink" href="#resampling-and-converting-frequencies" title="Permalink to this headline">¶</a></h4>
 <p>One common need for time series data is resampling at a higher or lower
@@ -11928,7 +12358,7 @@ resample the data at the end of business year:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="s1">&#39;resample&#39;</span><span class="p">,</span> <span class="s1">&#39;asfreq&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_526_0.png" src="_images/pandas_526_0.png" />
+<img alt="_images/pandas_551_0.png" src="_images/pandas_551_0.png" />
 <p>Notice the difference: at each point, <code class="docutils literal notranslate"><span class="pre">resample</span></code> reports the <em>average
 of the previous year</em>, while <code class="docutils literal notranslate"><span class="pre">asfreq</span></code> reports the <em>value at the end of
 the year</em>.</p>
@@ -11950,7 +12380,7 @@ weekends):</p>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;back-fill&quot;</span><span class="p">,</span> <span class="s2">&quot;forward-fill&quot;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_530_0.png" src="_images/pandas_530_0.png" />
+<img alt="_images/pandas_555_0.png" src="_images/pandas_555_0.png" />
 <p>The top panel is the default: non-business days are left as NA values
 and do not appear on the plot. The bottom panel shows the differences
 between two strategies for filling the gaps: forward-filling and
@@ -11991,7 +12421,7 @@ frequency.</p>
 <span class="n">ax</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">local_max</span> <span class="o">+</span> <span class="n">offset</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_533_0.png" src="_images/pandas_533_0.png" />
+<img alt="_images/pandas_558_0.png" src="_images/pandas_558_0.png" />
 <p>We see here that <code class="docutils literal notranslate"><span class="pre">shift(900)</span></code> shifts the <em>data</em> by 900 days, pushing
 some of it off the end of the graph (and leaving NA values at the other
 end), while <code class="docutils literal notranslate"><span class="pre">tshift(900)</span></code> shifts the <em>index values</em> by 900 days.</p>
@@ -12003,7 +12433,7 @@ on investment for Google stock over the course of the dataset:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;% Return on Investment&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_535_0.png" src="_images/pandas_535_0.png" />
+<img alt="_images/pandas_560_0.png" src="_images/pandas_560_0.png" />
 <p>This helps us to see the overall trend in Google stock: thus far, the
 most profitable times to invest in Google have been (unsurprisingly, in
 retrospect) shortly after its IPO, and in the middle of the 2009
@@ -12028,7 +12458,7 @@ deviation of the Google stock prices:</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_539_0.png" src="_images/pandas_539_0.png" />
+<img alt="_images/pandas_564_0.png" src="_images/pandas_564_0.png" />
 <p>As with group-by operations, the <code class="docutils literal notranslate"><span class="pre">aggregate()</span></code> and <code class="docutils literal notranslate"><span class="pre">apply()</span></code> methods
 can be used for custom rolling computations.</p>
 </div>
@@ -12221,7 +12651,7 @@ adding a “Total” column:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Hourly Bicycle Count&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_549_0.png" src="_images/pandas_549_0.png" />
+<img alt="_images/pandas_574_0.png" src="_images/pandas_574_0.png" />
 <p>The ~25,000 hourly samples are far too dense for us to make much sense
 of. We can gain more insight by resampling the data to a coarser grid:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weekly</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;W&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -12229,7 +12659,7 @@ of. We can gain more insight by resampling the data to a coarser grid:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Weekly bicycle count&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_551_0.png" src="_images/pandas_551_0.png" />
+<img alt="_images/pandas_576_0.png" src="_images/pandas_576_0.png" />
 <p>This shows us some interesting seasonal trends: as you might expect,
 people bicycle more in the summer than in the winter, and even within a
 particular season the bicycle use varies from week to week (likely
@@ -12242,7 +12672,7 @@ do a 30 day rolling mean of our data, making sure to center the window:</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;mean hourly count&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_554_0.png" src="_images/pandas_554_0.png" />
+<img alt="_images/pandas_579_0.png" src="_images/pandas_579_0.png" />
 <p>The jaggedness of the result is due to the hard cutoff of the window. We
 can get a smoother version of a rolling mean using a window function–for
 example, a Gaussian window.</p>
@@ -12253,7 +12683,7 @@ days):</p>
               <span class="n">win_type</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">std</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_557_0.png" src="_images/pandas_557_0.png" />
+<img alt="_images/pandas_582_0.png" src="_images/pandas_582_0.png" />
 </div>
 <div class="section" id="digging-into-the-data">
 <h4>Digging into the data<a class="headerlink" href="#digging-into-the-data" title="Permalink to this headline">¶</a></h4>
@@ -12266,7 +12696,7 @@ the time of day; we do this by grouping:</p>
 <span class="n">by_time</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="n">hourly_ticks</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_559_0.png" src="_images/pandas_559_0.png" />
+<img alt="_images/pandas_584_0.png" src="_images/pandas_584_0.png" />
 <p>The hourly traffic is a strongly bimodal distribution, with peaks around
 8:00 in the morning and 5:00 in the evening. This is likely evidence of
 a strong component of commuter traffic crossing the bridge. This is
@@ -12281,7 +12711,7 @@ week. Again, we can do this with a simple groupby:</p>
 <span class="n">by_weekday</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_562_0.png" src="_images/pandas_562_0.png" />
+<img alt="_images/pandas_587_0.png" src="_images/pandas_587_0.png" />
 <p>This shows a strong distinction between weekday and weekend totals, with
 around twice as many average riders crossing the bridge on Monday
 through Friday than on Saturday and Sunday.</p>
@@ -12300,7 +12730,7 @@ flag marking the weekend, and the time of day:</p>
                            <span class="n">xticks</span><span class="o">=</span><span class="n">hourly_ticks</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
-<img alt="_images/pandas_566_0.png" src="_images/pandas_566_0.png" />
+<img alt="_images/pandas_591_0.png" src="_images/pandas_591_0.png" />
 <p>The result is very interesting: we see a bimodal commute pattern during
 the work week, and a unimodal recreational pattern during the weekends.</p>
 </div>
@@ -12334,7 +12764,7 @@ the work week, and a unimodal recreational pattern during the weekends.</p>
       &copy;2021, Massimo Nocentini.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

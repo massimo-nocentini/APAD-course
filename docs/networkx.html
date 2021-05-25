@@ -12,6 +12,7 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Tips an’ Tricks" href="gotchas.html" />
@@ -61,6 +62,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="gotchas.html">Tips an’ Tricks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oo.html">Object Orientation</a></li>
 </ul>
 
 <div class="relations">
@@ -147,6 +149,12 @@ during its lifetime (it needs a <code class="docutils literal notranslate"><span
 compared to other objects (it needs an <code class="docutils literal notranslate"><span class="pre">__eq__()</span></code> method). Hashable
 objects which compare equal must have the same hash value.</p>
 </div></blockquote>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">networkx</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">Graph</span>
+</pre></div>
+</div>
 <div class="section" id="nodes">
 <h4>Nodes<a class="headerlink" href="#nodes" title="Permalink to this headline">¶</a></h4>
 <p>The graph <code class="docutils literal notranslate"><span class="pre">G</span></code> can be grown in several ways. NetworkX includes many
@@ -156,15 +164,86 @@ You can add one node at a time,</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NodeView</span><span class="p">((</span><span class="mi">1</span><span class="p">,))</span>
+</pre></div>
+</div>
 <p>add a list of nodes,</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/networkx_10_0.png" src="_images/networkx_10_0.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">method</span> <span class="n">add_nodes_from</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">networkx</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">graph</span><span class="p">:</span>
+
+<span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes_for_adding</span><span class="p">,</span> <span class="o">**</span><span class="n">attr</span><span class="p">)</span> <span class="n">method</span> <span class="n">of</span> <span class="n">networkx</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">Graph</span> <span class="n">instance</span>
+    <span class="n">Add</span> <span class="n">multiple</span> <span class="n">nodes</span><span class="o">.</span>
+
+    <span class="n">Parameters</span>
+    <span class="o">----------</span>
+    <span class="n">nodes_for_adding</span> <span class="p">:</span> <span class="n">iterable</span> <span class="n">container</span>
+        <span class="n">A</span> <span class="n">container</span> <span class="n">of</span> <span class="n">nodes</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="nb">set</span><span class="p">,</span> <span class="n">etc</span><span class="o">.</span><span class="p">)</span><span class="o">.</span>
+        <span class="n">OR</span>
+        <span class="n">A</span> <span class="n">container</span> <span class="n">of</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">attribute</span> <span class="nb">dict</span><span class="p">)</span> <span class="n">tuples</span><span class="o">.</span>
+        <span class="n">Node</span> <span class="n">attributes</span> <span class="n">are</span> <span class="n">updated</span> <span class="n">using</span> <span class="n">the</span> <span class="n">attribute</span> <span class="nb">dict</span><span class="o">.</span>
+    <span class="n">attr</span> <span class="p">:</span> <span class="n">keyword</span> <span class="n">arguments</span><span class="p">,</span> <span class="n">optional</span> <span class="p">(</span><span class="n">default</span><span class="o">=</span> <span class="n">no</span> <span class="n">attributes</span><span class="p">)</span>
+        <span class="n">Update</span> <span class="n">attributes</span> <span class="k">for</span> <span class="nb">all</span> <span class="n">nodes</span> <span class="ow">in</span> <span class="n">nodes</span><span class="o">.</span>
+        <span class="n">Node</span> <span class="n">attributes</span> <span class="n">specified</span> <span class="ow">in</span> <span class="n">nodes</span> <span class="k">as</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">take</span>
+        <span class="n">precedence</span> <span class="n">over</span> <span class="n">attributes</span> <span class="n">specified</span> <span class="n">via</span> <span class="n">keyword</span> <span class="n">arguments</span><span class="o">.</span>
+
+    <span class="n">See</span> <span class="n">Also</span>
+    <span class="o">--------</span>
+    <span class="n">add_node</span>
+
+    <span class="n">Examples</span>
+    <span class="o">--------</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>  <span class="c1"># or DiGraph, MultiGraph, MultiDiGraph, etc</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">K3</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">K3</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">]</span>
+
+    <span class="n">Use</span> <span class="n">keywords</span> <span class="n">to</span> <span class="n">update</span> <span class="n">specific</span> <span class="n">node</span> <span class="n">attributes</span> <span class="k">for</span> <span class="n">every</span> <span class="n">node</span><span class="o">.</span>
+
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">weight</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+
+    <span class="n">Use</span> <span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">attrdict</span><span class="p">)</span> <span class="n">tuples</span> <span class="n">to</span> <span class="n">update</span> <span class="n">attributes</span> <span class="k">for</span> <span class="n">specific</span> <span class="n">nodes</span><span class="o">.</span>
+
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">11</span><span class="p">)),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">})])</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;size&quot;</span><span class="p">]</span>
+    <span class="mi">11</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">H</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">H</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">H</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;size&quot;</span><span class="p">]</span>
+    <span class="mi">11</span>
 </pre></div>
 </div>
 <p>or add any iterable container of nodes. You can also add nodes along
 with node attributes if your container yields 2-tuples (node,
 node_attribute_dict). Node attributes are discussed further below.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">path_graph</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/networkx_14_0.png" src="_images/networkx_14_0.png" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">networkx</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">Graph</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">G</span></code> now contains the nodes of <code class="docutils literal notranslate"><span class="pre">H</span></code> as nodes of <code class="docutils literal notranslate"><span class="pre">G</span></code>. In
@@ -199,9 +278,21 @@ below</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">edges</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EdgeView</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)])</span>
+</pre></div>
+</div>
 <p>There are no complaints when adding existing nodes or edges. For
 example, after removing all nodes and edges,</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>
 </pre></div>
 </div>
 <p>we add new nodes/edges and NetworkX quietly ignores any that are already
@@ -391,6 +482,12 @@ dictionaries named <code class="docutils literal notranslate"><span class="pre">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;day&#39;</span><span class="p">:</span> <span class="s1">&#39;Friday&#39;</span><span class="p">}</span>
 </pre></div>
 </div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span>
+</pre></div>
+</div>
 <p>Or you can modify attributes later</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Monday&quot;</span>
 <span class="n">G</span><span class="o">.</span><span class="n">graph</span>
@@ -509,57 +606,57 @@ can also be generated by</p>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">petersen</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_68_0.png" src="_images/networkx_68_0.png" />
+<img alt="_images/networkx_78_0.png" src="_images/networkx_78_0.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tutte</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">tutte_graph</span><span class="p">()</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">tutte</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_69_0.png" src="_images/networkx_69_0.png" />
+<img alt="_images/networkx_79_0.png" src="_images/networkx_79_0.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">maze</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">sedgewick_maze_graph</span><span class="p">()</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">maze</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_70_0.png" src="_images/networkx_70_0.png" />
+<img alt="_images/networkx_80_0.png" src="_images/networkx_80_0.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tet</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">tetrahedral_graph</span><span class="p">()</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">tet</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_71_0.png" src="_images/networkx_71_0.png" />
+<img alt="_images/networkx_81_0.png" src="_images/networkx_81_0.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K_5</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">complete_graph</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">K_5</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_72_0.png" src="_images/networkx_72_0.png" />
+<img alt="_images/networkx_82_0.png" src="_images/networkx_82_0.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">K_3_5</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">complete_bipartite_graph</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">K_3_5</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_73_0.png" src="_images/networkx_73_0.png" />
+<img alt="_images/networkx_83_0.png" src="_images/networkx_83_0.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">barbell</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">barbell_graph</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">barbell</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_74_0.png" src="_images/networkx_74_0.png" />
+<img alt="_images/networkx_84_0.png" src="_images/networkx_84_0.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lollipop</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">lollipop_graph</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">lollipop</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_75_0.png" src="_images/networkx_75_0.png" />
+<img alt="_images/networkx_85_0.png" src="_images/networkx_85_0.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">er</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">erdos_renyi_graph</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">er</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_76_0.png" src="_images/networkx_76_0.png" />
+<img alt="_images/networkx_86_0.png" src="_images/networkx_86_0.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ws</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">watts_strogatz_graph</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_77_0.png" src="_images/networkx_77_0.png" />
+<img alt="_images/networkx_87_0.png" src="_images/networkx_87_0.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ba</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">barabasi_albert_graph</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">ba</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_78_0.png" src="_images/networkx_78_0.png" />
+<img alt="_images/networkx_88_0.png" src="_images/networkx_88_0.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">red</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">random_lobster</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">red</span><span class="p">)</span>
 </pre></div>
@@ -627,7 +724,7 @@ using one of</p>
               <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">font_weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_91_0.png" src="_images/networkx_91_0.png" />
+<img alt="_images/networkx_101_0.png" src="_images/networkx_101_0.png" />
 <p>when drawing to an interactive display. Note that you may need to issue
 a Matplotlib</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -652,7 +749,7 @@ FAQ</a>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_shell</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">nlist</span><span class="o">=</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)],</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_95_0.png" src="_images/networkx_95_0.png" />
+<img alt="_images/networkx_105_0.png" src="_images/networkx_105_0.png" />
 <p>You can find additional options via <code class="docutils literal notranslate"><span class="pre">draw_networkx()</span></code> and layouts via
 <code class="docutils literal notranslate"><span class="pre">layout</span></code>. You can use multiple shells with <code class="docutils literal notranslate"><span class="pre">draw_shell()</span></code>.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">dodecahedral_graph</span><span class="p">()</span>
@@ -662,13 +759,13 @@ FAQ</a>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_shell</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">nlist</span><span class="o">=</span><span class="n">shells</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_97_0.png" src="_images/networkx_97_0.png" />
+<img alt="_images/networkx_107_0.png" src="_images/networkx_107_0.png" />
 <p>To save drawings to a file, use, for example</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;path.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_99_0.png" src="_images/networkx_99_0.png" />
+<img alt="_images/networkx_109_0.png" src="_images/networkx_109_0.png" />
 <p>writes to the file <code class="docutils literal notranslate"><span class="pre">path.png</span></code> in the local directory.</p>
 <p>If Graphviz and PyGraphviz or pydot, are available on your system, you
 can also use <code class="docutils literal notranslate"><span class="pre">nx_agraph.graphviz_layout(G)</span></code> or
@@ -680,7 +777,7 @@ graph in dot format for further processing.</p>
 <span class="n">write_dot</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;file.dot&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_102_0.png" src="_images/networkx_102_0.png" />
+<img alt="_images/networkx_112_0.png" src="_images/networkx_112_0.png" />
 <p>See
 <a class="reference external" href="https://networkx.github.io/documentation/stable/reference/drawing.html">Drawing</a>
 for additional details.</p>
@@ -703,7 +800,7 @@ for additional details.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_106_0.png" src="_images/networkx_106_0.png" />
+<img alt="_images/networkx_116_0.png" src="_images/networkx_116_0.png" />
 <p><a class="reference external" href="https://networkx.github.io/documentation/stable/auto_examples/basic/plot_properties.html#sphx-glr-auto-examples-basic-plot-properties-py">https://networkx.github.io/documentation/stable/auto_examples/basic/plot_properties.html#sphx-glr-auto-examples-basic-plot-properties-py</a></p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">lollipop_graph</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 
@@ -782,7 +879,7 @@ for additional details.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_111_0.png" src="_images/networkx_111_0.png" />
+<img alt="_images/networkx_121_0.png" src="_images/networkx_121_0.png" />
 <p><a class="reference external" href="https://networkx.github.io/documentation/stable/auto_examples/drawing/plot_node_colormap.html#sphx-glr-auto-examples-drawing-plot-node-colormap-py">https://networkx.github.io/documentation/stable/auto_examples/drawing/plot_node_colormap.html#sphx-glr-auto-examples-drawing-plot-node-colormap-py</a></p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author: Aric Hagberg (hagberg@lanl.gov)</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">cycle_graph</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
@@ -792,7 +889,7 @@ for additional details.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_113_0.png" src="_images/networkx_113_0.png" />
+<img alt="_images/networkx_123_0.png" src="_images/networkx_123_0.png" />
 <p><a class="reference external" href="https://networkx.github.io/documentation/stable/auto_examples/drawing/plot_edge_colormap.html#sphx-glr-auto-examples-drawing-plot-edge-colormap-py">https://networkx.github.io/documentation/stable/auto_examples/drawing/plot_edge_colormap.html#sphx-glr-auto-examples-drawing-plot-edge-colormap-py</a></p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author: Aric Hagberg (hagberg@lanl.gov)</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">star_graph</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
@@ -803,7 +900,7 @@ for additional details.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_115_0.png" src="_images/networkx_115_0.png" />
+<img alt="_images/networkx_125_0.png" src="_images/networkx_125_0.png" />
 <p><a class="reference external" href="https://networkx.github.io/documentation/stable/auto_examples/drawing/plot_spectral_grid.html#sphx-glr-auto-examples-drawing-plot-spectral-grid-py">https://networkx.github.io/documentation/stable/auto_examples/drawing/plot_spectral_grid.html#sphx-glr-auto-examples-drawing-plot-spectral-grid-py</a></p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;node_color&#39;</span><span class="p">:</span> <span class="s1">&#39;C0&#39;</span><span class="p">,</span>
@@ -823,7 +920,7 @@ for additional details.</p>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_spectral</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_117_0.png" src="_images/networkx_117_0.png" />
+<img alt="_images/networkx_127_0.png" src="_images/networkx_127_0.png" />
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">336</span><span class="p">)</span>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_spectral</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
@@ -841,7 +938,7 @@ for additional details.</p>
 <span class="n">nx</span><span class="o">.</span><span class="n">draw_spectral</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_118_0.png" src="_images/networkx_118_0.png" />
+<img alt="_images/networkx_128_0.png" src="_images/networkx_128_0.png" />
 <p><a class="reference external" href="https://networkx.github.io/documentation/stable/auto_examples/drawing/plot_directed.html#sphx-glr-auto-examples-drawing-plot-directed-py">https://networkx.github.io/documentation/stable/auto_examples/drawing/plot_directed.html#sphx-glr-auto-examples-drawing-plot-directed-py</a></p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Author: Rodrigo Dorantes-Gilardi (rodgdor@gmail.com)</span>
 
@@ -875,7 +972,7 @@ for additional details.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_121_0.png" src="_images/networkx_121_0.png" />
+<img alt="_images/networkx_131_0.png" src="_images/networkx_131_0.png" />
 <p><a class="reference external" href="https://networkx.github.io/documentation/stable/auto_examples/graph/plot_roget.html#sphx-glr-auto-examples-graph-plot-roget-py">https://networkx.github.io/documentation/stable/auto_examples/graph/plot_roget.html#sphx-glr-auto-examples-graph-plot-roget-py</a></p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authors: Brendt Wohlberg, Aric Hagberg (hagberg@lanl.gov)</span>
 
@@ -947,7 +1044,7 @@ for additional details.</p>
 <span class="mi">21</span> <span class="n">connected</span> <span class="n">components</span>
 </pre></div>
 </div>
-<img alt="_images/networkx_124_2.png" src="_images/networkx_124_2.png" />
+<img alt="_images/networkx_134_2.png" src="_images/networkx_134_2.png" />
 </div>
 </div>
 
@@ -977,7 +1074,7 @@ for additional details.</p>
       &copy;2021, Massimo Nocentini.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.3</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

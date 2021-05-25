@@ -59,6 +59,19 @@ The ``values`` are simply a familiar NumPy array:
 
 
 
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    numpy.ndarray
+
+
+
 The ``index`` is an array-like object of type ``pd.Index``:
 
 .. code:: ipython3
@@ -72,6 +85,53 @@ The ``index`` is an array-like object of type ``pd.Index``:
 
     RangeIndex(start=0, stop=4, step=1)
 
+
+
+.. code:: ipython3
+
+    print(pd.RangeIndex.__doc__)
+
+
+.. parsed-literal::
+
+    
+        Immutable Index implementing a monotonic integer range.
+    
+        RangeIndex is a memory-saving special case of Int64Index limited to
+        representing monotonic ranges. Using RangeIndex may in some instances
+        improve computing speed.
+    
+        This is the default index type used
+        by DataFrame and Series when no explicit index is provided by the user.
+    
+        Parameters
+        ----------
+        start : int (default: 0), or other RangeIndex instance
+            If int and "stop" is not given, interpreted as "stop" instead.
+        stop : int (default: 0)
+        step : int (default: 1)
+        dtype : np.int64
+            Unused, accepted for homogeneity with other index types.
+        copy : bool, default False
+            Unused, accepted for homogeneity with other index types.
+        name : object, optional
+            Name to be stored in the index.
+    
+        Attributes
+        ----------
+        start
+        stop
+        step
+    
+        Methods
+        -------
+        from_range
+    
+        See Also
+        --------
+        Index : The base pandas Index type.
+        Int64Index : Index of int64 data.
+        
 
 
 Like with a NumPy array, data can be accessed by the associated index
@@ -225,6 +285,19 @@ typed keys to a set of typed values:
 
 .. code:: ipython3
 
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    pandas.core.series.Series
+
+
+
+.. code:: ipython3
+
     population.index
 
 
@@ -371,6 +444,19 @@ objects. Here, by *aligned* we mean that they share the same index:
 
 .. code:: ipython3
 
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    pandas.core.frame.DataFrame
+
+
+
+.. code:: ipython3
+
     states.index
 
 
@@ -398,6 +484,19 @@ Additionally, the ``DataFrame`` has a ``columns`` attribute, which is an
 
 
 
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    pandas.core.indexes.base.Index
+
+
+
 Thus the ``DataFrame`` can be thought of as a generalization of a
 two-dimensional NumPy array, where both the rows and columns have a
 generalized index for accessing the data.
@@ -413,7 +512,7 @@ name to a ``Series`` of column data:
 
 .. code:: ipython3
 
-    states['area']
+    states['area'] # "feature"
 
 
 
@@ -501,6 +600,19 @@ From a list of dicts
 .. code:: ipython3
 
     data = [{'a': i, 'b': 2 * i} for i in range(3)]
+    data
+
+
+
+
+.. parsed-literal::
+
+    [{'a': 0, 'b': 0}, {'a': 1, 'b': 2}, {'a': 2, 'b': 4}]
+
+
+
+.. code:: ipython3
+
     pd.DataFrame(data)
 
 
@@ -611,6 +723,21 @@ with any specified column and index names:
 
 .. code:: ipython3
 
+    np.random.rand(3, 2)
+
+
+
+
+.. parsed-literal::
+
+    array([[0.30282887, 0.48376433],
+           [0.53588853, 0.97428136],
+           [0.94756199, 0.46766408]])
+
+
+
+.. code:: ipython3
+
     pd.DataFrame(np.random.rand(3, 2),
                  columns=['foo', 'bar'],
                  index=['a', 'b', 'c'])
@@ -645,18 +772,18 @@ with any specified column and index names:
       <tbody>
         <tr>
           <th>a</th>
-          <td>0.146592</td>
-          <td>0.513407</td>
+          <td>0.759907</td>
+          <td>0.458958</td>
         </tr>
         <tr>
           <th>b</th>
-          <td>0.106042</td>
-          <td>0.602525</td>
+          <td>0.776779</td>
+          <td>0.767430</td>
         </tr>
         <tr>
           <th>c</th>
-          <td>0.927734</td>
-          <td>0.483650</td>
+          <td>0.131552</td>
+          <td>0.740137</td>
         </tr>
       </tbody>
     </table>
@@ -818,11 +945,11 @@ modified via the normal means:
 
     TypeError                                 Traceback (most recent call last)
 
-    <ipython-input-34-906a9fa1424c> in <module>
+    <ipython-input-60-906a9fa1424c> in <module>
     ----> 1 ind[1] = 0
     
 
-    ~/Developer/venvs/py-ml/lib/python3.8/site-packages/pandas/core/indexes/base.py in __setitem__(self, key, value)
+    ~/Developer/py-venvs/sphinx-venv/lib/python3.9/site-packages/pandas/core/indexes/base.py in __setitem__(self, key, value)
        4275     @final
        4276     def __setitem__(self, key, value):
     -> 4277         raise TypeError("Index does not support mutable operations")
@@ -929,7 +1056,7 @@ collection of keys to a collection of values:
 
 .. code:: ipython3
 
-    data['b']
+    data['b'] # mnemonic indexing
 
 
 
@@ -1054,6 +1181,39 @@ array-style item selection via the same basic mechanisms as NumPy arrays
     b    0.50
     c    0.75
     dtype: float64
+
+
+
+because
+
+.. code:: ipython3
+
+    (data > 0.3) & (data < 0.8)
+
+
+
+
+.. parsed-literal::
+
+    a    False
+    b     True
+    c     True
+    d    False
+    e    False
+    dtype: bool
+
+
+
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    pandas.core.series.Series
 
 
 
@@ -1404,6 +1564,37 @@ DataFrame as two-dimensional array
 
 .. code:: ipython3
 
+    data.values.T
+
+
+
+
+.. parsed-literal::
+
+    array([[4.23967000e+05, 6.95662000e+05, 1.41297000e+05, 1.70312000e+05,
+            1.49995000e+05],
+           [3.83325210e+07, 2.64481930e+07, 1.96511270e+07, 1.95528600e+07,
+            1.28821350e+07],
+           [9.04139261e+01, 3.80187404e+01, 1.39076746e+02, 1.14806121e+02,
+            8.58837628e+01]])
+
+
+
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    numpy.ndarray
+
+
+
+.. code:: ipython3
+
     data.T # transpose the full DataFrame object
 
 
@@ -1464,6 +1655,19 @@ DataFrame as two-dimensional array
       </tbody>
     </table>
     </div>
+
+
+
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    pandas.core.frame.DataFrame
 
 
 
@@ -1894,6 +2098,21 @@ on Pandas ``Series`` and ``DataFrame`` objects:
 
 .. code:: ipython3
 
+    rng.randint(0, 10, (3, 4))
+
+
+
+
+.. parsed-literal::
+
+    array([[1, 7, 5, 1],
+           [4, 0, 9, 5],
+           [8, 0, 9, 2]])
+
+
+
+.. code:: ipython3
+
     df = pd.DataFrame(rng.randint(0, 10, (3, 4)), columns=['A', 'B', 'C', 'D'])
     df
 
@@ -1930,23 +2149,23 @@ on Pandas ``Series`` and ``DataFrame`` objects:
         <tr>
           <th>0</th>
           <td>6</td>
-          <td>9</td>
+          <td>3</td>
+          <td>8</td>
           <td>2</td>
-          <td>6</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>7</td>
           <td>4</td>
-          <td>3</td>
-          <td>7</td>
+          <td>2</td>
+          <td>6</td>
+          <td>4</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>7</td>
-          <td>2</td>
-          <td>5</td>
-          <td>4</td>
+          <td>8</td>
+          <td>6</td>
+          <td>1</td>
+          <td>3</td>
         </tr>
       </tbody>
     </table>
@@ -1971,6 +2190,19 @@ another Pandas object *with the indices preserved:*
     2    1096.633158
     3      54.598150
     dtype: float64
+
+
+
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    pandas.core.series.Series
 
 
 
@@ -2010,24 +2242,24 @@ another Pandas object *with the indices preserved:*
       <tbody>
         <tr>
           <th>0</th>
-          <td>-1.000000</td>
-          <td>7.071068e-01</td>
-          <td>1.000000</td>
           <td>-1.000000e+00</td>
+          <td>0.707107</td>
+          <td>-2.449294e-16</td>
+          <td>1.000000e+00</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>-0.707107</td>
           <td>1.224647e-16</td>
-          <td>0.707107</td>
-          <td>-7.071068e-01</td>
+          <td>1.000000</td>
+          <td>-1.000000e+00</td>
+          <td>1.224647e-16</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>-0.707107</td>
-          <td>1.000000e+00</td>
-          <td>-0.707107</td>
-          <td>1.224647e-16</td>
+          <td>-2.449294e-16</td>
+          <td>-1.000000</td>
+          <td>7.071068e-01</td>
+          <td>7.071068e-01</td>
         </tr>
       </tbody>
     </table>
@@ -2063,10 +2295,8 @@ top three US states by *area* and the top three US states by
 
 .. code:: ipython3
 
-    area = pd.Series({'Alaska': 1723337, 'Texas': 695662,
-                      'California': 423967}, name='area')
-    population = pd.Series({'California': 38332521, 'Texas': 26448193,
-                            'New York': 19651127}, name='population')
+    area = pd.Series({'Alaska': 1723337, 'Texas': 695662, 'California': 423967}, name='area')
+    population = pd.Series({'California': 38332521, 'Texas': 26448193, 'New York': 19651127}, name='population')
 
 .. code:: ipython3
 
@@ -2091,7 +2321,7 @@ on these indices:
 
 .. code:: ipython3
 
-    area.index.union(population.index)
+    area.index.union(population.index) # this does create a new index and doesn't modify in place.
 
 
 
@@ -2099,6 +2329,19 @@ on these indices:
 .. parsed-literal::
 
     Index(['Alaska', 'California', 'New York', 'Texas'], dtype='object')
+
+
+
+.. code:: ipython3
+
+    area.index
+
+
+
+
+.. parsed-literal::
+
+    Index(['Alaska', 'Texas', 'California'], dtype='object')
 
 
 
@@ -2188,12 +2431,12 @@ when performing operations on ``DataFrame``\ s:
       <tbody>
         <tr>
           <th>0</th>
-          <td>1</td>
-          <td>11</td>
+          <td>13</td>
+          <td>17</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>5</td>
+          <td>8</td>
           <td>1</td>
         </tr>
       </tbody>
@@ -2238,21 +2481,21 @@ when performing operations on ``DataFrame``\ s:
       <tbody>
         <tr>
           <th>0</th>
-          <td>4</td>
-          <td>0</td>
-          <td>9</td>
+          <td>1</td>
+          <td>5</td>
+          <td>5</td>
         </tr>
         <tr>
           <th>1</th>
+          <td>9</td>
+          <td>3</td>
           <td>5</td>
-          <td>8</td>
-          <td>0</td>
         </tr>
         <tr>
           <th>2</th>
+          <td>1</td>
           <td>9</td>
-          <td>2</td>
-          <td>6</td>
+          <td>1</td>
         </tr>
       </tbody>
     </table>
@@ -2295,14 +2538,14 @@ when performing operations on ``DataFrame``\ s:
       <tbody>
         <tr>
           <th>0</th>
-          <td>1.0</td>
-          <td>15.0</td>
+          <td>18.0</td>
+          <td>18.0</td>
           <td>NaN</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>13.0</td>
-          <td>6.0</td>
+          <td>11.0</td>
+          <td>10.0</td>
           <td>NaN</td>
         </tr>
         <tr>
@@ -2320,6 +2563,19 @@ when performing operations on ``DataFrame``\ s:
 .. code:: ipython3
 
     fill = A.stack().mean()
+    fill
+
+
+
+
+.. parsed-literal::
+
+    9.75
+
+
+
+.. code:: ipython3
+
     A.add(B, fill_value=fill)
 
 
@@ -2353,21 +2609,21 @@ when performing operations on ``DataFrame``\ s:
       <tbody>
         <tr>
           <th>0</th>
-          <td>1.0</td>
-          <td>15.0</td>
-          <td>13.5</td>
+          <td>18.00</td>
+          <td>18.00</td>
+          <td>14.75</td>
         </tr>
         <tr>
           <th>1</th>
-          <td>13.0</td>
-          <td>6.0</td>
-          <td>4.5</td>
+          <td>11.00</td>
+          <td>10.00</td>
+          <td>14.75</td>
         </tr>
         <tr>
           <th>2</th>
-          <td>6.5</td>
-          <td>13.5</td>
-          <td>10.5</td>
+          <td>18.75</td>
+          <td>10.75</td>
+          <td>10.75</td>
         </tr>
       </tbody>
     </table>
@@ -3502,6 +3758,19 @@ to have:
 
 
 
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    pandas.core.indexes.multi.MultiIndex
+
+
+
 A ``MultiIndex`` contains multiple *levels* of indexing–in this case,
 the state names and the years, as well as multiple *labels* for each
 data point which encode these levels.
@@ -3621,6 +3890,19 @@ The ``unstack()`` method will quickly convert a multiply indexed
       </tbody>
     </table>
     </div>
+
+
+
+.. code:: ipython3
+
+    type(pop_df)
+
+
+
+
+.. parsed-literal::
+
+    pandas.core.frame.DataFrame
 
 
 
@@ -7566,7 +7848,68 @@ merge on an index. For example, your data might look like this:
 
 .. code:: ipython3
 
-    df1a = df1.set_index('employee')
+    df1.set_index?
+
+.. code:: ipython3
+
+    df1a = df1.set_index([ 'group', 'employee'])
+    df1a
+
+
+
+
+.. raw:: html
+
+    <div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>group</th>
+          <th>employee</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Accounting</th>
+          <th>Bob</th>
+        </tr>
+        <tr>
+          <th rowspan="2" valign="top">Engineering</th>
+          <th>Jake</th>
+        </tr>
+        <tr>
+          <th>Lisa</th>
+        </tr>
+        <tr>
+          <th>HR</th>
+          <th>Sue</th>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+
+
+.. code:: ipython3
+
+    df1a = df1.set_index(['employee', 'group'])
     df2a = df2.set_index('employee')
     display('df1a', 'df2a')
 
@@ -7677,8 +8020,7 @@ You can use the index as the key for merging by specifying the
 
 .. code:: ipython3
 
-    display('df1a', 'df2a',
-            "pd.merge(df1a, df2a, left_index=True, right_index=True)")
+    display('df1a', 'df2a', "pd.merge(df1a, df2a, left_index=True, right_index=True)")
 
 
 
@@ -7832,6 +8174,36 @@ You can use the index as the key for merging by specifying the
     </table>
     </div>
         </div>
+
+
+
+.. code:: ipython3
+
+    df1a, df2a, pd.merge(df1a, df2a, left_index=True, right_index=True)
+
+
+
+
+.. parsed-literal::
+
+    (                group
+     employee             
+     Bob        Accounting
+     Jake      Engineering
+     Lisa      Engineering
+     Sue                HR,
+               hire_date
+     employee           
+     Lisa           2004
+     Bob            2008
+     Jake           2012
+     Sue            2014,
+                     group  hire_date
+     employee                        
+     Bob        Accounting       2008
+     Jake      Engineering       2012
+     Lisa      Engineering       2004
+     Sue                HR       2014)
 
 
 
@@ -8643,6 +9015,144 @@ right entries, respectively:
         </div>
 
 
+
+.. code:: ipython3
+
+    display('df6', 'df7', "pd.merge(df6, df7, how='right')")
+
+
+
+
+.. raw:: html
+
+    <div style="float: left; padding: 10px;">
+        <p style='font-family:"Courier New", Courier, monospace'>df6</p><div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>name</th>
+          <th>food</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>0</th>
+          <td>Peter</td>
+          <td>fish</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>Paul</td>
+          <td>beans</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>Mary</td>
+          <td>bread</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+        </div>
+    <div style="float: left; padding: 10px;">
+        <p style='font-family:"Courier New", Courier, monospace'>df7</p><div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>name</th>
+          <th>drink</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>0</th>
+          <td>Mary</td>
+          <td>wine</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>Joseph</td>
+          <td>beer</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+        </div>
+    <div style="float: left; padding: 10px;">
+        <p style='font-family:"Courier New", Courier, monospace'>pd.merge(df6, df7, how='right')</p><div>
+    <style scoped>
+        .dataframe tbody tr th:only-of-type {
+            vertical-align: middle;
+        }
+    
+        .dataframe tbody tr th {
+            vertical-align: top;
+        }
+    
+        .dataframe thead th {
+            text-align: right;
+        }
+    </style>
+    <table border="1" class="dataframe">
+      <thead>
+        <tr style="text-align: right;">
+          <th></th>
+          <th>name</th>
+          <th>food</th>
+          <th>drink</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>0</th>
+          <td>Mary</td>
+          <td>bread</td>
+          <td>wine</td>
+        </tr>
+        <tr>
+          <th>1</th>
+          <td>Joseph</td>
+          <td>NaN</td>
+          <td>beer</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+        </div>
+
+
+
+.. code:: ipython3
+
+    pd.merge?
 
 Overlapping Column Names: The ``suffixes`` Keyword
 --------------------------------------------------
@@ -9844,100 +10354,157 @@ with a simple Seaborn command:
     planets.shape # 1,000+ extrasolar planets discovered up to 2014.
 
 
+::
 
 
-.. parsed-literal::
+    ---------------------------------------------------------------------------
 
-    (1035, 6)
+    SSLCertVerificationError                  Traceback (most recent call last)
 
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/urllib/request.py in do_open(self, http_class, req, **http_conn_args)
+       1341             try:
+    -> 1342                 h.request(req.get_method(), req.selector, req.data, headers,
+       1343                           encode_chunked=req.has_header('Transfer-encoding'))
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py in request(self, method, url, body, headers, encode_chunked)
+       1254         """Send a complete request to the server."""
+    -> 1255         self._send_request(method, url, body, headers, encode_chunked)
+       1256 
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py in _send_request(self, method, url, body, headers, encode_chunked)
+       1300             body = _encode(body, 'body')
+    -> 1301         self.endheaders(body, encode_chunked=encode_chunked)
+       1302 
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py in endheaders(self, message_body, encode_chunked)
+       1249             raise CannotSendHeader()
+    -> 1250         self._send_output(message_body, encode_chunked=encode_chunked)
+       1251 
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py in _send_output(self, message_body, encode_chunked)
+       1009         del self._buffer[:]
+    -> 1010         self.send(msg)
+       1011 
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py in send(self, data)
+        949             if self.auto_open:
+    --> 950                 self.connect()
+        951             else:
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py in connect(self)
+       1423 
+    -> 1424             self.sock = self._context.wrap_socket(self.sock,
+       1425                                                   server_hostname=server_hostname)
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/ssl.py in wrap_socket(self, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, session)
+        499         # ctx._wrap_socket()
+    --> 500         return self.sslsocket_class._create(
+        501             sock=sock,
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/ssl.py in _create(cls, sock, server_side, do_handshake_on_connect, suppress_ragged_eofs, server_hostname, context, session)
+       1039                         raise ValueError("do_handshake_on_connect should not be specified for non-blocking sockets")
+    -> 1040                     self.do_handshake()
+       1041             except (OSError, ValueError):
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/ssl.py in do_handshake(self, block)
+       1308                 self.settimeout(None)
+    -> 1309             self._sslobj.do_handshake()
+       1310         finally:
+
+
+    SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1122)
+
+    
+    During handling of the above exception, another exception occurred:
+
+
+    URLError                                  Traceback (most recent call last)
+
+    <ipython-input-155-c51edcc88343> in <module>
+          1 import seaborn as sns
+    ----> 2 planets = sns.load_dataset('planets')
+          3 planets.shape # 1,000+ extrasolar planets discovered up to 2014.
+
+
+    ~/Developer/py-venvs/sphinx-venv/lib/python3.9/site-packages/seaborn/utils.py in load_dataset(name, cache, data_home, **kws)
+        483                                   os.path.basename(full_path))
+        484         if not os.path.exists(cache_path):
+    --> 485             if name not in get_dataset_names():
+        486                 raise ValueError(f"'{name}' is not one of the example datasets.")
+        487             urlretrieve(full_path, cache_path)
+
+
+    ~/Developer/py-venvs/sphinx-venv/lib/python3.9/site-packages/seaborn/utils.py in get_dataset_names()
+        417     """
+        418     url = "https://github.com/mwaskom/seaborn-data"
+    --> 419     with urlopen(url) as resp:
+        420         html = resp.read()
+        421 
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/urllib/request.py in urlopen(url, data, timeout, cafile, capath, cadefault, context)
+        212     else:
+        213         opener = _opener
+    --> 214     return opener.open(url, data, timeout)
+        215 
+        216 def install_opener(opener):
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/urllib/request.py in open(self, fullurl, data, timeout)
+        515 
+        516         sys.audit('urllib.Request', req.full_url, req.data, req.headers, req.get_method())
+    --> 517         response = self._open(req, data)
+        518 
+        519         # post-process response
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/urllib/request.py in _open(self, req, data)
+        532 
+        533         protocol = req.type
+    --> 534         result = self._call_chain(self.handle_open, protocol, protocol +
+        535                                   '_open', req)
+        536         if result:
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/urllib/request.py in _call_chain(self, chain, kind, meth_name, *args)
+        492         for handler in handlers:
+        493             func = getattr(handler, meth_name)
+    --> 494             result = func(*args)
+        495             if result is not None:
+        496                 return result
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/urllib/request.py in https_open(self, req)
+       1383 
+       1384         def https_open(self, req):
+    -> 1385             return self.do_open(http.client.HTTPSConnection, req,
+       1386                 context=self._context, check_hostname=self._check_hostname)
+       1387 
+
+
+    /Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/urllib/request.py in do_open(self, http_class, req, **http_conn_args)
+       1343                           encode_chunked=req.has_header('Transfer-encoding'))
+       1344             except OSError as err: # timeout error
+    -> 1345                 raise URLError(err)
+       1346             r = h.getresponse()
+       1347         except:
+
+
+    URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1122)>
 
 
 .. code:: ipython3
 
     planets.head()
-
-
-
-
-.. raw:: html
-
-    <div>
-    <style scoped>
-        .dataframe tbody tr th:only-of-type {
-            vertical-align: middle;
-        }
-    
-        .dataframe tbody tr th {
-            vertical-align: top;
-        }
-    
-        .dataframe thead th {
-            text-align: right;
-        }
-    </style>
-    <table border="1" class="dataframe">
-      <thead>
-        <tr style="text-align: right;">
-          <th></th>
-          <th>method</th>
-          <th>number</th>
-          <th>orbital_period</th>
-          <th>mass</th>
-          <th>distance</th>
-          <th>year</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>0</th>
-          <td>Radial Velocity</td>
-          <td>1</td>
-          <td>269.300</td>
-          <td>7.10</td>
-          <td>77.40</td>
-          <td>2006</td>
-        </tr>
-        <tr>
-          <th>1</th>
-          <td>Radial Velocity</td>
-          <td>1</td>
-          <td>874.774</td>
-          <td>2.21</td>
-          <td>56.95</td>
-          <td>2008</td>
-        </tr>
-        <tr>
-          <th>2</th>
-          <td>Radial Velocity</td>
-          <td>1</td>
-          <td>763.000</td>
-          <td>2.60</td>
-          <td>19.84</td>
-          <td>2011</td>
-        </tr>
-        <tr>
-          <th>3</th>
-          <td>Radial Velocity</td>
-          <td>1</td>
-          <td>326.030</td>
-          <td>19.40</td>
-          <td>110.62</td>
-          <td>2007</td>
-        </tr>
-        <tr>
-          <th>4</th>
-          <td>Radial Velocity</td>
-          <td>1</td>
-          <td>516.220</td>
-          <td>10.50</td>
-          <td>119.47</td>
-          <td>2009</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-
-
 
 Simple Aggregation in Pandas
 ----------------------------
@@ -10335,7 +10902,7 @@ desired key column:
 
 .. parsed-literal::
 
-    <pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f864d926128>
+    <pandas.core.groupby.generic.DataFrameGroupBy object at 0x7fbb19adca30>
 
 
 
@@ -10401,6 +10968,19 @@ apply/combine steps to produce the desired result:
       </tbody>
     </table>
     </div>
+
+
+
+.. code:: ipython3
+
+    type(_)
+
+
+
+
+.. parsed-literal::
+
+    pandas.core.frame.DataFrame
 
 
 
@@ -13031,7 +13611,7 @@ year:
 
 
 
-.. image:: pandas_files/pandas_452_0.png
+.. image:: pandas_files/pandas_477_0.png
 
 
 With a simple pivot table and ``plot()`` method, we can immediately see
@@ -13098,7 +13678,7 @@ This allows us to quickly compute the weekday corresponding to each row:
 
 
 
-.. image:: pandas_files/pandas_463_0.png
+.. image:: pandas_files/pandas_488_0.png
 
 
 Apparently births are slightly less common on weekends than on weekdays!
@@ -13246,7 +13826,7 @@ trends:
 
 
 
-.. image:: pandas_files/pandas_471_0.png
+.. image:: pandas_files/pandas_496_0.png
 
 
 In particular, the striking feature of this graph is the dip in
@@ -13926,7 +14506,7 @@ Download some data (**ADD A DESCRIPTION FOR IT**)
 
 
 
-.. image:: pandas_files/pandas_523_0.png
+.. image:: pandas_files/pandas_548_0.png
 
 
 Resampling and converting frequencies
@@ -13950,7 +14530,7 @@ resample the data at the end of business year:
 
 
 
-.. image:: pandas_files/pandas_526_0.png
+.. image:: pandas_files/pandas_551_0.png
 
 
 Notice the difference: at each point, ``resample`` reports the *average
@@ -13980,7 +14560,7 @@ weekends):
 
 
 
-.. image:: pandas_files/pandas_530_0.png
+.. image:: pandas_files/pandas_555_0.png
 
 
 The top panel is the default: non-business days are left as NA values
@@ -14029,7 +14609,7 @@ Here we will both ``shift()`` and ``tshift()`` by 900 days;
 
 
 
-.. image:: pandas_files/pandas_533_0.png
+.. image:: pandas_files/pandas_558_0.png
 
 
 We see here that ``shift(900)`` shifts the *data* by 900 days, pushing
@@ -14048,7 +14628,7 @@ on investment for Google stock over the course of the dataset:
 
 
 
-.. image:: pandas_files/pandas_535_0.png
+.. image:: pandas_files/pandas_560_0.png
 
 
 This helps us to see the overall trend in Google stock: thus far, the
@@ -14081,7 +14661,7 @@ deviation of the Google stock prices:
 
 
 
-.. image:: pandas_files/pandas_539_0.png
+.. image:: pandas_files/pandas_564_0.png
 
 
 As with group-by operations, the ``aggregate()`` and ``apply()`` methods
@@ -14310,7 +14890,7 @@ We can gain some insight into the dataset by visualizing it:
 
 
 
-.. image:: pandas_files/pandas_549_0.png
+.. image:: pandas_files/pandas_574_0.png
 
 
 The ~25,000 hourly samples are far too dense for us to make much sense
@@ -14324,7 +14904,7 @@ of. We can gain more insight by resampling the data to a coarser grid:
 
 
 
-.. image:: pandas_files/pandas_551_0.png
+.. image:: pandas_files/pandas_576_0.png
 
 
 This shows us some interesting seasonal trends: as you might expect,
@@ -14344,7 +14924,7 @@ do a 30 day rolling mean of our data, making sure to center the window:
 
 
 
-.. image:: pandas_files/pandas_554_0.png
+.. image:: pandas_files/pandas_579_0.png
 
 
 The jaggedness of the result is due to the hard cutoff of the window. We
@@ -14362,7 +14942,7 @@ days):
 
 
 
-.. image:: pandas_files/pandas_557_0.png
+.. image:: pandas_files/pandas_582_0.png
 
 
 Digging into the data
@@ -14381,7 +14961,7 @@ the time of day; we do this by grouping:
 
 
 
-.. image:: pandas_files/pandas_559_0.png
+.. image:: pandas_files/pandas_584_0.png
 
 
 The hourly traffic is a strongly bimodal distribution, with peaks around
@@ -14403,7 +14983,7 @@ week. Again, we can do this with a simple groupby:
 
 
 
-.. image:: pandas_files/pandas_562_0.png
+.. image:: pandas_files/pandas_587_0.png
 
 
 This shows a strong distinction between weekday and weekend totals, with
@@ -14430,7 +15010,7 @@ flag marking the weekend, and the time of day:
 
 
 
-.. image:: pandas_files/pandas_566_0.png
+.. image:: pandas_files/pandas_591_0.png
 
 
 The result is very interesting: we see a bimodal commute pattern during

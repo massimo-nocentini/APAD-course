@@ -60,6 +60,7 @@ or, eventually, on this booklet according to the TOC
    matplotlib.rst
    networkx.rst
    gotchas.rst
+   oo.rst
 
 .. 
    Indices and tables
