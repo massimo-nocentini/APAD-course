@@ -4,15 +4,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Core concepts &#8212; APAD course  documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Exercises" href="exercises.html" />
@@ -81,7 +82,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -118,7 +119,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="core-concepts">
+  <section id="core-concepts">
 <h1>Core concepts<a class="headerlink" href="#core-concepts" title="Permalink to this headline">¶</a></h1>
 <p>This chapter deepens our understanding of some concepts seen in
 <a class="reference external" href="http://www.andreamarino.it/python/thinkcspy/">http://www.andreamarino.it/python/thinkcspy/</a>.</p>
@@ -136,13 +137,13 @@ as the object’s address in memory. The ‘“is”’ operator compares the
 identity of two objects; the “id()” function returns an integer
 representing its identity.</p>
 <p>where</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>id
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">function</span> <span class="nb">id</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(id)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">builtins</span><span class="p">:</span>
@@ -152,6 +153,319 @@ representing its identity.</p>
 
     <span class="n">This</span> <span class="ow">is</span> <span class="n">guaranteed</span> <span class="n">to</span> <span class="n">be</span> <span class="n">unique</span> <span class="n">among</span> <span class="n">simultaneously</span> <span class="n">existing</span> <span class="n">objects</span><span class="o">.</span>
     <span class="p">(</span><span class="n">CPython</span> <span class="n">uses</span> <span class="n">the</span> <span class="nb">object</span><span class="s1">&#39;s memory address.)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">help</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">_Helper</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">_sitebuiltins</span> <span class="nb">object</span><span class="p">:</span>
+
+<span class="k">class</span> <span class="nc">_Helper</span><span class="p">(</span><span class="n">builtins</span><span class="o">.</span><span class="n">object</span><span class="p">)</span>
+ <span class="o">|</span>  <span class="n">Define</span> <span class="n">the</span> <span class="n">builtin</span> <span class="s1">&#39;help&#39;</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">wrapper</span> <span class="n">around</span> <span class="n">pydoc</span><span class="o">.</span><span class="n">help</span> <span class="n">that</span> <span class="n">provides</span> <span class="n">a</span> <span class="n">helpful</span> <span class="n">message</span>
+ <span class="o">|</span>  <span class="n">when</span> <span class="s1">&#39;help&#39;</span> <span class="ow">is</span> <span class="n">typed</span> <span class="n">at</span> <span class="n">the</span> <span class="n">Python</span> <span class="n">interactive</span> <span class="n">prompt</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="n">Calling</span> <span class="n">help</span><span class="p">()</span> <span class="n">at</span> <span class="n">the</span> <span class="n">Python</span> <span class="n">prompt</span> <span class="n">starts</span> <span class="n">an</span> <span class="n">interactive</span> <span class="n">help</span> <span class="n">session</span><span class="o">.</span>
+ <span class="o">|</span>  <span class="n">Calling</span> <span class="n">help</span><span class="p">(</span><span class="n">thing</span><span class="p">)</span> <span class="n">prints</span> <span class="n">help</span> <span class="k">for</span> <span class="n">the</span> <span class="n">python</span> <span class="nb">object</span> <span class="s1">&#39;thing&#39;</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="n">Methods</span> <span class="n">defined</span> <span class="n">here</span><span class="p">:</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Call</span> <span class="bp">self</span> <span class="k">as</span> <span class="n">a</span> <span class="n">function</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="o">----------------------------------------------------------------------</span>
+ <span class="o">|</span>  <span class="n">Data</span> <span class="n">descriptors</span> <span class="n">defined</span> <span class="n">here</span><span class="p">:</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="vm">__dict__</span>
+ <span class="o">|</span>      <span class="n">dictionary</span> <span class="k">for</span> <span class="n">instance</span> <span class="n">variables</span> <span class="p">(</span><span class="k">if</span> <span class="n">defined</span><span class="p">)</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="vm">__weakref__</span>
+ <span class="o">|</span>      <span class="nb">list</span> <span class="n">of</span> <span class="n">weak</span> <span class="n">references</span> <span class="n">to</span> <span class="n">the</span> <span class="nb">object</span> <span class="p">(</span><span class="k">if</span> <span class="n">defined</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Help on class object in module builtins:
+
+class object
+ |  The base class of the class hierarchy.
+ |
+ |  When called, it accepts no arguments and returns a new featureless
+ |  instance that has no instance attributes and cannot be given any.
+ |
+ |  Built-in subclasses:
+ |      anext_awaitable
+ |      async_generator
+ |      async_generator_asend
+ |      async_generator_athrow
+ |      ... and 91 other subclasses
+ |
+ |  Methods defined here:
+ |
+ |  __delattr__(self, name, /)
+ |      Implement delattr(self, name).
+ |
+ |  __dir__(self, /)
+ |      Default dir() implementation.
+ |
+ |  __eq__(self, value, /)
+ |      Return self==value.
+ |
+ |  __format__(self, format_spec, /)
+ |      Default object formatter.
+ |
+ |  __ge__(self, value, /)
+ |      Return self&gt;=value.
+ |
+ |  __getattribute__(self, name, /)
+ |      Return getattr(self, name).
+ |
+ |  __gt__(self, value, /)
+ |      Return self&gt;value.
+ |
+ |  __hash__(self, /)
+ |      Return hash(self).
+ |
+ |  __init__(self, /, *args, **kwargs)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |
+ |  __le__(self, value, /)
+ |      Return self&lt;=value.
+ |
+ |  __lt__(self, value, /)
+ |      Return self&lt;value.
+ |
+ |  __ne__(self, value, /)
+ |      Return self!=value.
+ |
+ |  __reduce__(self, /)
+ |      Helper for pickle.
+ |
+ |  __reduce_ex__(self, protocol, /)
+ |      Helper for pickle.
+ |
+ |  __repr__(self, /)
+ |      Return repr(self).
+ |
+ |  __setattr__(self, name, value, /)
+ |      Implement setattr(self, name, value).
+ |
+ |  __sizeof__(self, /)
+ |      Size of object in memory, in bytes.
+ |
+ |  __str__(self, /)
+ |      Return str(self).
+ |
+ |  ----------------------------------------------------------------------
+ |  Class methods defined here:
+ |
+ |  __init_subclass__(...) from builtins.type
+ |      This method is called when a class is subclassed.
+ |
+ |      The default implementation does nothing. It may be
+ |      overridden to extend subclasses.
+ |
+ |  __subclasshook__(...) from builtins.type
+ |      Abstract classes can override this to customize issubclass().
+ |
+ |      This is invoked early on by abc.ABCMeta.__subclasscheck__().
+ |      It should return True, False or NotImplemented.  If it returns
+ |      NotImplemented, the normal algorithm is used.  Otherwise, it
+ |      overrides the normal algorithm (and the outcome is cached).
+ |
+ |  ----------------------------------------------------------------------
+ |  Static methods defined here:
+ |
+ |  __new__(*args, **kwargs) from builtins.type
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |
+ |  __class__ = &lt;class &#39;type&#39;&gt;
+ |      type(object_or_name, bases, dict)
+ |      type(object) -&gt; the object&#39;s type
+ |      type(name, bases, dict) -&gt; a new type
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">o</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">o</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10d85b310</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4521833232</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">o</span> <span class="ow">is</span> <span class="n">w</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">o</span> <span class="ow">is</span> <span class="n">o</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Help on class type in module builtins:
+
+class type(object)
+ |  type(object_or_name, bases, dict)
+ |  type(object) -&gt; the object&#39;s type
+ |  type(name, bases, dict) -&gt; a new type
+ |
+ |  Methods defined here:
+ |
+ |  __call__(self, /, *args, **kwargs)
+ |      Call self as a function.
+ |
+ |  __delattr__(self, name, /)
+ |      Implement delattr(self, name).
+ |
+ |  __dir__(self, /)
+ |      Specialized __dir__ implementation for types.
+ |
+ |  __getattribute__(self, name, /)
+ |      Return getattr(self, name).
+ |
+ |  __init__(self, /, *args, **kwargs)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |
+ |  __instancecheck__(self, instance, /)
+ |      Check if an object is an instance.
+ |
+ |  __or__(self, value, /)
+ |      Return self|value.
+ |
+ |  __repr__(self, /)
+ |      Return repr(self).
+ |
+ |  __ror__(self, value, /)
+ |      Return value|self.
+ |
+ |  __setattr__(self, name, value, /)
+ |      Implement setattr(self, name, value).
+ |
+ |  __sizeof__(self, /)
+ |      Return memory consumption of the type object.
+ |
+ |  __subclasscheck__(self, subclass, /)
+ |      Check if a class is a subclass.
+ |
+ |  __subclasses__(self, /)
+ |      Return a list of immediate subclasses.
+ |
+ |  mro(self, /)
+ |      Return a type&#39;s method resolution order.
+ |
+ |  ----------------------------------------------------------------------
+ |  Class methods defined here:
+ |
+ |  __prepare__(...)
+ |      __prepare__() -&gt; dict
+ |      used to create the namespace for the class statement
+ |
+ |  ----------------------------------------------------------------------
+ |  Static methods defined here:
+ |
+ |  __new__(*args, **kwargs)
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |
+ |  __abstractmethods__
+ |
+ |  __annotations__
+ |
+ |  __dict__
+ |
+ |  __text_signature__
+ |
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |
+ |  __base__ = &lt;class &#39;object&#39;&gt;
+ |      The base class of the class hierarchy.
+ |
+ |      When called, it accepts no arguments and returns a new featureless
+ |      instance that has no instance attributes and cannot be given any.
+ |
+ |
+ |  __bases__ = (&lt;class &#39;object&#39;&gt;,)
+ |
+ |  __basicsize__ = 888
+ |
+ |  __dictoffset__ = 264
+ |
+ |  __flags__ = 2148031744
+ |
+ |  __itemsize__ = 40
+ |
+ |  __mro__ = (&lt;class &#39;type&#39;&gt;, &lt;class &#39;object&#39;&gt;)
+ |
+ |  __weakrefoffset__ = 368
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">float</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">help</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">_sitebuiltins</span><span class="o">.</span><span class="n">_Helper</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">builtin_function_or_method</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span>
 </pre></div>
 </div>
 <p>Third, &gt;An object’s type determines the operations that the object
@@ -183,28 +497,237 @@ importance of object identity is affected in some sense: for immutable
 types, operations that compute new values may actually return a
 reference to any existing object with the same type and value, while for
 mutable objects this is not allowed.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>a = 1; b = 1 # &quot;a&quot; and &quot;b&quot; may or may not refer to the same object with the value one,
-id(a), id(b) # depending on the implementation
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4534062624</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">__main__</span><span class="o">.</span><span class="n">A</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">()</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">L</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">5</span><span class="n">J</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">5</span><span class="n">j</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">)</span>
+<span class="n">t</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">tuple</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tt</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.14</span><span class="p">,</span> <span class="p">[])</span>
+<span class="n">tt</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="mf">3.14</span><span class="p">,</span> <span class="p">[]),</span> <span class="mi">4533921408</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tt</span><span class="p">,</span> <span class="nb">id</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="mf">3.14</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">]),</span> <span class="mi">4533921408</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">({})</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">dict</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="nb">set</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mf">3.14</span><span class="p">)</span>
+<span class="n">S</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="mf">3.14</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+<span class="n">S</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">tuple</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{(),</span> <span class="mf">3.14</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="nb">tuple</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{(),</span> <span class="mf">3.14</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span><span class="o">.</span><span class="n">add</span><span class="p">([])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">0</span><span class="n">k</span><span class="o">/</span><span class="n">y3r96gt12zn1mzgztql9m_8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2745</span><span class="o">/</span><span class="mf">334196350.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">S</span><span class="o">.</span><span class="n">add</span><span class="p">([])</span>
+
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">unhashable</span> <span class="nb">type</span><span class="p">:</span> <span class="s1">&#39;list&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mf">3.14</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+<span class="n">tt</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.618</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">(</span><span class="n">L</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="n">tt</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">4613187392</span><span class="p">,</span> <span class="mi">4612579136</span><span class="p">,</span> <span class="mi">4613347328</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="o">=</span> <span class="p">{</span> <span class="n">t</span><span class="p">,</span> <span class="n">tt</span> <span class="p">}</span>
+<span class="n">S</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">0</span><span class="n">k</span><span class="o">/</span><span class="n">y3r96gt12zn1mzgztql9m_8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2745</span><span class="o">/</span><span class="mf">4157842914.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span> <span class="n">t</span><span class="p">,</span> <span class="n">tt</span> <span class="p">}</span>
+      <span class="mi">2</span> <span class="n">S</span>
+
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">unhashable</span> <span class="nb">type</span><span class="p">:</span> <span class="s1">&#39;list&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">hash</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">0</span><span class="n">k</span><span class="o">/</span><span class="n">y3r96gt12zn1mzgztql9m_8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2745</span><span class="o">/</span><span class="mf">1001898879.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="nb">hash</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">unhashable</span> <span class="nb">type</span><span class="p">:</span> <span class="s1">&#39;list&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">{(</span><span class="mf">3.14</span><span class="p">,</span> <span class="p">()),</span> <span class="p">(</span><span class="mf">1.618</span><span class="p">,</span> <span class="nb">frozenset</span><span class="p">())}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{(</span><span class="mf">1.618</span><span class="p">,</span> <span class="nb">frozenset</span><span class="p">()),</span> <span class="p">(</span><span class="mf">3.14</span><span class="p">,</span> <span class="p">())}</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">D</span><span class="p">[[]]</span> <span class="o">=</span> <span class="mf">3.14</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">0</span><span class="n">k</span><span class="o">/</span><span class="n">y3r96gt12zn1mzgztql9m_8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2745</span><span class="o">/</span><span class="mf">1357002942.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+      <span class="mi">1</span> <span class="n">D</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="o">----&gt;</span> <span class="mi">2</span> <span class="n">D</span><span class="p">[[]]</span> <span class="o">=</span> <span class="mf">3.14</span>
+
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="n">unhashable</span> <span class="nb">type</span><span class="p">:</span> <span class="s1">&#39;list&#39;</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># &quot;a&quot; and &quot;b&quot; may or may not refer to the same object with the value one,</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># depending on the implementation</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">94869411972864</span><span class="p">,</span> <span class="mi">94869411972864</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>c = []; d = []
-id(c), id(d) # &quot;c&quot; and &quot;d&quot; are guaranteed to refer to two different, unique, newly created empty lists.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">d</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="nb">id</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="c1"># &quot;c&quot; and &quot;d&quot; are guaranteed to refer to two different, unique, newly created empty lists.</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">140325921500736</span><span class="p">,</span> <span class="mi">140325921500224</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>type(c), type(d)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>A full description can be read by evaluating the following,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(&#39;OBJECTS&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="s1">&#39;OBJECTS&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <pre class="literal-block">Objects, values and types
@@ -295,44 +818,151 @@ created empty lists. (Note that &quot;c = d = []&quot; assigns the same object
 to both &quot;c&quot; and &quot;d&quot;.)
 
 Related help topics: TYPES</pre>
-<div class="section" id="values-and-their-types">
+<section id="values-and-their-types">
 <h2>Values and their types<a class="headerlink" href="#values-and-their-types" title="Permalink to this headline">¶</a></h2>
 <p>Some playground:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&quot;Hello, World!&quot;, type(&quot;Hello, World!&quot;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s1">&#39;Hello, World!&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>_
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s1">&#39;Hello, World!&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>_[1]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>__
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">__</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s1">&#39;Hello, World!&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>type(_)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">tuple</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>tuple.__doc__
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="nb">tuple</span><span class="p">)</span>
 </pre></div>
 </div>
-<pre class="literal-block">&quot;Built-in immutable sequence.nnIf no argument is given, the constructor returns an empty tuple.nIf iterable is specified the tuple is initialized from iterable's items.nnIf the argument is a tuple, the return value is the same object.&quot;</pre>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(tuple.__doc__)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tuple_doc</span> <span class="o">=</span> <span class="nb">tuple</span><span class="o">.</span><span class="vm">__doc__</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">tuple_doc</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tuple_doc</span> <span class="o">+</span> <span class="s1">&#39; maybe that is actually true&#39;</span>
+</pre></div>
+</div>
+<pre class="literal-block">&quot;Built-in immutable sequence.nnIf no argument is given, the constructor returns an empty tuple.nIf iterable is specified the tuple is initialized from iterable's items.nnIf the argument is a tuple, the return value is the same object. maybe that is actually true&quot;</pre>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">tuple</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="k">class</span> <span class="nc">tuple</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">builtins</span><span class="p">:</span>
+
+<span class="k">class</span> <span class="nc">tuple</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+ <span class="o">|</span>  <span class="nb">tuple</span><span class="p">(</span><span class="n">iterable</span><span class="o">=</span><span class="p">(),</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="n">Built</span><span class="o">-</span><span class="ow">in</span> <span class="n">immutable</span> <span class="n">sequence</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="n">If</span> <span class="n">no</span> <span class="n">argument</span> <span class="ow">is</span> <span class="n">given</span><span class="p">,</span> <span class="n">the</span> <span class="n">constructor</span> <span class="n">returns</span> <span class="n">an</span> <span class="n">empty</span> <span class="nb">tuple</span><span class="o">.</span>
+ <span class="o">|</span>  <span class="n">If</span> <span class="n">iterable</span> <span class="ow">is</span> <span class="n">specified</span> <span class="n">the</span> <span class="nb">tuple</span> <span class="ow">is</span> <span class="n">initialized</span> <span class="kn">from</span> <span class="nn">iterable</span><span class="s1">&#39;s items.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="n">If</span> <span class="n">the</span> <span class="n">argument</span> <span class="ow">is</span> <span class="n">a</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">the</span> <span class="k">return</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">same</span> <span class="nb">object</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="n">Built</span><span class="o">-</span><span class="ow">in</span> <span class="n">subclasses</span><span class="p">:</span>
+ <span class="o">|</span>      <span class="n">asyncgen_hooks</span>
+ <span class="o">|</span>      <span class="n">UnraisableHookArgs</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="n">Methods</span> <span class="n">defined</span> <span class="n">here</span><span class="p">:</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">+</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">==</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">&gt;=</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__getattribute__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="n">__getnewargs__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">&gt;</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Implement</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__le__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">&lt;=</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">&lt;</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">*</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="bp">self</span><span class="o">!=</span><span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="n">value</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="n">count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="n">number</span> <span class="n">of</span> <span class="n">occurrences</span> <span class="n">of</span> <span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">9223372036854775807</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span>
+ <span class="o">|</span>      <span class="n">Return</span> <span class="n">first</span> <span class="n">index</span> <span class="n">of</span> <span class="n">value</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>      <span class="n">Raises</span> <span class="ne">ValueError</span> <span class="k">if</span> <span class="n">the</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">present</span><span class="o">.</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="o">----------------------------------------------------------------------</span>
+ <span class="o">|</span>  <span class="n">Class</span> <span class="n">methods</span> <span class="n">defined</span> <span class="n">here</span><span class="p">:</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="n">__class_getitem__</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">builtins.type</span>
+ <span class="o">|</span>      <span class="n">See</span> <span class="n">PEP</span> <span class="mi">585</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="o">----------------------------------------------------------------------</span>
+ <span class="o">|</span>  <span class="n">Static</span> <span class="n">methods</span> <span class="n">defined</span> <span class="n">here</span><span class="p">:</span>
+ <span class="o">|</span>
+ <span class="o">|</span>  <span class="fm">__new__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">builtins.type</span>
+ <span class="o">|</span>      <span class="n">Create</span> <span class="ow">and</span> <span class="k">return</span> <span class="n">a</span> <span class="n">new</span> <span class="nb">object</span><span class="o">.</span>  <span class="n">See</span> <span class="n">help</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span> <span class="k">for</span> <span class="n">accurate</span> <span class="n">signature</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">tuple</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Built</span><span class="o">-</span><span class="ow">in</span> <span class="n">immutable</span> <span class="n">sequence</span><span class="o">.</span>
@@ -343,39 +973,43 @@ Related help topics: TYPES</pre>
 <span class="n">If</span> <span class="n">the</span> <span class="n">argument</span> <span class="ow">is</span> <span class="n">a</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">the</span> <span class="k">return</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">same</span> <span class="nb">object</span><span class="o">.</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>3.2, type(3.2), 3 + 9J, type(3 + 9j)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">3.2</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="mf">3.2</span><span class="p">),</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">9</span><span class="n">J</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">9</span><span class="n">j</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">3.2</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">9</span><span class="n">j</span><span class="p">),</span> <span class="nb">complex</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&#39;I&#39;&#39;m a string&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;I&#39;&#39;m a string&#39;</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Im a string&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&#39;&#39;&#39;&quot;Oh no&quot;, she exclaimed, &quot;Ben&#39;s bike is broken!&quot;&#39;&#39;&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;&quot;Oh no&quot;, she exclaimed, &quot;Ben&#39;s bike is broken!&quot;&#39;&#39;&#39;</span>
 </pre></div>
 </div>
 <pre class="literal-block">'&quot;Oh no&quot;, she exclaimed, &quot;Ben's bike is broken!&quot;'</pre>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def a(b):
-    &#39;&#39;&#39;A short summary here.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">a</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A short summary here.</span>
 
-    Some more description here.
-    &#39;&#39;&#39;
-    ...
+<span class="sd">    Some more description here.</span>
+
+<span class="sd">    &gt;&gt;&gt; a(4)</span>
+<span class="sd">    None</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="o">...</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def b(c):
-    &#39;&#39;&#39;A short summary here.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">b</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A short summary here.</span>
 
-    Some more description here.
-    &#39;&#39;&#39;
-    pass
+<span class="sd">    Some more description here.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(a)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">function</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">__main__</span><span class="p">:</span>
@@ -384,42 +1018,66 @@ Related help topics: TYPES</pre>
     <span class="n">A</span> <span class="n">short</span> <span class="n">summary</span> <span class="n">here</span><span class="o">.</span>
 
     <span class="n">Some</span> <span class="n">more</span> <span class="n">description</span> <span class="n">here</span><span class="o">.</span>
+
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="kc">None</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(a.__doc__)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="vm">__doc__</span>
+</pre></div>
+</div>
+<pre class="literal-block">'A short summary here.n    n    Some more description here.n    n    &gt;&gt;&gt; a(4)n    Nonen    n    '</pre>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="n">short</span> <span class="n">summary</span> <span class="n">here</span><span class="o">.</span>
 
     <span class="n">Some</span> <span class="n">more</span> <span class="n">description</span> <span class="n">here</span><span class="o">.</span>
+
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="kc">None</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>assert a(4) == b(3) == None
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">a</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">==</span> <span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="kc">None</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>id(None), id(None), id(None)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="kc">True</span> <span class="o">==</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;This is quite usual&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">AssertionError</span>                            <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">0</span><span class="n">k</span><span class="o">/</span><span class="n">y3r96gt12zn1mzgztql9m_8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_2745</span><span class="o">/</span><span class="mf">1794376097.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="k">assert</span> <span class="kc">True</span> <span class="o">==</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;This is quite usual&#39;</span>
+
+
+<span class="ne">AssertionError</span><span class="p">:</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">quite</span> <span class="n">usual</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">94869411793504</span><span class="p">,</span> <span class="mi">94869411793504</span><span class="p">,</span> <span class="mi">94869411793504</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>((3 &lt; 4) &lt; 10) &lt; 7
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">((</span><span class="mi">3</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">7</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>_
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span>
 </pre></div>
 </div>
 <pre class="literal-block">'&quot;Oh no&quot;, she exclaimed, &quot;Ben's bike is broken!&quot;'</pre>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>type(_)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(&#39;TYPES&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="s1">&#39;TYPES&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <pre class="literal-block">The standard type hierarchy
@@ -682,7 +1340,7 @@ Callable types
 
       +---------------------------+---------------------------------+-------------+
       | Attribute                 | Meaning                         |             |
-      <a href="#id7"><span class="problematic" id="id8">|===========================|=================================|=============|</span></a>
+      <a href="#id35"><span class="problematic" id="id36">|===========================|=================================|=============|</span></a>
       | &quot;__doc__&quot;                 | The function’s documentation    | Writable    |
       |                           | string, or &quot;None&quot; if            |             |
       |                           | unavailable; not inherited by   |             |
@@ -1173,7 +1831,7 @@ Internal types
 
 Related help topics: STRINGS, UNICODE, NUMBERS, SEQUENCES, MAPPINGS,
 FUNCTIONS, CLASSES, MODULES, FILES, inspect</pre>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>min, next, object, open, property
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">min</span><span class="p">,</span> <span class="nb">next</span><span class="p">,</span> <span class="nb">object</span><span class="p">,</span> <span class="nb">open</span><span class="p">,</span> <span class="nb">property</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">&lt;</span><span class="n">function</span> <span class="nb">min</span><span class="o">&gt;</span><span class="p">,</span>
@@ -1183,81 +1841,214 @@ FUNCTIONS, CLASSES, MODULES, FILES, inspect</pre>
  <span class="nb">property</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>True, False, None
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span>
+</pre></div>
 </div>
-<div class="section" id="variables">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">function</span> <span class="n">__main__</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">a</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">function</span> <span class="n">__main__</span><span class="o">.&lt;</span><span class="k">lambda</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">()</span>
+<span class="n">a</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">L</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inc</span><span class="p">(</span><span class="n">a</span><span class="p">):</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">inc</span><span class="p">,</span> <span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">print</span><span class="p">,</span> <span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">L</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">6</span>
+<span class="mi">7</span>
+<span class="mi">8</span>
+<span class="mi">9</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LL</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">L</span><span class="p">:</span>
+    <span class="n">LL</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">LL</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">an_int</span> <span class="o">=</span> <span class="mi">541</span>
+<span class="n">my_lambda</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">an_int</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_lambda</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">function</span> <span class="n">__main__</span><span class="o">.&lt;</span><span class="k">lambda</span><span class="o">&gt;</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_lambda</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">542</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">my_lambda</span><span class="p">,</span> <span class="n">L</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">541</span><span class="p">,</span> <span class="mi">542</span><span class="p">,</span> <span class="mi">543</span><span class="p">,</span> <span class="mi">544</span><span class="p">,</span> <span class="mi">545</span><span class="p">,</span> <span class="mi">546</span><span class="p">,</span> <span class="mi">547</span><span class="p">,</span> <span class="mi">548</span><span class="p">,</span> <span class="mi">549</span><span class="p">,</span> <span class="mi">550</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="variables">
 <h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>a = 2
-b = 3
-a, b
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>3 + (a := 4)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span> <span class="o">:=</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>a
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># the usual way...
-c = a
-a = b
-b = c
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># the usual way...</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">c</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>b, a = a, b # swap
-a, b
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="c1"># swap</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>a, (b, *c, d), e, *f = (1, [2, 3, 4, 5, 6], 7, 8, 9) # unpacking of iterables.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">),</span> <span class="n">e</span><span class="p">,</span> <span class="o">*</span><span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span> <span class="c1"># unpacking of iterables.</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>a, b, c, d, e, f
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>(1, [2, 3, 4, 5, 6], 7, 8, 9)[1][-1]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>d
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="operators-and-operands">
+</section>
+<section id="operators-and-operands">
 <h2>Operators and operands<a class="headerlink" href="#operators-and-operands" title="Permalink to this headline">¶</a></h2>
 <p>Built-ins are described at
 <a class="reference external" href="https://docs.python.org/3/library/functions.html#built-in-funcs">https://docs.python.org/3/library/functions.html#built-in-funcs</a>.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>int(1.1)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(&#39;INTEGER&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="s1">&#39;INTEGER&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <pre class="literal-block">Integer literals
@@ -1298,19 +2089,19 @@ Changed in version 3.6: Underscores are now allowed for grouping
 purposes in literals.
 
 Related help topics: int, range</pre>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&#39;banana&#39; * 3
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;banana&#39;</span> <span class="o">*</span> <span class="mi">3</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;bananabananabanana&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>type(_)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">str</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(&#39;STRINGS&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="s1">&#39;STRINGS&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <pre class="literal-block">String and Bytes literals
@@ -1388,7 +2179,7 @@ used by Standard C.  The recognized escape sequences are:
 
 +-------------------+-----------------------------------+---------+
 | Escape Sequence   | Meaning                           | Notes   |
-<a href="#id9"><span class="problematic" id="id10">|===================|===================================|=========|</span></a>
+<a href="#id37"><span class="problematic" id="id38">|===================|===================================|=========|</span></a>
 | &quot;newline&quot;        | Backslash and newline ignored     |         |
 +-------------------+-----------------------------------+---------+
 | &quot;\&quot;              | Backslash (&quot;&quot;)                   |         |
@@ -1420,7 +2211,7 @@ Escape sequences only recognized in string literals are:
 
 +-------------------+-----------------------------------+---------+
 | Escape Sequence   | Meaning                           | Notes   |
-<a href="#id11"><span class="problematic" id="id12">|===================|===================================|=========|</span></a>
+<a href="#id39"><span class="problematic" id="id40">|===================|===================================|=========|</span></a>
 | &quot;N{name}&quot;        | Character named <em>name</em> in the     | (4)     |
 |                   | Unicode database                  |         |
 +-------------------+-----------------------------------+---------+
@@ -1473,32 +2264,32 @@ of the literal, <em>not</em> as a line continuation.
 
 Related help topics: str, UNICODE, SEQUENCES, STRINGMETHODS, FORMATTING,
 TYPES</pre>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&#39;&#39;.join(reversed(&#39;prova&#39;)) # `string`s are collections too
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="s1">&#39;prova&#39;</span><span class="p">))</span> <span class="c1"># `string`s are collections too</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;avorp&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>a = 1; b = 2 # string interpolation
-&#39;{} &lt; {} is actually true.&#39;.format(a, b)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># string interpolation</span>
+<span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> &lt; </span><span class="si">{}</span><span class="s1"> is actually true.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;1 &lt; 2 is actually true.&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>f&#39;{a} &lt; {b} is actually true.&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> &lt; </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1"> is actually true.&#39;</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;1 &lt; 2 is actually true.&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>total_secs = 43943
-hours = total_secs // 3600
-secs_still_remaining = total_secs % 3600
-minutes =  secs_still_remaining // 60
-secs_finally_remaining = secs_still_remaining  % 60
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_secs</span> <span class="o">=</span> <span class="mi">43943</span>
+<span class="n">hours</span> <span class="o">=</span> <span class="n">total_secs</span> <span class="o">//</span> <span class="mi">3600</span>
+<span class="n">secs_still_remaining</span> <span class="o">=</span> <span class="n">total_secs</span> <span class="o">%</span> <span class="mi">3600</span>
+<span class="n">minutes</span> <span class="o">=</span>  <span class="n">secs_still_remaining</span> <span class="o">//</span> <span class="mi">60</span>
+<span class="n">secs_finally_remaining</span> <span class="o">=</span> <span class="n">secs_still_remaining</span>  <span class="o">%</span> <span class="mi">60</span>
 
-&quot;{}h {}&#39; {}&#39;&#39;&quot;.format(hours, minutes, secs_finally_remaining)
+<span class="s2">&quot;</span><span class="si">{}</span><span class="s2">h </span><span class="si">{}</span><span class="s2">&#39; </span><span class="si">{}</span><span class="s2">&#39;&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">hours</span><span class="p">,</span> <span class="n">minutes</span><span class="p">,</span> <span class="n">secs_finally_remaining</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;12h 12&#39; 23&#39;&#39;&quot;</span>
@@ -1506,7 +2297,7 @@ secs_finally_remaining = secs_still_remaining  % 60
 </div>
 <p>operators are described here
 <a class="reference external" href="https://docs.python.org/3/library/operator.html?highlight=operator">https://docs.python.org/3/library/operator.html?highlight=operator</a>.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(&#39;OPERATORS&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="s1">&#39;OPERATORS&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <pre class="literal-block">Operator precedence
@@ -1525,7 +2316,7 @@ described in the Comparisons section.
 
 +-------------------------------------------------+---------------------------------------+
 | Operator                                        | Description                           |
-<a href="#id13"><span class="problematic" id="id14">|=================================================|=======================================|</span></a>
+<a href="#id41"><span class="problematic" id="id42">|=================================================|=======================================|</span></a>
 | &quot;:=&quot;                                            | Assignment expression                 |
 +-------------------------------------------------+---------------------------------------+
 | &quot;lambda&quot;                                        | Lambda expression                     |
@@ -1623,29 +2414,29 @@ described in the Comparisons section.
 Related help topics: lambda, or, and, not, in, is, BOOLEAN, COMPARISON,
 BITWISE, SHIFTING, BINARY, FORMATTING, POWER, UNARY, ATTRIBUTES,
 SUBSCRIPTS, SLICINGS, CALLS, TUPLES, LISTS, DICTIONARIES</pre>
-</div>
-<div class="section" id="slices">
+</section>
+<section id="slices">
 <h2><code class="docutils literal notranslate"><span class="pre">Slice</span></code>s<a class="headerlink" href="#slices" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&#39;hello&#39;[1:-2]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;hello&#39;</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;el&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>s = slice(5, 11, 2)
-s.start, s.stop, s.step
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">step</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>&#39;hello&#39;[slice(1, 3)]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;hello&#39;</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;el&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(&#39;SLICINGS&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="s1">&#39;SLICINGS&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <pre class="literal-block">Slicings
@@ -1684,16 +2475,41 @@ as lower bound, upper bound and stride, respectively, substituting
 &quot;None&quot; for missing expressions.
 
 Related help topics: SEQUENCEMETHODS</pre>
-</div>
-<div class="section" id="ranges">
+</section>
+<section id="ranges">
 <h2><code class="docutils literal notranslate"><span class="pre">range</span></code>s<a class="headerlink" href="#ranges" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>range(2, 20)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="nb">range</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">r</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(range.__doc__)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">18</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4389733408</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">range</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>range(stop) -&gt; range object
@@ -1706,50 +2522,362 @@ These are exactly the valid indices for a list of 4 elements.
 When step is given, it specifies the increment (or decrement).
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>range(1_000_000_000_000_000)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span><span class="p">(</span><span class="mi">1_000_000_000_000_000</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000000000000000</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>range(1_000000000_000_000)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span><span class="p">(</span><span class="mi">1_000000000_000_000</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000000000000000</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>type(_)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="lambdas">
-<h2><code class="docutils literal notranslate"><span class="pre">lambda</span></code>s<a class="headerlink" href="#lambdas" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def add(a, b):
-    return a + b
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>type(add)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>callable(add)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>add(3, 4)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ranges</span> <span class="o">=</span> <span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">ranges</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">]]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_map</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">ranges</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In Haskell, we can define the naturals using the following definition:</p>
+<div class="highlight-haskell notranslate"><div class="highlight"><pre><span></span><span class="nf">nats</span> <span class="ow">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">my_map</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">my_map</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">]]</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20000000000000000000000000000000000000</span><span class="p">)</span>
+<span class="n">L</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20000000000000000000000000000000000000</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+<span class="n">M</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nb">map</span> <span class="n">at</span> <span class="mh">0x1054d7d90</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">one_two_three</span><span class="p">():</span>
+    <span class="k">yield</span> <span class="mi">1</span>
+    <span class="k">yield</span> <span class="mi">2</span>
+    <span class="k">yield</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one_two_three</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">function</span> <span class="n">__main__</span><span class="o">.</span><span class="n">one_two_three</span><span class="p">()</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">OTT</span> <span class="o">=</span> <span class="n">one_two_three</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">id</span><span class="p">(</span><span class="n">OTT</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4391761872</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">OTT</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">OTT</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">OTT</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">OTT</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">OTT</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">StopIteration</span>                             <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">0</span><span class="n">k</span><span class="o">/</span><span class="n">y3r96gt12zn1mzgztql9m_8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_1055</span><span class="o">/</span><span class="mf">2932888578.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="nb">next</span><span class="p">(</span><span class="n">OTT</span><span class="p">)</span>
+
+
+<span class="ne">StopIteration</span><span class="p">:</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">one_two_three</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">one_two_three</span><span class="p">()</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">L</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From f&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From g&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">M</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">h</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From h&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">3</span>
+
+<span class="n">O</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">O</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">O</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">From</span> <span class="n">f</span>
+<span class="n">From</span> <span class="n">g</span>
+<span class="n">From</span> <span class="n">h</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">O</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">From</span> <span class="n">f</span>
+<span class="n">From</span> <span class="n">g</span>
+<span class="n">From</span> <span class="n">h</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(&#39;FUNCTIONS&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">O</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">From</span> <span class="n">f</span>
+<span class="n">From</span> <span class="n">g</span>
+<span class="n">From</span> <span class="n">h</span>
+<span class="n">From</span> <span class="n">f</span>
+<span class="n">From</span> <span class="n">g</span>
+<span class="n">From</span> <span class="n">h</span>
+<span class="n">From</span> <span class="n">f</span>
+<span class="n">From</span> <span class="n">g</span>
+<span class="n">From</span> <span class="n">h</span>
+<span class="n">From</span> <span class="n">f</span>
+<span class="n">From</span> <span class="n">g</span>
+<span class="n">From</span> <span class="n">h</span>
+<span class="n">From</span> <span class="n">f</span>
+<span class="n">From</span> <span class="n">g</span>
+<span class="n">From</span> <span class="n">h</span>
+<span class="n">From</span> <span class="n">f</span>
+<span class="n">From</span> <span class="n">g</span>
+<span class="n">From</span> <span class="n">h</span>
+<span class="n">From</span> <span class="n">f</span>
+<span class="n">From</span> <span class="n">g</span>
+<span class="n">From</span> <span class="n">h</span>
+<span class="n">From</span> <span class="n">f</span>
+<span class="n">From</span> <span class="n">g</span>
+<span class="n">From</span> <span class="n">h</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
+
+<span class="ne">StopIteration</span>                             <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">0</span><span class="n">k</span><span class="o">/</span><span class="n">y3r96gt12zn1mzgztql9m_8m0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_1055</span><span class="o">/</span><span class="mf">3089814063.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="nb">next</span><span class="p">(</span><span class="n">O</span><span class="p">)</span>
+
+
+<span class="ne">StopIteration</span><span class="p">:</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">M</span><span class="p">]</span>
+<span class="n">H</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">M</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="lambdas">
+<h2><code class="docutils literal notranslate"><span class="pre">lambda</span></code>s<a class="headerlink" href="#lambdas" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">add</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">callable</span><span class="p">(</span><span class="n">add</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">7</span>
+</pre></div>
+</div>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="s1">&#39;FUNCTIONS&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <pre class="literal-block">Functions
@@ -1766,22 +2894,22 @@ different object types.
 See Function definitions for more information.
 
 Related help topics: def, TYPES</pre>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>add_l = lambda a, b: a + b # is a lambda expression
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add_l</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="c1"># is a lambda expression</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>type(add_l)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">add_l</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>callable(add_l)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">callable</span><span class="p">(</span><span class="n">add_l</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(&#39;lambda&#39;)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="s1">&#39;lambda&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <pre class="literal-block">Lambdas
@@ -1803,39 +2931,39 @@ Note that functions created with lambda expressions cannot contain
 statements or annotations.
 
 Related help topics: FUNCTIONS</pre>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>assert add(1, 2) == add_l(1, 2)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="n">add_l</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="yields">
+</section>
+<section id="yields">
 <h2><code class="docutils literal notranslate"><span class="pre">yield</span></code>s<a class="headerlink" href="#yields" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>L = range(5)
-L
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">L</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>M = map(lambda i: i + 1, L)
-M
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+<span class="n">M</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nb">map</span> <span class="n">at</span> <span class="mh">0x7fb7c6626880</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>type(_)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">map</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>next(M)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(next)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="nb">next</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="nb">next</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">builtins</span><span class="p">:</span>
@@ -1847,31 +2975,31 @@ M
     <span class="ow">is</span> <span class="n">exhausted</span><span class="p">,</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">returned</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">raising</span> <span class="ne">StopIteration</span><span class="o">.</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>next(M)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>next(M)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>next(M)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>next(M)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>next(M)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
@@ -1885,11 +3013,11 @@ M
 <span class="ne">StopIteration</span><span class="p">:</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(StopIterationx)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">StopIterationx</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>INTERMEZZO</strong></p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>1/0
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------</span>
@@ -1903,53 +3031,53 @@ M
 <span class="ne">ZeroDivisionError</span><span class="p">:</span> <span class="n">division</span> <span class="n">by</span> <span class="n">zero</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>try:
-    1/0
-except ZeroDivisionError:
-    pass
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
+<span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
 <hr class="docutils" />
 <div class="math notranslate nohighlight">
 \[\mathcal{B} = \lbrace x\in\mathbb{R} : \sqrt{x + 1} &gt; 4 \rbrace\]</div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>N = ( i for i in range(1, 10) ) # another way to build a generator
-N
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="p">(</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># another way to build a generator</span>
+<span class="n">N</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="o">&lt;</span><span class="n">genexpr</span><span class="o">&gt;</span> <span class="n">at</span> <span class="mh">0x7fb7c687c120</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>type(N)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">generator</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(N)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def saturate(g, L=[]):
-    while True:
-        try:
-            L.append(next(g))
-        except StopIteration:
-            break
-    return L
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">saturate</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">L</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">L</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>saturate(N, [0])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">saturate</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="help-about-help">
+</section>
+<section id="help-about-help">
 <h2>Help about <code class="docutils literal notranslate"><span class="pre">help</span></code><a class="headerlink" href="#help-about-help" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Welcome</span> <span class="n">to</span> <span class="n">Python</span> <span class="mf">3.8</span><span class="s1">&#39;s help utility!</span>
@@ -2002,8 +3130,8 @@ N
 <span class="n">has</span> <span class="n">the</span> <span class="n">same</span> <span class="n">effect</span> <span class="k">as</span> <span class="n">typing</span> <span class="n">a</span> <span class="n">particular</span> <span class="n">string</span> <span class="n">at</span> <span class="n">the</span> <span class="n">help</span><span class="o">&gt;</span> <span class="n">prompt</span><span class="o">.</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
           </div>
@@ -2031,7 +3159,7 @@ N
       &copy;2021, Massimo Nocentini.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

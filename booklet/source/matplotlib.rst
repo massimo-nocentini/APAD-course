@@ -2429,35 +2429,29 @@ formatter options. For more information on any of these, refer to the
 docstrings or to the Matplotlib online documentaion. Each of the
 following is available in the ``plt`` namespace:
 
-+-------------------------------------------+--------------------------+
-| Locator class                             | Description              |
-+===========================================+==========================+
-| ``NullLocator``                           | No ticks                 |
-+-------------------------------------------+--------------------------+
-| ``FixedLocator``                          | Tick locations are fixed |
-+-------------------------------------------+--------------------------+
-| ``IndexLocator``                          | Locator for index plots  |
-|                                           | (e.g., where x =         |
-|                                           | range(len(y)))           |
-+-------------------------------------------+--------------------------+
-| ``LinearLocator``                         | Evenly spaced ticks from |
-|                                           | min to max               |
-+-------------------------------------------+--------------------------+
-| ``LogLocator``                            | Logarithmically ticks    |
-|                                           | from min to max          |
-+-------------------------------------------+--------------------------+
-| ``MultipleLocator``                       | Ticks and range are a    |
-|                                           | multiple of base         |
-+-------------------------------------------+--------------------------+
-| ``MaxNLocator``                           | Finds up to a max number |
-|                                           | of ticks at nice         |
-|                                           | locations                |
-+-------------------------------------------+--------------------------+
-| ``AutoLocator``                           | (Default.) MaxNLocator   |
-|                                           | with simple defaults.    |
-+-------------------------------------------+--------------------------+
-| ``AutoMinorLocator``                      | Locator for minor ticks  |
-+-------------------------------------------+--------------------------+
++----------------------+----------------------------------------------+
+| Locator class        | Description                                  |
++======================+==============================================+
+| ``NullLocator``      | No ticks                                     |
++----------------------+----------------------------------------------+
+| ``FixedLocator``     | Tick locations are fixed                     |
++----------------------+----------------------------------------------+
+| ``IndexLocator``     | Locator for index plots (e.g., where x =     |
+|                      | range(len(y)))                               |
++----------------------+----------------------------------------------+
+| ``LinearLocator``    | Evenly spaced ticks from min to max          |
++----------------------+----------------------------------------------+
+| ``LogLocator``       | Logarithmically ticks from min to max        |
++----------------------+----------------------------------------------+
+| ``MultipleLocator``  | Ticks and range are a multiple of base       |
++----------------------+----------------------------------------------+
+| ``MaxNLocator``      | Finds up to a max number of ticks at nice    |
+|                      | locations                                    |
++----------------------+----------------------------------------------+
+| ``AutoLocator``      | (Default.) MaxNLocator with simple defaults. |
++----------------------+----------------------------------------------+
+| ``AutoMinorLocator`` | Locator for minor ticks                      |
++----------------------+----------------------------------------------+
 
 ====================== =======================================
 Formatter Class        Description

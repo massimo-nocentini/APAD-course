@@ -50,6 +50,413 @@ where
     
 
 
+.. code:: ipython3
+
+    help(help)
+
+
+.. parsed-literal::
+
+    Help on _Helper in module _sitebuiltins object:
+    
+    class _Helper(builtins.object)
+     |  Define the builtin 'help'.
+     |  
+     |  This is a wrapper around pydoc.help that provides a helpful message
+     |  when 'help' is typed at the Python interactive prompt.
+     |  
+     |  Calling help() at the Python prompt starts an interactive help session.
+     |  Calling help(thing) prints help for the python object 'thing'.
+     |  
+     |  Methods defined here:
+     |  
+     |  __call__(self, *args, **kwds)
+     |      Call self as a function.
+     |  
+     |  __repr__(self)
+     |      Return repr(self).
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __dict__
+     |      dictionary for instance variables (if defined)
+     |  
+     |  __weakref__
+     |      list of weak references to the object (if defined)
+    
+
+
+.. code:: ipython3
+
+    help(object)
+
+
+.. parsed-literal::
+
+    Help on class object in module builtins:
+    
+    class object
+     |  The base class of the class hierarchy.
+     |  
+     |  When called, it accepts no arguments and returns a new featureless
+     |  instance that has no instance attributes and cannot be given any.
+     |  
+     |  Built-in subclasses:
+     |      anext_awaitable
+     |      async_generator
+     |      async_generator_asend
+     |      async_generator_athrow
+     |      ... and 91 other subclasses
+     |  
+     |  Methods defined here:
+     |  
+     |  __delattr__(self, name, /)
+     |      Implement delattr(self, name).
+     |  
+     |  __dir__(self, /)
+     |      Default dir() implementation.
+     |  
+     |  __eq__(self, value, /)
+     |      Return self==value.
+     |  
+     |  __format__(self, format_spec, /)
+     |      Default object formatter.
+     |  
+     |  __ge__(self, value, /)
+     |      Return self>=value.
+     |  
+     |  __getattribute__(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  __gt__(self, value, /)
+     |      Return self>value.
+     |  
+     |  __hash__(self, /)
+     |      Return hash(self).
+     |  
+     |  __init__(self, /, *args, **kwargs)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  __le__(self, value, /)
+     |      Return self<=value.
+     |  
+     |  __lt__(self, value, /)
+     |      Return self<value.
+     |  
+     |  __ne__(self, value, /)
+     |      Return self!=value.
+     |  
+     |  __reduce__(self, /)
+     |      Helper for pickle.
+     |  
+     |  __reduce_ex__(self, protocol, /)
+     |      Helper for pickle.
+     |  
+     |  __repr__(self, /)
+     |      Return repr(self).
+     |  
+     |  __setattr__(self, name, value, /)
+     |      Implement setattr(self, name, value).
+     |  
+     |  __sizeof__(self, /)
+     |      Size of object in memory, in bytes.
+     |  
+     |  __str__(self, /)
+     |      Return str(self).
+     |  
+     |  ----------------------------------------------------------------------
+     |  Class methods defined here:
+     |  
+     |  __init_subclass__(...) from builtins.type
+     |      This method is called when a class is subclassed.
+     |      
+     |      The default implementation does nothing. It may be
+     |      overridden to extend subclasses.
+     |  
+     |  __subclasshook__(...) from builtins.type
+     |      Abstract classes can override this to customize issubclass().
+     |      
+     |      This is invoked early on by abc.ABCMeta.__subclasscheck__().
+     |      It should return True, False or NotImplemented.  If it returns
+     |      NotImplemented, the normal algorithm is used.  Otherwise, it
+     |      overrides the normal algorithm (and the outcome is cached).
+     |  
+     |  ----------------------------------------------------------------------
+     |  Static methods defined here:
+     |  
+     |  __new__(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  __class__ = <class 'type'>
+     |      type(object_or_name, bases, dict)
+     |      type(object) -> the object's type
+     |      type(name, bases, dict) -> a new type
+    
+
+
+.. code:: ipython3
+
+    o = object()
+
+.. code:: ipython3
+
+    o
+
+
+
+
+.. parsed-literal::
+
+    <object at 0x10d85b310>
+
+
+
+.. code:: ipython3
+
+    id(o)
+
+
+
+
+.. parsed-literal::
+
+    4521833232
+
+
+
+.. code:: ipython3
+
+    w = object()
+
+.. code:: ipython3
+
+    o is w
+
+
+
+
+.. parsed-literal::
+
+    False
+
+
+
+.. code:: ipython3
+
+    o is o
+
+
+
+
+.. parsed-literal::
+
+    True
+
+
+
+.. code:: ipython3
+
+    type(object)
+
+
+
+
+.. parsed-literal::
+
+    type
+
+
+
+.. code:: ipython3
+
+    type(type)
+
+
+
+
+.. parsed-literal::
+
+    type
+
+
+
+.. code:: ipython3
+
+    help(type)
+
+
+.. parsed-literal::
+
+    Help on class type in module builtins:
+    
+    class type(object)
+     |  type(object_or_name, bases, dict)
+     |  type(object) -> the object's type
+     |  type(name, bases, dict) -> a new type
+     |  
+     |  Methods defined here:
+     |  
+     |  __call__(self, /, *args, **kwargs)
+     |      Call self as a function.
+     |  
+     |  __delattr__(self, name, /)
+     |      Implement delattr(self, name).
+     |  
+     |  __dir__(self, /)
+     |      Specialized __dir__ implementation for types.
+     |  
+     |  __getattribute__(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  __init__(self, /, *args, **kwargs)
+     |      Initialize self.  See help(type(self)) for accurate signature.
+     |  
+     |  __instancecheck__(self, instance, /)
+     |      Check if an object is an instance.
+     |  
+     |  __or__(self, value, /)
+     |      Return self|value.
+     |  
+     |  __repr__(self, /)
+     |      Return repr(self).
+     |  
+     |  __ror__(self, value, /)
+     |      Return value|self.
+     |  
+     |  __setattr__(self, name, value, /)
+     |      Implement setattr(self, name, value).
+     |  
+     |  __sizeof__(self, /)
+     |      Return memory consumption of the type object.
+     |  
+     |  __subclasscheck__(self, subclass, /)
+     |      Check if a class is a subclass.
+     |  
+     |  __subclasses__(self, /)
+     |      Return a list of immediate subclasses.
+     |  
+     |  mro(self, /)
+     |      Return a type's method resolution order.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Class methods defined here:
+     |  
+     |  __prepare__(...)
+     |      __prepare__() -> dict
+     |      used to create the namespace for the class statement
+     |  
+     |  ----------------------------------------------------------------------
+     |  Static methods defined here:
+     |  
+     |  __new__(*args, **kwargs)
+     |      Create and return a new object.  See help(type) for accurate signature.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data descriptors defined here:
+     |  
+     |  __abstractmethods__
+     |  
+     |  __annotations__
+     |  
+     |  __dict__
+     |  
+     |  __text_signature__
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  __base__ = <class 'object'>
+     |      The base class of the class hierarchy.
+     |      
+     |      When called, it accepts no arguments and returns a new featureless
+     |      instance that has no instance attributes and cannot be given any.
+     |  
+     |  
+     |  __bases__ = (<class 'object'>,)
+     |  
+     |  __basicsize__ = 888
+     |  
+     |  __dictoffset__ = 264
+     |  
+     |  __flags__ = 2148031744
+     |  
+     |  __itemsize__ = 40
+     |  
+     |  __mro__ = (<class 'type'>, <class 'object'>)
+     |  
+     |  __weakrefoffset__ = 368
+    
+
+
+.. code:: ipython3
+
+    type(3.14)
+
+
+
+
+.. parsed-literal::
+
+    float
+
+
+
+.. code:: ipython3
+
+    type([1,2,3])
+
+
+
+
+.. parsed-literal::
+
+    list
+
+
+
+.. code:: ipython3
+
+    type(help)
+
+
+
+
+.. parsed-literal::
+
+    _sitebuiltins._Helper
+
+
+
+.. code:: ipython3
+
+    type(id)
+
+
+
+
+.. parsed-literal::
+
+    builtin_function_or_method
+
+
+
+.. code:: ipython3
+
+    type(1)
+
+
+
+
+.. parsed-literal::
+
+    int
+
+
+
 Third, >An object’s type determines the operations that the object
 supports >(e.g., “does it have a length?”) and also defines the possible
 values >for objects of that type. The “type()” function returns an
@@ -82,6 +489,373 @@ importance of object identity is affected in some sense: for immutable
 types, operations that compute new values may actually return a
 reference to any existing object with the same type and value, while for
 mutable objects this is not allowed.
+
+.. code:: ipython3
+
+    class A(object):
+        
+        x = 3
+        y = 4
+
+.. code:: ipython3
+
+    a = A()
+
+.. code:: ipython3
+
+    id(a)
+
+
+
+
+.. parsed-literal::
+
+    4534062624
+
+
+
+.. code:: ipython3
+
+    type(a)
+
+
+
+
+.. parsed-literal::
+
+    __main__.A
+
+
+
+.. code:: ipython3
+
+    A().y
+
+--------------
+
+.. code:: ipython3
+
+    L = []
+    L
+
+
+
+
+.. parsed-literal::
+
+    []
+
+
+
+.. code:: ipython3
+
+    L.append(1)
+    L.append(3.14)
+
+.. code:: ipython3
+
+    L
+
+
+
+
+.. parsed-literal::
+
+    [1, 3.14]
+
+
+
+.. code:: ipython3
+
+    3, 3.14, 3 + 5J
+
+
+
+
+.. parsed-literal::
+
+    (3, 3.14, (3+5j))
+
+
+
+.. code:: ipython3
+
+    t = (1, 3.14)
+    t
+
+
+
+
+.. parsed-literal::
+
+    (1, 3.14)
+
+
+
+.. code:: ipython3
+
+    type(t)
+
+
+
+
+.. parsed-literal::
+
+    tuple
+
+
+
+.. code:: ipython3
+
+    t.index(3.14)
+
+
+
+
+.. parsed-literal::
+
+    1
+
+
+
+.. code:: ipython3
+
+    tt = (3.14, [])
+    tt, id(tt)
+
+
+
+
+.. parsed-literal::
+
+    ((3.14, []), 4533921408)
+
+
+
+.. code:: ipython3
+
+    tt[1].append(4)
+
+.. code:: ipython3
+
+    tt, id(tt)
+
+
+
+
+.. parsed-literal::
+
+    ((3.14, [4]), 4533921408)
+
+
+
+--------------
+
+.. code:: ipython3
+
+    type({})
+
+
+
+
+.. parsed-literal::
+
+    dict
+
+
+
+.. code:: ipython3
+
+    type(set())
+
+
+
+
+.. parsed-literal::
+
+    set
+
+
+
+.. code:: ipython3
+
+    S = set()
+
+.. code:: ipython3
+
+    S
+
+
+
+
+.. parsed-literal::
+
+    set()
+
+
+
+.. code:: ipython3
+
+    S.add(3.14)
+    S
+
+
+
+
+.. parsed-literal::
+
+    {3.14}
+
+
+
+.. code:: ipython3
+
+    S.add('hello')
+    S.add(tuple())
+
+.. code:: ipython3
+
+    S
+
+
+
+
+.. parsed-literal::
+
+    {(), 3.14, 'hello'}
+
+
+
+.. code:: ipython3
+
+    S.add(tuple())
+
+.. code:: ipython3
+
+    S
+
+
+
+
+.. parsed-literal::
+
+    {(), 3.14, 'hello'}
+
+
+
+.. code:: ipython3
+
+    S.add([])
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    TypeError                                 Traceback (most recent call last)
+
+    /var/folders/0k/y3r96gt12zn1mzgztql9m_8m0000gn/T/ipykernel_2745/334196350.py in <module>
+    ----> 1 S.add([])
+    
+
+    TypeError: unhashable type: 'list'
+
+
+.. code:: ipython3
+
+    L = []
+    t = (3.14, L)
+    tt = (1.618, L)
+
+.. code:: ipython3
+
+    id(L), id(t), id(tt)
+
+
+
+
+.. parsed-literal::
+
+    (4613187392, 4612579136, 4613347328)
+
+
+
+.. code:: ipython3
+
+    S = { t, tt }
+    S
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    TypeError                                 Traceback (most recent call last)
+
+    /var/folders/0k/y3r96gt12zn1mzgztql9m_8m0000gn/T/ipykernel_2745/4157842914.py in <module>
+    ----> 1 S = { t, tt }
+          2 S
+
+
+    TypeError: unhashable type: 'list'
+
+
+.. code:: ipython3
+
+    hash(L)
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    TypeError                                 Traceback (most recent call last)
+
+    /var/folders/0k/y3r96gt12zn1mzgztql9m_8m0000gn/T/ipykernel_2745/1001898879.py in <module>
+    ----> 1 hash(L)
+    
+
+    TypeError: unhashable type: 'list'
+
+
+.. code:: ipython3
+
+    {(3.14, ()), (1.618, frozenset())}
+
+
+
+
+.. parsed-literal::
+
+    {(1.618, frozenset()), (3.14, ())}
+
+
+
+.. code:: ipython3
+
+    D = {}
+    D[[]] = 3.14
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    TypeError                                 Traceback (most recent call last)
+
+    /var/folders/0k/y3r96gt12zn1mzgztql9m_8m0000gn/T/ipykernel_2745/1357002942.py in <module>
+          1 D = {}
+    ----> 2 D[[]] = 3.14
+    
+
+    TypeError: unhashable type: 'list'
+
+
+--------------
 
 .. code:: ipython3
 
@@ -296,15 +1070,142 @@ Some playground:
 
 .. code:: ipython3
 
-    tuple.__doc__
+    type(tuple)
 
 
 
 
 .. parsed-literal::
 
-    "Built-in immutable sequence.\n\nIf no argument is given, the constructor returns an empty tuple.\nIf iterable is specified the tuple is initialized from iterable's items.\n\nIf the argument is a tuple, the return value is the same object."
+    type
 
+
+
+.. code:: ipython3
+
+    tuple_doc = tuple.__doc__
+
+.. code:: ipython3
+
+    type(tuple_doc)
+
+
+
+
+.. parsed-literal::
+
+    str
+
+
+
+.. code:: ipython3
+
+    tuple_doc + ' maybe that is actually true'
+
+
+
+
+.. parsed-literal::
+
+    "Built-in immutable sequence.\n\nIf no argument is given, the constructor returns an empty tuple.\nIf iterable is specified the tuple is initialized from iterable's items.\n\nIf the argument is a tuple, the return value is the same object. maybe that is actually true"
+
+
+
+.. code:: ipython3
+
+    help(tuple)
+
+
+.. parsed-literal::
+
+    Help on class tuple in module builtins:
+    
+    class tuple(object)
+     |  tuple(iterable=(), /)
+     |  
+     |  Built-in immutable sequence.
+     |  
+     |  If no argument is given, the constructor returns an empty tuple.
+     |  If iterable is specified the tuple is initialized from iterable's items.
+     |  
+     |  If the argument is a tuple, the return value is the same object.
+     |  
+     |  Built-in subclasses:
+     |      asyncgen_hooks
+     |      UnraisableHookArgs
+     |  
+     |  Methods defined here:
+     |  
+     |  __add__(self, value, /)
+     |      Return self+value.
+     |  
+     |  __contains__(self, key, /)
+     |      Return key in self.
+     |  
+     |  __eq__(self, value, /)
+     |      Return self==value.
+     |  
+     |  __ge__(self, value, /)
+     |      Return self>=value.
+     |  
+     |  __getattribute__(self, name, /)
+     |      Return getattr(self, name).
+     |  
+     |  __getitem__(self, key, /)
+     |      Return self[key].
+     |  
+     |  __getnewargs__(self, /)
+     |  
+     |  __gt__(self, value, /)
+     |      Return self>value.
+     |  
+     |  __hash__(self, /)
+     |      Return hash(self).
+     |  
+     |  __iter__(self, /)
+     |      Implement iter(self).
+     |  
+     |  __le__(self, value, /)
+     |      Return self<=value.
+     |  
+     |  __len__(self, /)
+     |      Return len(self).
+     |  
+     |  __lt__(self, value, /)
+     |      Return self<value.
+     |  
+     |  __mul__(self, value, /)
+     |      Return self*value.
+     |  
+     |  __ne__(self, value, /)
+     |      Return self!=value.
+     |  
+     |  __repr__(self, /)
+     |      Return repr(self).
+     |  
+     |  __rmul__(self, value, /)
+     |      Return value*self.
+     |  
+     |  count(self, value, /)
+     |      Return number of occurrences of value.
+     |  
+     |  index(self, value, start=0, stop=9223372036854775807, /)
+     |      Return first index of value.
+     |      
+     |      Raises ValueError if the value is not present.
+     |  
+     |  ----------------------------------------------------------------------
+     |  Class methods defined here:
+     |  
+     |  __class_getitem__(...) from builtins.type
+     |      See PEP 585
+     |  
+     |  ----------------------------------------------------------------------
+     |  Static methods defined here:
+     |  
+     |  __new__(*args, **kwargs) from builtins.type
+     |      Create and return a new object.  See help(type) for accurate signature.
+    
 
 
 .. code:: ipython3
@@ -367,6 +1268,10 @@ Some playground:
         '''A short summary here.
         
         Some more description here.
+        
+        >>> a(4)
+        None
+        
         '''
         ...
 
@@ -392,7 +1297,23 @@ Some playground:
         A short summary here.
         
         Some more description here.
+        
+        >>> a(4)
+        None
     
+
+
+.. code:: ipython3
+
+    a.__doc__
+
+
+
+
+.. parsed-literal::
+
+    'A short summary here.\n    \n    Some more description here.\n    \n    >>> a(4)\n    None\n    \n    '
+
 
 
 .. code:: ipython3
@@ -406,11 +1327,34 @@ Some playground:
         
         Some more description here.
         
+        >>> a(4)
+        None
+        
+        
 
 
 .. code:: ipython3
 
     assert a(4) == b(3) == None
+
+.. code:: ipython3
+
+    assert True == False, 'This is quite usual'
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    AssertionError                            Traceback (most recent call last)
+
+    /var/folders/0k/y3r96gt12zn1mzgztql9m_8m0000gn/T/ipykernel_2745/1794376097.py in <module>
+    ----> 1 assert True == False, 'This is quite usual'
+    
+
+    AssertionError: This is quite usual
+
 
 .. code:: ipython3
 
@@ -1255,6 +2199,247 @@ Some playground:
 
 
 
+.. code:: ipython3
+
+    a
+
+
+
+
+.. parsed-literal::
+
+    <function __main__.a(b)>
+
+
+
+.. code:: ipython3
+
+    assert a(42) is None
+
+.. code:: ipython3
+
+    set()
+
+
+
+
+.. parsed-literal::
+
+    set()
+
+
+
+.. code:: ipython3
+
+    type(set)
+
+
+
+
+.. parsed-literal::
+
+    type
+
+
+
+.. code:: ipython3
+
+    (lambda x: x + 1)(4)
+
+
+
+
+.. parsed-literal::
+
+    5
+
+
+
+.. code:: ipython3
+
+    (lambda x: x + 1)
+
+
+
+
+.. parsed-literal::
+
+    <function __main__.<lambda>(x)>
+
+
+
+.. code:: ipython3
+
+    class A(object):
+        
+        def __call__(self, b):
+            return b + 1
+
+.. code:: ipython3
+
+    a = A()
+    a(4)
+
+
+
+
+.. parsed-literal::
+
+    5
+
+
+
+.. code:: ipython3
+
+    type(A)
+
+
+
+
+.. parsed-literal::
+
+    type
+
+
+
+.. code:: ipython3
+
+    L = list(range(10))
+    L
+
+
+
+
+.. parsed-literal::
+
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+
+.. code:: ipython3
+
+    def inc(a): return a + 1
+
+.. code:: ipython3
+
+    list(map(inc, L))
+
+
+
+
+.. parsed-literal::
+
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+
+.. code:: ipython3
+
+    list(map(print, L))
+
+
+.. parsed-literal::
+
+    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+
+
+
+
+.. parsed-literal::
+
+    [None, None, None, None, None, None, None, None, None, None]
+
+
+
+.. code:: ipython3
+
+    for i in L:
+        print(i)
+
+
+.. parsed-literal::
+
+    0
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+
+
+.. code:: ipython3
+
+    LL = []
+    for i in L:
+        LL.append(i+1)
+    LL
+
+
+
+
+.. parsed-literal::
+
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+
+.. code:: ipython3
+
+    an_int = 541
+    my_lambda = lambda x: x + an_int
+
+.. code:: ipython3
+
+    my_lambda
+
+
+
+
+.. parsed-literal::
+
+    <function __main__.<lambda>(x)>
+
+
+
+.. code:: ipython3
+
+    my_lambda(1)
+
+
+
+
+.. parsed-literal::
+
+    542
+
+
+
+.. code:: ipython3
+
+    list(map(my_lambda, L))
+
+
+
+
+.. parsed-literal::
+
+    [541, 542, 543, 544, 545, 546, 547, 548, 549, 550]
+
+
+
 Variables
 ---------
 
@@ -1906,7 +3091,34 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 
 .. code:: ipython3
 
-    range(2, 20)
+    range
+
+
+
+
+.. parsed-literal::
+
+    range
+
+
+
+.. code:: ipython3
+
+    type(range)
+
+
+
+
+.. parsed-literal::
+
+    type
+
+
+
+.. code:: ipython3
+
+    r = range(2, 20)
+    r
 
 
 
@@ -1914,6 +3126,32 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 .. parsed-literal::
 
     range(2, 20)
+
+
+
+.. code:: ipython3
+
+    len(r)
+
+
+
+
+.. parsed-literal::
+
+    18
+
+
+
+.. code:: ipython3
+
+    id(_)
+
+
+
+
+.. parsed-literal::
+
+    4389733408
 
 
 
@@ -1970,6 +3208,557 @@ https://docs.python.org/3/library/operator.html?highlight=operator.
 .. parsed-literal::
 
     range
+
+
+
+.. code:: ipython3
+
+    list(range(10))
+
+
+
+
+.. parsed-literal::
+
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+
+.. code:: ipython3
+
+    list()
+
+
+
+
+.. parsed-literal::
+
+    []
+
+
+
+.. code:: ipython3
+
+    []
+
+
+
+
+.. parsed-literal::
+
+    []
+
+
+
+.. code:: ipython3
+
+    set()
+
+
+
+
+.. parsed-literal::
+
+    set()
+
+
+
+.. code:: ipython3
+
+    ranges = [range(10), range(10, 20)]
+
+.. code:: ipython3
+
+    list(map(list, ranges))
+
+
+
+
+.. parsed-literal::
+
+    [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]]
+
+
+
+.. code:: ipython3
+
+    my_map = map(list, ranges)
+
+In Haskell, we can define the naturals using the following definition:
+
+.. code:: haskell
+
+   nats = [1..]
+
+.. code:: ipython3
+
+    type(my_map)
+
+
+
+
+.. parsed-literal::
+
+    map
+
+
+
+.. code:: ipython3
+
+    list(my_map)
+
+
+
+
+.. parsed-literal::
+
+    [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]]
+
+
+
+--------------
+
+.. code:: ipython3
+
+    L = range(20000000000000000000000000000000000000)
+    L
+
+
+
+
+.. parsed-literal::
+
+    range(0, 20000000000000000000000000000000000000)
+
+
+
+.. code:: ipython3
+
+    M = map(lambda x: x % 2, L)
+    M
+
+
+
+
+.. parsed-literal::
+
+    <map at 0x1054d7d90>
+
+
+
+.. code:: ipython3
+
+    next(M)
+
+
+
+
+.. parsed-literal::
+
+    0
+
+
+
+.. code:: ipython3
+
+    next(M)
+
+
+
+
+.. parsed-literal::
+
+    1
+
+
+
+.. code:: ipython3
+
+    next(M)
+
+
+
+
+.. parsed-literal::
+
+    0
+
+
+
+.. code:: ipython3
+
+    next(M)
+
+
+
+
+.. parsed-literal::
+
+    1
+
+
+
+.. code:: ipython3
+
+    def one_two_three():
+        yield 1
+        yield 2
+        yield 3
+
+.. code:: ipython3
+
+    one_two_three
+
+
+
+
+.. parsed-literal::
+
+    <function __main__.one_two_three()>
+
+
+
+.. code:: ipython3
+
+    OTT = one_two_three()
+
+.. code:: ipython3
+
+    id(OTT)
+
+
+
+
+.. parsed-literal::
+
+    4391761872
+
+
+
+.. code:: ipython3
+
+    type(OTT)
+
+
+
+
+.. parsed-literal::
+
+    generator
+
+
+
+.. code:: ipython3
+
+    next(OTT)
+
+
+
+
+.. parsed-literal::
+
+    1
+
+
+
+.. code:: ipython3
+
+    next(OTT)
+
+
+
+
+.. parsed-literal::
+
+    2
+
+
+
+.. code:: ipython3
+
+    next(OTT)
+
+
+
+
+.. parsed-literal::
+
+    3
+
+
+
+.. code:: ipython3
+
+    next(OTT)
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    StopIteration                             Traceback (most recent call last)
+
+    /var/folders/0k/y3r96gt12zn1mzgztql9m_8m0000gn/T/ipykernel_1055/2932888578.py in <module>
+    ----> 1 next(OTT)
+    
+
+    StopIteration: 
+
+
+.. code:: ipython3
+
+    for i in one_two_three():
+        print(i)
+
+
+.. parsed-literal::
+
+    1
+    2
+    3
+
+
+.. code:: ipython3
+
+    M = one_two_three()
+    while True:
+        try:
+            i = next(M)
+            print(i)
+        except StopIteration:
+            break
+
+
+.. parsed-literal::
+
+    1
+    2
+    3
+
+
+.. code:: ipython3
+
+    L = range(10)
+    L
+
+
+
+
+.. parsed-literal::
+
+    range(0, 10)
+
+
+
+.. code:: ipython3
+
+    def f(x):
+        print('From f')
+        return x + 1
+    
+    M = map(f, L)
+
+.. code:: ipython3
+
+    type(M)
+
+
+
+
+.. parsed-literal::
+
+    map
+
+
+
+.. code:: ipython3
+
+    def g(x):
+        print('From g')
+        return x + 2
+    
+    N = map(g, M)
+
+.. code:: ipython3
+
+    type(N)
+
+
+
+
+.. parsed-literal::
+
+    map
+
+
+
+.. code:: ipython3
+
+    def h(x):
+        print('From h')
+        return x + 3
+    
+    O = map(h, N)
+
+.. code:: ipython3
+
+    type(O)
+
+
+
+
+.. parsed-literal::
+
+    map
+
+
+
+.. code:: ipython3
+
+    next(O)
+
+
+.. parsed-literal::
+
+    From f
+    From g
+    From h
+
+
+
+
+.. parsed-literal::
+
+    6
+
+
+
+.. code:: ipython3
+
+    next(O)
+
+
+.. parsed-literal::
+
+    From f
+    From g
+    From h
+
+
+
+
+.. parsed-literal::
+
+    7
+
+
+
+.. code:: ipython3
+
+    list(O)
+
+
+.. parsed-literal::
+
+    From f
+    From g
+    From h
+    From f
+    From g
+    From h
+    From f
+    From g
+    From h
+    From f
+    From g
+    From h
+    From f
+    From g
+    From h
+    From f
+    From g
+    From h
+    From f
+    From g
+    From h
+    From f
+    From g
+    From h
+
+
+
+
+.. parsed-literal::
+
+    [8, 9, 10, 11, 12, 13, 14, 15]
+
+
+
+.. code:: ipython3
+
+    next()
+
+
+::
+
+
+    ---------------------------------------------------------------------------
+
+    StopIteration                             Traceback (most recent call last)
+
+    /var/folders/0k/y3r96gt12zn1mzgztql9m_8m0000gn/T/ipykernel_1055/3089814063.py in <module>
+    ----> 1 next(O)
+    
+
+    StopIteration: 
+
+
+.. code:: ipython3
+
+    M = [1, 2, 3, 4]
+
+.. code:: ipython3
+
+    G = (x + 1 for x in range(100))
+
+.. code:: ipython3
+
+    H = [x + 1 for x in M]
+    H
+
+
+
+
+.. parsed-literal::
+
+    [2, 3, 4, 5]
+
+
+
+.. code:: ipython3
+
+    list(G)
+
+
+
+
+.. parsed-literal::
+
+    [2, 3, 4, 5]
+
+
+
+.. code:: ipython3
+
+    list(map(lambda x: x+1, M))
+
+
+
+
+.. parsed-literal::
+
+    [2, 3, 4, 5]
 
 
 

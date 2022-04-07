@@ -4,15 +4,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Exercises &#8212; APAD course  documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="numpy module" href="numpy.html" />
@@ -91,7 +92,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -128,7 +129,7 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="exercises">
+  <section id="exercises">
 <h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h1>
 <p>This chapter is an intermezzo that allows us to check and have a deeper
 understanding of the concepts seen so far by means of exercises. We will
@@ -136,282 +137,282 @@ see how the code shown can be rewritten to take advantage of
 battle-tested solutions and idioms that emerges from daily practice.</p>
 <p>First of all, we import some modules (be free to skim the corresponding
 documentation for each one of them),</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import functools, operator, math, itertools, random, collections, statistics, bisect, operator, heapq
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">functools</span><span class="o">,</span> <span class="nn">operator</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">itertools</span><span class="o">,</span> <span class="nn">random</span><span class="o">,</span> <span class="nn">collections</span><span class="o">,</span> <span class="nn">statistics</span><span class="o">,</span> <span class="nn">bisect</span><span class="o">,</span> <span class="nn">operator</span><span class="o">,</span> <span class="nn">heapq</span>
 </pre></div>
 </div>
 <p>that contains useful definitions for the code that we are going to
 write. Moreover, an utility for generators,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def take(iterable, n):
-    return map(lambda p: p[1], zip(range(n), iterable))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">take</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">iterable</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>that consumes an iterable and return a generator that will yield
 <span class="math notranslate nohighlight">\(n\)</span> objects at most. For the sake of clarity,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>taken = take(itertools.count(), 50)
-taken
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">taken</span> <span class="o">=</span> <span class="n">take</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">taken</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">take</span> <span class="n">at</span> <span class="mh">0x7f9dbe3b65f0</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>is a actually generator and its content equals</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>assert list(taken) == list(range(50))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">list</span><span class="p">(</span><span class="n">taken</span><span class="p">)</span> <span class="o">==</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Before starting, we initialize the random generator with a nice prime</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>random.seed(11)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="section" id="intersection">
+<section id="intersection">
 <h2>Intersection<a class="headerlink" href="#intersection" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A = list(range(10000))
-B = list(range(10000))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">))</span>
+<span class="n">B</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">))</span>
 
-random.shuffle(A)
-random.shuffle(B)
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def intersection(A, B):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">intersection</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
 
-    B = set(B)
-    return (a for a in A if a in B)
+    <span class="n">B</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">A</span> <span class="k">if</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">B</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit list(intersection(A, B))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> list(intersection(A, B))
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.73 ms ± 48.7 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit list(zip(A, set(B)))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> list(zip(A, set(B)))
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1.44 ms ± 206 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def intersection(A, B):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">intersection</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
 
-    A, B = iter(sorted(A)), iter(sorted(B))
+    <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">A</span><span class="p">)),</span> <span class="nb">iter</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">B</span><span class="p">))</span>
 
-    a, b = next(A), next(B)
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="nb">next</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 
-    while True:
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
 
-        try:
-            if a == b:
-                yield a
-                a, b = next(A), next(B)
-            elif a &lt; b:
-                a = next(A)
-            else:
-                b = next(B)
-        except StopIteration:
-            break
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">a</span>
+                <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="nb">next</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">b</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+            <span class="k">break</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit list(intersection(A, B))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> list(intersection(A, B))
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>6.47 ms ± 1.09 ms per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
-</div>
-<div class="section" id="pythagorean-tuples">
+</section>
+<section id="pythagorean-tuples">
 <h2>(Pythagorean) tuples<a class="headerlink" href="#pythagorean-tuples" title="Permalink to this headline">¶</a></h2>
 <p>Let</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def tuples(*slices):
-    return itertools.product(*map(lambda s: range(s.start, s.stop), slices))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">tuples</span><span class="p">(</span><span class="o">*</span><span class="n">slices</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">stop</span><span class="p">),</span> <span class="n">slices</span><span class="p">))</span>
 </pre></div>
 </div>
 <p><strong>INTERMEZZO</strong></p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def A(a, b, c, d):
-    pass
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">A</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def A(*args):
-    return list(map(lambda i: i + 4, args))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">A</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def AA(args):
-    return list(map(lambda i: i + 4, args))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">AA</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def B(a, b, *args):
-    return [a, b] + list(map(lambda i: i + 4, args))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">B</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">args</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A(1, 2, 3)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A([1, 2, 3])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>AA([1, 2, 3])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AA</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>B(1,)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="p">(</span><span class="mi">1</span><span class="p">,)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>B(1, 2)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>B(1, 2, 3)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A()
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A(1, 2, 3)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>A(1, 2, 3, 4, 5, 6, 7)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>container = range(5)
-A( *container  )
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">container</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">A</span><span class="p">(</span> <span class="o">*</span><span class="n">container</span>  <span class="p">)</span>
 </pre></div>
 </div>
 <hr class="docutils" />
 <p>where</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(itertools.product)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Consider the application to an empty sequence of <code class="docutils literal notranslate"><span class="pre">slide</span></code>s,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>units = tuples()
-units
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">units</span> <span class="o">=</span> <span class="n">tuples</span><span class="p">()</span>
+<span class="n">units</span>
 </pre></div>
 </div>
 <p>then saturate it</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(units)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">units</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now, build tuples using just a <code class="docutils literal notranslate"><span class="pre">slide</span></code> object,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>singletons = tuples(slice(5, 11))
-singletons
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">singletons</span> <span class="o">=</span> <span class="n">tuples</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">))</span>
+<span class="n">singletons</span>
 </pre></div>
 </div>
 <p>then saturate it</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(singletons)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">singletons</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now, build tuples using a twin <code class="docutils literal notranslate"><span class="pre">slide</span></code> object,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>s = slice(5, 11)
-pairs = tuples(s, s)
-pairs
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">pairs</span> <span class="o">=</span> <span class="n">tuples</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="n">pairs</span>
 </pre></div>
 </div>
 <p>then saturate it</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(pairs)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">pairs</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now, build tuples using a three different <code class="docutils literal notranslate"><span class="pre">slide</span></code> objects (taking into
 account of splitting the returned generator),</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>triples_a, triples_b = itertools.tee(tuples(slice(5, 11), slice(6, 13), slice(7, 14)))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triples_a</span><span class="p">,</span> <span class="n">triples_b</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">tee</span><span class="p">(</span><span class="n">tuples</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">)))</span>
 </pre></div>
 </div>
 <p>where</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(itertools.tee)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">tee</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>then saturate it</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(triples_a)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">triples_a</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Now a corner case, but still interesting for ensuring a sound behavior,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>triples = tuples(slice(5, 11), slice(6, 6), slice(7, 14)) # ouch!
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">triples</span> <span class="o">=</span> <span class="n">tuples</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span> <span class="c1"># ouch!</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>L = [1, 2, 3, 4]
-L[2:2]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">L</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>L[slice(2, 2)]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>
 </pre></div>
 </div>
 <p>then saturate it</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(triples) # who we have to blame?
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">triples</span><span class="p">)</span> <span class="c1"># who we have to blame?</span>
 </pre></div>
 </div>
 <p>Finally, let</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>type(True)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def is_pythagorean(tup: tuple, n=2) -&gt; bool: # is_pythagorean is a *predicate*
-    &#39;&#39;&#39;A Pythagorean triple consists of three positive integers a, b, and c, such that a^2 + b^2 = c^2.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_pythagorean</span><span class="p">(</span><span class="n">tup</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span> <span class="c1"># is_pythagorean is a *predicate*</span>
+    <span class="sd">&#39;&#39;&#39;A Pythagorean triple consists of three positive integers a, b, and c, such that a^2 + b^2 = c^2.</span>
 
-    Such a triple is commonly written (a, b, c), and a well-known example is (3, 4, 5).
-    If (a, b, c) is a Pythagorean triple, then so is (ka, kb, kc) for any positive integer k.
+<span class="sd">    Such a triple is commonly written (a, b, c), and a well-known example is (3, 4, 5).</span>
+<span class="sd">    If (a, b, c) is a Pythagorean triple, then so is (ka, kb, kc) for any positive integer k.</span>
 
-    A primitive Pythagorean triple is one in which a, b and c are coprime (that is,
-    they have no common divisor larger than 1).
+<span class="sd">    A primitive Pythagorean triple is one in which a, b and c are coprime (that is,</span>
+<span class="sd">    they have no common divisor larger than 1).</span>
 
-    See also https://en.wikipedia.org/wiki/Pythagorean_triple.
-    &#39;&#39;&#39;
-    a, b, c = tup # tuple unpacking
-    return (a**n + b**n == c**n) if a &lt;= b &lt;= c else False
+<span class="sd">    See also https://en.wikipedia.org/wiki/Pythagorean_triple.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">tup</span> <span class="c1"># tuple unpacking</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="o">**</span><span class="n">n</span> <span class="o">+</span> <span class="n">b</span><span class="o">**</span><span class="n">n</span> <span class="o">==</span> <span class="n">c</span><span class="o">**</span><span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;=</span> <span class="n">b</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="k">else</span> <span class="kc">False</span>
 </pre></div>
 </div>
 <p>in</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>filter(is_pythagorean, triples_b)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">filter</span><span class="p">(</span><span class="n">is_pythagorean</span><span class="p">,</span> <span class="n">triples_b</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(filter(is_pythagorean, triples_b)) # do a selection
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">is_pythagorean</span><span class="p">,</span> <span class="n">triples_b</span><span class="p">))</span> <span class="c1"># do a selection</span>
 </pre></div>
 </div>
 <p>and</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(is_pythagorean) # just to show that writing docstrings is cool and useful.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">is_pythagorean</span><span class="p">)</span> <span class="c1"># just to show that writing docstrings is cool and useful.</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="sum-upto">
+</section>
+<section id="sum-upto">
 <h2><code class="docutils literal notranslate"><span class="pre">sum_upto</span></code><a class="headerlink" href="#sum-upto" title="Permalink to this headline">¶</a></h2>
 <p>Let</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def sum_upto(n):
-    return functools.reduce(operator.add, range(n+1))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_upto</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>and test according to Euler’s quicker formula</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>n = 100
-v = sum_upto(n)
-gauss = (n*(n+1)/2)
-assert v == gauss == 5050
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">sum_upto</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">gauss</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">v</span> <span class="o">==</span> <span class="n">gauss</span> <span class="o">==</span> <span class="mi">5050</span>
 </pre></div>
 </div>
 <p>where</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(functools.reduce)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">functools</span><span class="o">.</span><span class="n">reduce</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>and</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(operator.add)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="sqrt">
+</section>
+<section id="sqrt">
 <h2><code class="docutils literal notranslate"><span class="pre">sqrt</span></code><a class="headerlink" href="#sqrt" title="Permalink to this headline">¶</a></h2>
 <p>Let</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def sqrt(n):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
 
-    refined = n
-    while True:
-        yield refined
-        refined = (n/refined + refined)/2
+    <span class="n">refined</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">refined</span>
+        <span class="n">refined</span> <span class="o">=</span> <span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="n">refined</span> <span class="o">+</span> <span class="n">refined</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
 </pre></div>
 </div>
 <p>to enumerate 15 approximation of the square root of 37</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>n = 37
-list(take(sqrt(37), 15))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">37</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">37</span><span class="p">),</span> <span class="mi">15</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle \left[ 37, \  19.0, \  10.4736842105263, \  7.00317376355462, \  6.14324631000345, \  6.08306027903096, \  6.0827625375852, \  6.08276253029822, \  6.08276253029822, \  6.08276253029822, \  6.08276253029822, \  6.08276253029822, \  6.08276253029822, \  6.08276253029822, \  6.08276253029822\right]\]</div>
 <p>and check with respect to</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>math.sqrt(n)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle 6.08276253029822\]</div>
 <p>where</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(math.sqrt)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="n">sqrt</span> <span class="ow">in</span> <span class="n">module</span> <span class="n">math</span><span class="p">:</span>
@@ -420,37 +421,37 @@ list(take(sqrt(37), 15))
     <span class="n">Return</span> <span class="n">the</span> <span class="n">square</span> <span class="n">root</span> <span class="n">of</span> <span class="n">x</span><span class="o">.</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="pi">
+</section>
+<section id="pi">
 <h2><span class="math notranslate nohighlight">\(\pi\)</span><a class="headerlink" href="#pi" title="Permalink to this headline">¶</a></h2>
 <p>According to <a class="reference external" href="https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80">https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80</a>,
 let</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def pi_Leibniz():
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pi_Leibniz</span><span class="p">():</span>
 
-    d = 0
-    for i, coeff in enumerate(itertools.count(1, step=2)):
-        yield 4*d
-        d += (-1)**i/coeff
+    <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">coeff</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">2</span><span class="p">)):</span>
+        <span class="k">yield</span> <span class="mi">4</span><span class="o">*</span><span class="n">d</span>
+        <span class="n">d</span> <span class="o">+=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="n">i</span><span class="o">/</span><span class="n">coeff</span>
 </pre></div>
 </div>
 <p>in</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(take(pi_Leibniz(), 1000))[-10:]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">pi_Leibniz</span><span class="p">(),</span> <span class="mi">1000</span><span class="p">))[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle \left[ 3.14058255283735, \  3.14260173506854, \  3.14058458932976, \  3.14259970267989, \  3.14058661762704, \  3.14259767846164, \  3.14058863777856, \  3.14259566236461, \  3.14059064983328, \  3.14259365434004\right]\]</div>
 <p>and check against the</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>math.pi
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle 3.14159265358979\]</div>
 <p>where</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(itertools.count)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="the-collatzs-conjecture">
+</section>
+<section id="the-collatzs-conjecture">
 <h2>The Collatz’s conjecture<a class="headerlink" href="#the-collatzs-conjecture" title="Permalink to this headline">¶</a></h2>
 <p>Consider the following operation on an arbitrary positive integer:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">If</span> <span class="n">the</span> <span class="n">number</span> <span class="ow">is</span> <span class="n">even</span><span class="p">,</span> <span class="n">divide</span> <span class="n">it</span> <span class="n">by</span> <span class="n">two</span><span class="o">.</span>
@@ -458,32 +459,32 @@ let</p>
 </pre></div>
 </div>
 <p>See also <a class="reference external" href="https://en.wikipedia.org/wiki/Collatz_conjecture">https://en.wikipedia.org/wiki/Collatz_conjecture</a>. Let</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def collatz(n):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">collatz</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
 
-    while True:
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
 
-        yield n
-        n = 3*n + 1 if n % 2 else n // 2 # be aware that we lose track of the original `n`!
+        <span class="k">yield</span> <span class="n">n</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">2</span> <span class="c1"># be aware that we lose track of the original `n`!</span>
 </pre></div>
 </div>
 <p>in</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>[list(take(collatz(n), 15)) for n in range(1, 20)]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">collatz</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mi">15</span><span class="p">))</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">)]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="fibonacci-numbers">
+</section>
+<section id="fibonacci-numbers">
 <h2>Fibonacci numbers<a class="headerlink" href="#fibonacci-numbers" title="Permalink to this headline">¶</a></h2>
 <p>Directly from
 <a class="reference external" href="https://docs.python.org/3/library/functools.html#functools.cache">https://docs.python.org/3/library/functools.html#functools.cache</a>:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>@functools.lru_cache()
-def factorial(n):
-    print(&#39;•&#39;, end=&#39;&#39;)
-    return n * factorial(n-1) if n else 1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;•&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="k">else</span> <span class="mi">1</span>
 </pre></div>
 </div>
 <p>no previously cached result, makes 11 recursive calls (count the •
 symbols)</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>factorial(10)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">factorial</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>•••••••••••
@@ -492,13 +493,13 @@ symbols)</p>
 <div class="math notranslate nohighlight">
 \[\displaystyle 3628800\]</div>
 <p>just looks up cached value result</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>factorial(5)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">factorial</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle 120\]</div>
 <p>makes two new recursive calls, the other 10 are cached</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>factorial(12)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">factorial</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>••
@@ -506,14 +507,14 @@ symbols)</p>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle 479001600\]</div>
-</div>
-<div class="section" id="uniform-random-on-segmented-interval">
+</section>
+<section id="uniform-random-on-segmented-interval">
 <h2>Uniform <code class="docutils literal notranslate"><span class="pre">random</span></code> on segmented interval<a class="headerlink" href="#uniform-random-on-segmented-interval" title="Permalink to this headline">¶</a></h2>
 <p>The problem here reads as follow: sample uniformly from <span class="math notranslate nohighlight">\([a, b)\)</span>
 and <span class="math notranslate nohighlight">\([c, d)\)</span> where <span class="math notranslate nohighlight">\(b &lt;= c\)</span>. Eventually, try to generate to
 an arbitrary sequence of <code class="docutils literal notranslate"><span class="pre">slice</span></code>s, assuming they are fed in sorted
 order with respect to <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>.</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(random.random)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Help</span> <span class="n">on</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="n">function</span> <span class="n">random</span><span class="p">:</span>
@@ -522,21 +523,21 @@ order with respect to <code class="docutils literal notranslate"><span class="pr
     <span class="n">random</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">interval</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def samples(*slices):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">samples</span><span class="p">(</span><span class="o">*</span><span class="n">slices</span><span class="p">):</span>
 
-    step = 1/len(slices)
+    <span class="n">step</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">slices</span><span class="p">)</span>
 
-    steps = itertools.count(step, step)
-    bins = [(s, sl) for sl, s in zip(slices, steps)]
+    <span class="n">steps</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+    <span class="n">bins</span> <span class="o">=</span> <span class="p">[(</span><span class="n">s</span><span class="p">,</span> <span class="n">sl</span><span class="p">)</span> <span class="k">for</span> <span class="n">sl</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">slices</span><span class="p">,</span> <span class="n">steps</span><span class="p">)]</span>
 
-    while True:
-        r = random.random()
-        i = bisect.bisect_left(bins, (r, None))
-        sl = slices[i]
-        yield abs(sl.stop - sl.start) * (r - (i*step))/step + sl.start
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">bisect</span><span class="o">.</span><span class="n">bisect_left</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="n">sl</span> <span class="o">=</span> <span class="n">slices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">yield</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sl</span><span class="o">.</span><span class="n">stop</span> <span class="o">-</span> <span class="n">sl</span><span class="o">.</span><span class="n">start</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">step</span><span class="p">))</span><span class="o">/</span><span class="n">step</span> <span class="o">+</span> <span class="n">sl</span><span class="o">.</span><span class="n">start</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>samples(slice(10, 20), slice(35, 40))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">samples</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">samples</span> <span class="n">at</span> <span class="mh">0x7f94b236eba0</span><span class="o">&gt;</span>
@@ -544,139 +545,139 @@ order with respect to <code class="docutils literal notranslate"><span class="pr
 </div>
 <p>Then define the generator with respect to <span class="math notranslate nohighlight">\([10, 20)\)</span> and
 <span class="math notranslate nohighlight">\([35, 40)\)</span></p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>observations = take(samples(slice(10, 20), slice(35, 40)), 1_000_000)
-observations
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">observations</span> <span class="o">=</span> <span class="n">take</span><span class="p">(</span><span class="n">samples</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">)),</span> <span class="mi">1_000_000</span><span class="p">)</span>
+<span class="n">observations</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">take</span> <span class="n">at</span> <span class="mh">0x7f94b2336970</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>have a look at some observations</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sorted([i for _, i in zip(range(100), observations)])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">observations</span><span class="p">)])</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle \left[ 10.0243661059958, \  10.0873975329876, \  10.2211266444531, \  10.6092881155464, \  10.6254660850717, \  10.7334281314769, \  10.8236069247585, \  10.8727655861638, \  11.258254343462, \  11.6840320449525, \  11.8133002710598, \  11.9201805391687, \  12.5592243753303, \  12.6022481166986, \  12.6109950048561, \  13.1692133715406, \  13.1765286878284, \  13.3189999899088, \  13.5181123465823, \  13.6499197181786, \  13.9268982253803, \  13.948955821507, \  14.0787047568117, \  14.090512898636, \  14.4707698744916, \  15.0843307789221, \  15.3962540553825, \  15.5801342859493, \  15.7352414885053, \  15.7658057442765, \  15.8902591426058, \  16.1042151562522, \  16.534440064839, \  16.5504809739677, \  16.972789644161, \  17.2374649583287, \  17.4049597156253, \  17.4283690400338, \  17.733197151736, \  18.2288091940092, \  18.5437065970785, \  18.7505124649756, \  18.8917764738254, \  18.8969250921975, \  19.0729561696043, \  19.256817892779, \  19.3717672510655, \  19.5322387840929, \  35.0207872435975, \  35.2356477806215, \  35.2577105057653, \  35.2814921166459, \  35.4246450154323, \  35.4349741337585, \  35.5895045839265, \  35.7395545248987, \  35.8723069492796, \  35.9771982204247, \  35.9798350469088, \  36.0396641353563, \  36.1270941051562, \  36.2444198416499, \  36.4536612840449, \  36.4599673907274, \  36.4905858852493, \  36.5235112376273, \  36.7302976712501, \  36.7831680191092, \  36.824232661191, \  36.8509038073242, \  36.8676003280364, \  36.9681442010981, \  37.1415375170644, \  37.1723214906744, \  37.3444328548801, \  37.3795170088498, \  37.3894904758704, \  37.3966683807518, \  37.5687939026067, \  37.6258670429823, \  37.6587283288162, \  37.6706106594373, \  37.6833043922921, \  37.8782241471843, \  38.1226915465397, \  38.1491084877288, \  38.6010388441724, \  38.7280083725125, \  38.7546857802761, \  38.8527972342487, \  38.8659495130244, \  38.894218349131, \  39.0260735215189, \  39.0887130093579, \  39.3684450707367, \  39.5946364683723, \  39.796620953206, \  39.8519691918851, \  39.9253964264206, \  39.9439845552374\right]\]</div>
 <p>then observe the quantiles:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>statistics.quantiles(observations)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span><span class="o">.</span><span class="n">quantiles</span><span class="p">(</span><span class="n">observations</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle \left[ 14.9947797662436, \  19.9919442968699, \  37.4972007290155\right]\]</div>
 <p>it looks uniform. By the way, use different intervals, <span class="math notranslate nohighlight">\([14, 20)\)</span>
 and <span class="math notranslate nohighlight">\([35,40)\)</span>,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>observations = take(samples(slice(14, 20), slice(35, 40)), 1_000_000)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">observations</span> <span class="o">=</span> <span class="n">take</span><span class="p">(</span><span class="n">samples</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">)),</span> <span class="mi">1_000_000</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>look again at some observations,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sorted([i for _, i in zip(range(100), observations)])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">observations</span><span class="p">)])</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle \left[ 14.1323041960025, \  14.1563525351912, \  14.2908152420734, \  14.3720844926469, \  14.4301443300871, \  14.6357471847229, \  14.7928286025045, \  14.9562913078198, \  14.985739023817, \  15.1012283815453, \  15.2449872388595, \  15.3866557236714, \  15.4234829341249, \  15.5172448927458, \  15.5203726399967, \  15.6193240631202, \  15.9057679019172, \  16.1519150519768, \  16.3666277973103, \  16.375510843941, \  16.3886919722393, \  16.4005372120036, \  16.4352391166169, \  16.4364732145617, \  16.5968044945369, \  16.7528707322255, \  16.9254485955368, \  17.1545978036333, \  17.3903959487242, \  17.50836549493, \  17.5225245702106, \  17.5333822442405, \  17.6219839032812, \  17.6316697310435, \  17.6429865725727, \  17.7737403896486, \  18.0100780482131, \  18.1331630410681, \  18.1837078443592, \  18.2301058640675, \  18.3553490836376, \  18.4231361252609, \  18.459797523787, \  18.5097467947309, \  18.6411915573322, \  18.7058302929093, \  19.0102016600827, \  19.1893562856584, \  19.2005623457227, \  19.3663883910707, \  19.5802975599368, \  35.0313211746186, \  35.1153568379507, \  35.2155164507026, \  35.2186251436206, \  35.4376567072963, \  35.5359756689958, \  35.6875054349605, \  35.7593140588158, \  35.7604300719099, \  35.8573002965294, \  35.8963964053793, \  35.9669720403967, \  36.0996779475967, \  36.1989963334615, \  36.3199973000606, \  36.5479244259248, \  36.6107982413955, \  36.661066608938, \  36.8699532912034, \  37.0148538841098, \  37.0658760331007, \  37.3954122292724, \  37.4036119647786, \  37.6426721420912, \  37.7851607990447, \  37.8129381771257, \  37.8358115991689, \  37.8664971315149, \  37.9943152158376, \  38.0120378881196, \  38.1722755764654, \  38.269815307088, \  38.5040681648737, \  38.5356912014615, \  38.5973522695451, \  39.1880929625333, \  39.2764345461328, \  39.2815996091282, \  39.2954666796793, \  39.3799528621052, \  39.4272831044918, \  39.4292908246285, \  39.4927533988742, \  39.5160180706083, \  39.6903052723282, \  39.7502097169046, \  39.9140939164098, \  39.936621091931, \  39.9736215524307\right]\]</div>
 <p>and check the corresponding quantiles</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>statistics.quantiles(observations)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span><span class="o">.</span><span class="n">quantiles</span><span class="p">(</span><span class="n">observations</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle \left[ 17.0120270873622, \  35.0091410950936, \  37.5047555769823\right]\]</div>
 <p>it should be uniform too. Finally, we test the corner case where
 <span class="math notranslate nohighlight">\(b=c\)</span>, so let <span class="math notranslate nohighlight">\([10, 20)\)</span> and <span class="math notranslate nohighlight">\([20,40)\)</span>,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>observations = take(samples(slice(10, 20), slice(20, 40)), 1_000_000)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">observations</span> <span class="o">=</span> <span class="n">take</span><span class="p">(</span><span class="n">samples</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">)),</span> <span class="mi">1_000_000</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>look again at some observations,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sorted([i for _, i in zip(range(100), observations)])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">observations</span><span class="p">)])</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle \left[ 10.3138042492069, \  10.4617132954871, \  10.5809908902109, \  10.6010442620482, \  10.6887497588823, \  11.7254181853172, \  11.8271470660681, \  12.048102938299, \  12.247139166854, \  12.2549353500679, \  13.2914091982908, \  13.4459073192196, \  13.647656459474, \  13.6910471558124, \  14.123566779006, \  14.2551894831251, \  14.5939427033854, \  14.6234703446175, \  14.9279109995807, \  14.9973541378411, \  15.0791166070317, \  15.2549787961636, \  15.4904856657929, \  16.0545164052765, \  16.2117379525326, \  16.4562397604181, \  16.6026015779431, \  16.7088902884986, \  16.710077039622, \  16.7992315042294, \  17.0321951774865, \  17.0352934965467, \  17.1050312631865, \  17.1532373657116, \  17.2682305118815, \  17.6599373467649, \  17.7370926273273, \  17.9235109312741, \  18.0087370813096, \  18.3273991743432, \  18.453592676932, \  18.8665261441337, \  19.1234550824922, \  19.2080876073163, \  19.5772209175442, \  19.6682654821401, \  20.3324520675891, \  20.3935779739885, \  20.8497271574752, \  21.133667544165, \  22.4415811131435, \  23.3999361089338, \  23.7715554382267, \  23.9257832035858, \  24.0776513632948, \  24.1989723261161, \  24.397401473484, \  24.7098113954197, \  24.8170714792839, \  24.9288957236155, \  26.2281486965927, \  26.4088786487729, \  26.7216839700722, \  26.8329313991179, \  26.8534141521857, \  26.9212145847347, \  27.0736507746228, \  27.364310658668, \  27.5780019679952, \  27.6041135453553, \  28.6692581540964, \  29.2261026975492, \  29.8942781614073, \  29.9434199769997, \  30.5522517953459, \  30.5629687527648, \  30.6138031778256, \  31.6349049382327, \  32.0261404496609, \  32.3687354050969, \  33.5183891001866, \  33.6681315671644, \  33.7476739047184, \  34.0354106514961, \  34.1369089638411, \  34.8266328131936, \  34.8938204741322, \  35.0510595035298, \  35.2891255966106, \  35.3063843466018, \  35.600883275618, \  36.6177060928967, \  36.8418045240622, \  37.2710083645502, \  37.822150301474, \  38.140279734327, \  38.5882057987763, \  38.8307542283743, \  39.8252720322953, \  39.9201137902001\right]\]</div>
 <p>and check the corresponding quantiles</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>statistics.quantiles(observations)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span><span class="o">.</span><span class="n">quantiles</span><span class="p">(</span><span class="n">observations</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle \left[ 15.0015750374179, \  20.0017670659526, \  30.0210196691344\right]\]</div>
 <p>it should be uniform either. Finally, attempt a sampling from <code class="docutils literal notranslate"><span class="pre">4</span></code>
 slices,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>observations = take(samples(slice(0, 5), slice(10, 15), slice(20, 25), slice(30, 35)), 1_000_000)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">observations</span> <span class="o">=</span> <span class="n">take</span><span class="p">(</span><span class="n">samples</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">35</span><span class="p">)),</span> <span class="mi">1_000_000</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>look again at some observations,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>sorted([i for _, i in zip(range(100), observations)])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sorted</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="n">observations</span><span class="p">)])</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle \left[ 0.0721670174820011, \  0.251638150885252, \  0.454589866470005, \  0.797351604131717, \  1.04201184990024, \  1.09601049158395, \  1.12910750448021, \  1.39510803467466, \  1.56747852768705, \  2.26465608665783, \  2.49460993241168, \  2.77596902018942, \  2.78401315008064, \  3.24602453892028, \  3.27130359090896, \  3.80736075048964, \  4.58829681683315, \  4.79749739461101, \  4.80836601616213, \  4.81025028577513, \  10.1305526947971, \  10.7491394328919, \  10.755628043989, \  10.7719744270599, \  10.8535106453669, \  11.0189194785127, \  11.2086447641603, \  11.2190090156744, \  11.2237108329476, \  11.842905910204, \  11.86879879227, \  11.9138896820439, \  12.3076402142551, \  12.4908710057721, \  12.5955375064324, \  12.6579629437233, \  12.761062485281, \  12.802849955083, \  13.0995393418366, \  13.4186839125608, \  13.6094875003084, \  13.6436994354719, \  13.7808136432215, \  14.0152045883098, \  14.273444820187, \  14.4031999317319, \  14.5287018465516, \  14.5716215580827, \  14.6523918120587, \  14.7922512390712, \  14.9092089240726, \  14.9210711970253, \  20.09201231095, \  20.2316827131464, \  20.4319958792265, \  20.5882144556517, \  20.6839480954171, \  20.9495072655182, \  21.0392822592264, \  21.5490769500205, \  21.6099700754839, \  22.1670165044208, \  22.2202641136998, \  22.2334323790502, \  22.2428963606999, \  22.322312074206, \  22.5961433112942, \  23.1575726062898, \  23.52815490794, \  23.780633763837, \  24.0563980112762, \  24.3177335923029, \  24.4090378298098, \  24.5454848322612, \  24.6093629967583, \  24.6281061651609, \  30.1162361655058, \  30.1269636184324, \  30.3184926896898, \  30.3736768338581, \  30.3890273183079, \  30.4755508925172, \  30.6602246415675, \  31.0146511055455, \  31.0521118790551, \  31.313281056821, \  31.3488854274348, \  31.7768642602927, \  32.2154220724097, \  32.2174254745533, \  32.5372781276159, \  32.6677262075565, \  32.7504668126776, \  33.2928179251376, \  33.3175785766162, \  33.8002294825965, \  33.9799188461708, \  34.0653799094503, \  34.4869921698902, \  34.8345926013318\right]\]</div>
 <p>and check the corresponding quantiles</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>statistics.quantiles(observations)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">statistics</span><span class="o">.</span><span class="n">quantiles</span><span class="p">(</span><span class="n">observations</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle \left[ 10.0082975897974, \  20.0087565216306, \  30.0077741144062\right]\]</div>
 <p>it should be uniform either.</p>
-</div>
-<div class="section" id="bernoulli-random-variable">
+</section>
+<section id="bernoulli-random-variable">
 <h2>Bernoulli random variable<a class="headerlink" href="#bernoulli-random-variable" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>int(True) # this is a very quick check to see if a Boolean can be used as integer
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># this is a very quick check to see if a Boolean can be used as integer</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def Bernoulli(p):
-    &#39;This is a generator for a Bernoulli random variable of parameter `p` for success.&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Bernoulli</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="s1">&#39;This is a generator for a Bernoulli random variable of parameter `p` for success.&#39;</span>
 
-    while True:              # forever we loop
-        r = random.random()  # get a sample
-        yield int(r &lt; p)     # if that sample denotes a success or a failure we *yield* that outcome
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>              <span class="c1"># forever we loop</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>  <span class="c1"># get a sample</span>
+        <span class="k">yield</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">)</span>     <span class="c1"># if that sample denotes a success or a failure we *yield* that outcome</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>B = Bernoulli(p=0.6) # B is our random variable
-B
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="o">=</span> <span class="n">Bernoulli</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span> <span class="c1"># B is our random variable</span>
+<span class="n">B</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>next(B)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>next(B)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>next(B)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>next(B)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(take(B, 20))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>C = collections.Counter(take(B, 1_000_000))
-C
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="mi">1_000_000</span><span class="p">))</span>
+<span class="n">C</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>C[1]/(C[0]+C[1])
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>where</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>print(collections.Counter.__doc__)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="russian-peasant-multiplication">
+</section>
+<section id="russian-peasant-multiplication">
 <h2>Russian Peasant Multiplication<a class="headerlink" href="#russian-peasant-multiplication" title="Permalink to this headline">¶</a></h2>
 <p>Let</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def halves_doubles(n, m):
-    halving = n
-    doubling = m
-    acc = 0
-    while halving:
-        digit = halving % 2
-        acc = acc + digit * doubling
-        yield (digit, halving, doubling, acc)
-        halving = halving &gt;&gt; 1 # int(halving / 2)
-        doubling = doubling &lt;&lt; 1
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">halves_doubles</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">halving</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="n">doubling</span> <span class="o">=</span> <span class="n">m</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">halving</span><span class="p">:</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">halving</span> <span class="o">%</span> <span class="mi">2</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">digit</span> <span class="o">*</span> <span class="n">doubling</span>
+        <span class="k">yield</span> <span class="p">(</span><span class="n">digit</span><span class="p">,</span> <span class="n">halving</span><span class="p">,</span> <span class="n">doubling</span><span class="p">,</span> <span class="n">acc</span><span class="p">)</span>
+        <span class="n">halving</span> <span class="o">=</span> <span class="n">halving</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span> <span class="c1"># int(halving / 2)</span>
+        <span class="n">doubling</span> <span class="o">=</span> <span class="n">doubling</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span>
 </pre></div>
 </div>
 <p>in</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(halves_doubles(89, 18))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">halves_doubles</span><span class="p">(</span><span class="mi">89</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span>
@@ -692,38 +693,38 @@ C
 also
 <a class="reference external" href="https://www.cut-the-knot.org/Curriculum/Algebra/PeasantMultiplication.shtml">https://www.cut-the-knot.org/Curriculum/Algebra/PeasantMultiplication.shtml</a>.
 Then,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def rpm(n, m):
-    *prefix, (b, h, d, s) = halves_doubles(n, m)
-    return s
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rpm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="o">*</span><span class="n">prefix</span><span class="p">,</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="n">halves_doubles</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span>
 </pre></div>
 </div>
 <p>so the check passes,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>assert rpm(89, 18) == 89 * 18 == 1602
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">rpm</span><span class="p">(</span><span class="mi">89</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span> <span class="o">==</span> <span class="mi">89</span> <span class="o">*</span> <span class="mi">18</span> <span class="o">==</span> <span class="mi">1602</span>
 </pre></div>
 </div>
 <p>because</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>bin(89)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bin</span><span class="p">(</span><span class="mi">89</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;0b1011001&#39;</span>
 </pre></div>
 </div>
 <p>Of course, it works too when the first number is even,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rpm(6, 100)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rpm</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">600</span>
 </pre></div>
 </div>
 <p>Of course our implementation</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit rpm(293819385789379687596845, 921038209831568476843584365)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> rpm(293819385789379687596845, 921038209831568476843584365)
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>33.2 µs ± 111 ns per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 </pre></div>
 </div>
 <p>is <em>slower</em> than the primitive one</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit 293819385789379687596845 * 921038209831568476843584365
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> 293819385789379687596845 * 921038209831568476843584365
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>98.8 ns ± 0.164 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
@@ -731,178 +732,178 @@ Then,</p>
 </div>
 <p>because arithmetic is performed in the virtual machine.</p>
 <p>Let us give a strict version also,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def rpm_strict(n, m):
-    halving = n
-    doubling = m
-    acc = 0
-    while halving:
-        digit = halving % 2
-        acc = acc + digit * doubling
-        halving = halving &gt;&gt; 1
-        doubling = doubling &lt;&lt; 1
-    return acc
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rpm_strict</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="n">halving</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="n">doubling</span> <span class="o">=</span> <span class="n">m</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">halving</span><span class="p">:</span>
+        <span class="n">digit</span> <span class="o">=</span> <span class="n">halving</span> <span class="o">%</span> <span class="mi">2</span>
+        <span class="n">acc</span> <span class="o">=</span> <span class="n">acc</span> <span class="o">+</span> <span class="n">digit</span> <span class="o">*</span> <span class="n">doubling</span>
+        <span class="n">halving</span> <span class="o">=</span> <span class="n">halving</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+        <span class="n">doubling</span> <span class="o">=</span> <span class="n">doubling</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">acc</span>
 </pre></div>
 </div>
 <p>check that it is correct,</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>rpm_strict(89, 18)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rpm_strict</span><span class="p">(</span><span class="mi">89</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>and observe that it is a little bit <em>faster</em> than our former
 implementation</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit rpm_strict(293819385789379687596845, 921038209831568476843584365)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> rpm_strict(293819385789379687596845, 921038209831568476843584365)
 </pre></div>
 </div>
-</div>
-<div class="section" id="fixed-sum">
+</section>
+<section id="fixed-sum">
 <h2>Fixed sum<a class="headerlink" href="#fixed-sum" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def subarrays(L):
-   return (L[i:j] for i in range(len(L)) for j in range(i, len(L)+1))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">subarrays</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+   <span class="k">return</span> <span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">))</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>L = [-1, 5, 8, -9, 4, 1]
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(subarrays(L))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">subarrays</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def fixed_sum(L, n):
-    return filter(lambda s: sum(s)==n, subarrays(L))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fixed_sum</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">==</span><span class="n">n</span><span class="p">,</span> <span class="n">subarrays</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(fixed_sum(L, 10))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">fixed_sum</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def partial_sums(L):
-    g = itertools.accumulate(subarrays(L), lambda s, each: s + each[-1] if each else 0, initial=0)
-    next(g) # to ignore the initial 0 given above
-    return g
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">partial_sums</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">subarrays</span><span class="p">(</span><span class="n">L</span><span class="p">),</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">each</span><span class="p">:</span> <span class="n">s</span> <span class="o">+</span> <span class="n">each</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">each</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="nb">next</span><span class="p">(</span><span class="n">g</span><span class="p">)</span> <span class="c1"># to ignore the initial 0 given above</span>
+    <span class="k">return</span> <span class="n">g</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(partial_sums(L))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">partial_sums</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Toward an optimization…</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def subarrays_rev(L):
-   return (tuple(L[i:j]) for i in range(len(L)-1, -1, -1) for j in range(i+1, len(L)+1))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">subarrays_rev</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+   <span class="k">return</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(subarrays_rev(L))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">subarrays_rev</span><span class="p">(</span><span class="n">L</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def fixed_sum_rev(L, n, cache={}):
-    for tup in subarrays_rev(L):
-        rest = tup[1:]
-        s = tup[0] + cache.get(rest, 0)
-        cache[tup] = s
-        if s == n: yield tup
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fixed_sum_rev</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="k">for</span> <span class="n">tup</span> <span class="ow">in</span> <span class="n">subarrays_rev</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+        <span class="n">rest</span> <span class="o">=</span> <span class="n">tup</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">tup</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">rest</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">cache</span><span class="p">[</span><span class="n">tup</span><span class="p">]</span> <span class="o">=</span> <span class="n">s</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span> <span class="k">yield</span> <span class="n">tup</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cache = {}
-list(fixed_sum_rev(L, 10, cache))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">fixed_sum_rev</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">cache</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>cache # have a look at the collected values
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cache</span> <span class="c1"># have a look at the collected values</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def sample(n):
-    O, b, *rest = bin(random.getrandbits(n)) # because `string`s are iterable objects indeed.
-    return list(map(int, rest))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sample</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">O</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">rest</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">getrandbits</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="c1"># because `string`s are iterable objects indeed.</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">rest</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>where</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>help(random.getrandbits)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">getrandbits</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>LL = sample(1000)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LL</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>assert set(map(tuple, fixed_sum(LL, 10))) == set(fixed_sum_rev(LL, 10))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">fixed_sum</span><span class="p">(</span><span class="n">LL</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">fixed_sum_rev</span><span class="p">(</span><span class="n">LL</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit list(fixed_sum(LL, 10))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> list(fixed_sum(LL, 10))
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%timeit list(fixed_sum_rev(LL, 10))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">timeit</span> list(fixed_sum_rev(LL, 10))
 </pre></div>
 </div>
 <p><strong>INTERMEZZO</strong></p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>if 4 &lt; 8:
-    print(&#39;a&#39;)
-else:
-    pass
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="mi">4</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>b = if 4 &lt; 8:
-       &#39;&#39;&#39;
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="k">if</span> <span class="mi">4</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+       <span class="sd">&#39;&#39;&#39;</span>
 
 
-       lots of code
+<span class="sd">       lots of code</span>
 
 
 
 
-       &#39;&#39;&#39;
-    else:
-       6
+<span class="sd">       &#39;&#39;&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+       <span class="mi">6</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>b = 5 if 4 &lt; 8 else 6
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">5</span> <span class="k">if</span> <span class="mi">4</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="k">else</span> <span class="mi">6</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>b
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="some-strange-uses-of-recursion">
+</section>
+<section id="some-strange-uses-of-recursion">
 <h2>Some strange uses of recursion<a class="headerlink" href="#some-strange-uses-of-recursion" title="Permalink to this headline">¶</a></h2>
 <p>For more on this recursion schemata see
 <a class="reference external" href="https://www.cs.ox.ac.uk/people/ralf.hinze/publications/ICFP09.pdf">https://www.cs.ox.ac.uk/people/ralf.hinze/publications/ICFP09.pdf</a> and
 also
 <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1571066104809721">https://www.sciencedirect.com/science/article/pii/S1571066104809721</a>.</p>
-<div class="section" id="constants">
+<section id="constants">
 <h3>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def const(n):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">const</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
 
-    yield n
+    <span class="k">yield</span> <span class="n">n</span>
 
-    yield from const(n)
+    <span class="k">yield from</span> <span class="n">const</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>const(1)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">const</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">const</span> <span class="n">at</span> <span class="mh">0x7f425c332970</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>ones = const(1)
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ones</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(take(ones, 10))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">ones</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="nats">
+</section>
+<section id="nats">
 <h3>Nats<a class="headerlink" href="#nats" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def nats():
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">nats</span><span class="p">():</span>
 
-    yield 0
+    <span class="k">yield</span> <span class="mi">0</span>
 
-    g = nats() # !!
+    <span class="n">g</span> <span class="o">=</span> <span class="n">nats</span><span class="p">()</span> <span class="c1"># !!</span>
 
-    yield from map(lambda n: n + 1, g)
+    <span class="k">yield from</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(take(nats(), 10))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">nats</span><span class="p">(),</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="primes">
+</section>
+<section id="primes">
 <h3>Primes<a class="headerlink" href="#primes" title="Permalink to this headline">¶</a></h3>
 <p>Consider the following functional specification for the naturals that
 are also <em>primes</em></p>
@@ -911,48 +912,48 @@ are also <em>primes</em></p>
           <span class="n">p</span> <span class="kt">:</span> <span class="n">filterPrime</span> <span class="p">[</span><span class="n">x</span> <span class="o">|</span> <span class="n">x</span> <span class="ow">&lt;-</span> <span class="n">xs</span><span class="p">,</span> <span class="n">x</span> <span class="p">`</span><span class="n">mod</span><span class="p">`</span> <span class="n">p</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def primes():
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">primes</span><span class="p">():</span>
 
-    def P(numbers):
+    <span class="k">def</span> <span class="nf">P</span><span class="p">(</span><span class="n">numbers</span><span class="p">):</span>
 
-        prime = next(numbers) # get the next prime from the iterator `it`.
+        <span class="n">prime</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="c1"># get the next prime from the iterator `it`.</span>
 
-        yield prime # yield the next prime number
+        <span class="k">yield</span> <span class="n">prime</span> <span class="c1"># yield the next prime number</span>
 
-        def not_divisible_by_prime(n):  # a mnemonic predicate.
-            q, r = divmod(n, prime)
-            return r != 0
+        <span class="k">def</span> <span class="nf">not_divisible_by_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>  <span class="c1"># a mnemonic predicate.</span>
+            <span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">prime</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">r</span> <span class="o">!=</span> <span class="mi">0</span>
 
-        yield from P(filter(not_divisible_by_prime, numbers)) # `numbers` has been advanced before.
+        <span class="k">yield from</span> <span class="n">P</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">not_divisible_by_prime</span><span class="p">,</span> <span class="n">numbers</span><span class="p">))</span> <span class="c1"># `numbers` has been advanced before.</span>
 
-    yield from P(itertools.count(2))
+    <span class="k">yield from</span> <span class="n">P</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(take(primes(), 20))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">primes</span><span class="p">(),</span> <span class="mi">20</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">71</span><span class="p">]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="fibonacci-again">
+</section>
+<section id="fibonacci-again">
 <h3>Fibonacci, again<a class="headerlink" href="#fibonacci-again" title="Permalink to this headline">¶</a></h3>
 <p>Remember,</p>
 <div class="math notranslate nohighlight">
 \[f_{n+2} = f_{n+1} + f_{n}, \quad \text{where} \quad f_{0} = 0 \wedge f_{1} = 1\]</div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>def fibs(first=0, second=1):
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fibs</span><span class="p">(</span><span class="n">first</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 
-    yield first  # the first number in the Fibonacci series,
-    yield second # ... and the second one.
+    <span class="k">yield</span> <span class="n">first</span>  <span class="c1"># the first number in the Fibonacci series,</span>
+    <span class="k">yield</span> <span class="n">second</span> <span class="c1"># ... and the second one.</span>
 
-    f, ff = itertools.tee(fibs(first, second)) # duplicate the stream of fibonacci numbers.
+    <span class="n">f</span><span class="p">,</span> <span class="n">ff</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">tee</span><span class="p">(</span><span class="n">fibs</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">))</span> <span class="c1"># duplicate the stream of fibonacci numbers.</span>
 
-    next(ff) # advance just one of them
+    <span class="nb">next</span><span class="p">(</span><span class="n">ff</span><span class="p">)</span> <span class="c1"># advance just one of them</span>
 
-    yield from map(operator.add, f, ff) # according to the Fibonacci rule, yield all the rest.
+    <span class="k">yield from</span> <span class="nb">map</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">ff</span><span class="p">)</span> <span class="c1"># according to the Fibonacci rule, yield all the rest.</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>list(take(fibs(), 20))
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">fibs</span><span class="p">(),</span> <span class="mi">20</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">0</span><span class="p">,</span>
@@ -977,39 +978,39 @@ are also <em>primes</em></p>
  <span class="mi">4181</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="section" id="and-again">
+<section id="and-again">
 <h4>…and again<a class="headerlink" href="#and-again" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>from sympy import IndexedBase, init_printing # SymPy for symbolic computation
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">IndexedBase</span><span class="p">,</span> <span class="n">init_printing</span> <span class="c1"># SymPy for symbolic computation</span>
 
-init_printing() # pretty printing math symbols and expressions
+<span class="n">init_printing</span><span class="p">()</span> <span class="c1"># pretty printing math symbols and expressions</span>
 </pre></div>
 </div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>x = IndexedBase(&#39;x&#39;)
-x[1] # indexing as done in math.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">IndexedBase</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># indexing as done in math.</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle {x}_{1}\]</div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>fibos = list(take(fibs(x[0], x[1]), 20)) # generate an abstract schema
-fibos
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fibos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">take</span><span class="p">(</span><span class="n">fibs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="mi">20</span><span class="p">))</span> <span class="c1"># generate an abstract schema</span>
+<span class="n">fibos</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle \left[ {x}_{0}, \  {x}_{1}, \  {x}_{0} + {x}_{1}, \  {x}_{0} + 2 {x}_{1}, \  2 {x}_{0} + 3 {x}_{1}, \  3 {x}_{0} + 5 {x}_{1}, \  5 {x}_{0} + 8 {x}_{1}, \  8 {x}_{0} + 13 {x}_{1}, \  13 {x}_{0} + 21 {x}_{1}, \  21 {x}_{0} + 34 {x}_{1}, \  34 {x}_{0} + 55 {x}_{1}, \  55 {x}_{0} + 89 {x}_{1}, \  89 {x}_{0} + 144 {x}_{1}, \  144 {x}_{0} + 233 {x}_{1}, \  233 {x}_{0} + 377 {x}_{1}, \  377 {x}_{0} + 610 {x}_{1}, \  610 {x}_{0} + 987 {x}_{1}, \  987 {x}_{0} + 1597 {x}_{1}, \  1597 {x}_{0} + 2584 {x}_{1}, \  2584 {x}_{0} + 4181 {x}_{1}\right]\]</div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>[expr.subs({x[0]:0, x[1]:1}) for expr in fibos] # Fibonacci numbers, as usual.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="mi">1</span><span class="p">})</span> <span class="k">for</span> <span class="n">expr</span> <span class="ow">in</span> <span class="n">fibos</span><span class="p">]</span> <span class="c1"># Fibonacci numbers, as usual.</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle \left[ 0, \  1, \  1, \  2, \  3, \  5, \  8, \  13, \  21, \  34, \  55, \  89, \  144, \  233, \  377, \  610, \  987, \  1597, \  2584, \  4181\right]\]</div>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>[expr.subs({x[0]:2, x[1]:1}) for expr in fibos] # Lucas numbers, less usual.
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">expr</span><span class="o">.</span><span class="n">subs</span><span class="p">({</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="mi">1</span><span class="p">})</span> <span class="k">for</span> <span class="n">expr</span> <span class="ow">in</span> <span class="n">fibos</span><span class="p">]</span> <span class="c1"># Lucas numbers, less usual.</span>
 </pre></div>
 </div>
 <div class="math notranslate nohighlight">
 \[\displaystyle \left[ 2, \  1, \  3, \  4, \  7, \  11, \  18, \  29, \  47, \  76, \  123, \  199, \  322, \  521, \  843, \  1364, \  2207, \  3571, \  5778, \  9349\right]\]</div>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
 
           </div>
@@ -1037,7 +1038,7 @@ fibos
       &copy;2021, Massimo Nocentini.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
